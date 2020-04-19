@@ -65,7 +65,7 @@ export default class index extends Component {
                             style={{ color: PrimayColor, right: "-70%", fontSize: 12 }}>
                             Forgot Password?
                      </Text>
-                        <TouchableOpacity style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={()=>this.props.navigation.navigate('Home')}>
                             <Text style={styles.buttonText}>Login</Text>
                         </TouchableOpacity>
 

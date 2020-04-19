@@ -4,9 +4,12 @@ import { createStackNavigator } from 'react-navigation-stack';
 import LandingPage from './src/components/LandingPage';
 import Login from './src/components/login';
 import Register from './src/components/Register';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import ForgotPassword from './src/components/ForgotPassword';
-Icon.loadFont();
+import Home from './src/components/Home';
+MaterialIcon.loadFont();
+Feather.loadFont()
 
 const AppNavigator = createStackNavigator({
   Landing: {
@@ -27,9 +30,14 @@ const AppNavigator = createStackNavigator({
   Reset:{
     screen: ForgotPassword,
     navigationOptions:{headerTitle:'Reset Password'}
+  },
+  Home:{
+    screen:Home,
+    navigationOptions:{headerShown:false}
   }
 }, {
   initialRouteKey: 'Landing',
 });
+
 
 export default createAppContainer(AppNavigator);
