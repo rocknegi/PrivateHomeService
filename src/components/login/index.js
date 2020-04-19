@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { SafeAreaView, Text, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Modal from 'react-native-modal';
-
-import data from '../../utils/Countries'
 import { PrimayColor } from '../theme/Colors';
+import DialingCodePicker from '../DialingCodePicker';
 
 export default class index extends Component {
     state = {
@@ -14,17 +12,9 @@ export default class index extends Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
-
-    renderList = (item) => {
-        return (
-            <View>
-                <View style={styles.modal}>
-                    <Text style={[styles.modalText, { fontSize: 30 }]} key={item.code}>{item.flag}</Text>
-                    <Text style={[styles.modalText]} key={item.name}>{item.name}</Text>
-                    <Text style={[styles.modalText], { fontSize: 20 }} key={item.dial_code}>{item.dial_code}</Text>
-                </View>
-            </View>
-        )
+    setDialCode = (dialingCode)=>{
+        this.setState({dialingCode})
+        this.toggleModal()
     }
 
     render() {
@@ -42,27 +32,17 @@ export default class index extends Component {
 
                         <View>
                         </View>
-                        <Modal
-                            isVisible={this.state.isModalVisible}
-                            scrollHorizontal={true}
-                            hasBackdrop={true}
-                            backdropColor='#FFF'
-                            style={{ marginTop: 350 }}
-                            onBackdropPress={() => this.toggleModal()}
-                        >
-                            <FlatList
-                                data={data}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={({ item }) => this.renderList(item)}
-                            />
-                        </Modal>
+                        <DialingCodePicker 
+                        isModalVisible={this.state.isModalVisible}
+                        setDialCode={(dialingCode)=>this.setDialCode(dialingCode)}
+                        />
 
                         <View style={styles.field}>
                             <Icon name="phone"
                                 style={styles.icon} />
                             <TouchableWithoutFeedback
                                 onPress={() => this.toggleModal()}>
-                                <Text style={{ marginLeft:5 }}>{`(${this.state.dialingCode})`}</Text>
+                                <Text style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</Text>
                             </TouchableWithoutFeedback>
                             <TextInput
                                 placeholder="enter your phone no"
@@ -88,7 +68,7 @@ export default class index extends Component {
                         </TouchableOpacity>
 
                         <View style={styles.signup}>
-                            <TouchableOpacity style={{width: "100%" }} onPress={() => this.props.navigation.navigate('')}>
+                            <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('')}>
                                 <Text style={{ color: '#757575', fontSize: 12 }}>
                                     Don't have an account ?  <Text style={{ color: PrimayColor, fontSize: 12 }}>Sign Up</Text>
                                 </Text>
@@ -122,7 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fafafa',
         marginBottom: 20,
         marginHorizontal: 15,
-        borderColor:PrimayColor
+        borderColor: PrimayColor
     },
     icon: {
         color: '#999999', paddingLeft: 10, fontSize: 20
@@ -139,7 +119,7 @@ const styles = StyleSheet.create({
         marginHorizontal: '32%',
         height: 50,
         justifyContent: 'center',
-        marginBottom:20
+        marginBottom: 20
     },
     buttonText: {
         textAlign: 'center',
