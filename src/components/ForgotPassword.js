@@ -34,6 +34,7 @@ export default class ForgotPassword extends Component {
                         <TextInput
                             placeholder="enter your phone no"
                             style={[styles.input]}
+                            keyboardType={'number-pad'}
                         />
                     </View>
                     <TouchableOpacity

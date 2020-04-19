@@ -48,6 +48,7 @@ export default class Register extends Component {
                             <TextInput
                                 placeholder="enter your phone no"
                                 style={[styles.input]}
+                                keyboardType={'number-pad'}
                             />
                         </View>
                         <View style={styles.field}>

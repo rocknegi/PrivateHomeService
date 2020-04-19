@@ -12,8 +12,8 @@ export default class index extends Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
-    setDialCode = (dialingCode)=>{
-        this.setState({dialingCode})
+    setDialCode = (dialingCode) => {
+        this.setState({ dialingCode })
         this.toggleModal()
     }
 
@@ -32,10 +32,10 @@ export default class index extends Component {
 
                         <View>
                         </View>
-                        <DialingCodePicker 
-                        isModalVisible={this.state.isModalVisible}
-                        setDialCode={(dialingCode)=>this.setDialCode(dialingCode)}
-                        toggleModal={this.toggleModal}
+                        <DialingCodePicker
+                            isModalVisible={this.state.isModalVisible}
+                            setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
+                            toggleModal={this.toggleModal}
                         />
 
                         <View style={styles.field}>
@@ -48,6 +48,7 @@ export default class index extends Component {
                             <TextInput
                                 placeholder="enter your phone no"
                                 style={[styles.input]}
+                                keyboardType={'number-pad'}
                             />
                         </View>
                         <View style={styles.field}>
