@@ -1,0 +1,1 @@
+export const PrimayColor = '#ff7043'
