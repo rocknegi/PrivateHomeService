@@ -35,6 +35,7 @@ export default class Register extends Component {
                         <DialingCodePicker
                             isModalVisible={this.state.isModalVisible}
                             setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
+                            toggleModal={this.toggleModal}
                         />
 
                         <View style={styles.field}>
@@ -59,10 +60,6 @@ export default class Register extends Component {
                             />
                         </View>
 
-                        <Text onPress={() => this.props.navigation.navigate('')}
-                            style={{ color: PrimayColor, right: "-70%", fontSize: 12 }}>
-                            Forgot Password?
-                     </Text>
                         <TouchableOpacity style={styles.buttonContainer}>
                             <Text style={styles.buttonText}>Register</Text>
                         </TouchableOpacity>

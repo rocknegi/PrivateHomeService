@@ -35,6 +35,7 @@ export default class index extends Component {
                         <DialingCodePicker 
                         isModalVisible={this.state.isModalVisible}
                         setDialCode={(dialingCode)=>this.setDialCode(dialingCode)}
+                        toggleModal={this.toggleModal}
                         />
 
                         <View style={styles.field}>
@@ -59,7 +60,7 @@ export default class index extends Component {
                             />
                         </View>
 
-                        <Text onPress={() => this.props.navigation.navigate('')}
+                        <Text onPress={() => this.props.navigation.navigate('Reset')}
                             style={{ color: PrimayColor, right: "-70%", fontSize: 12 }}>
                             Forgot Password?
                      </Text>

@@ -23,7 +23,7 @@ export default DialingCodePicker = (props) => {
                 hasBackdrop={true}
                 backdropColor='#FFF'
                 style={{ marginTop: 350 }}
-                onBackdropPress={() => this.toggleModal()}
+                onBackdropPress={() => props.toggleModal()}
             >
                 <FlatList
                     data={data}
