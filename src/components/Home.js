@@ -13,7 +13,9 @@ export default class Home extends Component {
                         style={styles.logo}
                     />
                     <Text style={[styles.text, { fontSize: 30 }]}>Select Here</Text>
-                    <TouchableOpacity style={styles.list}>
+                    <TouchableOpacity 
+                    onPress={()=>this.props.navigation.navigate('SelctedCategory')}
+                    style={styles.list}>
                         <Text style={styles.text}>Liquers et virus</Text>
                         <Icon name="arrow-right" style={styles.icon} />
                     </TouchableOpacity>
