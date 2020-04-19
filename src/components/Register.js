@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { SafeAreaView, Text, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
+import { SafeAreaView, Text,Button, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { PrimayColor } from '../theme/Colors';
-import DialingCodePicker from '../DialingCodePicker';
+import { PrimayColor } from './theme/Colors';
+import DialingCodePicker from './DialingCodePicker';
 
-export default class index extends Component {
+export default class Register extends Component {
     state = {
         isModalVisible: false,
         dialingCode: '+237'
@@ -12,8 +12,8 @@ export default class index extends Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
-    setDialCode = (dialingCode)=>{
-        this.setState({dialingCode})
+    setDialCode = (dialingCode) => {
+        this.setState({ dialingCode })
         this.toggleModal()
     }
 
@@ -32,9 +32,9 @@ export default class index extends Component {
 
                         <View>
                         </View>
-                        <DialingCodePicker 
-                        isModalVisible={this.state.isModalVisible}
-                        setDialCode={(dialingCode)=>this.setDialCode(dialingCode)}
+                        <DialingCodePicker
+                            isModalVisible={this.state.isModalVisible}
+                            setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
                         />
 
                         <View style={styles.field}>
@@ -64,13 +64,13 @@ export default class index extends Component {
                             Forgot Password?
                      </Text>
                         <TouchableOpacity style={styles.buttonContainer}>
-                            <Text style={styles.buttonText}>Login</Text>
+                            <Text style={styles.buttonText}>Register</Text>
                         </TouchableOpacity>
 
                         <View style={styles.signup}>
-                            <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Register')}>
+                            <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Login')}>
                                 <Text style={{ color: '#757575', fontSize: 12 }}>
-                                    Don't have an account ?  <Text style={{ color: PrimayColor, fontSize: 12 }}>Sign Up</Text>
+                                    Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 12 }}>Login</Text>
                                 </Text>
                             </TouchableOpacity>
                         </View>
