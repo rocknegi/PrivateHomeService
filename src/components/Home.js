@@ -5,11 +5,17 @@ import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class Home extends Component {
+        static navigationOptions = ({navigation}) => {
+        return {
+            title:'',
+            headerLeft:()=>(<Icon style={{fontSize:25,left:5}} name="menu" onPress={()=>navigation.openDrawer()}/>)
+        }
+    }
     render() {
         return (
             <LinearGradient colors={['#f3b771', '#f3a85f', '#f3974e', '#f38640', '#f37335']} style={styles.linearGradient}>
             <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                     <Image
                         source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                         style={styles.logo}

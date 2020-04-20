@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from '../theme/Layout'
-import { PrimayColor } from '../theme/Colors';
+import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import DialingCodePicker from '../DialingCodePicker';
 
 export default class index extends Component {
@@ -62,7 +62,7 @@ export default class index extends Component {
                 </View>
 
                 <Text onPress={() => this.props.navigation.navigate('Reset')}
-                    style={{ color: PrimayColor, right: "-70%", fontSize: 12 }}>
+                    style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
                      </Text>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
@@ -71,8 +71,8 @@ export default class index extends Component {
 
                 <View style={styles.signup}>
                     <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Register')}>
-                        <Text style={{ color: '#757575', fontSize: 15 }}>
-                            Don't have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Sign Up</Text>
+                        <Text style={{fontSize: 15,color: '#000' }}>
+                            Don't have an account ?  <Text style={{fontSize: 15,color:TextColorWhite}}>Sign Up</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { SafeAreaView, Text, Button, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { PrimayColor } from './theme/Colors';
+import { PrimayColor, TextColorWhite } from './theme/Colors';
 import DialingCodePicker from './DialingCodePicker';
 import Layout from './theme/Layout'
 export default class Register extends Component {
@@ -62,8 +62,8 @@ export default class Register extends Component {
 
                 <View style={styles.signup}>
                     <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Login')}>
-                        <Text style={{ color: '#757575', fontSize: 15 }}>
-                            Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Login</Text>
+                        <Text style={{ color: '#000', fontSize: 15 }}>
+                            Already have an account ?  <Text style={{ color: TextColorWhite, fontSize: 15 }}>Login</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>

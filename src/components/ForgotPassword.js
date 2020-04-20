@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithou
 import DialingCodePicker from '../components/DialingCodePicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Layout from './theme/Layout';
 export default class ForgotPassword extends Component {
     state = {
         isModalVisible: false,
@@ -17,7 +18,7 @@ export default class ForgotPassword extends Component {
     }
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <Layout>
                 <View style={styles.container}>
                     <DialingCodePicker
                         isModalVisible={this.state.isModalVisible}
@@ -51,7 +52,7 @@ export default class ForgotPassword extends Component {
                             </TouchableOpacity>
                         </View>
                 </View>
-            </SafeAreaView>
+            </Layout>
         )
     }
 }
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: '20%',
-        backgroundColor: '#fafafa',
         alignItems: 'center'
     },
     field: {

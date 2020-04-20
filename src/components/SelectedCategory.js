@@ -9,6 +9,7 @@ import Layout from './theme/Layout'
 export default class SelectedCategory extends Component {
     static navigationOptions = () => {
         return {
+            title:'',
     headerRight: () => <MaterialIcon name="shopping-cart" style={{ fontSize: 28, right: 10 }} />
 }
     }
