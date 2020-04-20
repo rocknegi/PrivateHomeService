@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, SafeAreaView, Image, Animated } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-// import Animated from 'react-native-reanimated'
-// import { SafeAreView } from 'react-navigation'
+import { View, Text, StyleSheet, Animated } from 'react-native'
+import { TouchableOpacity, } from 'react-native-gesture-handler'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
+import Layout from './theme/Layout'
 
 class ImageLoader extends React.Component {
     state = {
@@ -15,6 +16,9 @@ class ImageLoader extends React.Component {
             useNativeDriver: true
         }).start()
     }
+
+
+
     render() {
         return (
             <Animated.Image
@@ -40,45 +44,52 @@ class ImageLoader extends React.Component {
 
 }
 
-const landingPage = ({ navigation }) => {
-    return (
-        <SafeAreaView style={{
-            flex: 1, backgroundColor: '#ff945c',
-        }}>
-            <Text style={styles.heading}>Private Home Service</Text>
-            <View style={styles.container}>
-                <View style={{ flex: 1 }}>
-                    <ImageLoader
-                        source={require('../assets/images/Baileys.jpg')}
-                        style={styles.images}
-                    />
+class landingPage extends React.Component {
+    static navigationOptions = () => {
+        return {
+            headerShown: false
+        }
+    }
+
+    render() {
+        const { navigation } = this.props
+        return (
+            <Layout>
+                <Text style={styles.heading}>Private Home Service</Text>
+                <View style={styles.container}>
+                    <View style={{ flex: 1 }}>
+                        <ImageLoader
+                            source={require('../assets/images/Baileys.jpg')}
+                            style={styles.images}
+                        />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <ImageLoader
+                            source={require('../assets/images/ChivasRegal.jpg')} style={styles.images}
+                        />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <ImageLoader
+                            source={require('../assets/images/RuinArt.jpg')} style={styles.images}
+                        />
+                    </View>
                 </View>
                 <View style={{ flex: 1 }}>
-                    <ImageLoader
-                        source={require('../assets/images/ChivasRegal.jpg')} style={styles.images}
-                    />
-                </View>
-                <View style={{ flex: 1 }}>
-                    <ImageLoader
-                        source={require('../assets/images/RuinArt.jpg')} style={styles.images}
-                    />
-                </View>
-            </View>
-            <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 50, textAlign: 'center' }}>
-                    VIDEO
+                    <Text style={{ fontSize: 50, textAlign: 'center' }}>
+                        VIDEO
                 </Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Get Started</Text>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
-    )
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Login')}
+                        style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>Get Started</Text>
+                    </TouchableOpacity>
+                </View>
+            </Layout>
+        )
+    }
 }
 
 export default landingPage
@@ -99,7 +110,7 @@ const styles = StyleSheet.create({
         width: 180,
         padding: 5,
         top: 50,
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     button: {
         paddingVertical: 10,

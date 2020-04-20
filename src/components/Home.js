@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView,TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class Home extends Component {
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <ScrollView style={styles.container}>
+            <LinearGradient colors={['#f3b771', '#f3a85f', '#f3974e', '#f38640', '#f37335']} style={styles.linearGradient}>
+            <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.container}>
                     <Image
                         source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                         style={styles.logo}
@@ -58,14 +60,21 @@ export default class Home extends Component {
                         />
                     </ScrollView>
                 </ScrollView>
-            </SafeAreaView>
+                </SafeAreaView>
+            </LinearGradient>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fafafa'
+        // backgroundColor: '#fafafa'
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
     },
     logo: {
         height: 150,

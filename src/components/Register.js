@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { SafeAreaView, Text,Button, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
+import { SafeAreaView, Text, Button, View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { PrimayColor } from './theme/Colors';
 import DialingCodePicker from './DialingCodePicker';
-
+import Layout from './theme/Layout'
 export default class Register extends Component {
     state = {
         isModalVisible: false,
@@ -19,62 +19,55 @@ export default class Register extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={styles.container}
-            >
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <SafeAreaView style={styles.container}>
-                        <Image
-                            style={styles.logo}
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                        />
+            <Layout>
+                <Image
+                    style={styles.logo}
+                    source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                />
 
-                        <View>
-                        </View>
-                        <DialingCodePicker
-                            isModalVisible={this.state.isModalVisible}
-                            setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
-                            toggleModal={this.toggleModal}
-                        />
+                <View>
+                </View>
+                <DialingCodePicker
+                    isModalVisible={this.state.isModalVisible}
+                    setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
+                    toggleModal={this.toggleModal}
+                />
 
-                        <View style={styles.field}>
-                            <Icon name="phone"
-                                style={styles.icon} />
-                            <TouchableWithoutFeedback
-                                onPress={() => this.toggleModal()}>
-                                <Text style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</Text>
-                            </TouchableWithoutFeedback>
-                            <TextInput
-                                placeholder="enter your phone no"
-                                style={[styles.input]}
-                                keyboardType={'number-pad'}
-                            />
-                        </View>
-                        <View style={styles.field}>
-                            <Icon name="key"
-                                style={styles.icon} />
-                            <TextInput
-                                placeholder="enter your password"
-                                secureTextEntry={true}
-                                style={styles.input}
-                            />
-                        </View>
+                <View style={styles.field}>
+                    <Icon name="phone"
+                        style={styles.icon} />
+                    <TouchableWithoutFeedback
+                        onPress={() => this.toggleModal()}>
+                        <Text style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</Text>
+                    </TouchableWithoutFeedback>
+                    <TextInput
+                        placeholder="enter your phone no"
+                        style={[styles.input]}
+                        keyboardType={'number-pad'}
+                    />
+                </View>
+                <View style={styles.field}>
+                    <Icon name="key"
+                        style={styles.icon} />
+                    <TextInput
+                        placeholder="enter your password"
+                        secureTextEntry={true}
+                        style={styles.input}
+                    />
+                </View>
 
-                        <TouchableOpacity style={styles.buttonContainer}>
-                            <Text style={styles.buttonText}>Register</Text>
-                        </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Register</Text>
+                </TouchableOpacity>
 
-                        <View style={styles.signup}>
-                            <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Login')}>
-                                <Text style={{ color: '#757575', fontSize: 15 }}>
-                                    Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Login</Text>
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </SafeAreaView>
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
+                <View style={styles.signup}>
+                    <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Login')}>
+                        <Text style={{ color: '#757575', fontSize: 15 }}>
+                            Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Login</Text>
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </Layout>
         )
     }
 }
@@ -129,7 +122,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignSelf: 'center',
-        paddingBottom:10
+        paddingBottom: 10
     },
     modal: {
         flexDirection: 'row', justifyContent: 'space-between'

@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, ScrollView, Image, StyleSheet } from 'react-native'
 import { BackgroundColor, PrimayColor } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
+import Layout from './theme/Layout'
 
 export default class SelectedCategory extends Component {
+    static navigationOptions = () => {
+        return {
+    headerRight: () => <MaterialIcon name="shopping-cart" style={{ fontSize: 28, right: 10 }} />
+}
+    }
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            <Layout>
                 <ScrollView>
                     <View style={styles.list}>
                         <Image
@@ -59,7 +66,7 @@ export default class SelectedCategory extends Component {
                         <Text style={styles.buttonText}>Add to cart</Text>
                     </TouchableOpacity><TouchableOpacity style={styles.buttonContainer}></TouchableOpacity>
                 </ScrollView>
-            </SafeAreaView>
+            </Layout>
         )
     }
 }
