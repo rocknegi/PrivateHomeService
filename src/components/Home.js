@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         padding: 10,
-        borderBottomWidth: 10,
+        marginBottom: 10,
     },
     list: {
         flexDirection: 'row',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#eee',
         marginBottom:10,
         marginHorizontal:'3%',
-        elevation:10
+        elevation:5
     },
     icon: {
         fontSize: 25,

@@ -67,8 +67,8 @@ export default class Register extends Component {
 
                         <View style={styles.signup}>
                             <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Login')}>
-                                <Text style={{ color: '#757575', fontSize: 12 }}>
-                                    Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 12 }}>Login</Text>
+                                <Text style={{ color: '#757575', fontSize: 15 }}>
+                                    Already have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Login</Text>
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignSelf: 'center',
-
+        paddingBottom:10
     },
     modal: {
         flexDirection: 'row', justifyContent: 'space-between'

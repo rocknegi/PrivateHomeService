@@ -10,6 +10,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ForgotPassword from './src/components/ForgotPassword';
 import Home from './src/components/Home';
 import SelectedCategory from './src/components/SelectedCategory';
+import 'react-native-gesture-handler';
 MaterialIcon.loadFont();
 Feather.loadFont()
 FontAwesome.loadFont()

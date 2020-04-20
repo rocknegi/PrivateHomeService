@@ -71,8 +71,8 @@ export default class index extends Component {
 
                         <View style={styles.signup}>
                             <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Register')}>
-                                <Text style={{ color: '#757575', fontSize: 12 }}>
-                                    Don't have an account ?  <Text style={{ color: PrimayColor, fontSize: 12 }}>Sign Up</Text>
+                                <Text style={{ color: '#757575', fontSize: 15 }}>
+                                    Don't have an account ?  <Text style={{ color: PrimayColor, fontSize: 15 }}>Sign Up</Text>
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignSelf: 'center',
-
+        paddingBottom:10
     },
     modal: {
         flexDirection: 'row', justifyContent: 'space-between'
