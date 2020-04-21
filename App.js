@@ -39,7 +39,8 @@ const dashBoard = createDrawerNavigator({
   Home: innerNavigator
 }, {
   contentOptions: {
-    activeTintColor: TextColorWhite,
+    activeTintColor: '#fd6d24',
+    backgroundTintColor:'#fdbf83'
   },
   initialRouteName: 'Home',
   drawerType: 'slide',

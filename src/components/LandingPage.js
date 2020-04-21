@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     images: {
         resizeMode: 'contain',
         height: 160,
-        width: 180,
-        padding: 5,
+        width: 160,
+        paddingLeft: 0,
         top: 50,
         alignSelf: 'center'
     },

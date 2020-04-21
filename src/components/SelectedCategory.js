@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, ScrollView, Image, StyleSheet } from 'react-native'
-import { BackgroundColor, PrimayColor } from './theme/Colors'
+import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
@@ -46,7 +46,7 @@ export default class SelectedCategory extends Component {
                         />
                         <Text style={styles.text}>Brand Name{"\n"}Price/Unit</Text>
                         <Icon name="plus" style={styles.icon} />
-                        <Text style={{ fontSize: 20 }}>[0]</Text>
+                        <Text style={{ fontSize: 20, }}>[0]</Text>
                         <Icon name="minus" style={styles.icon} />
                         <Text></Text>
                     </View>
@@ -90,11 +90,11 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
-        padding: 10
+        padding: 10,
     },
     icon: {
         fontSize: 25,
-        color: PrimayColor
+        // color: TextColorWhite
     },
     button: {
         backgroundColor: PrimayColor,

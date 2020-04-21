@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { SafeAreaView } from 'react-navigation';
-import Layout from './theme/Layout';
 
 const MenuItems = [
     {
@@ -51,14 +50,14 @@ const MenuItems = [
 
 ];
 
-const CustomDrawer = ({ activeTintColor,navigation }) => {
+const CustomDrawer = ({ activeTintColor,navigation,backgroundTintColor }) => {
     return (
-        <Layout>
-            <View style={{ marginTop: '30%' }}>
+        <SafeAreaView style={{flex:1,backgroundColor:'#fafafa'}}>          
+            <View style={{flex:0.7}}>
             </View>
             {MenuItems.map((e, i) => {
                 return (
-                    <View style={[styles.container]} key={e.id}>
+                    <View style={[styles.container,{backgroundColor:navigation.state.index===i? backgroundTintColor:null}]} key={e.id}>
                         <Icon style={[styles.icon,{ color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
                         <Text style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
                         <Icon style={[styles.icon,{ color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
@@ -67,7 +66,7 @@ const CustomDrawer = ({ activeTintColor,navigation }) => {
                 )
             })}
 
-        </Layout>
+        </SafeAreaView>
     )
 }
 
@@ -76,7 +75,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: '15%',
+        marginBottom: '10%',
+        paddingLeft:10,
+        paddingRight:10,
+        height:50,
+        alignItems:'center',
+
     },
     icon: {
         fontSize: 22
