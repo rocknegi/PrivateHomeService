@@ -3,19 +3,19 @@ import { StyleSheet, SafeAreaView, Keyboard, KeyboardAvoidingView, TouchableWith
 import LinearGradient from 'react-native-linear-gradient';
 const Layout = (props) => {
     return (
-        <LinearGradient colors={['#fdbf83', '#fdad69', '#fd9a50', '#fd8539', '#fd6d24']} style={styles.linearGradient}>
-            <KeyboardAvoidingView
+        <LinearGradient colors={['#fdbf83', '#fdad69', '#fd9a50', '#fd9a50', '#fd6d24']} style={styles.linearGradient}>
+            {/* <KeyboardAvoidingView
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}
-            >
+            > */}
 
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
                     <SafeAreaView style={styles.container}>
                         {props.children}
                     </SafeAreaView>
-                </TouchableWithoutFeedback>
+                {/* </TouchableWithoutFeedback> */}
 
-            </KeyboardAvoidingView>
+            {/* </KeyboardAvoidingView> */}
         </LinearGradient>
     )
 }

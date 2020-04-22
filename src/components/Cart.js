@@ -7,15 +7,12 @@ import Icon from 'react-native-vector-icons/Feather'
 import { removeFromCart, addQuantity, subQuantity } from '../redux/actions'
 
 class Cart extends Component {
-    //to remove the item completely
     handleRemove = (id) => {
         this.props.removeItem(id);
     }
-    //to add the quantity
     handleAddQuantity = (id) => {
         this.props.addQuantity(id);
     }
-    //to substruct from the quantity
     handleSubtractQuantity = (id) => {
         this.props.subtractQuantity(id);
     }
@@ -39,7 +36,7 @@ class Cart extends Component {
                     })}
                     <Text>{this.props.total} </Text>
 
-                </ScrollView>:<Text>Your Cart is empty</Text>}
+                </ScrollView>:<Text style={styles.text}>Your cart is empty</Text>}
             </Layout>
 
         )
@@ -78,8 +75,9 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     text: {
-        fontSize: 15,
+        fontSize: 35,
         padding: 10,
+        textAlign:'center'
     },
     icon: {
         fontSize: 25,

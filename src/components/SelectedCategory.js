@@ -6,17 +6,44 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
-import { addToCart } from '../redux/actions';
+import { addToCart, addQuantity, subQuantity, removeFromCart } from '../redux/actions';
 
 class SelectedCategory extends Component {
-    static navigationOptions = ({ navigation },props) => {
+    counter = () => <View style={styles.circle}>
+        <View style={styles.count}>{this.state.count}</View>
+    </View>
+    static navigationOptions = ({ navigation }, props) => {
         return {
+            headerShown: false,
             title: '',
-            headerRight: () => <MaterialIcon onPress={() => navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 28, right: 10 }} />
         }
+    }
+    state = {
+        count: 0
+    }
+    componentDidMount() {
+        const { navigation } = this.props;
+        this.focusListener = navigation.addListener('didFocus', () => {
+            this.setState({count:this.props.added.length})
+        });
+      }
+    
+      componentWillUnmount() {
+        this.focusListener.remove();
+      }
+    handleRemove = (id) => {
+        this.props.removeItem(id);
+        this.setState({ count: this.state.count - 1 })
     }
     handleClick = (id) => {
         this.props.addToCart(id);
+        this.setState({ count: this.props.added.length+1})
+    }
+    handleAddQuantity = (id) => {
+        this.props.addQuantity(id);
+    }
+    handleSubtractQuantity = (id) => {
+        this.props.subtractQuantity(id);
     }
     notiifcation = () => <View style={styles.circle}>
         <Text style={styles.count}>{this.props.items.length}</Text>
@@ -24,25 +51,53 @@ class SelectedCategory extends Component {
     render() {
         return (
             <Layout>
-                <ScrollView>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between',marginTop:10,alignItems:'center' }}>
+                    <Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
+                    <View style={{justifyContent:'flex-end',alignSelf:'flex-start',flexDirection:'row'}}>
+                    {this.state.count>0&&<View style={styles.circle}>
+                     <View style={styles.count}>
+                            <Text style={{ textAlign: 'center',}}>
+                                {this.state.count}
+                                </Text>
+                        </View>
+
+                    </View>}
+                    <MaterialIcon onPress={() => this.props.navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 25}} />
+
+                    </View>
+
+                </View>
+                <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items.map(item => {
+                        const isDisabled = item.quantity>0?true:false
                         return (
-                            <View style={styles.list} key={item.id}>
-                                <Image
-                                    source={{ uri: item.img }}
-                                    style={styles.logo}
-                                />
-                                <Text style={styles.text}>{item.title}{"\n"}£{item.price}/Unit</Text>
-                                <TouchableOpacity
-                                    style={styles.button}
-                                    onPress={() => this.handleClick(item.id)}
-                                >
-                                    <Text style={styles.buttonText}>Add to cart</Text>
-                                </TouchableOpacity>
+                            <View key={item.id}>
+                                <View style={styles.list} >
+                                    <Image
+                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        style={styles.logo}
+                                    />
+                                    <Text style={styles.text}>Brand Name{"\n"}
+                                Some Description loreum ipsom loreum ipsom loreum ipsom
+                                </Text>
+
+                                </View>
+                                <View style={styles.option}>
+                                    <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text>
+                                 <TouchableOpacity disabled={isDisabled} onPress={() => this.handleClick(item.id)} 
+                                 style={styles.button} 
+                                 key={item.price}>
+                                       {isDisabled? <Text style={styles.buttonText}>Added</Text>: <Text style={styles.buttonText}>add to cart</Text>}
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                         )
                     })}
                 </ScrollView>
+                <View style={styles.footer}>
+                    <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
+                    <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5 }]}>€ {this.props.total} </Text>
+                </View>
             </Layout>
         )
     }
@@ -51,7 +106,8 @@ class SelectedCategory extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        itemsInCart: state.addedItems,
+        total: state.total,
+        added : state.addedItems
     }
 }
 
@@ -59,6 +115,9 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         addToCart: (id) => { dispatch(addToCart(id)) },
+        addQuantity: (id) => { dispatch(addQuantity(id)) },
+        subtractQuantity: (id) => { dispatch(subQuantity(id)) },
+        removeItem: (id) => { dispatch(removeFromCart(id)) },
 
     }
 }
@@ -74,30 +133,36 @@ const styles = StyleSheet.create({
     list: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
         marginBottom: 20
     },
     logo: {
-        height: 80,
+        height: 90,
         width: 90,
         resizeMode: 'contain',
     },
     text: {
+        flex: 1,
         fontSize: 15,
         padding: 10,
+        flexWrap: 'wrap',
+
+
     },
     icon: {
         fontSize: 25,
-        // color: TextColorWhite
+        // backgroundColor:'#fd8539',
+        marginTop: -10,
+        alignSelf: 'center'
     },
     button: {
-        backgroundColor: PrimayColor,
+        backgroundColor: '#ff8a65',
         borderRadius: 6,
-        // marginHorizontal: '35%',
         height: 40,
         justifyContent: 'center',
-        // marginBottom: 20
+        // marginHorizontal: '25%',
+        margin: '5%'
     },
     buttonText: {
         textAlign: 'center',
@@ -107,11 +172,26 @@ const styles = StyleSheet.create({
         padding: 10
     },
     circle: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-        backgroundColor: 'red'
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        backgroundColor: '#fd9a50',
     },
-    count: { color: '#FFF' }
+    count: { color: '#FFF' },
+    option: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        backgroundColor: '#fdbf83',
+        borderRadius: 10,
+        marginBottom: 10
+    }
 })
 

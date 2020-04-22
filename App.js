@@ -30,7 +30,7 @@ const innerNavigator = createStackNavigator({
   SelctedCategory: SelectedCategory,
   Cart
 }, {
-  initialRouteName: 'SelctedCategory',
+  initialRouteName: 'Home',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#f3b771',
