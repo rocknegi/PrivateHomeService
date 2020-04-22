@@ -18,6 +18,7 @@ import Register from './src/components/Register';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import CustomDrawer from './src/components/customDrawer';
 import reducers from './src/redux/reducers'
+import Cart from './src/components/Cart';
 
 
 MaterialIcon.loadFont();
@@ -26,9 +27,10 @@ FontAwesome.loadFont()
 MaterialCommunityIcons.loadFont()
 const innerNavigator = createStackNavigator({
   Home,
-  SelctedCategory: SelectedCategory
+  SelctedCategory: SelectedCategory,
+  Cart
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'SelctedCategory',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#f3b771',

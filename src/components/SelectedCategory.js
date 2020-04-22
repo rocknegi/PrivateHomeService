@@ -5,72 +5,67 @@ import Icon from 'react-native-vector-icons/Feather'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Layout from './theme/Layout'
+import { connect } from 'react-redux'
+import { addToCart } from '../redux/actions';
 
-export default class SelectedCategory extends Component {
-    static navigationOptions = () => {
+class SelectedCategory extends Component {
+    static navigationOptions = ({ navigation },props) => {
         return {
-            title:'',
-    headerRight: () => <MaterialIcon name="shopping-cart" style={{ fontSize: 28, right: 10 }} />
-}
+            title: '',
+            headerRight: () => <MaterialIcon onPress={() => navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 28, right: 10 }} />
+        }
     }
+    handleClick = (id) => {
+        this.props.addToCart(id);
+    }
+    notiifcation = () => <View style={styles.circle}>
+        <Text style={styles.count}>{this.props.items.length}</Text>
+    </View>
     render() {
         return (
             <Layout>
                 <ScrollView>
-                    <View style={styles.list}>
-                        <Image
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                            style={styles.logo}
-                        />
-                        <Text style={styles.text}>Brand Name{"\n"}Price/Unit</Text>
-                        <Icon name="plus" style={styles.icon} />
-                        <Text style={{ fontSize: 20 }}>[0]</Text>
-                        <Icon name="minus" style={styles.icon} />
-                        <Text></Text>
-                    </View>
-                    <View style={styles.list}>
-                        <Image
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                            style={styles.logo}
-                        />
-                        <Text style={styles.text}>Brand Name{"\n"}Price/Unit</Text>
-                        <Icon name="plus" style={styles.icon} />
-                        <Text style={{ fontSize: 20 }}>[0]</Text>
-                        <Icon name="minus" style={styles.icon} />
-                        <Text></Text>
-                    </View>
-                    <View style={styles.list}>
-                        <Image
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                            style={styles.logo}
-                        />
-                        <Text style={styles.text}>Brand Name{"\n"}Price/Unit</Text>
-                        <Icon name="plus" style={styles.icon} />
-                        <Text style={{ fontSize: 20, }}>[0]</Text>
-                        <Icon name="minus" style={styles.icon} />
-                        <Text></Text>
-                    </View>
-                    <View style={styles.list}>
-                        <Image
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                            style={styles.logo}
-                        />
-                        <Text style={styles.text}>Brand Name{"\n"}Price/Unit</Text>
-                        <Icon name="plus" style={styles.icon} />
-                        <Text style={{ fontSize: 20 }}>[0]</Text>
-                        <Icon name="minus" style={styles.icon} />
-                        <Text></Text>
-                    </View>
-                    <TouchableOpacity
-                        style={styles.button}
-                    >
-                        <Text style={styles.buttonText}>Add to cart</Text>
-                    </TouchableOpacity><TouchableOpacity style={styles.buttonContainer}></TouchableOpacity>
+                    {this.props.items.map(item => {
+                        return (
+                            <View style={styles.list} key={item.id}>
+                                <Image
+                                    source={{ uri: item.img }}
+                                    style={styles.logo}
+                                />
+                                <Text style={styles.text}>{item.title}{"\n"}£{item.price}/Unit</Text>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.handleClick(item.id)}
+                                >
+                                    <Text style={styles.buttonText}>Add to cart</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    })}
                 </ScrollView>
             </Layout>
         )
     }
+
 }
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        itemsInCart: state.addedItems,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        addToCart: (id) => { dispatch(addToCart(id)) },
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedCategory)
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -99,16 +94,24 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: PrimayColor,
         borderRadius: 6,
-        marginHorizontal: '35%',
-        height: 50,
+        // marginHorizontal: '35%',
+        height: 40,
         justifyContent: 'center',
-        marginBottom: 20
+        // marginBottom: 20
     },
     buttonText: {
         textAlign: 'center',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 18,
-        padding:10
+        fontSize: 15,
+        padding: 10
     },
+    circle: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'red'
+    },
+    count: { color: '#FFF' }
 })
+

@@ -1,12 +1,13 @@
-import {  ADD_QUANTITY } from "../actions/actionTypes"
+import { ADD_QUANTITY } from "../actions/actionTypes"
+import { initialState } from "./initialState"
 
 
-export const addQuantityReducer = (state=[],aciton)=>{
-    switch(aciton.type){
-        case ADD_QUANTITY:return{
-
+export default addQuantityReducer = (state = [], aciton) => {
+    switch (aciton.type) {
+        case ADD_QUANTITY: return {
+            state
         }
-        default:return state
+        default: return state
     }
 }
 

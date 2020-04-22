@@ -1,9 +1,10 @@
-import {  REMOVE_ITEM} from "../actions/actionTypes"
+import { REMOVE_ITEM } from "../actions/actionTypes"
+import { initialState } from "./initialState"
 
-export const removerFromCartReducer = (state=[],aciton)=>{
-    switch(action.type){
-        case REMOVE_ITEM:return{
-
+export default removerFromCartReducer = (state = [], action) => {
+    switch (action.type) {
+        case REMOVE_ITEM: return {
+            state
         }
         default: return state
     }
