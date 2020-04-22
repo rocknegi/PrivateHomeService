@@ -6,6 +6,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
 
 import ForgotPassword from './src/components/ForgotPassword';
 import Home from './src/components/Home';
@@ -15,7 +17,8 @@ import Login from './src/components/login';
 import Register from './src/components/Register';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import CustomDrawer from './src/components/customDrawer';
-import { TextColorWhite } from './src/components/theme/Colors';
+import reducers from './src/redux/reducers'
+
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -40,7 +43,7 @@ const dashBoard = createDrawerNavigator({
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',
-    backgroundTintColor:'#fdbf83'
+    backgroundTintColor: '#fdbf83'
   },
   initialRouteName: 'Home',
   drawerType: 'slide',
@@ -69,5 +72,14 @@ const AppNavigator = createSwitchNavigator({
 });
 
 
+const AppContainer = createAppContainer(AppNavigator);
 
-export default createAppContainer(AppNavigator);
+const store = createStore(reducers);
+
+export default App = () => {
+  return (
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  )
+}
