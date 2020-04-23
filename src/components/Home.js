@@ -3,12 +3,13 @@ import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView,TouchableOpacit
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
-
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 export default class Home extends Component {
         static navigationOptions = ({navigation}) => {
         return {
             title:'',
-            headerLeft:()=>(<Icon style={{fontSize:25,left:5}} name="menu" onPress={()=>navigation.openDrawer()}/>)
+            headerRight:()=> (<MaterialIcon onPress={() => navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 25,}} />)
+            ,headerLeft:()=>(<Icon style={{fontSize:25,left:5}} name="menu" onPress={()=>navigation.openDrawer()}/>)
         }
     }
     render() {
@@ -41,6 +42,10 @@ export default class Home extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.list}>
                         <Text style={styles.text}>Champagne</Text>
+                        <Icon name="arrow-right" style={styles.icon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.list} onPress={()=>this.props.navigation.navigate('Seesha')}>
+                        <Text style={styles.text}>Seesha</Text>
                         <Icon name="arrow-right" style={styles.icon} />
                     </TouchableOpacity>
 

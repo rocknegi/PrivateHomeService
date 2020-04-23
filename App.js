@@ -19,6 +19,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import CustomDrawer from './src/components/customDrawer';
 import reducers from './src/redux/reducers'
 import Cart from './src/components/Cart';
+import Seesha from './src/components/Seesha';
 
 
 MaterialIcon.loadFont();
@@ -28,7 +29,8 @@ MaterialCommunityIcons.loadFont()
 const innerNavigator = createStackNavigator({
   Home,
   SelctedCategory: SelectedCategory,
-  Cart
+  Cart,
+  Seesha
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
