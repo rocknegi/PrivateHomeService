@@ -52,8 +52,8 @@ class SelectedCategory extends Component {
         return (
             <Layout>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between',marginTop:10,alignItems:'center' }}>
-                    <Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
-                    <View style={{justifyContent:'flex-end',alignSelf:'flex-start',flexDirection:'row'}}>
+                    <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
+                    <View style={{justifyContent:'center',alignSelf:'center',flexDirection:'row'}}>
                     {this.state.count>0&&<View style={styles.circle}>
                      <View style={styles.count}>
                             <Text style={{ textAlign: 'center',}}>
@@ -62,7 +62,7 @@ class SelectedCategory extends Component {
                         </View>
 
                     </View>}
-                    <MaterialIcon onPress={() => this.props.navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 25}} />
+                    <MaterialIcon onPress={() => this.props.navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 25,}} />
 
                     </View>
 
@@ -84,10 +84,13 @@ class SelectedCategory extends Component {
                                 </View>
                                 <View style={styles.option}>
                                     <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text>
-                                 <TouchableOpacity disabled={isDisabled} onPress={() => this.handleClick(item.id)} 
+                                 <TouchableOpacity 
+                                //  disabled={this.state.count>0} 
+                                 onPress={() => this.handleClick(item.id)} 
                                  style={styles.button} 
                                  key={item.price}>
-                                       {isDisabled? <Text style={styles.buttonText}>Added</Text>: <Text style={styles.buttonText}>add to cart</Text>}
+                                       {/* {isDisabled? <Text style={styles.buttonText}>Added</Text>:  */}
+                                       <Text style={styles.buttonText}>add to cart</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
