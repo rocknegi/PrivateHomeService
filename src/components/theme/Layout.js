@@ -9,11 +9,11 @@ const Layout = (props) => {
                 style={styles.container}
             >
 
-                {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <SafeAreaView style={styles.container}>
                         {props.children}
                     </SafeAreaView>
-                {/* </TouchableWithoutFeedback> */}
+                </TouchableWithoutFeedback>
 
             </KeyboardAvoidingView>
         </LinearGradient>

@@ -6,7 +6,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
-import { addToCart, addQuantity, subQuantity, removeFromCart } from '../redux/actions';
+import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
 
 class SelectedCategory extends Component {
     counter = () => <View style={styles.circle}>
@@ -26,6 +26,7 @@ class SelectedCategory extends Component {
         this.focusListener = navigation.addListener('didFocus', () => {
             this.setState({count:this.props.added.length})
         });
+        this.props.fetchData('seesha')
       }
     
       componentWillUnmount() {
@@ -35,8 +36,8 @@ class SelectedCategory extends Component {
         this.props.removeItem(id);
         this.setState({ count: this.state.count - 1 })
     }
-    handleClick = (id) => {
-        this.props.addToCart(id);
+    handleClick = (item) => {
+        this.props.addToCart(item);
         this.setState({ count: this.props.added.length+1})
     }
     handleAddQuantity = (id) => {
@@ -68,8 +69,7 @@ class SelectedCategory extends Component {
 
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false} >
-                    {this.props.items.map(item => {
-                        const isDisabled = item.quantity>0?true:false
+                    {this.props.items && this.props.items.map(item => {
                         return (
                             <View key={item.id}>
                                 <View style={styles.list} >
@@ -77,7 +77,7 @@ class SelectedCategory extends Component {
                                         source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                         style={styles.logo}
                                     />
-                                    <Text style={styles.text}>Brand Name{"\n"}
+                                    <Text style={styles.text}>{item.title}{"\n"}
                                 Some Description loreum ipsom loreum ipsom loreum ipsom
                                 </Text>
 
@@ -85,11 +85,9 @@ class SelectedCategory extends Component {
                                 <View style={styles.option}>
                                     <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text>
                                  <TouchableOpacity 
-                                //  disabled={this.state.count>0} 
-                                 onPress={() => this.handleClick(item.id)} 
+                                 onPress={() => this.handleClick(item)} 
                                  style={styles.button} 
                                  key={item.price}>
-                                       {/* {isDisabled? <Text style={styles.buttonText}>Added</Text>:  */}
                                        <Text style={styles.buttonText}>add to cart</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -121,6 +119,7 @@ const mapDispatchToProps = (dispatch) => {
         addQuantity: (id) => { dispatch(addQuantity(id)) },
         subtractQuantity: (id) => { dispatch(subQuantity(id)) },
         removeItem: (id) => { dispatch(removeFromCart(id)) },
+        fetchData :(category)=>{dispatch(fetchData(category))}
 
     }
 }

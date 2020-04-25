@@ -4,7 +4,7 @@ import { BackgroundColor, PrimayColor } from './theme/Colors'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Feather'
-import { removeFromCart, addQuantity, subQuantity, addOption, subOption } from '../redux/actions'
+import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd } from '../redux/actions'
 import Modal from 'react-native-modal';
 
 class Cart extends Component {
@@ -12,15 +12,17 @@ class Cart extends Component {
         isModal: false,
         whiskyGlass: 1,
         ChampagneGlass: 1,
-        error: null
+        error: null,
+        item: {}
     }
 
     glassAddition(item) {
-        if (this.state[item] >= 4) {
+        if (this.state.item[item] >= 4 * this.state.item.quantity) {
             alert('Max 4 glasses per bottle')
         }
         else {
-            this.setState({ [item]: this.state[item] + 1 })
+            this.props.addOnAdd(this.state.item, item)
+            // this.setState({ [item]: this.state[item] + 1 })
         }
     }
 
@@ -32,8 +34,8 @@ class Cart extends Component {
             this.setState({ [item]: this.state[item] - 1 })
         }
     }
-    toggleModal = () => {
-        this.setState({ isModal: !this.state.isModal })
+    toggleModal = (item) => {
+        this.setState({ isModal: !this.state.isModal, item })
     }
 
     handleRemove = (id) => {
@@ -70,7 +72,7 @@ class Cart extends Component {
 
                                 </View>
                                 <View style={{ flexDirection:'row',justifyContent:'space-evenly'}}>
-                                    <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
+                                    <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
                                         <Text style={styles.buttonText}>Customise</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.button} onPress={()=>this.handleRemove(item.id)}>
@@ -91,13 +93,13 @@ class Cart extends Component {
                                                     <View  style={styles.list} >
                                                         <Text style={{fontSize:20,textAlign:'center'}}>Whisky Glass</Text>
                                                         <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                        <Text style={{ fontSize: 20 }}>{this.state.whiskyGlass}</Text>
+                                                        <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
                                                         <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
                                                     </View>
                                                     <View  style={styles.list} >
                                                         <Text style={{fontSize:20,textAlign:'center'}}>Champagne Glass</Text>
                                                         <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                        <Text style={{ fontSize: 20 }}>{this.state.ChampagneGlass}</Text>
+                                                        <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
                                                         <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
                                                         {this.state.error &&
                                                             <Text>{this.state.error}</Text>
@@ -143,7 +145,8 @@ const mapDispatchToProps = (dispatch) => {
         addQuantity: (id) => { dispatch(addQuantity(id)) },
         subtractQuantity: (id) => { dispatch(subQuantity(id)) },
         addOption: (id) => { dispatch(addOption(id)) },
-        subOption: (id) => { dispatch(subOption()) }
+        subOption: (id) => { dispatch(subOption()) },
+        addOnAdd: (item, option) => { dispatch(addOnAdd(item, option)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
