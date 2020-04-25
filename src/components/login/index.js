@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from '../theme/Layout'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
@@ -25,6 +25,13 @@ export default class index extends Component {
     render() {
         return (
             <Layout>
+                      {/* <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "height"}
+                style={styles.container}
+            >  */}
+
+               
+                 
                 <Image
                     style={styles.logo}
                     source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -37,7 +44,8 @@ export default class index extends Component {
                     setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
                     toggleModal={this.toggleModal}
                 />
-
+                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+   <View style={{flex:1}}>
                 <View style={styles.field}>
                     <Icon name="phone"
                         style={styles.icon} />
@@ -76,6 +84,10 @@ export default class index extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                </View>
+                                </TouchableWithoutFeedback>
+
+            {/* </KeyboardAvoidingView> */}
             </Layout>
         )
     }
@@ -83,7 +95,7 @@ export default class index extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fafafa',
+        // backgroundColor: '#fafafa',
         justifyContent: 'center'
     },
     logo: {

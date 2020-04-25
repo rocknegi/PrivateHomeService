@@ -4,10 +4,10 @@ import LinearGradient from 'react-native-linear-gradient';
 const Layout = (props) => {
     return (
         <LinearGradient colors={['#fdbf83', '#fdad69', '#fd9a50', '#fd9a50', '#fd6d24']} style={styles.linearGradient}>
-            {/* <KeyboardAvoidingView
+            <KeyboardAvoidingView
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}
-            > */}
+            >
 
                 {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
                     <SafeAreaView style={styles.container}>
@@ -15,7 +15,7 @@ const Layout = (props) => {
                     </SafeAreaView>
                 {/* </TouchableWithoutFeedback> */}
 
-            {/* </KeyboardAvoidingView> */}
+            </KeyboardAvoidingView>
         </LinearGradient>
     )
 }
