@@ -7,36 +7,47 @@ export const initialState = {
 
 export default addToCartReducer = (state = initialState, action) => {
     switch (action.type) {
-        
-        case FETCH_DATA:{
+
+        case FETCH_DATA: {
             // alert(JSON.stringify(action.payload.items))
-            return {...state, items: action.payload.items }
+            return { ...state, items: action.payload.items }
         }
         case ADD_TO_CART: {
-            
-            let addedItem = state.items.find(item => item.id === action.item.id )
-            let existed_item = state.addedItems.find(item => action.item.id === item.id)
-            if (existed_item) {
-                addedItem.quantity += 1;
-                addedItem.whiskyGlass = 1;
-                addedItem.wineGlass = 1;
-                return {
-                    ...state,
-                    total: state.total + addedItem.price
+            if (action.category !== 'seesha') {
+                let addedItem = state.items.find(item => item.id === action.item.id)
+                let existed_item = state.addedItems.find(item => action.item.id === item.id)
+                if (existed_item) {
+                    addedItem.quantity += 1;
+                    addedItem.whiskyGlass = 1;
+                    addedItem.wineGlass = 1;
+                    return {
+                        ...state,
+                        total: state.total + addedItem.price
+                    }
+                }
+                else {
+                    addedItem.quantity = 1;
+                    addedItem.whiskyGlass = 1;
+                    addedItem.wineGlass = 1;
+                    let newTotal = state.total + addedItem.price
+                    return {
+                        ...state,
+                        addedItems: [...state.addedItems, addedItem],
+                        total: newTotal
+                    }
+
                 }
             }
-            else {
-                addedItem.quantity = 1;
-                addedItem.whiskyGlass = 1;
-                addedItem.wineGlass = 1;
-                let newTotal = state.total + addedItem.price
-
+            else if (action.category === 'seesha') {
+                // let addedItem = state.items.slice();
+                // for (let i = 0; i < state.items.length; i++) {
+                //     addedItem[i].quantity = 1
+                // }
                 return {
                     ...state,
-                    addedItems: [...state.addedItems, addedItem],
-                    total: newTotal
+                    addedItems: [...state.addedItems, ...action.item],
+                    // total:newTotal
                 }
-
             }
         }
         case REMOVE_ITEM: {
@@ -52,7 +63,9 @@ export default addToCartReducer = (state = initialState, action) => {
             }
         }
         case ADD_QUANTITY: {
-            let addedItem = state.items.find(item => item.id === action.id)
+            alert(JSON.stringify(action.item))
+            let addedItem = state.addedItems.find(item => item.id === action.id)
+            // let addedItem = action.item;
             addedItem.quantity += 1
             let newTotal = state.total + addedItem.price
             return {
@@ -61,23 +74,46 @@ export default addToCartReducer = (state = initialState, action) => {
             }
         }
         case SUB_QUANTITY: {
-            let addedItem = state.items.find(item => item.id === action.id)
-            if (addedItem.quantity === 1) {
-                addedItem.quantity -= 1
-                let new_items = state.addedItems.filter(item => item.id !== action.id)
-                let newTotal = state.total - addedItem.price
-                return {
-                    ...state,
-                    addedItems: new_items,
-                    total: newTotal
+            if (action.category !== 'seesha') {
+                let addedItem = state.addedItems.find(item => item.id === action.id)
+                if (addedItem.quantity === 1) {
+                    addedItem.quantity -= 1
+                    let new_items = state.addedItems.filter(item => item.id !== action.id)
+                    let newTotal = state.total - addedItem.price
+                    return {
+                        ...state,
+                        addedItems: new_items,
+                        total: newTotal
+                    }
+                }
+                else {
+                    addedItem.quantity -= 1
+                    let newTotal = state.total - addedItem.price
+                    return {
+                        ...state,
+                        total: newTotal
+                    }
                 }
             }
-            else {
-                addedItem.quantity -= 1
-                let newTotal = state.total - addedItem.price
-                return {
-                    ...state,
-                    total: newTotal
+            else{
+                let addedItem = state.addedItems.find(item => item.id === action.id)
+                if (addedItem.quantity === 0) {
+                    // addedItem.quantity -= 1
+                    // let new_items = state.addedItems.filter(item => item.id !== action.id)
+                    // let newTotal = state.total - addedItem.price
+                    return {
+                        ...state,
+                        // addedItems: new_items,
+                        // total: newTotal
+                    }
+                }
+                else {
+                    addedItem.quantity -= 1
+                    let newTotal = state.total - addedItem.price
+                    return {
+                        ...state,
+                        total: newTotal
+                    }
                 }
             }
         }
@@ -100,7 +136,7 @@ export default addToCartReducer = (state = initialState, action) => {
             for (let i = 0; i < state.items.length; i++) {
                 addedItem = state.items[i].options.find(item => item.id !== action.id)
             }
-            if (addedItem.OptionQuantity ===0) {
+            if (addedItem.OptionQuantity === 0) {
                 // addedItem.OptionQuantity -= 1
                 // let new_items = state.addedItems.filter(item => item.id !== action.id)
                 // let newTotal = state.total - addedItem.OptionPrice
@@ -113,7 +149,6 @@ export default addToCartReducer = (state = initialState, action) => {
             else {
                 addedItem.OptionQuantity -= 1
                 let newTotal = state.total - addedItem.OptionPrice
-                alert(addedItem.OptionQuantity)
                 return {
                     ...state,
                     total: newTotal,
@@ -123,17 +158,17 @@ export default addToCartReducer = (state = initialState, action) => {
         }
         case ADD_ON_ADD: {
             let index = -1;
-             state.addedItems.forEach((item, i) => {
-                 if(item.id === action.item.id) {
-                     index = i
-                 }
-             });
-             const arr = state.addedItems.slice()
-             arr[index][action.option] = arr[index][action.option] + 1
-             return {
-                 ...state,
-                 addedItems: arr
-             }
+            state.addedItems.forEach((item, i) => {
+                if (item.id === action.item.id) {
+                    index = i
+                }
+            });
+            const arr = state.addedItems.slice()
+            arr[index][action.option] = arr[index][action.option] + 1
+            return {
+                ...state,
+                addedItems: arr
+            }
         }
         default: return state
     }

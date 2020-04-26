@@ -60,9 +60,7 @@ export default class Home extends Component {
                             return(
                                 <TouchableOpacity
                                 key={item.id}
-                                onPress={() => item.category!=='seesha'? this.props.navigation.navigate('SelctedCategory', {
-                                    category: item.category
-                                }):this.props.navigation.navigate('seesha', {
+                                onPress={() => this.props.navigation.navigate('SelctedCategory', {
                                     category: item.category
                                 })}
                                 style={styles.list}>

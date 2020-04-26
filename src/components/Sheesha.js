@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Feather'
 export class Sheesha extends Component {
 
     render() {
+        alert(JSON.stringify(this.props.items))
         return (
             <Layout>
                 <View style={styles.container}>
