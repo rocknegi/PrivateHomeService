@@ -13,7 +13,8 @@ export default addToCartReducer = (state = initialState, action) => {
             return {...state, items: action.payload.items }
         }
         case ADD_TO_CART: {
-            let addedItem = state.items.find(item => item.id === action.item.id)
+            
+            let addedItem = state.items.find(item => item.id === action.item.id )
             let existed_item = state.addedItems.find(item => action.item.id === item.id)
             if (existed_item) {
                 addedItem.quantity += 1;

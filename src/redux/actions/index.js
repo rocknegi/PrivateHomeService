@@ -5,15 +5,15 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 
 const items = [
     {
-        id: 1, title: 'Brand Name', price: 110, img: image,
+        id: '1liquors', title: 'Brand Name', price: 110, img: image,category:'liquors'
 
     },
     {
-        id: 2, title: 'Brand Name', price: 80, img: image,
+        id: '1Whiskey12', title: 'Brand Name', price: 80, img: image,category:'Whiskey12'
 
     },
-    { id: 3, title: 'Brand Name', price: 120, img: image, quantity: 0 },
-    { id: 4, title: 'Brand Name', price: 260, img: image, quantity: 0 },
+    { id: '1Whiskey19', title: 'Brand Name', price: 120, img: image, category:'Whiskey19' },
+    { id: '1Whiskey18', title: 'Brand Name', price: 260, img: image, category:'Whiskey18'},
 ]
 
 const items2 = [
@@ -49,10 +49,11 @@ export const fetchData = (category) => {
     }
 }
 
-export const addToCart = (item) => {
+export const addToCart = (item,category) => {
     return {
         type: ADD_TO_CART,
-        item
+        item,
+        category
     }
 }
 

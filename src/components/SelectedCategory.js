@@ -18,21 +18,20 @@ class SelectedCategory extends Component {
         return {
             headerShown: false,
             title: '',
-            category: ''
         }
     }
     state = {
-        count: 0
+        count: 0,
+        category: this.props.navigation.getParam('category')
     }
     componentDidMount() {
         const { navigation } = this.props;
         this.focusListener = navigation.addListener('didFocus', () => {
             this.setState({ count: this.props.added.length })
         });
-        this.setState({ category: navigation.getParam('category') })
         if (this.state.category === 'seesha')
             this.props.fetchData('seesha')
-        else this.props.fetchData('!seesha')
+        else this.props.fetchData('!seesha');
 
     }
 
@@ -43,8 +42,8 @@ class SelectedCategory extends Component {
         this.props.removeItem(id);
         this.setState({ count: this.state.count - 1 })
     }
-    handleClick = (item) => {
-        this.props.addToCart(item);
+    handleClick = (item,category) => {
+        this.props.addToCart(item,category);
         this.setState({ count: this.props.added.length + 1 })
     }
     handleAddQuantity = (id) => {
@@ -59,7 +58,7 @@ class SelectedCategory extends Component {
     render() {
         return (
             <Layout>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.state.count > 0 && <View style={styles.circle}>
@@ -77,7 +76,7 @@ class SelectedCategory extends Component {
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{flex:1}}>                        
-                            {this.props.items.map(item=>{
+                            {this.props.items.filter(e=>e.category===this.state.category).map(item=>{
                                 return(
                                     <View key={item.id}>
                                           <View >
@@ -94,7 +93,7 @@ class SelectedCategory extends Component {
                                         <View style={styles.option}>
                                             <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text>
                                             <TouchableOpacity
-                                                onPress={() => this.handleClick(item)}
+                                                onPress={() => this.handleClick(item,this.state.category)}
                                                 style={styles.button}
                                                 key={item.price}>
                                                 <Text style={styles.buttonText}>add to cart</Text>
@@ -127,8 +126,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        addToCart: (id) => { dispatch(addToCart(id)) },
-        addQuantity: (id) => { dispatch(addQuantity(id)) },
+        addToCart: (id,category) => { dispatch(addToCart(id,category)) },
+        addQuantity: (id,) => { dispatch(addQuantity(id,)) },
         subtractQuantity: (id) => { dispatch(subQuantity(id)) },
         removeItem: (id) => { dispatch(removeFromCart(id)) },
         fetchData: (category) => { dispatch(fetchData(category)) }

@@ -14,22 +14,22 @@ const data = [
     {
         id: 2,
         name: 'Whiskey 12 years',
-        category: 'liquors'
+        category: 'Whiskey12'
     },
     {
         id: 3,
         name: 'Whiskey 19 years',
-        category: 'liquors'
+        category: 'Whiskey19'
     },
     {
         id: 4,
         name: 'Whiskey 18 years',
-        category: 'liquors'
+        category: 'Whiskey18'
     },
     {
         id: 5,
         name: 'Champagne',
-        category: 'liquors'
+        category: 'Champagne'
     },
     {
         id: 6,
