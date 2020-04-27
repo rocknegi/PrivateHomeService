@@ -122,7 +122,7 @@ class Cart extends Component {
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                             style={styles.logo}
                                         />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
                                         <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                         <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -185,7 +185,7 @@ class Cart extends Component {
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                             style={styles.logo}
                                         />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
                                         <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                         <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -248,7 +248,7 @@ class Cart extends Component {
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                             style={styles.logo}
                                         />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
                                         <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                         <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -312,7 +312,7 @@ class Cart extends Component {
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                             style={styles.logo}
                                         />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
                                         <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                         <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -392,7 +392,7 @@ class Cart extends Component {
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                             style={styles.logo}
                                         />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
                                         <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                         <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
