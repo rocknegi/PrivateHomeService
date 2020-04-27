@@ -39,14 +39,14 @@ export default addToCartReducer = (state = initialState, action) => {
                 }
             }
             else if (action.category === 'seesha') {
-                // let addedItem = state.items.slice();
-                // for (let i = 0; i < state.items.length; i++) {
-                //     addedItem[i].quantity = 1
-                // }
+                const prices = action.item.map(e=>e.price*e.quantity)
+                let newTotal = prices.reduce((a,b)=>{
+                    return a+b
+                },0)
                 return {
                     ...state,
                     addedItems: [...state.addedItems, ...action.item],
-                    // total:newTotal
+                    total:newTotal
                 }
             }
         }
@@ -63,7 +63,6 @@ export default addToCartReducer = (state = initialState, action) => {
             }
         }
         case ADD_QUANTITY: {
-            alert(JSON.stringify(action.item))
             let addedItem = state.addedItems.find(item => item.id === action.id)
             // let addedItem = action.item;
             addedItem.quantity += 1

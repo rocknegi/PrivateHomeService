@@ -23,7 +23,7 @@ class SelectedCategory extends Component {
         count: 0,
         category: this.props.navigation.getParam('category'),
         selected: [],
-        price: 0
+        total: 0
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -52,6 +52,7 @@ class SelectedCategory extends Component {
               this.props.addToCart(item, category);
         }
         else {
+
             this.props.addToCart(this.state.selected, category);
         }
         this.setState({ count: this.props.added.length + 1 })
@@ -61,20 +62,32 @@ class SelectedCategory extends Component {
             this.props.addQuantity(item);
         }
         else {
-            item.quantity = item.quantity + 1
-            this.setState((state) => ({
-                selected: [...state.selected, item]
-            }))
+            if(this.state.selected.find(e=>e.id===item.id)){
+                item.quantity ++;
+                this.setState((state) => ({
+                    selected: [...state.selected],
+                    total: state.total+item.price
+                }))
+            }
+            else{
+                item.quantity ++;
+                this.setState((state) => ({
+                    selected: [...state.selected, item],
+                    total: state.total+item.price
+                }))
+            }
         }
         // this.setState({selected:item})
         this.calculate(item)
 
     }
     handleSubtractQuantity = (item) => {
-        item.quantity = item.quantity - 1
-        this.setState((state) => ({
-            selected: [...state.selected, item]
-        }))
+        if(item.quantity>0){
+            item.quantity = item.quantity - 1
+            this.setState((state) => ({
+                selected: [...state.selected, item]
+            }))
+        }
         // this.props.subtractQuantity(id);
     }
     notiifcation = () => <View style={styles.circle}>
@@ -178,7 +191,7 @@ class SelectedCategory extends Component {
                     <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
-                        <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.props.total} </Text>
+                        <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.state.total} </Text>
                     </View>}
             </Layout>
         )

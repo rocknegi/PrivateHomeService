@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Feather'
 import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd } from '../redux/actions'
 import Modal from 'react-native-modal';
+import _ from 'lodash'
 
 class Cart extends Component {
     state = {
@@ -14,10 +15,29 @@ class Cart extends Component {
         ChampagneGlass: 1,
         error: null,
         item: {},
+        loading: false,
+        res: null
     }
 
     componentDidMount() {
-        // alert(JSON.stringify(this.props.items))
+        if (this.props.items) {
+            const category = _.uniqBy(this.props.items, 'category')
+            const res = category.map((ele) => {
+                return {
+                    category: ele.category,
+                    data: this.props.items.filter((e) => e.category === ele.category)
+                }
+
+            }
+            )
+            this.setState({ res }, () => alert(JSON.stringify(this.state.res)))
+            this.setState({ loading: false })
+
+        }
+        else {
+            this.setState({ loading: true })
+        }
+
     }
 
     glassAddition(item) {
@@ -48,8 +68,8 @@ class Cart extends Component {
     handleAddQuantity = (id) => {
         this.props.addQuantity(id);
     }
-    handleSubtractQuantity = (id,seesha) => {
-        this.props.subtractQuantity(id,seesha);
+    handleSubtractQuantity = (id, seesha) => {
+        this.props.subtractQuantity(id, seesha);
     }
     handleAddOption = (id) => {
         this.props.addOption(id);
@@ -58,7 +78,6 @@ class Cart extends Component {
         this.props.subOption(id);
     }
     render() {
-        // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
                 {this.props.items.length ?
@@ -93,6 +112,24 @@ class Cart extends Component {
                                 </ScrollView>
                             </SafeAreaView>
                         </Modal>
+
+                        {/* { this.state.res&&
+                            this.state.res.map(e=>e.data).map(item=>{
+                                return(
+                                    <View style={styles.list} >
+                                        <Image
+                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                            style={styles.logo}
+                                        />
+                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
+                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                        <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
+
+                                    </View>
+                                )
+                            })
+                            } */}
                         {this.props.items.filter(e => e.category === 'liquors').map(item => {
                             return (
                                 <View key={item.id}>
@@ -345,7 +382,6 @@ class Cart extends Component {
                                 </View>
                             )
                         })}
-                        {/* {this.props.items.find(e => e.category === 'seesha') &&  */}
                         <View>
                             {this.props.items.filter(e=>e.category==='seesha').map(item => {
                                 return (
@@ -361,16 +397,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
-                                    <Text style={styles.buttonText}>Customise</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
-                                    <Text style={styles.buttonText}>Remove</Text>
-                                </TouchableOpacity>
-                            </View>  */}
                         </View>
-                        {/* // } */}
                     </ScrollView> : <Text style={styles.text}>Your cart is empty</Text>}
                 {this.props.items.length ? <View style={styles.footer}>
                     <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
