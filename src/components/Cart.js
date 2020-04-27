@@ -367,22 +367,6 @@ class Cart extends Component {
                             )
                         })}</View>
                         <View>
-                        {this.props.items.find(e=>e.category==='seesha')&& <Text style={styles.textHeading}>Seesha</Text>}
-                            {this.props.items.filter(e=>e.category==='seesha').map(item => {
-                                return (
-                                    <View>
-                                        <View style={styles.list} >
-                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
-                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
-                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-                                            <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
-
-                                        </View>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                        <View>
                         {this.props.items.find(e=>e.category==='Champagne')&& <Text style={styles.textHeading}>Champagne</Text>}
                         {this.props.items.filter(e => e.category === 'Champagne').map(item => {
                             return (
@@ -453,11 +437,17 @@ class Cart extends Component {
                                     <View>
                                         <View style={styles.list} >
                                             <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
+                                            <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
                                             <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
 
                                         </View>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
+                                            <Text style={styles.buttonText}>Remove</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                     </View>
                                 )
                             })}
@@ -469,11 +459,17 @@ class Cart extends Component {
                                     <View>
                                         <View style={styles.list} >
                                             <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
+                                            <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
                                             <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
 
                                         </View>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
+                                            <Text style={styles.buttonText}>Remove</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                     </View>
                                 )
                             })}

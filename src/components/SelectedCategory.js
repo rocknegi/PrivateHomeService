@@ -59,7 +59,6 @@ class SelectedCategory extends Component {
         this.setState({ count: this.props.added.length + 1 })
     }
     handleAddQuantity = (item) => {
-        alert(JSON.stringify.item)
         if (this.state.category !== 'seesha'
         &&this.state.category !== 'games'
         ) {

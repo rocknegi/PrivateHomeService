@@ -40,9 +40,10 @@ export default addToCartReducer = (state = initialState, action) => {
             }
             else  {
                 const prices = action.item.map(e=>e.price*e.quantity)
-                let newTotal = prices.reduce((a,b)=>{
+                let total = prices.reduce((a,b)=>{
                     return a+b
                 },0)
+                let newTotal = total+state.total
                 return {
                     ...state,
                     addedItems: [...state.addedItems, ...action.item],
