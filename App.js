@@ -20,6 +20,7 @@ import CustomDrawer from './src/components/customDrawer';
 import reducers from './src/redux/reducers'
 import Cart from './src/components/Cart';
 import seesha from './src/components/Sheesha';
+import SocialGames from './src/components/SocialGames';
 
 
 MaterialIcon.loadFont();
@@ -30,7 +31,8 @@ const innerNavigator = createStackNavigator({
   Home,
   SelctedCategory: SelectedCategory,
   Cart,
-  seesha
+  seesha,
+  games:SocialGames
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {

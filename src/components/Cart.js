@@ -30,7 +30,7 @@ class Cart extends Component {
 
             }
             )
-            this.setState({ res }, () => alert(JSON.stringify(this.state.res)))
+            this.setState({ res },)
             this.setState({ loading: false })
 
         }
@@ -113,27 +113,10 @@ class Cart extends Component {
                             </SafeAreaView>
                         </Modal>
 
-                        {/* { this.state.res&&
-                            this.state.res.map(e=>e.data).map(item=>{
-                                return(
-                                    <View style={styles.list} >
-                                        <Image
-                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                            style={styles.logo}
-                                        />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
-                                        <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-                                        <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
-
-                                    </View>
-                                )
-                            })
-                            } */}
+                        {this.props.items.find(e => e.category === 'liquors')&&<Text style={styles.textHeading}>liquors</Text>}
                         {this.props.items.filter(e => e.category === 'liquors').map(item => {
                             return (
                                 <View key={item.id}>
-                                    <Text>{item.category}</Text>
                                     <View style={styles.list} >
                                         <Image
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -193,10 +176,10 @@ class Cart extends Component {
                                 </View>
                             )
                         })}
+                         {this.props.items.find(e => e.category === 'Whiskey12')&&<Text style={styles.textHeading}>Whiskey 12</Text>}
                         {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                             return (
                                 <View key={item.id}>
-                                    <Text>{item.category}</Text>
                                     <View style={styles.list} >
                                         <Image
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -256,73 +239,10 @@ class Cart extends Component {
                                 </View>
                             )
                         })}
+                         {this.props.items.find(e => e.category === 'Whiskey19')&&<Text style={styles.textHeading}>Whiskey 19</Text>}
                         {this.props.items.filter(e => e.category === 'Whiskey19').map(item => {
                             return (
                                 <View key={item.id}>
-                                    <Text>{item.category}</Text>
-                                    <View style={styles.list} >
-                                        <Image
-                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                            style={styles.logo}
-                                        />
-                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
-                                        <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-                                        <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
-
-                                    </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                        <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
-                                            <Text style={styles.buttonText}>Remove</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={styles.modal}>
-
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
-                                    </View>
-
-                                </View>
-                            )
-                        })}
-                        {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
-                            return (
-                                <View key={item.id}>
-                                    <Text>{item.category}</Text>
                                     <View style={styles.list} >
                                         <Image
                                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -383,10 +303,170 @@ class Cart extends Component {
                             )
                         })}
                         <View>
+                        {this.props.items.find(e=>e.category==='Whiskey18')&& <Text style={styles.textHeading}>Whiskey18</Text>}
+                        {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
+                            return (
+                                <View key={item.id}>
+                                    <View style={styles.list} >
+                                        <Image
+                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                            style={styles.logo}
+                                        />
+                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
+                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                        <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
+
+                                    </View>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
+                                            <Text style={styles.buttonText}>Customise</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
+                                            <Text style={styles.buttonText}>Remove</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.modal}>
+
+                                        <Modal
+                                            isVisible={this.state.isModal}
+                                            scrollHorizontal={true}
+                                            animationIn="slideInUp"
+                                            onBackdropPress={() => this.toggleModal()}
+                                        >
+                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
+                                                <ScrollView>
+                                                    <View style={{ marginTop: 20 }}>
+                                                        <View style={styles.list} >
+                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
+                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
+                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
+                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
+                                                        </View>
+                                                        <View style={styles.list} >
+                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
+                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
+                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
+                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
+                                                            {this.state.error &&
+                                                                <Text>{this.state.error}</Text>
+                                                            }
+                                                        </View>
+                                                        <TouchableOpacity
+                                                            onPress={this.toggleModal}
+                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
+                                                            <Text style={styles.buttonText}>Save</Text>
+                                                        </TouchableOpacity>
+                                                    </View>
+                                                </ScrollView>
+                                            </SafeAreaView>
+                                        </Modal>
+                                    </View>
+
+                                </View>
+                            )
+                        })}</View>
+                        <View>
+                        {this.props.items.find(e=>e.category==='seesha')&& <Text style={styles.textHeading}>Seesha</Text>}
                             {this.props.items.filter(e=>e.category==='seesha').map(item => {
                                 return (
                                     <View>
-                                      <Text>Seesha</Text>
+                                        <View style={styles.list} >
+                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
+                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
+                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                            <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
+
+                                        </View>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                        <View>
+                        {this.props.items.find(e=>e.category==='Champagne')&& <Text style={styles.textHeading}>Champagne</Text>}
+                        {this.props.items.filter(e => e.category === 'Champagne').map(item => {
+                            return (
+                                <View key={item.id}>
+                                    <View style={styles.list} >
+                                        <Image
+                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                            style={styles.logo}
+                                        />
+                                        <Text style={styles.text}>Brand Name{"\n"}£{item.price}/Unit</Text>
+                                        <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
+                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                        <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
+
+                                    </View>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
+                                            <Text style={styles.buttonText}>Customise</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
+                                            <Text style={styles.buttonText}>Remove</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.modal}>
+
+                                        <Modal
+                                            isVisible={this.state.isModal}
+                                            scrollHorizontal={true}
+                                            animationIn="slideInUp"
+                                            onBackdropPress={() => this.toggleModal()}
+                                        >
+                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
+                                                <ScrollView>
+                                                    <View style={{ marginTop: 20 }}>
+                                                        <View style={styles.list} >
+                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
+                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
+                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
+                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
+                                                        </View>
+                                                        <View style={styles.list} >
+                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
+                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
+                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
+                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
+                                                            {this.state.error &&
+                                                                <Text>{this.state.error}</Text>
+                                                            }
+                                                        </View>
+                                                        <TouchableOpacity
+                                                            onPress={this.toggleModal}
+                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
+                                                            <Text style={styles.buttonText}>Save</Text>
+                                                        </TouchableOpacity>
+                                                    </View>
+                                                </ScrollView>
+                                            </SafeAreaView>
+                                        </Modal>
+                                    </View>
+
+                                </View>
+                            )
+                        })}</View>
+                        <View>
+                        {this.props.items.find(e=>e.category==='seesha')&& <Text style={styles.textHeading}>Seesha</Text>}
+                            {this.props.items.filter(e=>e.category==='seesha').map(item => {
+                                return (
+                                    <View>
+                                        <View style={styles.list} >
+                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
+                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
+                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                            <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
+
+                                        </View>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                        <View>
+                            {this.props.items.find(e=>e.category==='games')&&<Text style={styles.textHeading}>Games</Text>}
+                            {this.props.items.filter(e=>e.category==='games').map(item => {
+                                return (
+                                    <View>
                                         <View style={styles.list} >
                                             <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
@@ -480,5 +560,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fdbf83',
         borderRadius: 10,
         marginBottom: 10,
+    },
+    textHeading:{
+        fontSize:20,
+        textAlign:'center',
+        padding:5,
+        margin:20,
+        backgroundColor:'#fd6d24',
+        color: '#fff',
+        fontWeight:'bold'
     }
 })

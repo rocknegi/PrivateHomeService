@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, ScrollView, Image, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
+import CheckBox from 'react-native-check-box'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
+
 
 
 class SelectedCategory extends Component {
@@ -32,7 +33,9 @@ class SelectedCategory extends Component {
         });
         if (this.state.category === 'seesha')
             this.props.fetchData('seesha')
-        else this.props.fetchData('!seesha');
+            else if(this.state.category==='games')
+            this.props.fetchData('games')
+        else this.props.fetchData('');
 
     }
 
@@ -47,33 +50,34 @@ class SelectedCategory extends Component {
         this.setState({ count: this.state.count - 1 })
     }
     handleClick = (item, category) => {
-
-        if (this.state.category !== 'seesha') {
-              this.props.addToCart(item, category);
+        if (this.state.category !== 'seesha'&&this.state.category !== 'games') {
+            this.props.addToCart(item, category);
         }
         else {
-
             this.props.addToCart(this.state.selected, category);
         }
         this.setState({ count: this.props.added.length + 1 })
     }
     handleAddQuantity = (item) => {
-        if (this.state.category !== 'seesha') {
+        alert(JSON.stringify.item)
+        if (this.state.category !== 'seesha'
+        &&this.state.category !== 'games'
+        ) {
             this.props.addQuantity(item);
         }
         else {
-            if(this.state.selected.find(e=>e.id===item.id)){
-                item.quantity ++;
+            if (this.state.selected.find(e => e.id === item.id)) {
+                item.quantity++;
                 this.setState((state) => ({
                     selected: [...state.selected],
-                    total: state.total+item.price
+                    total: state.total + item.price
                 }))
             }
-            else{
-                item.quantity ++;
+            else {
+                item.quantity++;
                 this.setState((state) => ({
                     selected: [...state.selected, item],
-                    total: state.total+item.price
+                    total: state.total + item.price
                 }))
             }
         }
@@ -82,10 +86,11 @@ class SelectedCategory extends Component {
 
     }
     handleSubtractQuantity = (item) => {
-        if(item.quantity>0){
-            item.quantity = item.quantity - 1
+        if (item.quantity > 0) {
+            item.quantity --
             this.setState((state) => ({
-                selected: [...state.selected, item]
+                selected: [...state.selected, item],
+                total: state.total - item.price
             }))
         }
         // this.props.subtractQuantity(id);
@@ -94,6 +99,7 @@ class SelectedCategory extends Component {
         <Text style={styles.count}>{this.props.items.length}</Text>
     </View>
     render() {
+        // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
@@ -116,7 +122,7 @@ class SelectedCategory extends Component {
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
-                        {this.state.category !== 'seesha' ?
+                        {this.state.category !== 'seesha' ?this.state.category !== 'games' &&
                             <View>
                                 {this.props.items.filter(e => e.category === this.state.category).map(item => {
                                     return (
@@ -146,7 +152,8 @@ class SelectedCategory extends Component {
                                     )
                                 })}
                             </View>
-                            : this.state.category === 'seesha' ? <View>
+                            :
+                            <View>
                                 <View style={styles.container}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                         <Image
@@ -172,7 +179,7 @@ class SelectedCategory extends Component {
                                                 <Text style={{ fontSize: 20 }}>{item.title}</Text>
                                                 <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                                <Text style={{ fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
                                             </View>
                                         )
@@ -181,12 +188,72 @@ class SelectedCategory extends Component {
                                 <TouchableOpacity
                                     onPress={() => this.handleClick(this.props.items, this.state.category)}
                                     style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
-                            </View> : null
+                            </View>
                         }
-                    </View>}
+                        {this.state.category === 'games' &&
+                    <View style={styles.container}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Image
+                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                style={styles.logo}
+                            />
+                            <Text style={[styles.text, {  }]}>Brand Name{"\n"}
+                    Some Description loreum ipsom loreum ipsom loreum ipsom
+                    </Text>
+                            <Text style={[styles.text, { flex: 0 }]}>Free</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Image
+                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                style={styles.logo}
+                            />
+                            <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
+                    Some Description loreum ipsom loreum ipsom loreum ipsom
+                    </Text>
+                            <Text style={[styles.text, { flex: 0 }]}>Free</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Image
+                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                style={styles.logo}
+                            />
+                            <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
+                    Some Description loreum ipsom loreum ipsom loreum ipsom
+                    </Text>
+                            <Text style={[styles.text, { flex: 0 }]}>€5</Text>
+
+                        </View>
+
+
+                        <View style={styles.options}>
+                          <Text style={[styles.text, { fontSize: 25, marginTop: '20%' }]}>Hotess/Service</Text>
+                                    </View>
+                            {this.props.items.map(item=>{
+                                return(
+                                    <View key={item.id} style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 20 }}>{item.title}</Text>
+                                    <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
+                                    <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
+                                    <Text style={{ fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
+                                    <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
+                                </View>
+                                
+                                )
+                            })}
+
+<TouchableOpacity
+                                    onPress={() => this.handleClick(this.props.items, this.state.category)}
+                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+  
+                    </View>
+                }
+                    </View>
+    }
+
+
 
                 </ScrollView>
-                {this.state.category !== 'seesha' ? <View style={styles.footer}>
+                {this.state.category !== 'seesha'&&this.state.category !== 'games'  ? <View style={styles.footer}>
                     <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
                     <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
@@ -230,7 +297,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginBottom: 20
     },
     logo: {

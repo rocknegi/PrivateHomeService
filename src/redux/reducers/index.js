@@ -13,7 +13,7 @@ export default addToCartReducer = (state = initialState, action) => {
             return { ...state, items: action.payload.items }
         }
         case ADD_TO_CART: {
-            if (action.category !== 'seesha') {
+            if (action.category !== 'seesha'&&action.category !== 'games') {
                 let addedItem = state.items.find(item => item.id === action.item.id)
                 let existed_item = state.addedItems.find(item => action.item.id === item.id)
                 if (existed_item) {
@@ -38,7 +38,7 @@ export default addToCartReducer = (state = initialState, action) => {
 
                 }
             }
-            else if (action.category === 'seesha') {
+            else  {
                 const prices = action.item.map(e=>e.price*e.quantity)
                 let newTotal = prices.reduce((a,b)=>{
                     return a+b

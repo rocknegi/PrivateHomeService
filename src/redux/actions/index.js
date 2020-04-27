@@ -5,7 +5,7 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 
 const items = [
     { id: '1liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
-    { id: '2liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
+    { id: '2liquors', title: 'Brand Name', price: 110, img: image, category: 'Champagne' },
     { id: '1Whiskey12', title: 'Brand Name', price: 80, img: image, category: 'Whiskey12' },
     { id: '1Whiskey19', title: 'Brand Name', price: 120, img: image, category: 'Whiskey19' },
     { id: '1Whiskey18', title: 'Brand Name', price: 260, img: image, category: 'Whiskey18' },
@@ -18,8 +18,13 @@ const items2 = [
     { id: 'option4', title: 'Item 4', price: 20, img: image,quantity:0 , category: 'seesha' },
 ]
 
+const items3 = [
+    { id: 'oty', title: 'Oty', price: 11, quantity:0, category: 'games' },
+    { id: 'tim', title: 'Time', price: 8, quantity:0 , category: 'games' },
+]
+
 export const fetchData = (category) => {
-    if (category !== 'seesha') {
+    if (category === '') {
         return {
             type: FETCH_DATA,
             payload: {
@@ -27,6 +32,15 @@ export const fetchData = (category) => {
                 category
             }
 
+        }
+    }
+    else if(category==='games'){
+        return{
+            type:FETCH_DATA,
+            payload:{
+                items:items3,
+                category
+            }
         }
     }
     else return {

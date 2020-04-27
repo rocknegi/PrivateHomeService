@@ -36,6 +36,11 @@ const data = [
         name: 'Seesha',
         category: 'seesha'
     },
+    {
+        id: 7,
+        name: 'Social Games',
+        category: 'games'
+    },
 ]
 
 export default class Home extends Component {
