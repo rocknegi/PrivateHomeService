@@ -21,6 +21,7 @@ import reducers from './src/redux/reducers'
 import Cart from './src/components/Cart';
 import seesha from './src/components/Sheesha';
 import SocialGames from './src/components/SocialGames';
+import FindMe from './src/components/FindMe';
 
 
 MaterialIcon.loadFont();
@@ -32,7 +33,8 @@ const innerNavigator = createStackNavigator({
   SelctedCategory: SelectedCategory,
   Cart,
   seesha,
-  games:SocialGames
+  games:SocialGames,
+  location:FindMe
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {

@@ -482,7 +482,9 @@ class Cart extends Component {
                 {this.props.items.length ? <View style={styles.footer}>
                     <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
                     <Text style={[styles.text, { fontSize: 25, }]}>€ {this.props.total} </Text>
-                    <TouchableOpacity style={[styles.button, { marginBottom: 0, right: '20%', height: 40 }]}>
+                    <TouchableOpacity 
+                    onPress={()=>this.props.navigation.navigate('location')}
+                    style={[styles.button, { marginBottom: 0, right: '20%', height: 40 }]}>
                         <Text style={styles.buttonText}>Buy Now</Text>
                     </TouchableOpacity>
                 </View> : null}
