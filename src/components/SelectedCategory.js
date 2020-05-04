@@ -104,10 +104,10 @@ class SelectedCategory extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
-                        {this.state.count > 0 && <View style={styles.circle}>
+                        {this.props.itemsInCart > 0 && <View style={styles.circle}>
                             <View style={styles.count}>
                                 <Text style={{ textAlign: 'center', }}>
-                                    {this.state.count}
+                                    {this.props.itemsInCart}
                                 </Text>
                             </View>
 
@@ -268,7 +268,8 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         total: state.total,
-        added: state.addedItems
+        added: state.addedItems,
+        itemsInCart:state.itemsInCart
     }
 }
 

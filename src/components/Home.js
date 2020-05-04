@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import { connect } from 'react-redux'
 
 const data = [
     {
@@ -31,30 +32,47 @@ const data = [
         name: 'Champagne',
         category: 'Champagne'
     },
-    {
-        id: 6,
-        name: 'Seesha',
-        category: 'seesha'
-    },
-    {
-        id: 7,
-        name: 'Social Games',
-        category: 'games'
-    },
+    // {
+    //     id: 6,
+    //     name: 'Seesha',
+    //     category: 'seesha'
+    // },
+    // {
+    //     id: 7,
+    //     name: 'Social Games',
+    //     category: 'games'
+    // },
 ]
 
-export default class Home extends Component {
+class Home extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            title: '',
-            headerRight: () => (<MaterialIcon onPress={() => navigation.navigate('Cart')} name="shopping-cart" style={{ fontSize: 25, }} />)
-            , headerLeft: () => (<Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => navigation.openDrawer()} />)
+        headerShown:false,
+        title:''   
         }
     }
     render() {
         return (
             <LinearGradient colors={['#f3b771', '#f3a85f', '#f3974e', '#f38640', '#f37335']} style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
+                    <Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
+                    <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
+                        {this.props.itemsInCart > 0 && <View style={styles.circle}>
+                            <View style={styles.count}>
+                                <Text style={{ textAlign: 'center', }}>
+                                    {this.props.itemsInCart}
+                                </Text>
+                            </View>
+
+                        </View>}
+                        <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
+                            // category: this.state.category
+                        })} name="shopping-cart" style={{ fontSize: 25, }} />
+
+                    </View>
+
+                </View>
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                         <Image
                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -103,6 +121,13 @@ export default class Home extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        itemsInCart:state.itemsInCart
+    }
+}
+
+export default connect(mapStateToProps)(Home)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -147,5 +172,12 @@ const styles = StyleSheet.create({
         width: 180,
         resizeMode: 'contain',
         marginLeft: 10
-    }
+    },
+    circle: {
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        backgroundColor: '#fd9a50',
+    },
+    count: { color: '#FFF' },
 })

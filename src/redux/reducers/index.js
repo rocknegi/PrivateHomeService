@@ -2,7 +2,8 @@ import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_O
 
 export const initialState = {
     addedItems: [],
-    total: 0
+    total: 0,
+    itemsInCart:0
 }
 
 export default addToCartReducer = (state = initialState, action) => {
@@ -22,7 +23,8 @@ export default addToCartReducer = (state = initialState, action) => {
                     addedItem.wineGlass = 1;
                     return {
                         ...state,
-                        total: state.total + addedItem.price
+                        total: state.total + addedItem.price,
+                        itemsInCart : state.itemsInCart + 1
                     }
                 }
                 else {
@@ -33,7 +35,8 @@ export default addToCartReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         addedItems: [...state.addedItems, addedItem],
-                        total: newTotal
+                        total: newTotal,
+                        itemsInCart : state.itemsInCart + 1
                     }
 
                 }
@@ -60,7 +63,8 @@ export default addToCartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 addedItems: new_items,
-                total: newTotal
+                total: newTotal,
+                itemsInCart : state.itemsInCart - itemToRemove.quantity
             }
         }
         case ADD_QUANTITY: {
@@ -70,7 +74,8 @@ export default addToCartReducer = (state = initialState, action) => {
             let newTotal = state.total + addedItem.price
             return {
                 ...state,
-                total: newTotal
+                total: newTotal,
+                itemsInCart : state.itemsInCart + 1
             }
         }
         case SUB_QUANTITY: {
@@ -83,7 +88,8 @@ export default addToCartReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         addedItems: new_items,
-                        total: newTotal
+                        total: newTotal,
+                        itemsInCart : state.itemsInCart - 1
                     }
                 }
                 else {
@@ -91,7 +97,8 @@ export default addToCartReducer = (state = initialState, action) => {
                     let newTotal = state.total - addedItem.price
                     return {
                         ...state,
-                        total: newTotal
+                        total: newTotal,
+                        itemsInCart : state.itemsInCart - 1
                     }
                 }
             }
