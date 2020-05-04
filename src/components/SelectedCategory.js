@@ -24,7 +24,8 @@ class SelectedCategory extends Component {
         count: 0,
         category: this.props.navigation.getParam('category'),
         selected: [],
-        total: 0
+        total: 0,
+        title:this.props.navigation.getParam('name')
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -103,6 +104,7 @@ class SelectedCategory extends Component {
             <Layout>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
+                    <Text style={{fontSize: 20}}>{this.state.title}</Text>
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
                             <View style={styles.count}>
@@ -133,18 +135,25 @@ class SelectedCategory extends Component {
                                                         style={styles.logo}
                                                     />
                                                     <Text style={styles.text}>{item.title}{"\n"}
-                                Some Description loreum ipsom loreum ipsom loreum ipsom
-                                </Text>
-
-                                                </View>
-                                                <View style={styles.option}>
-                                                    <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text>
+                                                        Some Description
+                                                        {"\n"}€{item.price}/unit
+                                                        {"\n"}<Text style={{textDecorationLine:'underline'}}>See more</Text>
+                                                        </Text>
                                                     <TouchableOpacity
                                                         onPress={() => this.handleClick(item, this.state.category)}
                                                         style={styles.button}
                                                         key={item.price}>
-                                                        <Text style={styles.buttonText}>add to cart</Text>
+                                                        <Text style={styles.buttonText}>Add to cart</Text>
                                                     </TouchableOpacity>
+                                                </View>
+                                                <View style={styles.option}>
+                                                    {/* <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text> */}
+                                                    {/* <TouchableOpacity
+                                                        onPress={() => this.handleClick(item, this.state.category)}
+                                                        style={styles.button}
+                                                        key={item.price}>
+                                                        <Text style={styles.buttonText}>add to cart</Text>
+                                                    </TouchableOpacity> */}
                                                 </View>
                                             </View>
                                         </View>
@@ -297,21 +306,19 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 20
+        // alignItems: 'center',
+        marginBottom: 20,
     },
     logo: {
-        height: 90,
-        width: 90,
+        height: 100,
+        width: 100,
         resizeMode: 'contain',
     },
     text: {
         flex: 1,
         fontSize: 15,
         padding: 10,
-        flexWrap: 'wrap',
-
-
+        // flexWrap: 'nowrap',
     },
     icon: {
         fontSize: 25,
@@ -325,7 +332,9 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         // marginHorizontal: '25%',
-        margin: '5%'
+        // margin: '5%'
+        alignSelf:'center',
+        margin:2
     },
     buttonText: {
         textAlign: 'center',
@@ -352,9 +361,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundColor: '#fdbf83',
-        borderRadius: 10,
-        marginBottom: 10
+        backgroundColor: '#eee',
+        borderRadius: 6,
+        marginBottom: 10,
+        borderWidth:2,
+        borderColor:PrimayColor
     }
 })
 

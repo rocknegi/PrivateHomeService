@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, SafeAreaView, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 const Layout = (props) => {
     return (
-        <LinearGradient colors={['#fdbf83', '#fdad69', '#fd9a50', '#fd9a50', '#fd6d24']} style={styles.linearGradient}>
+        <View  style={styles.linearGradient}>
             <KeyboardAvoidingView
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}
@@ -16,7 +16,7 @@ const Layout = (props) => {
                 {/* </TouchableWithoutFeedback> */}
 
             </KeyboardAvoidingView>
-        </LinearGradient>
+        </View>
     )
 }
 
@@ -24,12 +24,13 @@ export default Layout
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor:'#fafafa'
     },
     linearGradient: {
         flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
+        paddingLeft: 5,
+        paddingRight: 5,
         borderRadius: 5
     },
 })

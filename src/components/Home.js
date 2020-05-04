@@ -53,7 +53,7 @@ class Home extends Component {
     }
     render() {
         return (
-            <LinearGradient colors={['#f3b771', '#f3a85f', '#f3974e', '#f38640', '#f37335']} style={styles.linearGradient}>
+            <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
@@ -78,13 +78,15 @@ class Home extends Component {
                             source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                             style={styles.logo}
                         />
-                        <Text style={[styles.text, { fontSize: 30 }]}>Select Here</Text>
+                        <View style={{marginHorizontal:'13%'}}>
+                        <Text style={[styles.text, { fontSize: 30,alignSelf:'flex-end' }]}>Our Selection</Text>
                         {data.map(item => {
                             return(
                                 <TouchableOpacity
                                 key={item.id}
                                 onPress={() => this.props.navigation.navigate('SelctedCategory', {
-                                    category: item.category
+                                    category: item.category,
+                                    name:item.name
                                 })}
                                 style={styles.list}>
                                 <Text style={styles.text}>{item.name}</Text>
@@ -92,9 +94,11 @@ class Home extends Component {
                             </TouchableOpacity>
                             )
                         })}
+                        <Text style={[styles.text, { fontSize: 30, marginTop: 10,alignSelf:'flex-end' }]}>Discounted</Text>
+
+                        </View>
 
 
-                        <Text style={[styles.text, { fontSize: 30, marginTop: 10 }]}>Discounted</Text>
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
@@ -117,7 +121,7 @@ class Home extends Component {
                         </ScrollView>
                     </ScrollView>
                 </SafeAreaView>
-            </LinearGradient>
+            </View>
         )
     }
 }
@@ -131,12 +135,12 @@ export default connect(mapStateToProps)(Home)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#fafafa'
+        backgroundColor: '#fafafa'
     },
     linearGradient: {
         flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
+        paddingLeft: 5,
+        paddingRight: 5,
         borderRadius: 5
     },
     logo: {
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        textAlign: 'center',
+        // textAlign: 'center',
         padding: 10,
         marginBottom: 10,
     },
@@ -157,10 +161,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 6,
+        borderWidth:2,
+        borderColor:PrimayColor,
         backgroundColor: '#eee',
         marginBottom: 10,
-        marginHorizontal: '3%',
-        elevation: 5
+        // marginHorizontal: '13%',
+        elevation: 5,
     },
     icon: {
         fontSize: 25,
