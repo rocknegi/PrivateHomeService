@@ -4,6 +4,7 @@ import DialingCodePicker from '../components/DialingCodePicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from './theme/Layout';
+import Map from './map';
 export default class FindMe extends Component {
     state = {
         isModalVisible: false,
@@ -19,7 +20,8 @@ export default class FindMe extends Component {
     render() {
         return (
             <Layout>
-                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <Map />
+                  {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <Text style={[styles.text,{fontSize:25}]}>Delivery Location</Text>
                     <TouchableOpacity style={styles.button}>
@@ -55,7 +57,7 @@ export default class FindMe extends Component {
                     </TouchableOpacity>
 
                 </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback> */}
             </Layout>
         )
     }
