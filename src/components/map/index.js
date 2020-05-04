@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, PermissionsAndroid, Platform } from 'react-native'
+import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform,TouchableOpacity } from 'react-native'
 import Layout from '../theme/Layout'
 import MapView from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation';
 import { Marker } from 'react-native-maps';
+import { PrimayColor } from '../theme/Colors';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -11,22 +12,34 @@ const height = Dimensions.get('window').height
 export default class Map extends Component {
     state = {
         region: {
-            latitude: 28.701624,
-            longitude: 77.108458,
-            latitudeDelta: 0.0012,
-            longitudeDelta: 0.0021,
+            latitude: 0,
+            longitude: 0,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
         },
         marker:{
-            latitude: 28.701624,
-            longitude: 77.108458,
+            latitude: 0,
+            longitude: 0,
         }
+    }
+
+    setMarkerLocation=(location)=>{
+        this.setState({marker:{
+            latitude:location.latitude,
+            longitude:location.longitude
+        }})
     }
     componentDidMount() {
         if (Platform.OS !== 'ios')
             this.requestStoragePermission()
         else
             Geolocation.getCurrentPosition(position => {
-                // this.setState({latitude:position.coords.latitude,longitude:position.coords.longitude})
+                this.setState({region:{
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,latitude:position.coords.latitude,longitude:position.coords.longitude
+                },marker:{
+                    latitude:position.coords.latitude,longitude:position.coords.longitude
+                }})
             });
     }
     requestStoragePermission = async () => {
@@ -43,7 +56,14 @@ export default class Map extends Component {
                 },
             );
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                Geolocation.getCurrentPosition(info => console.log(info));
+                Geolocation.getCurrentPosition(position => {
+                    this.setState({region:{
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,latitude:position.coords.latitude,longitude:position.coords.longitude
+                    },marker:{
+                        latitude:position.coords.latitude,longitude:position.coords.longitude
+                    }})
+                });
             } else {
                 Alert('');
             }
@@ -51,19 +71,46 @@ export default class Map extends Component {
             console.log(err);
         }
     }
+
+    confirmLocation = ()=>{
+        this.props.saveMarkerLocation(this.state.marker)
+        this.props.toggle()
+    }
+
     render() {
         return (
             <Layout>
-                <MapView 
+              <MapView 
                 style={{width,height}}
-                initialRegion= {this.state.region}>
+                region= {this.state.region}>
                     <Marker draggable
                         coordinate={this.state.marker}
-                        onDragEnd={(e) => alert(JSON.stringify(e.nativeEvent.coordinate))}
+                        onDragEnd={(e) => this.setMarkerLocation(e.nativeEvent.coordinate)}
                     />
                 </MapView>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText} onPress={this.confirmLocation}>Confirm Location</Text>
+                </TouchableOpacity>
             </Layout>
         )
     }
 }
+const styles = StyleSheet.create({
+    button: {
+        position:'absolute',
+        backgroundColor: PrimayColor,
+        borderRadius: 6,
+        height: 50,
+        justifyContent: 'center',
+        padding:8,
+        bottom:0,
+        margin:10
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
+})
 // this.setState({ marker: e.nativeEvent.coordinate })

@@ -1,30 +1,48 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, TextInput, Keyboard } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, TextInput, Keyboard, Dimensions } from 'react-native'
 import DialingCodePicker from '../components/DialingCodePicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from './theme/Layout';
 import Map from './map';
+import Modal from 'react-native-modal';
+
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+
 export default class FindMe extends Component {
     state = {
         isModalVisible: false,
-        dialingCode: '+237'
+        dialingCode: '+237',
+        marker:{
+            latitude: 0,
+            longitude: 0,
+        }
     }
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
-    setDialCode = (dialingCode) => {
-        this.setState({ dialingCode })
-        this.toggleModal()
+
+    saveMarkerLocation = (location)=>{
+        this.setState({marker:{
+            latitude:location.latitude,
+            longitude:location.longitude
+        }})
     }
+
     render() {
         return (
             <Layout>
-                <Map />
-                  {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <Modal 
+                style={{width,height}}
+                isVisible={this.state.isModalVisible}
+                >
+                    <Map saveMarkerLocation={this.saveMarkerLocation}  toggle = {this.toggleModal}/>
+                </Modal>
+                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <Text style={[styles.text,{fontSize:25}]}>Delivery Location</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
                     <Text style={[styles.buttonText,{fontSize:20}]}>Find Me</Text>
                     </TouchableOpacity>
                     <View  style={styles.field}>
@@ -57,7 +75,7 @@ export default class FindMe extends Component {
                     </TouchableOpacity>
 
                 </View>
-                </TouchableWithoutFeedback> */}
+                </TouchableWithoutFeedback>
             </Layout>
         )
     }
