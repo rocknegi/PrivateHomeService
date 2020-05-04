@@ -59,7 +59,7 @@ export default class index extends Component {
                         keyboardType={'number-pad'}
                     />
                 </View>
-                <View style={styles.field}>
+                {/* <View style={styles.field}>
                     <Icon name="key"
                         style={styles.icon} />
                     <TextInput
@@ -67,23 +67,23 @@ export default class index extends Component {
                         secureTextEntry={true}
                         style={styles.input}
                     />
-                </View>
-
+                </View> */}
+{/* 
                 <Text onPress={() => this.props.navigation.navigate('Reset')}
                     style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
-                     </Text>
+                     </Text> */}
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={styles.buttonText}>Continue</Text>
                 </TouchableOpacity>
 
-                <View style={styles.signup}>
+                {/* <View style={styles.signup}>
                     <TouchableOpacity style={{ width: "100%" }} onPress={() => this.props.navigation.navigate('Register')}>
                         <Text style={{fontSize: 15,color: '#000' }}>
                             Don't have an account ?  <Text style={{fontSize: 15,color:TextColorWhite}}>Sign Up</Text>
                         </Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 </View>
                                 </TouchableWithoutFeedback>
 
