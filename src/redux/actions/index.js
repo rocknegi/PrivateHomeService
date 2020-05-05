@@ -5,7 +5,8 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 
 const items = [
     { id: '1liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
-    { id: '2liquors', title: 'Brand Name', price: 110, img: image, category: 'Champagne' },
+    { id: '2liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
+    { id: '1Champagne', title: 'Brand Name', price: 110, img: image, category: 'Champagne' },
     { id: '1Whiskey12', title: 'Brand Name', price: 80, img: image, category: 'Whiskey12' },
     { id: '1Whiskey19', title: 'Brand Name', price: 120, img: image, category: 'Whiskey19' },
     { id: '1Whiskey18', title: 'Brand Name', price: 260, img: image, category: 'Whiskey18' },

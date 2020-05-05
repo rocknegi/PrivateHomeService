@@ -14,12 +14,12 @@ export default addToCartReducer = (state = initialState, action) => {
             return { ...state, items: action.payload.items }
         }
         case ADD_TO_CART: {
-            if (action.category !== 'seesha'&&action.category !== 'games') {
+            if (action.category !== 'seesha'&&action.category !== 'games'&&action.category !== 'service') {
                 let addedItem = state.items.find(item => item.id === action.item.id)
                 let existed_item = state.addedItems.find(item => action.item.id === item.id)
                 if (existed_item) {
-                    addedItem.quantity += 1;
-                    addedItem.whiskyGlass = 1;
+                    // addedItem.quantity += 1;
+                    // addedItem.whiskyGlass = 1;
                     addedItem.wineGlass = 1;
                     return {
                         ...state,
@@ -29,8 +29,8 @@ export default addToCartReducer = (state = initialState, action) => {
                 }
                 else {
                     addedItem.quantity = 1;
-                    addedItem.whiskyGlass = 1;
-                    addedItem.wineGlass = 1;
+                    // addedItem.whiskyGlass = 1;
+                    // addedItem.wineGlass = 1;
                     let newTotal = state.total + addedItem.price
                     return {
                         ...state,
@@ -44,7 +44,17 @@ export default addToCartReducer = (state = initialState, action) => {
             else  
                     // if(action.category==='seesha')
                     {
-                        const prices = action.item.map(e=>e.price*e.quantity)
+                        if(action.category==='service'){
+                            console.log(JSON.stringify(action.item))
+                            let newTotal = action.item.price+state.total;
+                            return {
+                                ...state,
+                                addedItems: [...state.addedItems, action.item],
+                                total:newTotal,
+                            }
+                        }
+                        else{
+                            const prices = action.item.map(e=>e.price*e.quantity)
                         let total = prices.reduce((a,b)=>{
                             return a+b
                         },0)
@@ -56,6 +66,7 @@ export default addToCartReducer = (state = initialState, action) => {
                             addedItems: [...state.addedItems, ...action.item],
                             total:newTotal,
                             itemsInCart : state.itemsInCart + totalItems
+                        }
                         }
                     }
                     // else{

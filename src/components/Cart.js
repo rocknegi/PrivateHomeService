@@ -4,17 +4,14 @@ import { BackgroundColor, PrimayColor } from './theme/Colors'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Feather'
-import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd } from '../redux/actions'
+import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd,addToCart } from '../redux/actions'
 import Modal from 'react-native-modal';
 import _ from 'lodash'
+import GlassAndServices from './GlassAndServices'
 
 class Cart extends Component {
     state = {
         isModal: false,
-        whiskyGlass: 1,
-        ChampagneGlass: 1,
-        error: null,
-        item: {},
         loading: false,
         res: null,
         complimentary:[
@@ -37,48 +34,11 @@ class Cart extends Component {
     ]
     }
 
-    componentDidMount() {
-        if (this.props.items) {
-            const category = _.uniqBy(this.props.items, 'category')
-            const res = category.map((ele) => {
-                return {
-                    category: ele.category,
-                    data: this.props.items.filter((e) => e.category === ele.category)
-                }
 
-            }
-            )
-            this.setState({ res },)
-            this.setState({ loading: false })
-
-        }
-        else {
-            this.setState({ loading: true })
-        }
-
+    toggleModal = () => {
+        this.setState({ isModal: !this.state.isModal, })
     }
 
-    glassAddition(item) {
-        if (this.state.item[item] >= 4 * this.state.item.quantity) {
-            alert('Max 4 glasses per bottle')
-        }
-        else {
-            this.props.addOnAdd(this.state.item, item)
-            // this.setState({ [item]: this.state[item] + 1 })
-        }
-    }
-
-    glassSub(item) {
-        if (this.state[item] <= 1) {
-            alert('Min 1 glass')
-        }
-        else {
-            this.setState({ [item]: this.state[item] - 1 })
-        }
-    }
-    toggleModal = (item) => {
-        this.setState({ isModal: !this.state.isModal, item })
-    }
 
     handleRemove = (id) => {
         this.props.removeItem(id);
@@ -94,6 +54,10 @@ class Cart extends Component {
     }
     handleSubtractOption = (id) => {
         this.props.subOption(id);
+    }
+    increaseTotal = (item)=>{
+        // const item = [data]
+        this.props.addToCart(item,'service');
     }
     render() {
         return (
@@ -135,40 +99,6 @@ class Cart extends Component {
                                         </TouchableOpacity>
                                     </View>
                                     <View style={styles.modal}>
-
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
                                     </View>
 
                                 </View>
@@ -198,39 +128,6 @@ class Cart extends Component {
                                     </View>
                                     <View style={styles.modal}>
 
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
                                     </View>
 
                                 </View>
@@ -260,39 +157,7 @@ class Cart extends Component {
                                     </View>
                                     <View style={styles.modal}>
 
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
+                                      
                                     </View>
 
                                 </View>
@@ -323,39 +188,7 @@ class Cart extends Component {
                                     </View>
                                     <View style={styles.modal}>
 
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
+                                    
                                     </View>
 
                                 </View>
@@ -386,39 +219,7 @@ class Cart extends Component {
                                     </View>
                                     <View style={styles.modal}>
 
-                                        <Modal
-                                            isVisible={this.state.isModal}
-                                            scrollHorizontal={true}
-                                            animationIn="slideInUp"
-                                            onBackdropPress={() => this.toggleModal()}
-                                        >
-                                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                                <ScrollView>
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Whisky Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.whiskyGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                        </View>
-                                                        <View style={styles.list} >
-                                                            <Text style={{ fontSize: 20, textAlign: 'center' }}>Champagne Glass</Text>
-                                                            <Icon onPress={() => this.glassAddition('ChampagneGlass')} name="plus" style={styles.icon} />
-                                                            <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.wineGlass}</Text>
-                                                            <Icon onPress={() => this.glassSub('ChampagneGlass')} name="minus" style={styles.icon} />
-                                                            {this.state.error &&
-                                                                <Text>{this.state.error}</Text>
-                                                            }
-                                                        </View>
-                                                        <TouchableOpacity
-                                                            onPress={this.toggleModal}
-                                                            style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                            <Text style={styles.buttonText}>Save</Text>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </ScrollView>
-                                            </SafeAreaView>
-                                        </Modal>
+                                       
                                     </View>
 
                                 </View>
@@ -462,13 +263,22 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
+                            
                         </View>
+                        <Modal
+                                            isVisible={this.state.isModal}
+                                            scrollHorizontal={true}
+                                            animationIn="slideInUp"
+                                            onBackdropPress={() => this.toggleModal()}
+                                        >
+                                           <GlassAndServices toggle={this.toggleModal} increaseTotal={this.increaseTotal} data={this.props.items}/>
+                                        </Modal>
                     </ScrollView> : <Text style={styles.text}>Your cart is empty</Text>}
                 {this.props.items.length ? <View style={styles.footer}>
                     <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
                     <Text style={[styles.text, { fontSize: 25, }]}>€ {this.props.total} </Text>
                     <TouchableOpacity 
-                    onPress={()=>this.props.navigation.navigate('location')}
+                    onPress={this.toggleModal}
                     style={[styles.button, { marginBottom: 0, right: '20%', height: 40 }]}>
                         <Text style={styles.buttonText}>Buy Now</Text>
                     </TouchableOpacity>
@@ -492,6 +302,7 @@ const mapDispatchToProps = (dispatch) => {
         addOption: (id) => { dispatch(addOption(id)) },
         subOption: (id) => { dispatch(subOption(id)) },
         addOnAdd: (item, option) => { dispatch(addOnAdd(item, option)) },
+        addToCart: (id, category) => { dispatch(addToCart(id, category)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
