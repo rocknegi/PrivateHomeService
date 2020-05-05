@@ -7,7 +7,9 @@ import CheckBox from 'react-native-check-box'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
-
+import Modal from 'react-native-modal';
+import Sheesha from './Sheesha';
+import SocialGames from './SocialGames';
 
 
 class SelectedCategory extends Component {
@@ -25,7 +27,9 @@ class SelectedCategory extends Component {
         category: this.props.navigation.getParam('category'),
         selected: [],
         total: 0,
-        title:this.props.navigation.getParam('name')
+        title:this.props.navigation.getParam('name'),
+        seeshaModal:false,
+        socialGamesModal:false
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -95,6 +99,19 @@ class SelectedCategory extends Component {
         }
         // this.props.subtractQuantity(id);
     }
+
+    toggleModal = (modal)=>{
+        this.setState({[modal]:!this.state[modal]})
+    }
+    handleSeeshaModal = ()=>{
+        this.toggleModal('seeshaModal');
+        this.props.fetchData('')
+    }
+    handleSocialGamesModal = ()=>{
+        this.toggleModal('socialGamesModal');
+        this.props.fetchData('')
+    }
+
     notiifcation = () => <View style={styles.circle}>
         <Text style={styles.count}>{this.props.items.length}</Text>
     </View>
@@ -104,7 +121,6 @@ class SelectedCategory extends Component {
             <Layout>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
-                    <Text style={{fontSize: 20}}>{this.state.title}</Text>
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
                             <View style={styles.count}>
@@ -123,12 +139,23 @@ class SelectedCategory extends Component {
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
-                        {this.state.category !== 'seesha' ?this.state.category !== 'games' &&
                             <View>
                                 {this.props.items.filter(e => e.category === this.state.category).map(item => {
                                     return (
                                         <View key={item.id}>
-                                            <View >
+                                            <View>
+                                                <View style={{flexDirection:'row',justifyContent:'space-evenly',marginBottom:15,marginTop:5}}>
+                                                    <Text
+                                                    style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
+                                                    onPress={()=>this.toggleModal('seeshaModal')}
+                                                    >Seesha</Text>
+                                                    <Text
+                                                    onPress={()=>this.toggleModal('socialGamesModal')}
+                                                    style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'8%',paddingRight:'8%',paddingTop:'5%',paddingBottom:'5%',alignSelf:'center'}}
+                                                    >Social {"\n"}Games</Text>
+                                                </View>
+                                                <Text style={{fontSize: 22,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
+
                                                 <View style={styles.list} >
                                                     <Image
                                                         source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
@@ -160,101 +187,23 @@ class SelectedCategory extends Component {
                                     )
                                 })}
                             </View>
-                            :
-                            <View>
-                                <View style={styles.container}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                        <Image
-                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                            style={{
-                                                height: 150,
-                                                width: 180,
-                                                resizeMode: 'contain',
-                                            }}
-                                        />
-                                        <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
-                            Some Description loreum ipsom loreum ipsom loreum ipsom
-                            </Text>
-
-                                    </View>
-
-                                    <View style={styles.options}>
-                                        <Text style={[styles.text, { fontSize: 25, marginTop: '20%' }]}>Taste</Text>
-                                    </View>
-                                    {this.props.items.map(item => {
-                                        return (
-                                            <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <Text style={{ fontSize: 20 }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
-                                                <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
-                                                <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
-                                            </View>
-                                        )
-                                    })}
-                                </View>
-                                <TouchableOpacity
-                                    onPress={() => this.handleClick(this.props.items, this.state.category)}
-                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
-                            </View>
-                        }
-                        {this.state.category === 'games' &&
-                    <View style={styles.container}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.logo}
-                            />
-                            <Text style={[styles.text, {  }]}>Brand Name{"\n"}
-                    Some Description loreum ipsom loreum ipsom loreum ipsom
-                    </Text>
-                            <Text style={[styles.text, { flex: 0 }]}>Free</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.logo}
-                            />
-                            <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
-                    Some Description loreum ipsom loreum ipsom loreum ipsom
-                    </Text>
-                            <Text style={[styles.text, { flex: 0 }]}>Free</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.logo}
-                            />
-                            <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
-                    Some Description loreum ipsom loreum ipsom loreum ipsom
-                    </Text>
-                            <Text style={[styles.text, { flex: 0 }]}>€5</Text>
-
-                        </View>
-
-
-                        <View style={styles.options}>
-                          <Text style={[styles.text, { fontSize: 25, marginTop: '20%' }]}>Hotess/Service</Text>
-                                    </View>
-                            {this.props.items.map(item=>{
-                                return(
-                                    <View key={item.id} style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20 }}>{item.title}</Text>
-                                    <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
-                                    <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                    <Text style={{ fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
-                                    <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
-                                </View>
-                                
-                                )
-                            })}
-
-<TouchableOpacity
-                                    onPress={() => this.handleClick(this.props.items, this.state.category)}
-                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
-  
-                    </View>
-                }
+                            
+                        <Modal isVisible={this.state.seeshaModal}
+                        onBackdropPress={this.handleSeeshaModal}
+                        style={{flex:1,marginTop:'80%',backgroundColor:'#fafafa',padding:10}}
+                        >
+                            <Sheesha/>
+  </Modal>
+                        
+                       
+                           <Modal
+                           isVisible={this.state.socialGamesModal}
+                           onBackdropPress={this.handleSocialGamesModal}
+                           style={{flex:1,marginTop:'100%',backgroundColor:'#fafafa',padding:10}}
+                           >
+                           <SocialGames />
+                               </Modal>             
+                
                     </View>
     }
 
