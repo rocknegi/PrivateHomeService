@@ -33,7 +33,13 @@ class Cart extends Component {
                         },
     ]
     }
+    componentDidMount(){
 
+            this.focusListener = this.props.navigation.addListener('didFocus', () => {
+                this.props.removeItem('service');
+            });
+
+    }
 
     toggleModal = () => {
         this.setState({ isModal: !this.state.isModal, })
@@ -58,6 +64,9 @@ class Cart extends Component {
     increaseTotal = (item)=>{
         // const item = [data]
         this.props.addToCart(item,'service');
+        this.props.navigation.navigate('orderSummary',{
+            data:this.state.complimentary
+        })
     }
     render() {
         return (
@@ -263,7 +272,6 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            
                         </View>
                         <Modal
                                             isVisible={this.state.isModal}

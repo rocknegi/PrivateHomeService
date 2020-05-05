@@ -21,7 +21,9 @@ export default class GlassAndServices extends Component {
             whiskeyGlass:1,
             champagneGlass:1,
             hotess:1,
-            price:2500
+            price:2500,
+            category:'service',
+            id:'service'
         },
         obj:{},
     }

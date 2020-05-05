@@ -23,6 +23,7 @@ import seesha from './src/components/Sheesha';
 import SocialGames from './src/components/SocialGames';
 import FindMe from './src/components/FindMe';
 import Payments from './src/components/Payments';
+import OrderSummary from './src/components/OrderSummary';
 
 
 MaterialIcon.loadFont();
@@ -36,7 +37,8 @@ const innerNavigator = createStackNavigator({
   seesha,
   games:SocialGames,
   location:FindMe,
-  payment:Payments
+  payment:Payments,
+  orderSummary:OrderSummary
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {

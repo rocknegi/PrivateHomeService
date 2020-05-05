@@ -81,16 +81,36 @@ export default addToCartReducer = (state = initialState, action) => {
             
         }
         case REMOVE_ITEM: {
-            let itemToRemove = state.addedItems.find(item => action.id === item.id)
-            let new_items = state.addedItems.filter(item => action.id !== item.id)
-
-            let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-            console.log(itemToRemove)
-            return {
-                ...state,
-                addedItems: new_items,
-                total: newTotal,
-                itemsInCart : state.itemsInCart - itemToRemove.quantity
+            if(action.id==='service'){
+                let itemToRemove = state.addedItems.find(item=>action.id===item.id)
+                let new_items = state.addedItems.filter(item => action.id !== item.id)
+                if(itemToRemove){
+                    let newTotal = state.total - itemToRemove.price 
+                return {
+                    ...state,
+                     addedItems: new_items,
+                    total: newTotal,
+                }
+                }
+                else{
+                    return {
+                        ...state,
+                         addedItems: new_items,
+                    }
+                }
+            }
+            else{
+                let itemToRemove = state.addedItems.find(item => action.id === item.id)
+                let new_items = state.addedItems.filter(item => action.id !== item.id)
+    
+                let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
+                console.log(itemToRemove)
+                return {
+                    ...state,
+                    addedItems: new_items,
+                    total: newTotal,
+                    itemsInCart : state.itemsInCart - itemToRemove.quantity
+                }
             }
         }
         case ADD_QUANTITY: {
