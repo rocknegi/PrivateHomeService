@@ -16,7 +16,25 @@ class Cart extends Component {
         error: null,
         item: {},
         loading: false,
-        res: null
+        res: null,
+        complimentary:[
+            {
+            name:'Bluetooth',
+            image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
+            },
+            {
+                name:'Light Decoration',
+                image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
+                },
+                {
+                    name:'Social Game item 1',
+                    image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
+                    },
+                    {
+                        name:'Social Game item 2',
+                        image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
+                        },
+    ]
     }
 
     componentDidMount() {
@@ -82,37 +100,18 @@ class Cart extends Component {
             <Layout>
                 {this.props.items.length ?
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        <Modal
-                            isVisible={this.state.isModal}
-                            scrollHorizontal={true}
-                            animationIn="slideInUp"
-                            onBackdropPress={() => this.toggleModal()}
-                        >
-                            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '150%', padding: 10 }}>
-                                <ScrollView>
-                                    {this.state.category !== 'seesha' ? <View></View> :
-                                        <View style={{ marginTop: 20 }}>
-                                            {this.props.items.map(item => {
-                                                return (
-                                                    <View style={styles.list} key={item.id}>
-                                                        <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
-                                                        <Icon onPress={() => this.glassAddition('whiskyGlass')} name="plus" style={styles.icon} />
-                                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-                                                        <Icon onPress={() => this.glassSub('whiskyGlass')} name="minus" style={styles.icon} />
-                                                    </View>
-                                                )
-                                            })}
-
-                                            <TouchableOpacity
-                                                onPress={this.toggleModal}
-                                                style={[styles.button, { marginTop: 10, marginHorizontal: '35%', }]}>
-                                                <Text style={styles.buttonText}>Save</Text>
-                                            </TouchableOpacity>
-                                        </View>}
-                                </ScrollView>
-                            </SafeAreaView>
-                        </Modal>
-
+                        <Text style={styles.textHeading}>Complimentary items</Text>
+                        {this.state.complimentary.map(item=>{
+                            return(
+                                <View style={[styles.list,{justifyContent:'center'}]} >
+                                  <Image
+                                 source={{ uri: item.image }}
+                                 style={styles.logo}
+                                                />
+                                 <Text style={[styles.text,{flex:0.5}]}>{item.name}</Text>
+                                 </View>
+                            )
+                        })}
                         {this.props.items.find(e => e.category === 'liquors')&&<Text style={styles.textHeading}>liquors</Text>}
                         {this.props.items.filter(e => e.category === 'liquors').map(item => {
                             return (
@@ -128,9 +127,8 @@ class Cart extends Component {
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                             <Text style={styles.buttonText}>Remove</Text>
@@ -191,9 +189,8 @@ class Cart extends Component {
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                             <Text style={styles.buttonText}>Remove</Text>
@@ -254,9 +251,8 @@ class Cart extends Component {
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                             <Text style={styles.buttonText}>Remove</Text>
@@ -318,9 +314,8 @@ class Cart extends Component {
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                             <Text style={styles.buttonText}>Remove</Text>
@@ -382,9 +377,8 @@ class Cart extends Component {
                                         <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
-                                            <Text style={styles.buttonText}>Customise</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                             <Text style={styles.buttonText}>Remove</Text>
@@ -438,10 +432,9 @@ class Cart extends Component {
                                         <View style={styles.list} >
                                             <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
                                             <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
-                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
-                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
-
+                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
+                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
                                         </View>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
@@ -459,11 +452,7 @@ class Cart extends Component {
                                     <View>
                                         <View style={styles.list} >
                                             <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
-                                            <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
-                                            <Icon onPress={() => this.handleAddQuantity(item.id,'seesha')} name="plus" style={styles.icon} />
-                                            <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-                                            <Icon onPress={() => this.handleSubtractQuantity(item.id,'seesha')} name="minus" style={styles.icon} />
-
+                                            <Text style={{ fontSize: 20 }}>€{item.price}</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                         <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
@@ -555,9 +544,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#fdbf83',
+        backgroundColor: '#eee',
         borderRadius: 10,
         marginBottom: 10,
+        borderWidth:2,
+        borderColor:PrimayColor
     },
     textHeading:{
         fontSize:20,

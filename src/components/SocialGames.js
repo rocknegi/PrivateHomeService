@@ -20,7 +20,7 @@ class SocialGames extends Component {
     }
 
     handleClick = (item, category) => {
-        this.props.addToCart(this.state.selected, category);
+        this.props.addToCart(item, category);
     }
 
 
@@ -30,6 +30,33 @@ class SocialGames extends Component {
 
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
+                    <View style={styles.container} >
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
+                                    <Image
+                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        style={{ height: 60, width: 60 }}
+                                    />
+                                    <Text style={[styles.text, {}]}>Item{"\n"}
+                                            Some Description
+                                            </Text>
+                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
+                                   
+                                </View>
+
+
+
+                            </View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
+                                    <Image
+                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        style={{ height: 60, width: 60 }}
+                                    />
+                                    <Text style={[styles.text, {}]}>Item 2{"\n"}
+                                            Some Description
+                                            </Text>
+                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
+                                   
+                                </View>
                         {this.props.items.map(item => {
                             return (<View style={styles.container} key={item.id}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
@@ -40,7 +67,7 @@ class SocialGames extends Component {
                                     <Text style={[styles.text, {}]}>{item.title}{"\n"}
                                             Some Description
                                             </Text>
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>{item.price}</Text>
+                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>€{item.price}</Text>
                                     <TouchableOpacity
                                         onPress={() => this.handleClick(this.props.items, 'games')}
                                         style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>

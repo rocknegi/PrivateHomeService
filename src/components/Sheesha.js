@@ -27,6 +27,7 @@ class Seesha extends Component {
     handleClick = (item, category) => {
 
             this.props.addToCart(this.state.selected, category);
+            this.setState({selected:[]})
 
     }
     handleAddQuantity = (item) => {

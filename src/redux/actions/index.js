@@ -19,9 +19,9 @@ const items2 = [
 ]
 
 const items3 = [
-    { id: 'free1', title: 'Oty', price: 'free', quantity:0, category: 'games' },
-    { id: 'free2', title: 'Time', price: 'free', quantity:0 , category: 'games' },
-    { id: 'paid1', title: 'Time', price: 5, quantity:0 , category: 'games' },
+    // { id: 'free1', title: 'Oty', price: 'free', quantity:1, category: 'games' },
+    // { id: 'free2', title: 'Time', price: 'free', quantity:1 , category: 'games' },
+    { id: 'paid1', title: 'Time', price: 5, quantity:1 , category: 'games' },
 ]
 
 export const fetchData = (category) => {

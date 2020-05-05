@@ -41,18 +41,33 @@ export default addToCartReducer = (state = initialState, action) => {
 
                 }
             }
-            else  {
-                const prices = action.item.map(e=>e.price*e.quantity)
-                let total = prices.reduce((a,b)=>{
-                    return a+b
-                },0)
-                let newTotal = total+state.total
-                return {
-                    ...state,
-                    addedItems: [...state.addedItems, ...action.item],
-                    total:newTotal
-                }
-            }
+            else  
+                    // if(action.category==='seesha')
+                    {
+                        const prices = action.item.map(e=>e.price*e.quantity)
+                        let total = prices.reduce((a,b)=>{
+                            return a+b
+                        },0)
+                        let newTotal = total+state.total;
+                        let totalItems = 0
+                        action.item.forEach(e=>totalItems += e.quantity)
+                        return {
+                            ...state,
+                            addedItems: [...state.addedItems, ...action.item],
+                            total:newTotal,
+                            itemsInCart : state.itemsInCart + totalItems
+                        }
+                    }
+                    // else{
+                    //     alert(JSON.stringify(action.item))
+                    //     return {
+                    //         ...state,
+                    //         addedItems: [...state.addedItems, ...action.item],
+                    //         // total:newTotal,
+                    //         // itemsInCart : state.itemsInCart + totalItems
+                    //     }
+                    // }
+            
         }
         case REMOVE_ITEM: {
             let itemToRemove = state.addedItems.find(item => action.id === item.id)
