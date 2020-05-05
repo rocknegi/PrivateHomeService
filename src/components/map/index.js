@@ -81,7 +81,7 @@ export default class Map extends Component {
         return (
             <Layout>
               <MapView 
-                style={{width,height}}
+                style={{height}}
                 region= {this.state.region}>
                     <Marker draggable
                         coordinate={this.state.marker}

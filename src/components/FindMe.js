@@ -34,7 +34,7 @@ export default class FindMe extends Component {
         return (
             <Layout>
                 <Modal 
-                style={{width,height}}
+                style={{ paddingTop: '50%' }}
                 isVisible={this.state.isModalVisible}
                 >
                     <Map saveMarkerLocation={this.saveMarkerLocation}  toggle = {this.toggleModal}/>
