@@ -17,9 +17,9 @@ export default class GlassAndServices extends Component {
         error: null,
         maxGlass: 12,
         item: {
-            wineGlass: 1,
-            whiskeyGlass: 1,
-            champagneGlass: 1,
+            wineGlass: 0,
+            whiskeyGlass: 0,
+            champagneGlass: 0,
             hotess: 1,
             price: 0,
             category: 'service',

@@ -19,7 +19,8 @@ export class OrderSummary extends Component {
         return (
             <Layout>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    {this.props.items && <View>
+                    {this.props.items && 
+                    <View>
                         <View style={styles.list}>
                             <Text style={[styles.text,{flexGrow:1.5}]}>Name</Text>
                             <Text style={styles.text}>Price</Text>
@@ -45,15 +46,15 @@ export class OrderSummary extends Component {
                                         {item.hotess ? <Text style={styles.text}>{item.hotess}</Text> : <Text style={styles.text}>{item.quantity}</Text>}
                                         {item.hotess ? <Text style={styles.text}>{item.price}</Text> : <Text style={styles.text}>{item.price * item.quantity}</Text>}
                                     </View>
-                                   { item.wineGlass&&<View style={styles.list}>
+                                   { item.wineGlass>0&&<View style={styles.list}>
                                         <Text style={styles.text}>Wine glass</Text> 
                                         <Text style={styles.text}>{item.wineGlass}</Text>
                                     </View>}
-                                    {item.champagneGlass&&<View style={styles.list}>
+                                    {item.champagneGlass>0&&<View style={styles.list}>
                                        <Text style={styles.text}>Whiskey glass</Text>
                                        <Text style={styles.text}>{item.champagneGlass}</Text>
                                     </View>}
-                                    {item.whiskeyGlass&&<View style={styles.list}>
+                                    {item.whiskeyGlass>0&&<View style={styles.list}>
                                        <Text style={styles.text}>Champagne glass</Text> 
                                        <Text style={styles.text}>{item.whiskeyGlass}</Text>
                                     </View>}
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         backgroundColor: BackgroundColor
     },
     list: {
-        flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 5, marginBottom: 10
+        flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 0, marginBottom: 10
     },
     logo: {
         height: 80,

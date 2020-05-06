@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
+import images from '../assets/images';
 
 const data = [
     {
@@ -75,8 +76,8 @@ class Home extends Component {
                 </View>
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                         <Image
-                            source={require('../assets/images/logo_white.jpeg')}
-                            style={[styles.logo,{height:200}]}
+                            source={images.logoBlack}
+                            style={[styles.logo,{alignSelf:'center'}]}
                         />
                         <View style={{marginHorizontal:'13%'}}>
                         <Text style={[styles.text, { fontSize: 30,alignSelf:'flex-end' }]}>Our Selection</Text>
@@ -144,11 +145,11 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     logo: {
-        height: 150,
-        width: '100%',
+        height: Dimensions.get('window').width/1.7,
+        width:  Dimensions.get('window').width/1.7,
         resizeMode: 'contain',
-        marginBottom: 20,
-        marginTop: 20
+        marginBottom: 10,
+        // marginTop: 20
     },
     text: {
         fontSize: 20,
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         marginBottom: 10,
         // marginHorizontal: '13%',
-        elevation: 5,
+        elevation: 10,
     },
     icon: {
         fontSize: 25,

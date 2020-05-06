@@ -8,6 +8,7 @@ import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAd
 import Modal from 'react-native-modal';
 import _ from 'lodash'
 import GlassAndServices from './GlassAndServices'
+import images from '../assets/images'
 
 class Cart extends Component {
     state = {
@@ -17,20 +18,17 @@ class Cart extends Component {
         complimentary:[
             {
             name:'Bluetooth',
-            image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
+            image:images.btSpeaker
             },
             {
                 name:'Light Decoration',
-                image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
-                },
+                image:images.btSpeaker                },
                 {
                     name:'Social Game item 1',
-                    image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
-                    },
+                    image:images.cards                    },
                     {
                         name:'Social Game item 2',
-                        image:'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png'
-                        },
+                        image:images.ludo                        },
     ]
     }
     componentDidMount(){
@@ -79,7 +77,7 @@ class Cart extends Component {
                             return(
                                 <View style={[styles.list,{justifyContent:'center'}]} >
                                   <Image
-                                 source={{ uri: item.image }}
+                                 source={ item.image }
                                  style={styles.logo}
                                                 />
                                  <Text style={[styles.text,{flex:0.5}]}>{item.name}</Text>

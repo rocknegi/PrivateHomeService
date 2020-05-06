@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from '../theme/Layout'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import DialingCodePicker from '../DialingCodePicker';
+import images from '../../assets/images';
 
 export default class index extends Component {
     state = {
@@ -30,29 +31,26 @@ export default class index extends Component {
                 style={styles.container}
             >  */}
 
-               
-                 
                 <Image
                     style={styles.logo}
-                    source={require('../../assets/images/logo_white.jpeg')}
+                    source={images.logoBlack}
                     />
+                    <Text style={{ fontSize: 18, textAlign: 'center',marginBottom:20}}>
+                    Vos besoins sont nos Services
+                    </Text>
 
-                <View>
-                </View>
-                <DialingCodePicker
+                {/* <DialingCodePicker
                     isModalVisible={this.state.isModalVisible}
                     setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
                     toggleModal={this.toggleModal}
-                />
+                /> */}
                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-   <View style={{flex:1}}>
+                <View style={{flex:1}}>
                 <View style={styles.field}>
                     <Icon name="phone"
                         style={styles.icon} />
-                    <TouchableWithoutFeedback
-                        onPress={() => this.toggleModal()}>
-                        <Text style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</Text>
-                    </TouchableWithoutFeedback>
+                        
+                        <TextInput style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</TextInput>
                     <TextInput
                         placeholder="enter your phone no"
                         style={[styles.input]}
@@ -84,6 +82,21 @@ export default class index extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View> */}
+
+                <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:15}}>
+                    <Image 
+                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.seesha}
+                    />
+                     <Image 
+                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.champagne}
+                    />
+                     <Image 
+                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.ludo}
+                    />
+                </View>
                 </View>
                                 </TouchableWithoutFeedback>
 
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: 300,
         width: 300,
-        marginBottom: 30
+        marginBottom: 5
     },
     field: {
         flexDirection: 'row',

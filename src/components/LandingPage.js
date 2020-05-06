@@ -56,30 +56,25 @@ class landingPage extends React.Component {
         const { navigation } = this.props
         return (
                <SafeAreaView style={{backgroundColor:'#fd9a50',flex:1}}>
-               <Text style={styles.heading}>Private Home Service</Text>
+               {/* <Text style={styles.heading}>Private Home Service</Text> */}
                 <View style={styles.container}>
                     <View style={{ flex: 1 }}>
                         <ImageLoader
-                            source={require('../assets/images/logo_black.jpeg')}
+                            source={require('../assets/images/logo_white.png')}
                             style={styles.images}
                         />
+                    <Text style={{ fontSize: 18, textAlign: 'center',transform: [{ rotate: '-5deg'}] }}>
+                    Vos besoins sont nos Services
+                    </Text>
                     </View>
-                    {/* <View style={{ flex: 1 }}>
-                        <ImageLoader
-                            source={require('../assets/images/ChivasRegal.jpg')} style={styles.images}
-                        />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <ImageLoader
-                            source={require('../assets/images/RuinArt.jpg')} style={styles.images}
-                        />
-                    </View> */}
                 </View>
-                <View style={{ flex: 0.5 }}>
+
+
+                {/* <View style={{ flex: 0.5 }}>
                     <Text style={{ fontSize: 50, textAlign: 'center' }}>
                         VIDEO
                 </Text>
-                </View>
+                </View> */}
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Login')}
@@ -98,7 +93,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        padding: 10,
+        justifyContent:'center',
+        alignItems:'center'
     },
     heading: {
         textAlign: 'center',
@@ -107,10 +103,9 @@ const styles = StyleSheet.create({
     },
     images: {
         resizeMode: 'contain',
-        height: Dimensions.get('window').width-50,
-        width: Dimensions.get('window').width-50,
+        height: Dimensions.get('window').width/1.8,
+        width: Dimensions.get('window').width/1.8,
         paddingLeft: 0,
-        top: 50,
         alignSelf: 'center'
     },
     button: {
