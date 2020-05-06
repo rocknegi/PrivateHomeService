@@ -193,7 +193,7 @@ class SelectedCategory extends Component {
                         onBackdropPress={this.handleSeeshaModal}
                         style={{flex:1,marginTop:'80%',backgroundColor:'#fafafa',padding:10}}
                         >
-                            <Sheesha/>
+                            <Sheesha toggle={this.handleSeeshaModal}/>
   </Modal>
                         
                        
@@ -202,7 +202,7 @@ class SelectedCategory extends Component {
                            onBackdropPress={this.handleSocialGamesModal}
                            style={{flex:1,marginTop:'100%',backgroundColor:'#fafafa',padding:10}}
                            >
-                           <SocialGames />
+                           <SocialGames toggle={this.handleSocialGamesModal}/>
                                </Modal>             
                 
                     </View>

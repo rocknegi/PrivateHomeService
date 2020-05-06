@@ -15,7 +15,7 @@ export class OrderSummary extends Component {
         complimentary: this.props.navigation.getParam('data')
     }
     render() {
-        console.log(JSON.stringify(this.props.items, undefined, 3))
+        // console.log(JSON.stringify(this.props.items, undefined, 3))
         return (
             <Layout>
                 <ScrollView showsVerticalScrollIndicator={false}>

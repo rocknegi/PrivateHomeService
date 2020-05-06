@@ -28,7 +28,7 @@ class Seesha extends Component {
 
             this.props.addToCart(this.state.selected, category);
             this.setState({selected:[]})
-
+            this.props.toggle()
     }
     handleAddQuantity = (item) => {
             if (this.state.selected.find(e => e.id === item.id)) {

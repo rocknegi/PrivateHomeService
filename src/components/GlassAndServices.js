@@ -35,33 +35,36 @@ export default class GlassAndServices extends Component {
         let champagneBottles = this.props.data.filter(item => item.category === 'Champagne')
 
         if (wineBottles.length > 0) {
+            console.log('wine')
             let totalBottles = 0;
             wineBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
                 wineBottles: totalBottles, item: {
                     ...this.state.item,
-                    wineGlass: 1
+                    wineGlass: ++this.state.item.wineGlass
                 }
             })
         }
         if (whiskeyBottles.length > 0) {
+            console.log('whiskeyBottles')
             let totalBottles = 0;
             whiskeyBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
                 whiskeyBottles: totalBottles, item: {
                     ...this.state.item,
-                    whiskeyGlass: 1
+                    whiskeyGlass: ++this.state.item.whiskeyGlass
                 }
             })
         }
 
         if (champagneBottles.length > 0) {
+            console.log('champagneBottles')
             let totalBottles = 0;
             champagneBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
                 champagneBottles: totalBottles, item: {
                     ...this.state.item,
-                    champagneGlass: 1
+                    champagneGlass: ++this.state.item.champagneGlass
                 }
             })
         }
@@ -91,7 +94,21 @@ export default class GlassAndServices extends Component {
                     ...this.state.item,
                     [item]: this.state.item[item] - 1
                 }
-            })
+            },
+            ()=>{
+                let totalGlass = this.state.item.wineGlass + this.state.item.whiskeyGlass + this.state.item.champagneGlass
+                if(totalGlass%12===0
+                    ){
+                        this.setState({
+                            item: {
+                                ...this.state.item,
+                                hotess: this.state.item.hotess - 1,
+                            }
+                        })
+                        this.setState({ maxGlass: this.state.maxGlass - 12 })
+                }
+            }
+            )
         }
     }
     hotessAddition = () => {
@@ -134,11 +151,10 @@ export default class GlassAndServices extends Component {
             )
             // if(ok==='ok')this.props.toggle()
         }
-        else {
-            return
+        else return
             // if(ok==='ok')this.props.increaseTotal(this.state.item)
             // if(ok==='ok')this.props.toggle()
-        }
+        // }
 
     }
     sendData = () => {
@@ -187,19 +203,19 @@ export default class GlassAndServices extends Component {
                         </View>
                         <View style={[styles.list, { justifyContent: 'space-between' }]} >
                             <Text style={{ fontSize: 20, textAlign: 'center', flex: 0.4 }}>Hotess</Text>
-                            <Icon onPress={()=>this.setState({
+                            {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess - 1,
                                 }
-                            })} name="minus" style={styles.icon} />
+                            })} name="minus" style={styles.icon} /> */}
                             <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.hotess}</Text>
-                            <Icon onPress={()=>this.setState({
+                            {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess + 1,
                                 }
-                            })} name="plus" style={styles.icon} />
+                            })} name="plus" style={styles.icon} /> */}
                             <Text style={styles.text}>           </Text>
                             {this.state.error &&
                                 <Text>{this.state.error}</Text>

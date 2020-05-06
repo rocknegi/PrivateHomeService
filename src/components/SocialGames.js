@@ -21,6 +21,7 @@ class SocialGames extends Component {
 
     handleClick = (item, category) => {
         this.props.addToCart(item, category);
+        this.props.toggle()
     }
 
 
