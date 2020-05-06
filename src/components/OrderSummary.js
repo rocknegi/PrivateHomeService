@@ -6,37 +6,72 @@ import Layout from './theme/Layout'
 import { BackgroundColor, PrimayColor } from './theme/Colors'
 
 export class OrderSummary extends Component {
-state={
-    complimentary:this.props.navigation.getParam('data')
-}
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Order Summary'
+        }
+    }
+    state = {
+        complimentary: this.props.navigation.getParam('data')
+    }
     render() {
-        console.log(JSON.stringify(this.props.items))
+        console.log(JSON.stringify(this.props.items, undefined, 3))
         return (
             <Layout>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {this.props.items && <View>
-                        {this.state.complimentary.map(item=>{
-                            return(
-                                <View key={item.name} style={[styles.list,{justifyContent:'center'}]} >
-                                 <Text style={[styles.text,{flex:0.5}]}>{item.name}</Text>
-                                 </View>
+                        <View style={styles.list}>
+                            <Text style={[styles.text,{flexGrow:1.5}]}>Name</Text>
+                            <Text style={styles.text}>Price</Text>
+                            <Text style={styles.text}>Quantity</Text>
+                            <Text style={styles.text}>Total</Text>
+                        </View>
+                        {this.state.complimentary.map(item => {
+                            return (
+                                <View key={item.name} style={styles.list} >
+                                    <Text style={[styles.text,{flexGrow:1.5}]}>{item.name}</Text>
+                                    <Text style={[styles.text,]}>Free</Text>
+                                    <Text style={[styles.text,]}>1</Text>
+                                    <Text style={styles.text}>0</Text>
+                                </View>
                             )
                         })}
                         {this.props.items.map(item => {
                             return (
-                                <View key={item.id}>
+                                <View key={item.name}>
                                     <View style={styles.list} >
-                                        <Text style={styles.text}>Brand Name{"\n"}€{item.price}/Unit</Text>
-                                        <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
-
+                                        {item.hotess ? <Text style={[styles.text,{flexGrow:1.5}]}>Hotess</Text>: <Text style={[styles.text,{flexGrow:1.5}]}>{item.title}</Text>}              
+                                        {item.hotess ? <Text style={styles.text}>2500/Unit</Text> : <Text style={styles.text}>{item.price}/Unit</Text>}
+                                        {item.hotess ? <Text style={styles.text}>{item.hotess}</Text> : <Text style={styles.text}>{item.quantity}</Text>}
+                                        {item.hotess ? <Text style={styles.text}>{item.price}</Text> : <Text style={styles.text}>{item.price * item.quantity}</Text>}
                                     </View>
-                                    <View style={styles.modal}>
-                                    </View>
-                                </View>
+                                   { item.wineGlass&&<View style={styles.list}>
+                                        <Text style={styles.text}>Wine glass</Text> 
+                                        <Text style={styles.text}>{item.wineGlass}</Text>
+                                    </View>}
+                                    {item.champagneGlass&&<View style={styles.list}>
+                                       <Text style={styles.text}>Whiskey glass</Text>
+                                       <Text style={styles.text}>{item.champagneGlass}</Text>
+                                    </View>}
+                                    {item.whiskeyGlass&&<View style={styles.list}>
+                                       <Text style={styles.text}>Champagne glass</Text> 
+                                       <Text style={styles.text}>{item.whiskeyGlass}</Text>
+                                    </View>}
+                                 </View>
                             )
                         })}
                     </View>}
+
                 </ScrollView>
+                {this.props.items.length ? <View style={styles.footer}>
+                    <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 25, }]}>€ {this.props.total} </Text>
+                    <TouchableOpacity
+                        onPress={this.toggleModal}
+                        style={[styles.button, { marginBottom: 0, right: '20%', height: 40 }]}>
+                        <Text style={styles.buttonText}>Pay Now</Text>
+                    </TouchableOpacity>
+                </View> : null}
             </Layout>
         )
     }
@@ -44,6 +79,7 @@ state={
 
 const mapStateToProps = (state) => ({
     items: state.addedItems,
+    total: state.total
 })
 
 
@@ -54,11 +90,7 @@ const styles = StyleSheet.create({
         backgroundColor: BackgroundColor
     },
     list: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        marginBottom: 20
+        flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 5, marginBottom: 10
     },
     logo: {
         height: 80,
@@ -66,9 +98,11 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        flex: 1,
+        flexWrap:'wrap'
     },
     icon: {
         fontSize: 25,

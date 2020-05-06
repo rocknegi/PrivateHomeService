@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity, SafeAreaView, TextInput } from 'react-native'
+import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Alert } from 'react-native'
 import { BackgroundColor, PrimayColor } from './theme/Colors'
 
 import { connect } from 'react-redux'
@@ -21,9 +21,10 @@ export default class GlassAndServices extends Component {
             whiskeyGlass:1,
             champagneGlass:1,
             hotess:1,
-            price:2500,
+            price:0,
             category:'service',
-            id:'service'
+            id:'service',
+            service:1
         },
         obj:{},
     }
@@ -70,8 +71,8 @@ export default class GlassAndServices extends Component {
                     ...this.state.item,
                 [item]:this.state.item[item]+1
                 }
-            })
-            this.handleOk()
+            },()=>this.handleOk())
+           
         }
     }
     glassSub(item,bottle) {
@@ -90,18 +91,18 @@ export default class GlassAndServices extends Component {
     hotessAddition = ()=>{
         this.setState({item:{
             ...this.state.item,
-            hotess:this.state.item.hotess+1,
+            service:this.state.item.service+1,
             price:this.state.item.price+2500
         }})
     }
     hotesssub = ()=>{
-        if(this.state.item.hotess<=1){
-            alert('Min one hotess')
+        if(this.state.item.service<=1){
+            alert('Min one service')
         }
         else{
             this.setState({item:{
                 ...this.state.item,
-                hotess:this.state.item.hotess-1,
+                service:this.state.item.service-1,
                 price:this.state.item.price-2500
             }})
             if(this.state.maxGlass>12)
@@ -109,7 +110,7 @@ export default class GlassAndServices extends Component {
         }
 
     }
-    handleOk = ()=>{
+    handleOk = (ok)=>{
         let totalGlass = this.state.item.wineGlass+this.state.item.whiskeyGlass+this.state.item.champagneGlass
         if(totalGlass>this.state.maxGlass){
             this.setState({item:{
@@ -117,19 +118,26 @@ export default class GlassAndServices extends Component {
                 hotess:this.state.item.hotess+1,
                 price:this.state.item.price+2500
             }})
-            this.setState({maxGlass:this.state.maxGlass+12},()=>this.props.increaseTotal(this.state.item))
-            this.props.toggle()
+            this.setState({maxGlass:this.state.maxGlass+12},
+                // ()=>this.props.increaseTotal(this.state.item)
+                )
+            // if(ok==='ok')this.props.toggle()
         }
         else{
-            this.props.increaseTotal(this.state.item)
-            this.props.toggle()
+            return
+            // if(ok==='ok')this.props.increaseTotal(this.state.item)
+            // if(ok==='ok')this.props.toggle()
         }
 
+    }
+    sendData = ()=>{
+        // this.handleOk();
+        this.props.increaseTotal(this.state.item)
     }
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '90%', padding: 10 }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '80%', padding: 10 }}>
             <ScrollView>
                 <View style={{ marginTop: 10 }}>
                     <Text style={[styles.text,{margin:10}]}>Choose your glasses amount</Text>
@@ -156,21 +164,33 @@ export default class GlassAndServices extends Component {
                     </View>}
                     <Text style={[styles.text,{margin:15,}]}>Select Hotess and Service</Text>
                     <View style={styles.list} >
-                    <Text style={{ fontSize: 20, textAlign: 'center',flex:0.5 }}>Service time{"\n"}<Text style={{fontSize:12}}>(First hour is free)</Text></Text>
+                    <Text style={{ fontSize: 20, textAlign: 'center',flex:0 }}>Service time{"\n"}<Text style={{fontSize:12}}>(First hour is free)</Text></Text>
                         <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
-                        <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.hotess}</Text>
+                        <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.service}</Text>
                         <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
+                    <Text style={styles.text}>2500</Text>
                     <Text style={styles.text}>{this.state.item.price}</Text>
                         {this.state.error &&
                             <Text>{this.state.error}</Text>
+                        }                        
+                    </View>
+                    <View style={[styles.list,{justifyContent:'space-between'}]} >
+                    <Text style={{ fontSize: 20, textAlign: 'center',flex:0.4 }}>Hotess</Text>
+                        <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
+                        <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.hotess}</Text>
+                        <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
+                    <Text style={styles.text}>           </Text>
+                        {this.state.error &&
+                            <Text>{this.state.error}</Text>
                         }
+                        
                     </View>
                     <View style={{padding:10}}>
                         <Text style={{fontSize:12}}>* First Service Hour free</Text>
                         <Text style={{fontSize:12}}>** For each 12 glasses,you get one more hotess</Text>
                     </View>
                     <TouchableOpacity
-                        onPress={this.handleOk}
+                        onPress={this.sendData}
                         style={[styles.button, { marginTop: 10, width: '25%',margin:'5%',alignSelf:'flex-end' }]}>
                         <Text style={styles.buttonText}>Ok</Text>
                     </TouchableOpacity>

@@ -66,7 +66,8 @@ class Cart extends Component {
         this.props.addToCart(item,'service');
         this.props.navigation.navigate('orderSummary',{
             data:this.state.complimentary
-        })
+        });
+        this.toggleModal()
     }
     render() {
         return (
