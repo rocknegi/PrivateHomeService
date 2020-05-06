@@ -11,6 +11,11 @@ const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
 export default class FindMe extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: ''
+        }
+    }
     state = {
         isModalVisible: false,
         dialingCode: '+237',

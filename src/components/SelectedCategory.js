@@ -140,11 +140,7 @@ class SelectedCategory extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
                             <View>
-                                {this.props.items.filter(e => e.category === this.state.category).map(item => {
-                                    return (
-                                        <View key={item.id}>
-                                            <View>
-                                                <View style={{flexDirection:'row',justifyContent:'space-evenly',marginBottom:15,marginTop:5}}>
+                            <View style={{flexDirection:'row',justifyContent:'space-evenly',marginBottom:15,marginTop:5}}>
                                                     <Text
                                                     style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
@@ -156,6 +152,11 @@ class SelectedCategory extends Component {
                                                 </View>
                                                 <Text style={{fontSize: 22,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
 
+                                {this.props.items.filter(e => e.category === this.state.category).map(item => {
+                                    return (
+                                        <View key={item.id}>
+                                            <View>
+                                                
                                                 <View style={styles.list} >
                                                     <Image
                                                         source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}

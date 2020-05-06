@@ -61,6 +61,10 @@ export class OrderSummary extends Component {
                                        <Text style={styles.text}>Service</Text> 
                                        <Text style={styles.text}>{item.service}</Text>
                                     </View>}
+                                    {item.hotess&&<View style={styles.list}>
+                                       <Text style={styles.text}>Hotess</Text> 
+                                       <Text style={styles.text}>{item.hotess}</Text>
+                                    </View>}
                                  </View>
                             )
                         })}
