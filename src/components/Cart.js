@@ -75,7 +75,7 @@ class Cart extends Component {
                         <Text style={styles.textHeading}>Complimentary items</Text>
                         {this.state.complimentary.map(item=>{
                             return(
-                                <View style={[styles.list,{justifyContent:'center'}]} >
+                                <View style={[styles.list,{justifyContent:'center'}]} key={item.name}>
                                   <Image
                                  source={ item.image }
                                  style={styles.logo}

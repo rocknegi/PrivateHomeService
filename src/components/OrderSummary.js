@@ -39,7 +39,7 @@ export class OrderSummary extends Component {
                         })}
                         {this.props.items.map(item => {
                             return (
-                                <View key={item.name}>
+                                <View key={item.id}>
                                     <View style={styles.list} >
                                         {item.hotess ? <Text style={[styles.text,{flexGrow:1.5}]}>Hotess</Text>: <Text style={[styles.text,{flexGrow:1.5}]}>{item.title}</Text>}              
                                         {item.hotess ? <Text style={styles.text}>2500/Unit</Text> : <Text style={styles.text}>{item.price}/Unit</Text>}

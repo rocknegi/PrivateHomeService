@@ -35,7 +35,6 @@ export default class GlassAndServices extends Component {
         let champagneBottles = this.props.data.filter(item => item.category === 'Champagne')
 
         if (wineBottles.length > 0) {
-            console.log('wine')
             let totalBottles = 0;
             wineBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
@@ -46,7 +45,6 @@ export default class GlassAndServices extends Component {
             })
         }
         if (whiskeyBottles.length > 0) {
-            console.log('whiskeyBottles')
             let totalBottles = 0;
             whiskeyBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
@@ -58,7 +56,6 @@ export default class GlassAndServices extends Component {
         }
 
         if (champagneBottles.length > 0) {
-            console.log('champagneBottles')
             let totalBottles = 0;
             champagneBottles.forEach(item => totalBottles += item.quantity)
             this.setState({
@@ -164,7 +161,7 @@ export default class GlassAndServices extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '80%', padding: 10 }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '30%', padding: 10 }}>
                 <ScrollView>
                     <View style={{ marginTop: 10 }}>
                         <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>

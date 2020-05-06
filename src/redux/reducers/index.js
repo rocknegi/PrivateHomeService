@@ -45,7 +45,7 @@ export default addToCartReducer = (state = initialState, action) => {
                     // if(action.category==='seesha')
                     {
                         if(action.category==='service'){
-                            console.log(JSON.stringify(action.item))
+                            // console.log(JSON.stringify(action.item))
                             let newTotal = action.item.price+state.total;
                             return {
                                 ...state,
@@ -104,7 +104,7 @@ export default addToCartReducer = (state = initialState, action) => {
                 let new_items = state.addedItems.filter(item => action.id !== item.id)
     
                 let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-                console.log(itemToRemove)
+                // console.log(itemToRemove)
                 return {
                     ...state,
                     addedItems: new_items,
