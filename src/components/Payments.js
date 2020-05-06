@@ -26,13 +26,13 @@ class Payments extends Component {
                         style={styles.button}
                         // onPress={()=>this.props.navigation.navigate('payment')}
                     >
-                        <Text style={styles.buttonText}>Option 2</Text>
+                        <Text style={styles.buttonText}>Orange Money</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
                         // onPress={()=>this.props.navigation.navigate('payment')}
                     >
-                        <Text style={styles.buttonText}>Option 3</Text>
+                        <Text style={styles.buttonText}>MTN Mobile Money</Text>
                     </TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row',justifyContent:'center',marginTop:'10%'}}>
