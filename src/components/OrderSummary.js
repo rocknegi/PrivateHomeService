@@ -57,6 +57,10 @@ export class OrderSummary extends Component {
                                        <Text style={styles.text}>Champagne glass</Text> 
                                        <Text style={styles.text}>{item.whiskeyGlass}</Text>
                                     </View>}
+                                    {item.service&&<View style={styles.list}>
+                                       <Text style={styles.text}>Service</Text> 
+                                       <Text style={styles.text}>{item.service}</Text>
+                                    </View>}
                                  </View>
                             )
                         })}
@@ -67,7 +71,7 @@ export class OrderSummary extends Component {
                     <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
                     <Text style={[styles.text, { fontSize: 25, }]}>€ {this.props.total} </Text>
                     <TouchableOpacity
-                        onPress={this.toggleModal}
+                        onPress={()=>this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, right: '20%', height: 40 }]}>
                         <Text style={styles.buttonText}>Pay Now</Text>
                     </TouchableOpacity>
