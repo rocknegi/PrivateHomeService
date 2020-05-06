@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Animated } from 'react-native'
+import { View, Text, StyleSheet, Animated, Dimensions,SafeAreaView } from 'react-native'
 import { TouchableOpacity, } from 'react-native-gesture-handler'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Layout from './theme/Layout'
+import { PrimayColor } from './theme/Colors';
 
 class ImageLoader extends React.Component {
     state = {
@@ -54,16 +55,16 @@ class landingPage extends React.Component {
     render() {
         const { navigation } = this.props
         return (
-            <Layout>
-                <Text style={styles.heading}>Private Home Service</Text>
+               <SafeAreaView style={{backgroundColor:'#fd9a50',flex:1}}>
+               <Text style={styles.heading}>Private Home Service</Text>
                 <View style={styles.container}>
                     <View style={{ flex: 1 }}>
                         <ImageLoader
-                            source={require('../assets/images/Baileys.jpg')}
+                            source={require('../assets/images/logo_black.jpeg')}
                             style={styles.images}
                         />
                     </View>
-                    <View style={{ flex: 1 }}>
+                    {/* <View style={{ flex: 1 }}>
                         <ImageLoader
                             source={require('../assets/images/ChivasRegal.jpg')} style={styles.images}
                         />
@@ -72,9 +73,9 @@ class landingPage extends React.Component {
                         <ImageLoader
                             source={require('../assets/images/RuinArt.jpg')} style={styles.images}
                         />
-                    </View>
+                    </View> */}
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 0.5 }}>
                     <Text style={{ fontSize: 50, textAlign: 'center' }}>
                         VIDEO
                 </Text>
@@ -87,7 +88,7 @@ class landingPage extends React.Component {
                         <Text style={styles.buttonText}>Get Started</Text>
                     </TouchableOpacity>
                 </View>
-            </Layout>
+               </SafeAreaView>
         )
     }
 }
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
     },
     images: {
         resizeMode: 'contain',
-        height: 160,
-        width: 160,
+        height: Dimensions.get('window').width-50,
+        width: Dimensions.get('window').width-50,
         paddingLeft: 0,
         top: 50,
         alignSelf: 'center'

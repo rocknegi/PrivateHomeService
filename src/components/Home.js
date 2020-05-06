@@ -75,8 +75,8 @@ class Home extends Component {
                 </View>
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                         <Image
-                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                            style={styles.logo}
+                            source={require('../assets/images/logo_white.jpeg')}
+                            style={[styles.logo,{height:200}]}
                         />
                         <View style={{marginHorizontal:'13%'}}>
                         <Text style={[styles.text, { fontSize: 30,alignSelf:'flex-end' }]}>Our Selection</Text>

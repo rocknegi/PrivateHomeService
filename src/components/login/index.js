@@ -34,8 +34,8 @@ export default class index extends Component {
                  
                 <Image
                     style={styles.logo}
-                    source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                />
+                    source={require('../../assets/images/logo_white.jpeg')}
+                    />
 
                 <View>
                 </View>
