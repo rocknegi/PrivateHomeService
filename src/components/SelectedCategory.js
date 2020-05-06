@@ -29,7 +29,8 @@ class SelectedCategory extends Component {
         total: 0,
         title:this.props.navigation.getParam('name'),
         seeshaModal:false,
-        socialGamesModal:false
+        socialGamesModal:false,
+        seeMoreModal:false
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -165,7 +166,8 @@ class SelectedCategory extends Component {
                                                     <Text style={styles.text}>{item.title}{"\n"}
                                                         Some Description
                                                         {"\n"}€{item.price}/unit
-                                                        {"\n"}<Text style={{textDecorationLine:'underline'}}>See more</Text>
+                                                        {"\n"}<Text onPress={()=>this.toggleModal('seeMoreModal')}
+                                                        style={{textDecorationLine:'underline'}}>See more</Text>
                                                         </Text>
                                                     <TouchableOpacity
                                                         onPress={() => this.handleClick(item, this.state.category)}
@@ -188,7 +190,12 @@ class SelectedCategory extends Component {
                                     )
                                 })}
                             </View>
-                            
+                            <Modal isVisible={this.state.seeMoreModal}
+                        onBackdropPress={()=>this.toggleModal('seeMoreModal')}
+                        style={{flex:1,marginTop:'80%',backgroundColor:'#fafafa',padding:10}}
+                        >
+                            <View></View>
+  </Modal>
                         <Modal isVisible={this.state.seeshaModal}
                         onBackdropPress={this.handleSeeshaModal}
                         style={{flex:1,marginTop:'80%',backgroundColor:'#fafafa',padding:10}}
