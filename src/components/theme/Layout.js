@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     },
     linearGradient: {
         flex: 1,
-        paddingLeft: 5,
-        paddingRight: 5,
+        // paddingLeft: 5,
+        // paddingRight: 5,
         borderRadius: 5
     },
 })

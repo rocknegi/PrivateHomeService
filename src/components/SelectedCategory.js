@@ -120,7 +120,7 @@ class SelectedCategory extends Component {
         // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
+                <View style={{  backgroundColor:PrimayColor,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',height:40 }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
@@ -145,7 +145,7 @@ class SelectedCategory extends Component {
                                                     <Text
                                                     style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
-                                                    >Seesha</Text>
+                                                    >SHISHA</Text>
                                                     <Text
                                                     onPress={()=>this.toggleModal('socialGamesModal')}
                                                     style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'8%',paddingRight:'8%',paddingTop:'5%',paddingBottom:'5%',alignSelf:'center'}}
@@ -265,17 +265,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         // alignItems: 'center',
         marginBottom: 20,
+        marginHorizontal:'10%'
     },
     logo: {
-        height: 100,
-        width: 100,
+        height: 80,
+        width: 80,
         resizeMode: 'contain',
     },
     text: {
         flex: 1,
-        fontSize: 15,
+        fontSize: 14,
         padding: 10,
-        // flexWrap: 'nowrap',
+        fontFamily:'COMIC'
     },
     icon: {
         fontSize: 25,
@@ -284,27 +285,27 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     button: {
-        backgroundColor: '#ff8a65',
-        borderRadius: 6,
+        borderRadius: 100,
         height: 40,
         justifyContent: 'center',
-        // marginHorizontal: '25%',
-        // margin: '5%'
         alignSelf:'center',
-        margin:2
+        margin:2,
+        backgroundColor:PrimayColor
+        
     },
     buttonText: {
         textAlign: 'center',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 15,
+        // fontSize: 15,
+        fontFamily:'COMIC',
         padding: 10
     },
     circle: {
         width: 20,
         height: 20,
         borderRadius: 10,
-        backgroundColor: '#fd9a50',
+        backgroundColor: '#fafafa',
     },
     count: { color: '#FFF' },
     option: {
@@ -322,7 +323,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginBottom: 10,
         borderWidth:2,
-        borderColor:PrimayColor
+        borderColor:PrimayColor,
+        marginHorizontal:'10%'
     }
 })
 
