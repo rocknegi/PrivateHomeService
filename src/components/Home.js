@@ -10,27 +10,27 @@ import images from '../assets/images';
 const data = [
     {
         id: 1,
-        name: 'Liquers et virus',
+        name: 'Liquors & wines',
         category: 'liquors'
     },
     {
         id: 2,
-        name: 'Whiskey 12 years',
+        name: 'Whiskey 12 Years',
         category: 'Whiskey12'
     },
     {
         id: 3,
-        name: 'Whiskey 19 years',
+        name: 'Whiskey 15 Years',
         category: 'Whiskey19'
     },
     {
         id: 4,
-        name: 'Whiskey 18 years',
+        name: 'Whiskey 18 Years',
         category: 'Whiskey18'
     },
     {
         id: 5,
-        name: 'Champagne',
+        name: 'champagne ',
         category: 'Champagne'
     },
     // {
@@ -49,15 +49,15 @@ class Home extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
         headerShown:false,
-        title:''   
+        title:'',
         }
     }
     render() {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }}>
-                    <Icon style={{ fontSize: 25, left: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:40 }}>
+                    <Icon style={{ fontSize: 25, left: 5,color:'#fafafa' }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
                             <View style={styles.count}>
@@ -67,7 +67,7 @@ class Home extends Component {
                             </View>
 
                         </View>}
-                        <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
+                        <MaterialIcon color="#fafafa" onPress={() => this.props.navigation.navigate('Cart', {
                             // category: this.state.category
                         })} name="shopping-cart" style={{ fontSize: 25, }} />
 
@@ -79,8 +79,13 @@ class Home extends Component {
                             source={images.logoBlack}
                             style={[styles.logo,{alignSelf:'center'}]}
                         />
+                        <Text style={{ fontSize: 25,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',marginBottom:10 }}>
+                    Vos besoins sont nos Services
+                    </Text>
                         <View style={{marginHorizontal:'13%'}}>
-                        <Text style={[styles.text, { fontSize: 30,alignSelf:'flex-end' }]}>Our Selection</Text>
+                        <Text style={[styles.text, {alignSelf:'flex-end',fontFamily:'COMIC',fontStyle:'italic',fontWeight:'bold' }]}>
+                            Our Selection
+                            </Text>
                         {data.map(item => {
                             return(
                                 <TouchableOpacity
@@ -90,16 +95,29 @@ class Home extends Component {
                                     name:item.name
                                 })}
                                 style={styles.list}>
-                                <Text style={styles.text}>{item.name}</Text>
+                                <Text style={[styles.text,{padding:10}]}>{item.name}</Text>
                                 <Icon name="arrow-right" style={styles.icon} />
                             </TouchableOpacity>
                             )
                         })}
-                        <Text style={[styles.text, { fontSize: 30, marginTop: 10,alignSelf:'flex-end' }]}>Discounted</Text>
+                        <Text style={[styles.text, { fontStyle:'italic',fontFamily:'COMIC',fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
 
                         </View>
-
-
+                        <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:10}}>
+                    <Image 
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.seesha}
+                    />
+                     <Image 
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.champagne}
+                    />
+                     <Image 
+                    style={{height:140,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'5%'}}
+                    source={images.ludo}
+                    />
+                </View>
+{/* 
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
@@ -119,7 +137,7 @@ class Home extends Component {
                                 source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
                                 style={styles.scrollList}
                             />
-                        </ScrollView>
+                        </ScrollView> */}
                     </ScrollView>
                 </SafeAreaView>
             </View>
@@ -140,13 +158,13 @@ const styles = StyleSheet.create({
     },
     linearGradient: {
         flex: 1,
-        paddingLeft: 5,
-        paddingRight: 5,
+        // paddingLeft: 5,
+        // paddingRight: 5,
         borderRadius: 5
     },
     logo: {
-        height: Dimensions.get('window').width/1.7,
-        width:  Dimensions.get('window').width/1.7,
+        height: Dimensions.get('window').width/3.2,
+        width:  Dimensions.get('window').width/3.2,
         resizeMode: 'contain',
         marginBottom: 10,
         // marginTop: 20
@@ -154,17 +172,17 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         // textAlign: 'center',
-        padding: 10,
-        marginBottom: 10,
+        padding: 5,
+        // marginBottom: 10,
     },
     list: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 6,
+        borderRadius: 100,
         borderWidth:2,
         borderColor:PrimayColor,
-        backgroundColor: '#eee',
+        backgroundColor: '#fafafa',
         marginBottom: 10,
         // marginHorizontal: '13%',
         elevation: 10,
@@ -184,7 +202,7 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
         borderRadius: 10,
-        backgroundColor: '#fd9a50',
+        backgroundColor: '#fafafa',
     },
     count: { color: '#FFF' },
 })

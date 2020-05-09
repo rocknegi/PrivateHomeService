@@ -24,6 +24,7 @@ import SocialGames from './src/components/SocialGames';
 import FindMe from './src/components/FindMe';
 import Payments from './src/components/Payments';
 import OrderSummary from './src/components/OrderSummary';
+import { PrimayColor } from './src/components/theme/Colors';
 
 
 MaterialIcon.loadFont();
@@ -43,7 +44,7 @@ const innerNavigator = createStackNavigator({
   initialRouteName: 'Home',
   defaultNavigationOptions: {
     headerStyle: {
-      // backgroundColor: '#f3b771',
+      backgroundColor: PrimayColor,
     },
     headerTintColor: '#000',
   }

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Layout from '../theme/Layout'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
-import DialingCodePicker from '../DialingCodePicker';
 import images from '../../assets/images';
 
 export default class index extends Component {
@@ -25,11 +22,7 @@ export default class index extends Component {
     }
     render() {
         return (
-            <Layout>
-                      {/* <KeyboardAvoidingView
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={styles.container}
-            >  */}
+            <View style={styles.container}>
 
                 <Image
                     style={styles.logo}
@@ -85,33 +78,32 @@ export default class index extends Component {
                     </TouchableOpacity>
                 </View> */}
 
-                <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:15}}>
+                <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:10}}>
                     <Image 
-                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
                     source={images.seesha}
                     />
                      <Image 
-                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
                     source={images.champagne}
                     />
                      <Image 
-                    style={{height:150,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    style={{height:140,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'5%'}}
                     source={images.ludo}
                     />
                 </View>
                 </View>
                                 </TouchableWithoutFeedback>
 
-            {/* </KeyboardAvoidingView> */}
-            </Layout>
+            </View>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#fafafa',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor:'#fafafa'
     },
     logo: {
         resizeMode: 'contain',
