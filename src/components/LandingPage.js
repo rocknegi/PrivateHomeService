@@ -55,7 +55,7 @@ class landingPage extends React.Component {
     render() {
         const { navigation } = this.props
         return (
-               <SafeAreaView style={{backgroundColor:'#fd9a50',flex:1}}>
+               <SafeAreaView style={{backgroundColor:'#D87314',flex:1}}>
                {/* <Text style={styles.heading}>Private Home Service</Text> */}
                 <View style={styles.container}>
                     <View style={{ flex: 1 }}>
@@ -63,7 +63,7 @@ class landingPage extends React.Component {
                             source={require('../assets/images/logo_white.png')}
                             style={styles.images}
                         />
-                    <Text style={{ fontSize: 18, textAlign: 'center',transform: [{ rotate: '-5deg'}] }}>
+                    <Text style={{ fontSize: 28,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',transform: [{ rotate: '-5deg'}] }}>
                     Vos besoins sont nos Services
                     </Text>
                     </View>
@@ -75,13 +75,13 @@ class landingPage extends React.Component {
                         VIDEO
                 </Text>
                 </View> */}
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <TouchableOpacity
+                <View style={{justifyContent: 'center',alignItems:'center' }}>
+                    {/* <TouchableOpacity
                         onPress={() => navigation.navigate('Login')}
                         style={styles.button}
-                    >
-                        <Text style={styles.buttonText}>Get Started</Text>
-                    </TouchableOpacity>
+                    > */}
+                        <Text style={[styles.buttonText,{fontFamily:'DavidLibre-Regular.ttf'}]}>Loading...</Text>
+                    {/* </TouchableOpacity> */}
                 </View>
                </SafeAreaView>
         )
@@ -103,9 +103,8 @@ const styles = StyleSheet.create({
     },
     images: {
         resizeMode: 'contain',
-        height: Dimensions.get('window').width/1.8,
-        width: Dimensions.get('window').width/1.8,
-        paddingLeft: 0,
+        height: Dimensions.get('window').width/3.3,
+        width: Dimensions.get('window').width/3.3,
         alignSelf: 'center'
     },
     button: {
@@ -113,11 +112,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     buttonText: {
-        fontSize: 22,
+        fontSize: 18,
         textAlign: 'center',
         padding: 10,
         elevation: 10,
-        textDecorationLine: 'underline',
-
     },
 })
