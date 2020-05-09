@@ -35,7 +35,7 @@ export default class index extends Component {
                     style={styles.logo}
                     source={images.logoBlack}
                     />
-                    <Text style={{ fontSize: 18, textAlign: 'center',marginBottom:20}}>
+                    <Text style={{ fontSize: 25,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',transform: [{ rotate: '-5deg'}],marginBottom:10 }}>
                     Vos besoins sont nos Services
                     </Text>
 
@@ -47,12 +47,11 @@ export default class index extends Component {
                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{flex:1}}>
                 <View style={styles.field}>
-                    <Icon name="phone"
-                        style={styles.icon} />
-                        
-                        <TextInput style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</TextInput>
+                    {/* <Icon name="phone"
+                        style={styles.icon} /> */}
+                    <TextInput style={{ marginLeft: 5 }}>{`(${this.state.dialingCode})`}</TextInput>
                     <TextInput
-                        placeholder="enter your phone no"
+                        placeholder="Telefon number is Obligatory"
                         style={[styles.input]}
                         keyboardType={'number-pad'}
                     />
@@ -71,8 +70,11 @@ export default class index extends Component {
                     style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
                      </Text> */}
+                     <TouchableOpacity style={[styles.buttonContainer,{backgroundColor:'#4267b1'}]} onPress={() => this.props.navigation.navigate('Home')}>
+                    <Text style={styles.buttonText}>Login with Facebook</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
-                    <Text style={styles.buttonText}>Continue</Text>
+                    <Text style={styles.buttonText}>Continue as Guest</Text>
                 </TouchableOpacity>
 
                 {/* <View style={styles.signup}>
@@ -114,19 +116,19 @@ const styles = StyleSheet.create({
     logo: {
         resizeMode: 'contain',
         alignSelf: 'center',
-        height: 300,
-        width: 300,
-        marginBottom: 5
+        height: 200,
+        width: 200,
+        // marginBottom: 5
     },
     field: {
         flexDirection: 'row',
-        borderColor: '#cccccc',
         borderWidth: 1,
-        borderRadius: 6,
+        borderRadius: 100,
         alignItems: "center",
         backgroundColor: '#fafafa',
         marginBottom: 20,
-        marginHorizontal: 15,
+        marginTop: 10,
+        marginHorizontal: '18%',
         borderColor: PrimayColor
     },
     icon: {
@@ -135,13 +137,13 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         color: '#757575',
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         width: '100%'
     },
     buttonContainer: {
         backgroundColor: PrimayColor,
         borderRadius: 100,
-        marginHorizontal: '32%',
+        marginHorizontal: '18%',
         height: 50,
         justifyContent: 'center',
         marginBottom: 20
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 16,
     },
     signup: {
         flex: 1,
