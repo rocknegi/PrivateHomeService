@@ -1,10 +1,5 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated, Dimensions,SafeAreaView } from 'react-native'
-import { TouchableOpacity, } from 'react-native-gesture-handler'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
-import Layout from './theme/Layout'
-import { PrimayColor } from './theme/Colors';
 
 class ImageLoader extends React.Component {
     state = {
@@ -17,8 +12,6 @@ class ImageLoader extends React.Component {
             useNativeDriver: true
         }).start()
     }
-
-
 
     render() {
         return (
@@ -50,6 +43,12 @@ class landingPage extends React.Component {
         return {
             headerShown: false
         }
+    }
+
+    componentDidMount(){
+        setTimeout(()=>{
+            this.props.navigation.navigate('authNavigator')
+        },2500)
     }
 
     render() {
