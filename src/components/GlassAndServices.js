@@ -229,7 +229,7 @@ export default class GlassAndServices extends Component {
                         <TouchableOpacity
                             onPress={this.sendData}
                             style={[styles.button, { marginTop: 10, width: '25%', margin: '5%', alignSelf: 'flex-end' }]}>
-                            <Text style={styles.buttonText}>Ok</Text>
+                            <Text style={styles.buttonText}>Buy Now</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
