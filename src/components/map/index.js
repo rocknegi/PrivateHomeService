@@ -14,8 +14,8 @@ export default class Map extends Component {
         region: {
             latitude: 0,
             longitude: 0,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 1,
+            longitudeDelta: 1,
         },
         marker:{
             latitude: 0,
@@ -30,7 +30,7 @@ export default class Map extends Component {
         }})
     }
     componentDidMount() {
-        if (Platform.OS !== 'ios')
+        if (Platform.OS === 'android')
             this.requestStoragePermission()
         else
             Geolocation.getCurrentPosition(position => {
@@ -58,17 +58,17 @@ export default class Map extends Component {
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 Geolocation.getCurrentPosition(position => {
                     this.setState({region:{
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,latitude:position.coords.latitude,longitude:position.coords.longitude
+                        latitudeDelta: 0,
+                        longitudeDelta: 0,latitude:position.coords.latitude,longitude:position.coords.longitude
                     },marker:{
                         latitude:position.coords.latitude,longitude:position.coords.longitude
                     }})
                 });
             } else {
-                Alert('');
+                Alert('Please grant location permission');
             }
         } catch (err) {
-            console.log(err);
+            alert(err);
         }
     }
 

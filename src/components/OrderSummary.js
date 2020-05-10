@@ -188,7 +188,7 @@ export class OrderSummary extends Component {
                         <Text style={[styles.text, { fontSize: 16, padding: 10,right: '30%' }]}>fcfa {this.props.total} </Text>
                         <Text style={[styles.text, { fontSize: 14, padding: 10, right: '30%' }]}>Account: fcfa 10.000</Text>
                         <TouchableOpacity
-                            onPress={()=>this.props.navigation.navigate('payment')}
+                            onPress={()=>this.props.navigation.navigate('location')}
                             style={[styles.button, { marginBottom: 0, height: 35, right: '20%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>Pay Now</Text>
                         </TouchableOpacity>
