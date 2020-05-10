@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
+import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
@@ -56,7 +56,7 @@ class Home extends Component {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:40 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:60 }}>
                     <Icon style={{ fontSize: 25, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
@@ -79,11 +79,15 @@ class Home extends Component {
                             source={images.logoBlack}
                             style={[styles.logo,{alignSelf:'center'}]}
                         />
-                        <Text style={{ fontSize: 25,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',marginBottom:10 }}>
+                    <Text style={{ fontSize: Platform.OS==='android'?25:16,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',transform: [{ rotate: '-5deg'}],marginBottom:10 }}>
                     Vos besoins sont nos Services
                     </Text>
                         <View style={{marginHorizontal:'13%'}}>
-                        <Text style={[styles.text, {alignSelf:'flex-end',fontFamily:'COMIC',fontStyle:'italic',fontWeight:'bold' }]}>
+                        <Text style={[styles.text, {alignSelf:'flex-end',
+                        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+                        fontStyle:'italic',
+                        fontWeight:'bold' 
+                        }]}>
                             Our Selection
                             </Text>
                         {data.map(item => {
@@ -100,7 +104,9 @@ class Home extends Component {
                             </TouchableOpacity>
                             )
                         })}
-                        <Text style={[styles.text, { fontStyle:'italic',fontFamily:'COMIC',fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
+                        <Text style={[styles.text, { fontStyle:'italic',
+                        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+                        fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
 
                         </View>
                         <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:10}}>

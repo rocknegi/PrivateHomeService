@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView } from 'react-native'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import images from '../../assets/images';
 
@@ -22,13 +22,13 @@ export default class index extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
 
                 <Image
                     style={styles.logo}
                     source={images.logoBlack}
                     />
-                    <Text style={{ fontSize: 25,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',transform: [{ rotate: '-5deg'}],marginBottom:10 }}>
+                    <Text style={{ fontSize: Platform.OS==='android'?25:16,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',transform: [{ rotate: '-5deg'}],marginBottom:10 }}>
                     Vos besoins sont nos Services
                     </Text>
 
@@ -95,7 +95,7 @@ export default class index extends Component {
                 </View>
                                 </TouchableWithoutFeedback>
 
-            </View>
+            </SafeAreaView>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Animated, Dimensions,SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, Animated, Dimensions,SafeAreaView, Platform } from 'react-native'
 
 class ImageLoader extends React.Component {
     state = {
@@ -62,7 +62,7 @@ class landingPage extends React.Component {
                             source={require('../assets/images/logo_white.png')}
                             style={styles.images}
                         />
-                    <Text style={{ fontSize: 28,fontFamily:'HT Gelateria W01 Regular', textAlign: 'center',transform: [{ rotate: '-5deg'}] }}>
+                    <Text style={{ fontSize: Platform.OS==='android'?28:18,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',transform: [{ rotate: '-5deg'}] }}>
                     Vos besoins sont nos Services
                     </Text>
                     </View>
@@ -79,7 +79,7 @@ class landingPage extends React.Component {
                         onPress={() => navigation.navigate('Login')}
                         style={styles.button}
                     > */}
-                        <Text style={[styles.buttonText,{fontFamily:'DavidLibre-Regular.ttf'}]}>Loading...</Text>
+                        <Text style={[styles.buttonText,{fontFamily:'DavidLibre-Regular'}]}>Loading...</Text>
                     {/* </TouchableOpacity> */}
                 </View>
                </SafeAreaView>

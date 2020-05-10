@@ -4,19 +4,19 @@ import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, SUB_OPTION, ADD_O
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';
 
 const items = [
-    { id: '1liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
-    { id: '2liquors', title: 'Brand Name', price: 110, img: image, category: 'liquors' },
-    { id: '1Champagne', title: 'Brand Name', price: 110, img: image, category: 'Champagne' },
-    { id: '1Whiskey12', title: 'Brand Name', price: 80, img: image, category: 'Whiskey12' },
-    { id: '1Whiskey19', title: 'Brand Name', price: 120, img: image, category: 'Whiskey19' },
-    { id: '1Whiskey18', title: 'Brand Name', price: 260, img: image, category: 'Whiskey18' },
+    { id: '1liquors', title: '1liquors Name', price: 110, img: image, category: 'liquors' },
+    { id: '2liquors', title: '2liquors Name', price: 110, img: image, category: 'liquors' },
+    { id: '1Champagne', title: 'Champagne Name', price: 110, img: image, category: 'Champagne' },
+    { id: '1Whiskey12', title: 'Whiskey12 Name', price: 80, img: image, category: 'Whiskey12' },
+    { id: '1Whiskey19', title: 'Whiskey15 Name', price: 120, img: image, category: 'Whiskey19' },
+    { id: '1Whiskey18', title: 'Whiskey18 Name', price: 260, img: image, category: 'Whiskey18' },
 ]
 
 const items2 = [
-    { id: 'option1', title: 'Item 1', price: 11, img: image,quantity:0, category: 'seesha' },
-    { id: 'option2', title: 'Item 2', price: 8, img: image,quantity:0 , category: 'seesha' },
-    { id: 'option3', title: 'Item 3', price: 12, img: image ,quantity:0, category: 'seesha' },
-    { id: 'option4', title: 'Item 4', price: 20, img: image,quantity:0 , category: 'seesha' },
+    { id: 'option1', title: 'seesha 1', price: 11, img: image,quantity:0, category: 'seesha' },
+    { id: 'option2', title: 'seesha 2', price: 8, img: image,quantity:0 , category: 'seesha' },
+    { id: 'option3', title: 'seesha 3', price: 12, img: image ,quantity:0, category: 'seesha' },
+    { id: 'option4', title: 'seesha 4', price: 20, img: image,quantity:0 , category: 'seesha' },
 ]
 
 const items3 = [

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -120,7 +120,7 @@ class SelectedCategory extends Component {
         // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
-                <View style={{  backgroundColor:PrimayColor,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',height:40 }}>
+                <View style={{  backgroundColor:PrimayColor,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',height:60 }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
@@ -274,9 +274,9 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        fontSize: 14,
+        fontSize: 15,
         padding: 10,
-        fontFamily:'COMIC'
+        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
     },
     icon: {
         fontSize: 25,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         // fontSize: 15,
-        fontFamily:'COMIC',
+        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
         padding: 10
     },
     circle: {
