@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 
 import Layout from './theme/Layout'
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         padding: 10,
         // flexWrap: 'nowrap',
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     icon: {
         fontSize: 25,
@@ -150,7 +151,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 15,
-        padding: 10
+        padding: 10,
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     circle: {
         width: 20,

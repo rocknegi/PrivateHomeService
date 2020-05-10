@@ -161,7 +161,7 @@ export default class GlassAndServices extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '5%', padding: 10 }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '20%', padding: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ marginTop: 5 }}>
                         <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
@@ -228,7 +228,7 @@ export default class GlassAndServices extends Component {
                         </View>
                         <TouchableOpacity
                             onPress={this.sendData}
-                            style={[styles.button, { marginTop: 10, width: '25%', margin: '5%', alignSelf: 'flex-end' }]}>
+                            style={[styles.button, { marginTop: 10, width: '35%', margin: '5%', alignSelf: 'flex-end' }]}>
                             <Text style={styles.buttonText}>Buy Now</Text>
                         </TouchableOpacity>
                     </View>

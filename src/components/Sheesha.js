@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import Layout from './theme/Layout'
@@ -97,10 +97,10 @@ class Seesha extends Component {
                                     {this.props.items.map(item => {
                                         return (
                                             <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <Text style={{ fontSize: 20 }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>{item.title}</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>€{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
                                             </View>
                                         )
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 15,
         padding: 10,
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
         // flexWrap: 'nowrap',
     },
     icon: {
@@ -186,7 +187,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 15,
-        padding: 10
+        padding: 10,
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     circle: {
         width: 20,

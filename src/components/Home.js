@@ -84,7 +84,7 @@ class Home extends Component {
                     </Text>
                         <View style={{marginHorizontal:'13%'}}>
                         <Text style={[styles.text, {alignSelf:'flex-end',
-                        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+                        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
                         fontStyle:'italic',
                         fontWeight:'bold' 
                         }]}>
@@ -105,9 +105,9 @@ class Home extends Component {
                             )
                         })}
                         <Text style={[styles.text, { fontStyle:'italic',
-                        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+                        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
                         fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
-
+<LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:1.5,marginHorizontal:'2%'}}></LinearGradient>
                         </View>
                         <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:10}}>
                     <Image 
@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
         // textAlign: 'center',
         padding: 5,
         // marginBottom: 10,
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     list: {
         flexDirection: 'row',

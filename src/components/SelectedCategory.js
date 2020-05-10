@@ -102,7 +102,9 @@ class SelectedCategory extends Component {
     }
 
     toggleModal = (modal)=>{
+        if(this.props.itemsInCart > 0)
         this.setState({[modal]:!this.state[modal]})
+        else return 
     }
     handleSeeshaModal = ()=>{
         this.toggleModal('seeshaModal');
@@ -143,15 +145,23 @@ class SelectedCategory extends Component {
                             <View>
                             <View style={{flexDirection:'row',justifyContent:'space-evenly',marginBottom:15,marginTop:5}}>
                                                     <Text
-                                                    style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
+                                                    style={{
+                                                        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+                                                        backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
+                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
                                                     >SHISHA</Text>
                                                     <Text
                                                     onPress={()=>this.toggleModal('socialGamesModal')}
-                                                    style={{fontSize: 22,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'8%',paddingRight:'8%',paddingTop:'5%',paddingBottom:'5%',alignSelf:'center'}}
+                                                    style={{
+                                                        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+                                                        backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
+                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'8%',paddingRight:'8%',paddingTop:'5%',paddingBottom:'5%',alignSelf:'center'}}
                                                     >Social {"\n"}Games</Text>
                                                 </View>
-                                                <Text style={{fontSize: 22,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
+                                                <Text style={{
+                                                     fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+                                                    fontSize: 20,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
 
                                 {this.props.items.filter(e => e.category === this.state.category).map(item => {
                                     return (
@@ -219,10 +229,10 @@ class SelectedCategory extends Component {
 
                 </ScrollView>
                 {this.state.category !== 'seesha'&&this.state.category !== 'games'  ? <View style={styles.footer}>
-                    <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
                     <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
-                        <Text style={[styles.text, { fontSize: 25 }]}>Total</Text>
+                        <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
                         <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.state.total} </Text>
                     </View>}
             </Layout>
@@ -274,9 +284,9 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        fontSize: 15,
+        fontSize: 13,
         padding: 10,
-        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     icon: {
         fontSize: 25,
@@ -298,7 +308,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         // fontSize: 15,
-        fontFamily:Platform.OS==='android'?'ComicSansMS':'ComicSansMS',
+        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
         padding: 10
     },
     circle: {

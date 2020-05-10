@@ -124,8 +124,8 @@ class Cart extends Component {
                                     return (
                                         <View key={item.id}>
                                             <View style={styles.list} >
-                                                <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20 }}>€{item.price}/Unit</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20 }}>€{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 20 }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id, 'seesha')} name="plus" style={styles.icon} />
@@ -300,12 +300,12 @@ class Cart extends Component {
                             </Modal>
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
-                        <Text style={[styles.text, { fontSize: 14, padding: 10 }]}>Total</Text>
-                        <Text style={[styles.text, { fontSize: 14, padding: 10 }]}>fcfa {this.props.total} </Text>
-                        <Text style={[styles.text, { fontSize: 14, padding: 10, right: '30%' }]}>Account: fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13, padding: 10 }]}>Total</Text>
+                        <Text style={[styles.text, { fontSize: 13, padding: 10 ,right:'30%'}]}>fcfa {this.props.total} </Text>
+                        <Text style={[styles.text, { fontSize: 13, padding: 10, right: '40%' }]}>Account: fcfa 10.00</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0, height: 35, right: '20%' }]}>
+                            style={[styles.button, { marginBottom: 0, height: 35, right: '50%',width:'25%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>Buy Now</Text>
                         </TouchableOpacity>
                     </View> : null}
@@ -390,7 +390,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderWidth: 2,
         borderColor: PrimayColor,
-        marginHorizontal: '3%'
+        marginHorizontal: '3%',
+        paddingVertical:'2%'
     },
     textHeading: {
         fontSize: 20,
