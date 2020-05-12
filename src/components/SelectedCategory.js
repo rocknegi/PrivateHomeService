@@ -175,7 +175,7 @@ class SelectedCategory extends Component {
                                                     />
                                                     <Text style={styles.text}>{item.title}{"\n"}
                                                         Some Description
-                                                        {"\n"}€{item.price}/unit
+                                                        {"\n"}FCFA{item.price}/unit
                                                         {"\n"}<Text onPress={()=>this.toggleModal('seeMoreModal')}
                                                         style={{textDecorationLine:'underline'}}>See more</Text>
                                                         </Text>
@@ -187,7 +187,7 @@ class SelectedCategory extends Component {
                                                     </TouchableOpacity>
                                                 </View>
                                                 <View style={styles.option}>
-                                                    {/* <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>€{item.price}/unit</Text> */}
+                                                    {/* <Text style={[styles.text, { padding: 0, fontSize: 22 }]}>FCFA{item.price}/unit</Text> */}
                                                     {/* <TouchableOpacity
                                                         onPress={() => this.handleClick(item, this.state.category)}
                                                         style={styles.button}
@@ -230,10 +230,10 @@ class SelectedCategory extends Component {
                 </ScrollView>
                 {this.state.category !== 'seesha'&&this.state.category !== 'games'  ? <View style={styles.footer}>
                     <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
-                    <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.props.total} </Text>
+                    <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>FCFA {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
-                        <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>€ {this.state.total} </Text>
+                        <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>FCFA {this.state.total} </Text>
                     </View>}
             </Layout>
         )

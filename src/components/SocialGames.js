@@ -68,7 +68,7 @@ class SocialGames extends Component {
                                     <Text style={[styles.text, {}]}>{item.title}{"\n"}
                                             Some Description
                                             </Text>
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>€{item.price}</Text>
+                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>FCFA{item.price}</Text>
                                     <TouchableOpacity
                                         onPress={() => this.handleClick(this.props.items, 'games')}
                                         style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>

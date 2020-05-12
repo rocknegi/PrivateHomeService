@@ -12,7 +12,7 @@ class Payments extends Component {
             <Layout>
                 <View style={styles.container}>
                     <Text style={styles.text}>
-                        Total amount to be paid is {"\n"}€{this.props.total}
+                        Total amount to be paid is {"\n"}FCFA{this.props.total}
                     </Text>
                     <Text style={[styles.text,{marginTop:'20%'}]}>Select a Payment option</Text>
                     <View style={{marginTop:20}}>

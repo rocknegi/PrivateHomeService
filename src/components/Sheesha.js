@@ -98,7 +98,7 @@ class Seesha extends Component {
                                         return (
                                             <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                                 <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>{item.title}</Text>
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>€{item.price}/Unit</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>FCFA{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
