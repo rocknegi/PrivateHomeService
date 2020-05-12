@@ -58,8 +58,8 @@ export default class Map extends Component {
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 Geolocation.getCurrentPosition(position => {
                     this.setState({region:{
-                        latitudeDelta: 0,
-                        longitudeDelta: 0,latitude:position.coords.latitude,longitude:position.coords.longitude
+                        latitudeDelta: 0.003,
+                        longitudeDelta: 0.003,latitude:position.coords.latitude,longitude:position.coords.longitude
                     },marker:{
                         latitude:position.coords.latitude,longitude:position.coords.longitude
                     }})

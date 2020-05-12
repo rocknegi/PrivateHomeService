@@ -30,7 +30,7 @@ const data = [
     },
     {
         id: 5,
-        name: 'champagne ',
+        name: 'Champagne ',
         category: 'Champagne'
     },
     // {
@@ -56,7 +56,7 @@ class Home extends Component {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:60 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:38 }}>
                     <Icon style={{ fontSize: 25, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
@@ -69,7 +69,7 @@ class Home extends Component {
                         </View>}
                         <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
                             // category: this.state.category
-                        })} name="shopping-cart" style={{ fontSize: 25, }} />
+                        })} name="shopping-cart" style={{ fontSize: 25,marginRight:5 }} />
 
                     </View>
 
@@ -79,7 +79,7 @@ class Home extends Component {
                             source={images.logoBlack}
                             style={[styles.logo,{alignSelf:'center'}]}
                         />
-                    <Text style={{ fontSize: Platform.OS==='android'?25:16,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',transform: [{ rotate: '-5deg'}],marginBottom:10 }}>
+                    <Text style={{ fontSize: Platform.OS==='android'?25:16,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',marginBottom:5 }}>
                     Vos besoins sont nos Services
                     </Text>
                         <View style={{marginHorizontal:'13%'}}>
@@ -109,41 +109,47 @@ class Home extends Component {
                         fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
 <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:1.5,marginHorizontal:'2%'}}></LinearGradient>
                         </View>
-                        <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingBottom:10}}>
+
+
+                        <ScrollView horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                        <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingTop:5}}>
                     <Image 
                     style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
                     source={images.seesha}
                     />
+<LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
                      <Image 
                     style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
                     source={images.champagne}
                     />
+                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+
                      <Image 
-                    style={{height:140,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'5%'}}
+                    style={{height:100,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'1%'}}
+                    source={images.ludo}
+                    />
+                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+
+                                        <Image 
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.seesha}
+                    />
+                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+
+                     <Image 
+                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
+                    source={images.champagne}
+                    />
+                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+
+                     <Image 
+                    style={{height:100,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'1%'}}
                     source={images.ludo}
                     />
                 </View>
-{/* 
-                        <ScrollView horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                        >
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.scrollList}
-                            />
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.scrollList}
-                            />
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.scrollList}
-                            />
-                            <Image
-                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                style={styles.scrollList}
-                            />
-                        </ScrollView> */}
+                        </ScrollView> 
                     </ScrollView>
                 </SafeAreaView>
             </View>
@@ -190,7 +196,7 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderColor:PrimayColor,
         backgroundColor: '#fafafa',
-        marginBottom: 10,
+        marginBottom: 8,
         // marginHorizontal: '13%',
         elevation: 10,
     },

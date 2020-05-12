@@ -122,7 +122,7 @@ class SelectedCategory extends Component {
         // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
-                <View style={{  backgroundColor:PrimayColor,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',height:60 }}>
+                <View style={{  backgroundColor:PrimayColor,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',height:38 }}>
                     <Icon style={{ fontSize: 25, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
                     <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                         {this.props.itemsInCart > 0 && <View style={styles.circle}>
@@ -135,7 +135,7 @@ class SelectedCategory extends Component {
                         </View>}
                         <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
                             category: this.state.category
-                        })} name="shopping-cart" style={{ fontSize: 25, }} />
+                        })} name="shopping-cart" style={{ fontSize: 25,marginRight:5  }} />
 
                     </View>
 
@@ -148,7 +148,7 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'8%',alignSelf:'center'}}
+                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'4%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
                                                     >SHISHA</Text>
                                                     <Text
@@ -156,7 +156,7 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'8%',paddingRight:'8%',paddingTop:'5%',paddingBottom:'5%',alignSelf:'center'}}
+                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'6.5%',paddingRight:'6.5%',paddingTop:'0.4%',paddingBottom:'0.4%',alignSelf:'center'}}
                                                     >Social {"\n"}Games</Text>
                                                 </View>
                                                 <Text style={{

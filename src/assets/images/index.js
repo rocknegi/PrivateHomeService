@@ -7,7 +7,10 @@ const images = {
     cards:require('./Cartesàjour.jpg'),
     ludo:require('./Ludo.jpg'),
     seesha:require('./seesha.jpg'),
-    champagne:require('./Champagne.jpg')
+    champagne:require('./Champagne.jpg'),
+    map:require('./map.png'),
+    momo:require('./MoMo.jpg'),
+    orange_money:require('./orange_money.jpg')
 
   
   };

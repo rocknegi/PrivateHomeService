@@ -145,10 +145,16 @@ export class OrderSummary extends Component {
                                                 {item.hotess ? <Text style={styles.text}>{item.price}</Text> : null}
                                             </View>
                                             <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
-
+                                            {item.hotess && <><View style={styles.list}>
+                                                <Text style={[styles.text,{flex:0.9}]}>Hotess</Text>
+                                                <Text style={[styles.text,{flex:2.1}]}>{item.hotess}</Text>
+                                            </View>
+                                                <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
+                                            </>
+                                            }
                                             {item.wineGlass > 0 && <><View style={styles.list}>
                                                 <Text style={[styles.text,{flex:0.9}]}>Wine glass</Text>
-                                                <Text style={[styles.text,{flex:2.2}]}>{item.wineGlass}</Text>
+                                                <Text style={[styles.text,{flex:2.1}]}>{item.wineGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
@@ -156,7 +162,7 @@ export class OrderSummary extends Component {
 
                                             {item.whiskeyGlass > 0 && <><View style={styles.list}>
                                                 <Text style={[styles.text,{flex:1.2}]}>Whiskey glass</Text>
-                                                <Text  style={[styles.text,{flex:2.9}]}>{item.whiskeyGlass}</Text>
+                                                <Text  style={[styles.text,{flex:2.8}]}>{item.whiskeyGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
@@ -164,7 +170,7 @@ export class OrderSummary extends Component {
 
                                             {item.champagneGlass > 0 && <><View style={styles.list}>
                                                 <Text style={[styles.text,{flex:1.3}]}>Champagne glass</Text>
-                                                <Text  style={[styles.text,{flex:3.1}]}>{item.champagneGlass}</Text>
+                                                <Text  style={[styles.text,{flex:3.0}]}>{item.champagneGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
@@ -176,13 +182,7 @@ export class OrderSummary extends Component {
                                     </View>} */}
                                             {/* <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View> */}
 
-                                            {item.hotess && <><View style={styles.list}>
-                                                <Text style={[styles.text,{flex:0.9}]}>Hotess</Text>
-                                                <Text style={[styles.text,{flex:2.1}]}>{item.hotess}</Text>
-                                            </View>
-                                                <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
-                                            </>
-                                            }
+                                            
 
                                         </View>}
                                     </View>
@@ -191,10 +191,10 @@ export class OrderSummary extends Component {
                         </View>}
 
                 </ScrollView>
-                {this.props.items.length ? <View style={styles.footer}>
-                    <Text style={[styles.text, { fontSize: 18, padding: 10 }]}>Total</Text>
-                    <Text style={[styles.text, { fontSize: 16, padding: 10, right: '30%' }]}>fcfa {this.props.total} </Text>
-                    <Text style={[styles.text, { fontSize: 14, padding: 10, right: '30%' }]}>Account: fcfa 10.000</Text>
+                {this.props.items.length ? <View style={[styles.footer]}>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10,flexGrow:2 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:4 }]}>fcfa {this.props.total} </Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:7 }]}>Account: fcfa 10.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35, right: '20%' }]}>
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 15,
         padding: 10,
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
     },

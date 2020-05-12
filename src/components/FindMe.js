@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, TextInput, Keyboard, Dimensions, Alert, Platform } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, TextInput, Keyboard, Dimensions, Alert, Platform,Image } from 'react-native'
 import DialingCodePicker from '../components/DialingCodePicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,6 +7,7 @@ import Layout from './theme/Layout';
 import Map from './map';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux'
+import images from '../assets/images';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -72,12 +73,16 @@ class FindMe extends Component {
                 </Modal>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
-                        <Text style={[styles.text, {
+                        {/* <Text style={[styles.text, {
                             fontSize: 20, borderColor: PrimayColor, borderWidth: 2,
                             paddingHorizontal: '12%', paddingVertical: '2%'
                         }]}>
                             Delivery Location
-                        </Text>
+                        </Text> */}
+                        <Image 
+                        style={{height:150,width:150}}
+                        source={images.map}
+                        />
 
                         <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
                             <Text style={[styles.buttonText, { fontSize: 18 }]}>Find Me</Text>
@@ -123,7 +128,7 @@ class FindMe extends Component {
 
                         <Text style={[styles.text, {
                             fontSize: 18, borderColor: PrimayColor, borderWidth: 2,
-                            paddingHorizontal: '12%', paddingVertical: '2%',
+                            paddingHorizontal: '13.2%', paddingVertical: '0.5%',
                             fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
                         }]}>
                             Delivery Time
@@ -167,7 +172,7 @@ before delivery time</Text> */}
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1 }}>
                                     <Text style={[styles.text, { flex: 0.3 }]}>Account</Text>
-                                    <Text style={[styles.text, { flex: 0.2, borderLeftWidth: 2, margin: 0, padding: 8 }]}>Fcfa 10.00</Text>
+                                    <Text style={[styles.text, { flex: 0.2, borderLeftWidth: 2, margin: 0, padding: 8,fontSize:13 }]}>Fcfa10.000</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1 }}>
                                     <Text style={[styles.text, { flex: 0.3 }]}>Cash at delivery</Text>
@@ -176,25 +181,21 @@ before delivery time</Text> */}
                             </>
                         }
                         <Text style={[styles.text, {
-                            fontSize: 18, borderColor: PrimayColor, borderWidth: 2,
+                            fontSize: 15, borderColor: PrimayColor, borderWidth: 2,
                             paddingHorizontal: '2%', paddingVertical: '2%',
                             fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
                         }]}>
                             Select your payment method
                         </Text>
-                        <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                        <TouchableOpacity
-                        style={[styles.button,{marginRight:15}]}
-                        // onPress={()=>this.props.navigation.navigate('payment')}
-                    >
-                        <Text style={[styles.buttonText]}>Orange money</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        // onPress={()=>this.props.navigation.navigate('payment')}
-                    >
-                        <Text style={styles.buttonText}>MTN Momo</Text>
-                    </TouchableOpacity>
+                        <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'flex-start'}}>
+                        <Image 
+                        style={{height:60,width:100,margin:5}}
+                        source={images.momo}
+                        />
+                         <Image 
+                        style={{height:60,width:100,margin:5}}
+                        source={images.orange_money}
+                        />
                         </View>
                     </View>
 
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
         color: '#999999', paddingLeft: 10, fontSize: 20
     },
     input: {
-        height: 50,
+        height: 35,
         color: '#757575',
         paddingHorizontal: 20,
         width: '83%'

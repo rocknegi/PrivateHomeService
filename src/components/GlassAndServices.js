@@ -161,7 +161,7 @@ export default class GlassAndServices extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', marginTop: '20%', padding: 10 }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', padding: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ marginTop: 5 }}>
                         <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
@@ -188,7 +188,7 @@ export default class GlassAndServices extends Component {
                         </View>}
                         <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
                         <View style={[styles.list,{marginBottom:5}]} >
-                            <Text style={{ fontSize: 20, textAlign: 'center', flex: 0,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
                             <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
                             <Text style={{ fontSize: 20 }}>{this.state.item && this.state.item.service}</Text>
                             <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />

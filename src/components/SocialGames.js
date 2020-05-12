@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     button: {
-        backgroundColor: '#ff8a65',
-        borderRadius: 6,
+        backgroundColor: PrimayColor,
+        borderRadius: 100,
         height: 40,
         justifyContent: 'center',
         // marginHorizontal: '25%',

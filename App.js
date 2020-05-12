@@ -25,6 +25,7 @@ import FindMe from './src/components/FindMe';
 import Payments from './src/components/Payments';
 import OrderSummary from './src/components/OrderSummary';
 import { PrimayColor } from './src/components/theme/Colors';
+import { Platform } from 'react-native';
 
 
 MaterialIcon.loadFont();
@@ -45,6 +46,7 @@ const innerNavigator = createStackNavigator({
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: PrimayColor,
+      height:Platform.OS==='android' ? 38:80
     },
     headerTintColor: '#000',
   }

@@ -89,9 +89,10 @@ class Cart extends Component {
                                             <Image
                                                 source={item.image}
                                                 style={{
-                                                    height: 80,
-                                                    width: 80,
+                                                    height: 50,
+                                                    width: 50,
                                                     resizeMode: 'contain',
+                                                    marginTop:'5%'
                                                 }}
                                             />
                                             <Text style={[styles.text, { flex: 0.7, flexWrap: 'wrap', left: '20%' }]}>{item.name}</Text>
@@ -302,7 +303,7 @@ class Cart extends Component {
                     {this.props.items.length ? <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 13, padding: 10 }]}>Total</Text>
                         <Text style={[styles.text, { fontSize: 13, padding: 10 ,right:'30%'}]}>fcfa {this.props.total} </Text>
-                        <Text style={[styles.text, { fontSize: 13, padding: 10, right: '40%' }]}>Account: fcfa 10.00</Text>
+                        <Text style={[styles.text, { fontSize: 13, padding: 10, right: '60%' }]}>Account: fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
                             style={[styles.button, { marginBottom: 0, height: 35, right: '50%',width:'25%' }]}>
@@ -353,7 +354,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 10,
         textAlign: 'center',
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
