@@ -148,7 +148,7 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'4%',alignSelf:'center'}}
+                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'4%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
                                                     >SHISHA</Text>
                                                     <Text
@@ -156,12 +156,12 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 20,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'6.5%',paddingRight:'6.5%',paddingTop:'0.4%',paddingBottom:'0.4%',alignSelf:'center'}}
+                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'6.5%',paddingRight:'6.5%',paddingTop:'0.4%',paddingBottom:'0.4%',alignSelf:'center'}}
                                                     >Social {"\n"}Games</Text>
                                                 </View>
                                                 <Text style={{
                                                      fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
-                                                    fontSize: 20,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
+                                                    fontSize: 18,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:8,marginHorizontal:'10%',marginBottom:10}}>{this.state.title}</Text>
 
                                 {this.props.items.filter(e => e.category === this.state.category).map(item => {
                                     return (
@@ -229,8 +229,8 @@ class SelectedCategory extends Component {
 
                 </ScrollView>
                 {this.state.category !== 'seesha'&&this.state.category !== 'games'  ? <View style={styles.footer}>
-                    <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
-                    <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>FCFA {this.props.total} </Text>
+                    <Text style={[styles.text, { fontSize: 20 }]}>Total</Text>
+                    <Text style={[styles.text, { textAlign: 'right', fontSize: 20, padding: 5, alignSelf: 'center' }]}>FCFA {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>
                         <Text style={[styles.text, { textAlign: 'right', fontSize: 25, padding: 5, alignSelf: 'center' }]}>FCFA {this.state.total} </Text>
