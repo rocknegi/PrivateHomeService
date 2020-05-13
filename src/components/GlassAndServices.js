@@ -25,7 +25,8 @@ export default class GlassAndServices extends Component {
             price: 0,
             category: 'service',
             id: 'service',
-            service: 1
+            service: 1,
+            currentRate:0
         },
         obj: {},
     }
@@ -165,7 +166,12 @@ export default class GlassAndServices extends Component {
     }
     sendData = () => {
         // this.handleOk();
-        this.props.increaseTotal(this.state.item)
+        this.setState({
+            item:{
+            ...this.state.item,
+            currentRate:this.state.currentRate
+        }},()=>this.props.increaseTotal(this.state.item))
+        
     }
 
     render() {

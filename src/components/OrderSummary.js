@@ -15,7 +15,7 @@ export class OrderSummary extends Component {
         complimentary: this.props.navigation.getParam('data')
     }
     render() {
-        // console.log(JSON.stringify(this.props.items, undefined, 3))
+        console.log(JSON.stringify(this.props.items, undefined, 3))
         return (
             <Layout>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -140,7 +140,7 @@ export class OrderSummary extends Component {
                                         {item.hotess && <View key={item.id}>
                                             <View style={[styles.list]} >
                                                 {item.hotess ? <Text style={[styles.text, { flexGrow: 1.5 }]}>Service Time</Text> : null}
-                                                {item.hotess ? <Text style={styles.text}>2500/Hr</Text> : null}
+                                {item.hotess ? <Text style={styles.text}>{item.currentRate}/hr</Text> : null}
                                                 {item.hotess ? <Text style={styles.text}>{item.hotess}</Text> : null}
                                                 {item.hotess ? <Text style={styles.text}>{item.price}</Text> : null}
                                             </View>
