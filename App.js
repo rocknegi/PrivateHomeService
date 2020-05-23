@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
 
 import ForgotPassword from './src/components/ForgotPassword';
@@ -26,6 +26,7 @@ import Payments from './src/components/Payments';
 import OrderSummary from './src/components/OrderSummary';
 import { PrimayColor } from './src/components/theme/Colors';
 import { Platform } from 'react-native';
+import thunk from 'redux-thunk';
 
 
 MaterialIcon.loadFont();
@@ -90,7 +91,7 @@ const AppNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppNavigator);
 
-const store = createStore(reducers);
+const store = createStore(reducers,applyMiddleware(thunk));
 
 export default App = () => {
   return (

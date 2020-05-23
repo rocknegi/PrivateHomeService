@@ -1,46 +1,39 @@
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, SUB_OPTION, ADD_OPTION, ADD_ON_ADD, FETCH_DATA } from "./actionTypes"
-
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY,ADD_ON_ADD, FETCH_DATA } from "./actionTypes"
+import { getData } from '../../utils/FirestoreData'
+import _ from "lodash";
 
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';
 
-const items = [
-    { id: '1liquors', title: '1liquors Name', price: 110, img: image, category: 'liquors' },
-    { id: '2liquors', title: '2liquors Name', price: 110, img: image, category: 'liquors' },
-    { id: '1Champagne', title: 'Champagne Name', price: 110, img: image, category: 'Champagne' },
-    { id: '1Whiskey12', title: 'Whiskey12 Name', price: 190, img: image, category: 'Whiskey12' },
-    { id: '1Whiskey19', title: 'Whiskey15 Name', price: 120, img: image, category: 'Whiskey19' },
-    { id: '1Whiskey18', title: 'Whiskey18 Name', price: 260, img: image, category: 'Whiskey18' },
-]
-
 const items2 = [
-    { id: 'option1', title: 'seesha 1', price: 52, img: image,quantity:0, category: 'seesha' },
-    { id: 'option2', title: 'seesha 2', price: 10, img: image,quantity:0 , category: 'seesha' },
-    { id: 'option3', title: 'seesha 3', price: 12, img: image ,quantity:0, category: 'seesha' },
-    { id: 'option4', title: 'seesha 4', price: 20, img: image,quantity:0 , category: 'seesha' },
+    { id: 'option1', title: 'seesha 1', price: 52, img: image, quantity: 0, category: 'seesha' },
+    { id: 'option2', title: 'seesha 2', price: 10, img: image, quantity: 0, category: 'seesha' },
+    { id: 'option3', title: 'seesha 3', price: 12, img: image, quantity: 0, category: 'seesha' },
+    { id: 'option4', title: 'seesha 4', price: 20, img: image, quantity: 0, category: 'seesha' },
 ]
 
 const items3 = [
-    // { id: 'free1', title: 'Oty', price: 'free', quantity:1, category: 'games' },
-    // { id: 'free2', title: 'Time', price: 'free', quantity:1 , category: 'games' },
-    { id: 'paid1', title: 'Time', price: 5, quantity:1 , category: 'games' },
+    { id: 'paid1', title: 'Time', price: 5, quantity: 1, category: 'games' },
 ]
 
-export const fetchData = (category) => {
+export const fetchData = category => async (dispatch) => _fetch(category, dispatch);
+const _fetch = _.memoize(async (category, dispatch) => {
+    const items = await getData('');
+    console.log(items)
     if (category === '') {
-        return {
+        dispatch({
             type: FETCH_DATA,
             payload: {
                 items,
                 category
             }
 
-        }
+        })
     }
-    else if(category==='games'){
-        return{
-            type:FETCH_DATA,
-            payload:{
-                items:items3,
+    else if (category === 'games') {
+        return {
+            type: FETCH_DATA,
+            payload: {
+                items: items3,
                 category
             }
         }
@@ -52,7 +45,7 @@ export const fetchData = (category) => {
             category
         }
     }
-}
+})
 
 export const addToCart = (item, category) => {
     return {
@@ -76,7 +69,7 @@ export const addQuantity = (id) => {
     }
 }
 
-export const subQuantity = (id,category) => {
+export const subQuantity = (id, category) => {
     return {
         type: SUB_QUANTITY,
         id,
@@ -91,3 +84,4 @@ export const addOnAdd = (item, option) => {
         option
     }
 }
+
