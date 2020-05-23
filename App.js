@@ -31,7 +31,8 @@ import { Platform } from 'react-native';
 MaterialIcon.loadFont();
 Feather.loadFont()
 FontAwesome.loadFont()
-MaterialCommunityIcons.loadFont()
+MaterialCommunityIcons.loadFont();
+
 const innerNavigator = createStackNavigator({
   Home,
   SelctedCategory: SelectedCategory,
