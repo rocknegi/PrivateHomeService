@@ -165,16 +165,16 @@ class SelectedCategory extends Component {
 
                                 {this.props.items.filter(e => e.category === this.state.category).map(item => {
                                     return (
-                                        <View key={item.id}>
+                                        <View key={item.title}>
                                             <View>
                                                 
                                                 <View style={styles.list} >
                                                     <Image
-                                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                        source={{ uri: item.image }}
                                                         style={styles.logo}
                                                     />
                                                     <Text style={styles.text}>{item.title}{"\n"}
-                                                        Some Description
+                                                        {item.desc}
                                                         {"\n"}FCFA{item.price}/unit
                                                         {"\n"}<Text onPress={()=>this.toggleModal('seeMoreModal')}
                                                         style={{textDecorationLine:'underline'}}>See more</Text>

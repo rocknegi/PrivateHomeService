@@ -11,13 +11,26 @@ const Champagne = firestore().collection('Champagne');
 
 let customItems = [];
 
-export function getData () {
-   
-    liquors.get().then(snapshot => {
-        snapshot.forEach(doc => {
-            customItems.push(({ ...doc.data(), id: doc.id }))
-        })
-    });
+export const getData = (category) => {
+    switch (category) {
+        case 'liquors': {
+            let liquor=[];
+            liquors.get().then(snapshot => {
+                snapshot.forEach(doc => {
+                    liquor.push(({ ...doc.data(), id: doc.id }))
+                })
+            });
+
+            return liquor
+        }
+        default : return null
+    }
+}
+
+
+
+export function getData2(category) {
+
 
     Whiskey12.get().then(snapshot => {
         snapshot.forEach(doc => {

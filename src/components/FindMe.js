@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, TextInput, Keyboard, Dimensions, Alert, Platform,Image } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform,Image } from 'react-native'
 import DialingCodePicker from '../components/DialingCodePicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -65,7 +65,8 @@ class FindMe extends Component {
         // Alert.alert('','Note: To catch you location with good accuracy please enable GPS and internet connection On your mobile phone')
         return (
             <Layout>
-                <Modal
+               <ScrollView>
+               <Modal
                     style={{ paddingTop: '50%' }}
                     isVisible={this.state.isModalVisible}
                 >
@@ -200,6 +201,7 @@ before delivery time</Text> */}
                     </View>
 
                 </TouchableWithoutFeedback>
+               </ScrollView>
             </Layout>
         )
     }

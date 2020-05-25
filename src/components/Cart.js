@@ -107,6 +107,10 @@ class Cart extends Component {
                                     return (
                                         <View>
                                             <View style={styles.list} >
+                                            <Image
+                                                source={{ uri: item.image }}
+                                                style={styles.logo}
+                                            />
                                                 <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
                                                 <Text style={{ fontSize: 20 }}>FCFA{item.price}</Text>
                                             </View>
@@ -123,10 +127,13 @@ class Cart extends Component {
                                 {this.props.items.find(e => e.category === 'seesha') && <Text style={styles.textHeading}>Shisha</Text>}
                                 {this.state.seesha && this.props.items.filter(e => e.category === 'seesha').map((item, i) => {
                                     return (
-                                        <View key={item.id}>
+                                        <View key={item.title}>
                                             <View style={styles.list} >
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18,marginRight:'3.2%', textAlign: 'center' }}>{item.title}</Text>
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>FCFA{item.price}/Unit</Text>
+                                            <Image
+                                                source={{ uri: item.image }}
+                                                style={styles.logo}
+                                            />
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18}}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id, 'seesha')} name="plus" style={styles.icon} />
@@ -145,13 +152,13 @@ class Cart extends Component {
                             {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>liqueurs & Wines</Text>}
                             {this.state.liquors && this.props.items.filter(e => e.category === 'liquors').map((item, i) => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Image
-                                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>Brand Name{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -174,10 +181,10 @@ class Cart extends Component {
                                     <View key={item.id}>
                                         <View style={styles.list} >
                                             <Image
-                                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>Brand Name{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -203,10 +210,10 @@ class Cart extends Component {
                                     <View key={item.id}>
                                         <View style={styles.list} >
                                             <Image
-                                                source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>Brand Name{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -234,10 +241,10 @@ class Cart extends Component {
                                         <View key={item.id}>
                                             <View style={styles.list} >
                                                 <Image
-                                                    source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                    source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
-                                                <Text style={styles.text}>Brand Name{"\n"}FCFA{item.price}/Unit</Text>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -265,10 +272,10 @@ class Cart extends Component {
                                         <View key={item.id}>
                                             <View style={styles.list} >
                                                 <Image
-                                                    source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                                    source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
-                                                <Text style={styles.text}>Brand Name{"\n"}FCFA{item.price}/Unit</Text>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
