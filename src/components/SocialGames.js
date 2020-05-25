@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
-
+import images from '../assets/images'
 import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
@@ -34,11 +34,12 @@ class SocialGames extends Component {
                     <View style={styles.container} >
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
                                     <Image
-                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        source={ images.cards }
                                         style={{ height: 60, width: 60 }}
                                     />
-                                    <Text style={[styles.text, {}]}>Item{"\n"}
-                                            Some Description
+                                    <Text style={[styles.text, {}]}>Cards{"\n"}
+                                            Cards
+                                            Deck of cards
                                             </Text>
                                     <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
                                    
@@ -49,11 +50,11 @@ class SocialGames extends Component {
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
                                     <Image
-                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        source={images.ludo }
                                         style={{ height: 60, width: 60 }}
                                     />
-                                    <Text style={[styles.text, {}]}>Item 2{"\n"}
-                                            Some Description
+                                    <Text style={[styles.text, {}]}>Ludo{"\n"}
+                                            Ludo board game
                                             </Text>
                                     <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
                                    
@@ -62,7 +63,7 @@ class SocialGames extends Component {
                             return (<View style={styles.container} key={item.id}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                     <Image
-                                        source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
+                                        source={{ uri: item.image }}
                                         style={{ height: 60, width: 60 }}
                                     />
                                     <Text style={[styles.text, {}]}>{item.title}{"\n"}

@@ -12,6 +12,8 @@ const Champagne = firestore().collection('Champagne');
 
 let items=[];
 let items2=[];
+let items3=[];
+
 liquors.get().then(snapshot => {
     snapshot.forEach(doc => {
         items.push(({ ...doc.data(), id: doc.id }))
@@ -46,6 +48,12 @@ Seesha.get().then(snapshot => {
         items2.push(({ ...doc.data(), id: doc.id }))
     })
 });
+
+Social.get().then(snapshot=>{
+    snapshot.forEach(doc=>{
+        items3.push(({ ...doc.data(), id: doc.id }))
+    })
+})
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';
 
 // const items2 = [
@@ -55,9 +63,9 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 //     { id: 'option4', title: 'seesha 4', price: 20, img: image, quantity: 0, category: 'seesha' },
 // ]
 
-const items3 = [
-    { id: 'paid1', title: 'Time', price: 5, quantity: 1, category: 'games' },
-]
+// const items3 = [
+//     { id: 'paid1', title: 'Time', price: 5, quantity: 1, category: 'games' },
+// ]
 
 export const fetchData = category => {
     switch (category) {

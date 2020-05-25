@@ -76,20 +76,12 @@ class Seesha extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
                                  <View style={styles.container}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                        <Image
-                                            source={{ uri: 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png' }}
-                                            style={{
-                                                height: 100,
-                                                width: 100,
-                                                resizeMode: 'contain',
-                                            }}
-                                        />
-                                        <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
-                            Some Description loreum ipsom loreum ipsom loreum ipsom
+                                    {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                            <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
+                                             Some Description loreum ipsom loreum ipsom loreum ipsom
                             </Text>
 
-                                    </View>
+                                    </View> */}
 
                                     <View style={styles.options}>
                                         <Text style={[styles.text, { textAlign:'center',fontSize:18, marginTop: '2%',flex:0 }]}>Select your favourite taste</Text>

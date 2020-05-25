@@ -178,7 +178,7 @@ class Cart extends Component {
                             {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>Whiskey 12 Years</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Image
                                                 source={{ uri: item.image }}
@@ -207,7 +207,7 @@ class Cart extends Component {
                             {this.props.items.find(e => e.category === 'Whiskey19') && <Text style={styles.textHeading}>Whiskey 15 Years</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey19').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Image
                                                 source={{ uri: item.image }}
@@ -238,7 +238,7 @@ class Cart extends Component {
                                 {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>Whiskey 18 Years</Text>}
                                 {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
                                     return (
-                                        <View key={item.id}>
+                                        <View key={item.title}>
                                             <View style={styles.list} >
                                                 <Image
                                                     source={{ uri: item.image }}
@@ -269,7 +269,7 @@ class Cart extends Component {
                                 {this.props.items.find(e => e.category === 'Champagne') && <Text style={styles.textHeading}>Champagne</Text>}
                                 {this.props.items.filter(e => e.category === 'Champagne').map(item => {
                                     return (
-                                        <View key={item.id}>
+                                        <View key={item.title}>
                                             <View style={styles.list} >
                                                 <Image
                                                     source={{ uri: item.image }}
