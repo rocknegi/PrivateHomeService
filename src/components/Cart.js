@@ -204,8 +204,8 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey19') && <Text style={styles.textHeading}>Whiskey 15 Years</Text>}
-                            {this.props.items.filter(e => e.category === 'Whiskey19').map(item => {
+                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>Whiskey 15 Years</Text>}
+                            {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >

@@ -94,7 +94,7 @@ export class OrderSummary extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.filter(e => e.category === 'Whiskey19').map(item => {
+                            {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
                                     <View key={item.id}>
                                         <View style={styles.list} >

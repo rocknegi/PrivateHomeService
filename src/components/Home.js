@@ -21,7 +21,7 @@ const data = [
     {
         id: 3,
         name: 'Whiskey 15 Years',
-        category: 'Whiskey19'
+        category: 'Whiskey15'
     },
     {
         id: 4,

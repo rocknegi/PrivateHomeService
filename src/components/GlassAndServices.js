@@ -33,7 +33,7 @@ export default class GlassAndServices extends Component {
 
     componentDidMount() {
         let wineBottles = this.props.data.filter(item => item.category === 'liquors')
-        let whiskeyBottles = this.props.data.filter(item => item.category === 'Whiskey12' || item.category === 'Whiskey19' || item.category === 'Whiskey18')
+        let whiskeyBottles = this.props.data.filter(item => item.category === 'Whiskey12' || item.category === 'Whiskey15' || item.category === 'Whiskey18')
         let champagneBottles = this.props.data.filter(item => item.category === 'Champagne')
 
         if (wineBottles.length > 0) {
