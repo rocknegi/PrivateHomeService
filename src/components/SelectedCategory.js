@@ -148,7 +148,7 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'4%',alignSelf:'center'}}
+                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,padding:'4%',paddingHorizontal:'7.2%',alignSelf:'center'}}
                                                     onPress={()=>this.toggleModal('seeshaModal')}
                                                     >SHISHA</Text>
                                                     <Text
@@ -156,7 +156,7 @@ class SelectedCategory extends Component {
                                                     style={{
                                                         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
                                                         backgroundColor:this.props.itemsInCart > 0?PrimayColor:'#fafafa',
-                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'6.5%',paddingRight:'6.5%',paddingTop:'0.4%',paddingBottom:'0.4%',alignSelf:'center'}}
+                                                        fontSize: 18,borderRadius:8,textAlign:'center',borderWidth:2,borderColor:PrimayColor,paddingLeft:'10%',paddingRight:'10%',paddingTop:'0.4%',paddingBottom:'0.4%',alignSelf:'center'}}
                                                     >Social {"\n"}Games</Text>
                                                 </View>
                                                 <Text style={{
@@ -173,9 +173,10 @@ class SelectedCategory extends Component {
                                                         source={{ uri: item.image }}
                                                         style={styles.logo}
                                                     />
-                                                    <Text style={styles.text}>{item.title}{"\n"}
+                                                    <Text style={styles.text}>
+                                                        <Text style={{fontWeight:'bold'}}>{item.title}{"\n"}</Text>
                                                         {item.desc}
-                                                        {"\n"}FCFA{item.price}/unit
+                                                        {"\n"}FCFA {item.price}/unit
                                                         {"\n"}<Text onPress={()=>this.toggleModal('seeMoreModal')}
                                                         style={{textDecorationLine:'underline'}}>See more</Text>
                                                         </Text>
@@ -208,7 +209,7 @@ class SelectedCategory extends Component {
   </Modal>
                         <Modal isVisible={this.state.seeshaModal}
                         onBackdropPress={this.handleSeeshaModal}
-                        style={{flex:1,marginTop:'80%',backgroundColor:'#fafafa',padding:10}}
+                        style={{flex:1,marginTop:'20%',backgroundColor:'#fafafa',padding:10}}
                         >
                             <Sheesha toggle={this.handleSeeshaModal}/>
   </Modal>
@@ -281,6 +282,7 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
         resizeMode: 'contain',
+        alignSelf:'center'
     },
     text: {
         flex: 1,

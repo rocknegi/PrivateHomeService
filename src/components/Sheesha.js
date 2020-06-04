@@ -88,9 +88,15 @@ class Seesha extends Component {
                                     </View>
                                     {this.props.items.map(item => {
                                         return (
-                                            <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18 }}>{item.title}</Text>
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 18,flexWrap:'wrap' }}>FCFA {item.price}/Unit</Text>
+                                            <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',marginTop:15 }}>
+                                                <Image source={{uri:item.image}} style={styles.logo}/>
+                                                <Text style={{ flex:0.8,flexWrap:'wrap',textAlign:'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS'}}>
+                                                   <Text style={{fontSize: 18}}>{item.title}</Text> 
+                                                {"\n"}
+                                                FCFA {item.price}/Unit
+                                                {"\n"}
+                                                {item.desc}
+                                                </Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
@@ -147,9 +153,10 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     logo: {
-        height: 100,
-        width: 100,
+        height: 55,
+        width: 55,
         resizeMode: 'contain',
+        alignSelf:'center'
     },
     text: {
         flex: 1,

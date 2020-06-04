@@ -45,7 +45,7 @@ Champagne.get().then(snapshot => {
 
 Seesha.get().then(snapshot => {
     snapshot.forEach(doc => {
-        items2.push(({ ...doc.data(), id: doc.id }))
+        items2.push(({ ...doc.data(), id: doc.id,quantity:0 }))
     })
 });
 
