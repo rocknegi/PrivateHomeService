@@ -90,7 +90,7 @@ class Seesha extends Component {
                                         return (
                                             <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',marginTop:15 }}>
                                                 <Image source={{uri:item.image}} style={styles.logo}/>
-                                                <Text style={{ flex:0.8,flexWrap:'wrap',textAlign:'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS'}}>
+                                                <Text style={{ fontSize: 14,flex:0.8,flexWrap:'wrap',textAlign:'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS'}}>
                                                    <Text style={{fontSize: 18}}>{item.title}</Text> 
                                                 {"\n"}
                                                 FCFA {item.price}/Unit
@@ -98,7 +98,7 @@ class Seesha extends Component {
                                                 {item.desc}
                                                 </Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:'2%' }}>{item.quantity}</Text>
+                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:10 }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
                                             </View>
                                         )

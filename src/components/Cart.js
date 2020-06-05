@@ -133,7 +133,7 @@ class Cart extends Component {
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18}}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id, 'seesha')} name="plus" style={styles.icon} />
@@ -158,7 +158,7 @@ class Cart extends Component {
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -184,7 +184,7 @@ class Cart extends Component {
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -213,7 +213,7 @@ class Cart extends Component {
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
-                                            <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -244,7 +244,7 @@ class Cart extends Component {
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
-                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -275,7 +275,7 @@ class Cart extends Component {
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
-                                                <Text style={styles.text}>{item.title}{"\n"}FCFA{item.price}/Unit</Text>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
@@ -359,12 +359,15 @@ const styles = StyleSheet.create({
         height: 80,
         width: 70,
         resizeMode: 'contain',
+        alignSelf:'center'
     },
     text: {
         fontSize: 18,
         padding: 10,
         textAlign: 'center',
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
+        flex:0.8,
+        flexWrap:'wrap'
     },
     icon: {
         fontSize: 25,
