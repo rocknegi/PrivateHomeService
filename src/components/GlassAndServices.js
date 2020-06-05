@@ -181,19 +181,19 @@ export default class GlassAndServices extends Component {
                     <View style={{ marginTop: 5 }}>
                         <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
                         {this.state.wineBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Wine Glass</Text>
+                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Wine Glass</Text>
                             <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
                             <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:23 }}>{this.state.item.wineGlass}</Text>
                             <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
                         </View>}
                         {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Whiskey Glass</Text>
+                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Whiskey Glass</Text>
                             <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
                             <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:20  }}>{this.state.item.whiskeyGlass}</Text>
                             <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
                         </View>}
                         {this.state.champagneBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.37,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Champagne Glass</Text>
+                            <Text style={{ fontSize: 15, textAlign: 'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',flexWrap:'wrap', flex: 0.37 }}>Champagne Glass</Text>
                             <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
                             <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:20  }}>{this.state.item.champagneGlass}</Text>
                             <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
