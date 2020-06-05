@@ -24,7 +24,7 @@ export class OrderSummary extends Component {
                             <View style={[styles.list, { backgroundColor: '#eee' }]}>
                                 <Text style={[styles.text, { flexGrow: 1.5, borderWidth: 1, margin: 1 }]}>Product</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Price</Text>
-                                <Text style={[styles.text, { borderWidth: 1, margin: 1, flexGrow: 1.5 }]}>Quantity</Text>
+                                <Text style={[styles.text, { borderWidth: 1, margin: 1}]}>Quantity</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Total</Text>
                             </View>
                             {this.state.complimentary.map(item => {
@@ -231,12 +231,13 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     text: {
-        fontSize: 15,
+        fontSize: 14,
         padding: 10,
         textAlign: 'center',
         flex: 1,
         flexWrap: 'wrap',
-        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
+        alignSelf:'center'
     },
     icon: {
         fontSize: 25,
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderWidth: 2,
         borderColor: PrimayColor,
-        marginHorizontal: '3%'
+        marginHorizontal: 5
     },
     textHeading: {
         fontSize: 20,
