@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/Feather'
 import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd, addToCart } from '../redux/actions'
 import Modal from 'react-native-modal';
 import _ from 'lodash'
+import firestore from '@react-native-firebase/firestore';
+
 import GlassAndServices from './GlassAndServices'
 import images from '../assets/images'
 
@@ -17,26 +19,19 @@ class Cart extends Component {
         res: null,
         seesha: null,
         liquors: null,
-        complimentary: [
-            {
-                name: 'Bluetooth',
-                image: images.btSpeaker
-            },
-            {
-                name: 'Light Decoration',
-                image: images.btSpeaker
-            },
-            {
-                name: 'Social Game item 1',
-                image: images.cards
-            },
-            {
-                name: 'Social Game item 2',
-                image: images.ludo
-            },
-        ]
+        complimentary: []
     }
     componentDidMount() {
+        const Free = firestore().collection('Free');
+        let complimentary=[];
+
+        Free.get().then(snapshot => {
+            snapshot.forEach(doc => {
+                complimentary.push(({ ...doc.data(), id: doc.id }))
+            });
+            console.log(JSON.stringify(complimentary,undefined,2))
+            this.setState({complimentary})
+        });
 
         this.focusListener = this.props.navigation.addListener('didFocus', () => {
             this.props.removeItem('service');
@@ -84,10 +79,10 @@ class Cart extends Component {
                             <Text style={styles.textHeading}>Free of charge</Text>
                             {this.state.complimentary.map((item, i) => {
                                 return (
-                                    <View key={item.name}>
+                                    <View key={item.title}>
                                         <View style={[styles.list,{ marginHorizontal:'0%'}]}>
                                             <Image
-                                                source={item.image}
+                                               source={{ uri: item.image }}
                                                 style={{
                                                     height: 50,
                                                     width: 50,
@@ -95,7 +90,7 @@ class Cart extends Component {
                                                     marginTop:'5%'
                                                 }}
                                             />
-                                            <Text style={[styles.text, { flex: 0.7, flexWrap: 'wrap', left: '20%' }]}>{item.name}</Text>
+                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%',alignSelf:'center' }]}>{item.title}</Text>
                                         </View>
                                         {i < this.state.complimentary.length - 1 && <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '15%' }}></View>}
                                     </View>
