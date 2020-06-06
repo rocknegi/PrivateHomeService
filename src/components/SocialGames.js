@@ -28,51 +28,28 @@ class SocialGames extends Component {
     render() {
         return (
             <Layout>
-
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
-                    <View style={styles.container} >
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
-                                    <Image
-                                        source={ images.cards }
-                                        style={{ height: 60, width: 60 }}
-                                    />
-                                    <Text style={[styles.text, {}]}>Cards{"\n"}
-                                            Cards
-                                            Deck of cards
-                                            </Text>
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
-                                   
-                                </View>
-
-
-
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
-                                    <Image
-                                        source={images.ludo }
-                                        style={{ height: 60, width: 60 }}
-                                    />
-                                    <Text style={[styles.text, {}]}>Ludo{"\n"}
-                                            Ludo board game
-                                            </Text>
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
-                                   
-                                </View>
                         {this.props.items.map(item => {
                             return (<View style={styles.container} key={item.id}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
                                     <Image
                                         source={{ uri: item.image }}
-                                        style={{ height: 60, width: 60 }}
+                                        style={{ height: 55, width: 55,alignSelf:'center' }}
                                     />
                                     <Text style={[styles.text, {}]}>{item.title}{"\n"}
-                                            Some Description
+                                            {item.desc} {"\n"}
+                                            {item.price!==0&& <Text style={[styles.text, { flex: 0.5, alignSelf: 'center' }]}>FCFA {item.price}</Text>}
                                             </Text>
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>FCFA{item.price}</Text>
-                                    <TouchableOpacity
-                                        onPress={() => this.handleClick(this.props.items, 'games')}
-                                        style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                                   {item.price===0?
+                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
+                                : 
+                                <>
+                                <TouchableOpacity
+                                    onPress={() => this.handleClick(this.props.items, 'games')}
+                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                                    </>
+                                    }
                                 </View>
 
 
@@ -126,9 +103,9 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        fontSize: 15,
+        fontSize: 14,
         padding: 10,
-        // flexWrap: 'nowrap',
+        flexWrap: 'wrap',
         fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
     },
     icon: {

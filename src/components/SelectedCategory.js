@@ -218,7 +218,7 @@ class SelectedCategory extends Component {
                            <Modal
                            isVisible={this.state.socialGamesModal}
                            onBackdropPress={this.handleSocialGamesModal}
-                           style={{flex:1,marginTop:'100%',backgroundColor:'#fafafa',padding:10}}
+                           style={{flex:1,marginTop:'20%',backgroundColor:'#fafafa',padding:10}}
                            >
                            <SocialGames toggle={this.handleSocialGamesModal}/>
                                </Modal>             
