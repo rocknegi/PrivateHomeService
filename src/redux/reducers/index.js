@@ -18,7 +18,7 @@ export default addToCartReducer = (state = initialState, action) => {
                 let addedItem = state.items.find(item => item.id === action.item.id)
                 let existed_item = state.addedItems.find(item => action.item.id === item.id)
                 if (existed_item) {
-                    // addedItem.quantity += 1;
+                    addedItem.quantity += 1;
                     // addedItem.whiskyGlass = 1;
                     addedItem.wineGlass = 1;
                     return {
