@@ -230,7 +230,7 @@ class SelectedCategory extends Component {
 
                 </ScrollView>
                 {this.state.category !== 'seesha'&&this.state.category !== 'games'  ? <View style={styles.footer}>
-                    <Text style={[styles.text, { fontSize: 20 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 20,flex:0 }]}>Total</Text>
                     <Text style={[styles.text, { textAlign: 'right', fontSize: 20, padding: 5, alignSelf: 'center' }]}>FCFA {this.props.total} </Text>
                 </View> : <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 22 }]}>Total</Text>

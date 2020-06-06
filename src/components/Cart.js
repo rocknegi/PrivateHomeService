@@ -90,7 +90,7 @@ class Cart extends Component {
                                                     marginTop:'5%'
                                                 }}
                                             />
-                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%',alignSelf:'center' }]}>{item.title}</Text>
+                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%',alignSelf:'center',top:8 }]}>{item.title}</Text>
                                         </View>
                                         {i < this.state.complimentary.length - 1 && <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '15%' }}></View>}
                                     </View>
@@ -303,12 +303,12 @@ class Cart extends Component {
                             </Modal>
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
-                        <Text style={[styles.text, { fontSize: 13, padding: 10,paddingLeft:2 }]}>Total</Text>
-                        <Text style={[styles.text, { fontSize: 13, padding: 10 ,right:'30%',paddingLeft:8}]}>fcfa {this.props.total} </Text>
-                        <Text style={[styles.text, { fontSize: 13, padding: 10, right: '60%',paddingLeft:8 }]}>Account: fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13,flex:0.3}]}>Total </Text>
+                        <Text style={[styles.text, { fontSize: 13, flex:0.5,left:'-30%'}]}>fcfa {this.props.total}</Text>
+                            <Text style={[styles.text, { fontSize: 13,flex:0.6,left:'-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0, height: 35, right: '50%',width:'25%' }]}>
+                            style={[styles.button, { marginBottom: 0, height: 35,width:'25%',left:'-25%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>Buy Now</Text>
                         </TouchableOpacity>
                     </View> : null}
