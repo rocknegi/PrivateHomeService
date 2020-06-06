@@ -32,11 +32,11 @@ export default class index extends Component {
                 <Text style={{ fontSize: Platform.OS === 'android' ? 25 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 10 }}>
                     Vos besoins sont nos Services
                     </Text>
-                    <Text style={{ fontStyle:'italic',fontWeight:'bold',fontSize: Platform.OS === 'android' ? 20 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 10 }}>
-                    Wel<Text style={{ fontStyle:'italic',color:PrimayColor,fontWeight:'bold',fontSize: Platform.OS === 'android' ? 20 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 10 }}>
-                    come
+                <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: Platform.OS === 'android' ? 20 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 10 }}>
+                    Wel<Text style={{ fontStyle: 'italic', color: PrimayColor, fontWeight: 'bold', fontSize: Platform.OS === 'android' ? 20 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 10 }}>
+                        come
                     </Text>
-                    </Text>
+                </Text>
 
                 {/* <DialingCodePicker
                     isModalVisible={this.state.isModalVisible}
@@ -83,29 +83,26 @@ export default class index extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View> */}
+                        <View style={{ flex: 1,justifyContent:'flex-end' }}>
+                            <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1, marginHorizontal: '15%' }}></LinearGradient>
+                            <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingBottom: 10 }}>
 
+                                <Image
+                                    style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                    source={images.seesha}
+                                />
+                                <Image
+                                    style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                    source={images.champagne}
+                                />
+                                <Image
+                                    style={{ height: 140, width: Dimensions.get('screen').width / 3.5, resizeMode: 'contain', top: '5%' }}
+                                    source={images.ludo}
+                                />
+                            </View>
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
-
-                <View style={{ flex: 1 }}>
-                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1, marginHorizontal: '15%',marginTop:'25%' }}></LinearGradient>
-
-                    <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingBottom: 10 }}>
-
-                        <Image
-                            style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
-                            source={images.seesha}
-                        />
-                        <Image
-                            style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
-                            source={images.champagne}
-                        />
-                        <Image
-                            style={{ height: 140, width: Dimensions.get('screen').width / 3.5, resizeMode: 'contain', top: '5%' }}
-                            source={images.ludo}
-                        />
-                    </View>
-                </View>
 
             </SafeAreaView>
         )
