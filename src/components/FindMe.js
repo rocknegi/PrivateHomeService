@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform,Image } from 'react-native'
-import DialingCodePicker from '../components/DialingCodePicker'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform, Image } from 'react-native'
+import DatePicker from 'react-native-datepicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Layout from './theme/Layout';
@@ -27,7 +27,17 @@ class FindMe extends Component {
         marker: {
             latitude: 0,
             longitude: 0,
-        }
+        },
+        date:''
+    }
+    componentDidMount(){
+        const today = new Date(); 
+        const dd = today.getDate(); 
+        const mm = today.getMonth()+1; 
+        const yy = today.getFullYear()
+        this.setState({
+            date:dd+'-'+mm+'-'+yy
+        })
     }
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -65,54 +75,54 @@ class FindMe extends Component {
         // Alert.alert('','Note: To catch you location with good accuracy please enable GPS and internet connection On your mobile phone')
         return (
             <Layout>
-               <ScrollView>
-               <Modal
-                    style={{ paddingTop: '50%' }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    <Map saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
-                </Modal>
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View style={styles.container}>
-                        {/* <Text style={[styles.text, {
+                <ScrollView>
+                    <Modal
+                        style={{ paddingTop: '50%' }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        <Map saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
+                    </Modal>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.container}>
+                            {/* <Text style={[styles.text, {
                             fontSize: 20, borderColor: PrimayColor, borderWidth: 2,
                             paddingHorizontal: '12%', paddingVertical: '2%'
                         }]}>
                             Delivery Location
                         </Text> */}
-                        <Image 
-                        style={{height:150,width:150}}
-                        source={images.map}
-                        />
+                            <Image
+                                style={{ height: 150, width: 150 }}
+                                source={images.map}
+                            />
 
-                        <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
-                            <Text style={[styles.buttonText, { fontSize: 18 }]}>Find Me</Text>
-                        </TouchableOpacity>
-                        <Text style={{ fontSize: 13, flexWrap: 'wrap', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginHorizontal: '15%', paddingBottom: 10, textAlign: 'center' }}>
+                            <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
+                                <Text style={[styles.buttonText, { fontSize: 18 }]}>Delivery location</Text>
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 13, flexWrap: 'wrap', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginHorizontal: '15%', paddingBottom: 10, textAlign: 'center' }}>
 
-                            Press find me and zoom into the map to check your delivery location, then confirm it
+                                Press find me and zoom into the map to check your delivery location, then confirm it
                                 </Text>
-                        <View style={[styles.field, { marginHorizontal: '10%', paddingLeft: 5 }]}>
-                            {/* <Text style={{}}>Adress Precision</Text> */}
-                            <TextInput
-                                onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
-                                placeholder="Adress Precision"
-                                style={styles.input}
-                            />
-                        </View>
-                        {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Please describe the building Left and rigth from your building to help us Find you</Text> */}
+                            <View style={[styles.field, { marginHorizontal: '0%',}]}>
+                                {/* <Text style={{}}>Adress Precision</Text> */}
+                                <TextInput
+                                    onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
+                                    placeholder="Adress Precision"
+                                    style={styles.input}
+                                />
+                            </View>
+                            {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Please describe the building Left and rigth from your building to help us Find you</Text> */}
 
-                        <View style={[styles.field, { marginHorizontal: '10%', paddingLeft: 5 }]}>
-                            {/* <Text style={{ marginLeft: 5 }}>Name,Surname</Text> */}
-                            <TextInput
-                                placeholder="Name,Surname"
-                                style={[styles.input,]}
-                                keyboardType={'default'}
-                                value={this.state.name}
-                                onChangeText={(e) => this.setState({ name: e })}
-                            />
-                        </View>
-                        {/* <View style={[styles.field,]}>
+                            <View style={[styles.field, { marginHorizontal: '0%', }]}>
+                                {/* <Text style={{ marginLeft: 5 }}>Name,Surname</Text> */}
+                                <TextInput
+                                    placeholder="Name,Surname"
+                                    style={[styles.input,]}
+                                    keyboardType={'default'}
+                                    value={this.state.name}
+                                    onChangeText={(e) => this.setState({ name: e })}
+                                />
+                            </View>
+                            {/* <View style={[styles.field,]}>
                         <Icon name="phone"
                             style={styles.icon} />
                         <TouchableWithoutFeedback
@@ -125,83 +135,124 @@ class FindMe extends Component {
                             keyboardType={'number-pad'}
                         />
                     </View> */}
-                        {/* <Text style={[styles.text,{fontSize:18}]}>Phone no will be if the driver have any questions</Text> */}
+                            {/* <Text style={[styles.text,{fontSize:18}]}>Phone no will be if the driver have any questions</Text> */}
 
-                        <Text style={[styles.text, {
-                            fontSize: 18, borderColor: PrimayColor, borderWidth: 2,
-                            paddingHorizontal: '13.2%', paddingVertical: '0.5%',
-                            fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
-                        }]}>
-                            Delivery Time
+                            <Text style={[styles.text, {
+                                fontSize: 18, borderColor: PrimayColor, borderWidth: 2,
+                                width: '73.2%', paddingVertical: '1%',
+                                fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
+                            }]}>
+                                Delivery Time
                         </Text>
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', padding: '2%' }}>
-                            <TextInput
-                                onFocus={() => Alert.alert('', "delivery time can be selected only between 2pm and 9 PM.Please note that the Order should be passed at least 60 min before delivery time")
-                                }
-                                style={{ fontSize: 25, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
-                                placeholder="HH"
-                                keyboardType={'number-pad'}
-                                value={this.state.hours}
-                                onChange={(e) => this.setState({ hours: e.nativeEvent.text })}
-                            />
-                            <Text style={[styles.text, { fontSize: 20 }]}>:</Text>
-                            <TextInput
-                                style={{ fontSize: 25, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
-                                placeholder="MM"
-                                keyboardType={'number-pad'}
-                                value={this.state.minutes}
-                                onChange={(e) => this.setState({ minutes: e.nativeEvent.text })}
-                            />
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', padding: '2%' }}>
+                                <DatePicker
+                                    style={{ width: '39%',margin:5,marginLeft:0 }}
+                                    date={this.state.date}
+                                    mode="date"
+                                    placeholder="select date"
+                                    format="DD-MM-YYYY"
+                                    minDate={this.state.date}
+                                    // maxDate="2016-06-01"
+                                    confirmBtnText="Confirm"
+                                    cancelBtnText="Cancel"
+                                    customStyles={{
+                                        dateIcon: {
+                                            position: 'absolute',
+                                            left: 0,
+                                            top: 4,
+                                            marginLeft: 0
+                                        },
+                                        dateInput: {
+                                            paddingLeft: 10,
+                                            borderColor:PrimayColor,
+                                            borderWidth:2
+                                        }
+                                    }}
+                                    onDateChange={(date) => { this.setState({ date: date }) }}
+                                />
+                                <TextInput
+                                    onFocus={() => Alert.alert('', "delivery time can be selected only between 2pm and 9 PM.Please note that the Order should be passed at least 60 min before delivery time")
+                                    }
+                                    style={{ textAlign:'center',fontSize: 20, borderWidth: 2, padding: 8, borderColor: PrimayColor }}
+                                    placeholder="HH"
+                                    keyboardType={'number-pad'}
+                                    value={this.state.hours}
+                                    onChange={(e) => this.setState({ hours: e.nativeEvent.text })}
+                                />
+                                <Text style={[styles.text, { fontSize: 20 }]}>:</Text>
+                                <TextInput
+                                    style={{ textAlign:'center',fontSize: 20, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
+                                    placeholder="MM"
+                                    keyboardType={'number-pad'}
+                                    value={this.state.minutes}
+                                    onChange={(e) => this.setState({ minutes: e.nativeEvent.text })}
+                                />
 
-                        </View>
-                        {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Note: delivery time can be selected only between 2pm
+                            </View>
+                            {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Note: delivery time can be selected only between 2pm
                         and 9 PM.
                         Please note that the Order should be passed at least 60 min
 before delivery time</Text> */}
-                        {/* <TouchableOpacity
+                            {/* <TouchableOpacity
                             style={styles.button}
                             onPress={this.checkTime}
                         >
                             <Text style={styles.buttonText}>Pay now</Text>
                         </TouchableOpacity> */}
-                        {this.props.total &&
-                            <>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1 }}>
-                                    <Text style={[styles.text, { flex: 0.3 }]}>Order Total</Text>
-                                    <Text style={[styles.text, { flex: 0.2, borderLeftWidth: 2, margin: 0, padding: 8 }]}>Fcfa {this.props.total}</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1 }}>
-                                    <Text style={[styles.text, { flex: 0.3 }]}>Account</Text>
-                                    <Text style={[styles.text, { flex: 0.2, borderLeftWidth: 2, margin: 0, padding: 8,fontSize:13 }]}>Fcfa10.000</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1 }}>
-                                    <Text style={[styles.text, { flex: 0.3 }]}>Cash at delivery</Text>
-                                    <Text style={[styles.text, { flex: 0.2, borderLeftWidth: 2, margin: 0, padding: 8 }]}>Fcfa {this.props.total - 10}</Text>
-                                </View>
-                            </>
-                        }
-                        <Text style={[styles.text, {
-                            fontSize: 15, borderColor: PrimayColor, borderWidth: 2,
-                            paddingHorizontal: '2%', paddingVertical: '2%',
-                            fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
-                        }]}>
-                            Select your payment method
+                            {this.props.total &&
+                                <>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, width: '73%' }}>
+                                        <Text style={[styles.text, { flex: 1 }]}>Order Total</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 2, margin: 0, padding: 8 }]}>Fcfa {this.props.total}</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, width: '73%' }}>
+                                        <Text style={[styles.text, { flex: 1 }]}>Account</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 2, margin: 0, padding: 8, fontSize: 13 }]}>Fcfa10.000</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, width: '73%' }}>
+                                        <Text style={[styles.text, { flex: 1 }]}>Cash at delivery</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 2, margin: 0, padding: 8 }]}>Fcfa {this.props.total - 10}</Text>
+                                    </View>
+                                </>
+                            }
+                            <Text style={[styles.text, {
+                                fontSize: 15, borderColor: PrimayColor, borderWidth: 2,
+                                width: '73.2%', paddingVertical: '2%',
+                                fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
+                            }]}>
+                                Select your payment method
                         </Text>
-                        <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'flex-start'}}>
-                        <Image 
-                        style={{height:60,width:100,margin:5}}
-                        source={images.momo}
-                        />
-                         <Image 
-                        style={{height:60,width:100,margin:5}}
-                        source={images.orange_money}
-                        />
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between',marginBottom:20 }}>
+                                {/* <TouchableWithoutFeedback style={{flex:0.5}}>
+                                    <Image
+                                        style={{ height: 65, width: '35%', margin: 5 }}
+                                        source={images.momo}
+                                    />
+                                </TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback style={{flex:0.5}}>
+                                    <Image
+                                        style={{ height: 65, width: '35%', margin: 5 }}
+                                        source={images.orange_money}
+                                    />
+                                </TouchableWithoutFeedback> */}
+                                <TouchableOpacity style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
+                                    <Image
+                                        style={{ flex: 1, height: 65, width: '100%', padding: 5 }}
+                                        source={images.momo}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
+                                    <Image
+                                        style={{ flex: 1, height: 65, width: '100%', padding: 5 }}
+                                        source={images.orange_money}
+                                    />
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
 
-                </TouchableWithoutFeedback>
-               </ScrollView>
+                    </TouchableWithoutFeedback>
+                </ScrollView>
             </Layout>
         )
     }
@@ -238,7 +289,7 @@ const styles = StyleSheet.create({
         height: 35,
         color: '#757575',
         paddingHorizontal: 20,
-        width: '83%'
+        width: '73.2%'
     },
     button: {
         backgroundColor: PrimayColor,
