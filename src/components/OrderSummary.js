@@ -29,9 +29,9 @@ export class OrderSummary extends Component {
                             </View>
                             {this.state.complimentary.map(item => {
                                 return (
-                                    <View key={item.name}>
+                                    <View key={item.title}>
                                         <View key={item.name} style={styles.list} >
-                                            <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.name}</Text>
+                                            <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={[styles.text,]}>Free</Text>
                                             <Text style={[styles.text,]}>1</Text>
                                             <Text style={styles.text}>0</Text>
@@ -43,7 +43,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'games').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -57,7 +57,7 @@ export class OrderSummary extends Component {
 
                             {this.props.items.filter(e => e.category === 'seesha').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -70,7 +70,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'liquors').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -83,7 +83,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -96,7 +96,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -109,7 +109,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -122,7 +122,7 @@ export class OrderSummary extends Component {
                             })}
                             {this.props.items.filter(e => e.category === 'Champagne').map(item => {
                                 return (
-                                    <View key={item.id}>
+                                    <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
                                             <Text style={styles.text}>{item.price}/Unit</Text>
@@ -192,12 +192,12 @@ export class OrderSummary extends Component {
 
                 </ScrollView>
                 {this.props.items.length ? <View style={[styles.footer]}>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10,flexGrow:2,paddingLeft:5 }]}>Total</Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:4,paddingLeft:0,paddingRight:0  }]}>fcfa {this.props.total} </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:7,paddingLeft:0,paddingRight:0  }]}>Account: fcfa 10.000</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10,flexGrow:2,paddingLeft:0 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%',flexGrow:4.5,paddingLeft:0,paddingRight:0  }]}>fcfa {this.props.total} </Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:5.5,paddingLeft:0,paddingRight:0  }]}>Account: fcfa 10.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
-                        style={[styles.button, { marginBottom: 0, height: 35, right: '20%' }]}>
+                        style={[styles.button, { marginBottom: 0, height: 35 }]}>
                         <Text style={[styles.buttonText, { alignContent: 'center' }]}>Pay Now</Text>
                     </TouchableOpacity>
                 </View> : null}
