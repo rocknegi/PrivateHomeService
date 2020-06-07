@@ -48,108 +48,138 @@ const data = [
 class Home extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-        headerShown:false,
-        title:'',
+            headerShown: false,
+            title: '',
         }
     }
     render() {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',backgroundColor:PrimayColor,height:38 }}>
-                    <Icon style={{ fontSize: 25, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()}  />
-                    <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
-                        {this.props.itemsInCart > 0 && <View style={styles.circle}>
-                            <View style={styles.count}>
-                                <Text style={{ textAlign: 'center', }}>
-                                    {this.props.itemsInCart}
-                                </Text>
-                            </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 38 }}>
+                        <Icon style={{ fontSize: 25, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
+                        <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
+                            {this.props.itemsInCart > 0 && <View style={styles.circle}>
+                                <View style={styles.count}>
+                                    <Text style={{ textAlign: 'center', }}>
+                                        {this.props.itemsInCart}
+                                    </Text>
+                                </View>
 
-                        </View>}
-                        <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
-                            // category: this.state.category
-                        })} name="shopping-cart" style={{ fontSize: 25,marginRight:5 }} />
+                            </View>}
+                            <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
+                                // category: this.state.category
+                            })} name="shopping-cart" style={{ fontSize: 25, marginRight: 5 }} />
+
+                        </View>
 
                     </View>
-
-                </View>
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                         <Image
                             source={images.logoBlack}
-                            style={[styles.logo,{alignSelf:'center'}]}
+                            style={[styles.logo, { alignSelf: 'center' }]}
                         />
-                    <Text style={{ fontSize: Platform.OS==='android'?25:16,fontFamily:Platform.OS==='android'?'HT Gelateria W01 Regular':'ComicSansMS', textAlign: 'center',marginBottom:5 }}>
-                    Vos besoins sont nos Services
+                        <Text style={{ fontSize: Platform.OS === 'android' ? 25 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 5 }}>
+                            Vos besoins sont nos Services
                     </Text>
-                        <View style={{marginHorizontal:'13%'}}>
-                        <Text style={[styles.text, {alignSelf:'flex-end',
-                        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
-                        fontStyle:'italic',
-                        fontWeight:'bold' 
-                        }]}>
-                            Our Selection
+                        <View style={{ marginHorizontal: '13%' }}>
+                            <Text style={[styles.text, {
+                                alignSelf: 'flex-end',
+                                fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
+                                fontStyle: 'italic',
+                                fontWeight: 'bold'
+                            }]}>
+                                Our Selection
                             </Text>
-                        {data.map(item => {
-                            return(
-                                <TouchableOpacity
-                                key={item.id}
-                                onPress={() => this.props.navigation.navigate('SelctedCategory', {
-                                    category: item.category,
-                                    name:item.name
-                                })}
-                                style={styles.list}>
-                                <Text style={[styles.text,{padding:10}]}>{item.name}</Text>
-                                <Icon name="arrow-right" style={styles.icon} />
-                            </TouchableOpacity>
-                            )
-                        })}
-                        <Text style={[styles.text, { fontStyle:'italic',
-                        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
-                        fontWeight:'bold',alignSelf:'flex-end' }]}>Discounted</Text>
-<LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:1.5,marginHorizontal:'2%'}}></LinearGradient>
+                            {data.map(item => {
+                                return (
+                                    <TouchableOpacity
+                                        key={item.id}
+                                        onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                            category: item.category,
+                                            name: item.name
+                                        })}
+                                        style={styles.list}>
+                                        <Text style={[styles.text, { padding: 10 }]}>{item.name}</Text>
+                                        <Icon name="arrow-right" style={styles.icon} />
+                                    </TouchableOpacity>
+                                )
+                            })}
+                            <Text style={[styles.text, {
+                                fontStyle: 'italic',
+                                fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
+                                fontWeight: 'bold', alignSelf: 'flex-end'
+                            }]}>Discounted</Text>
+                            <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1.5, marginHorizontal: '2%' }}></LinearGradient>
                         </View>
 
 
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
-                        <View style={{flex:1,justifyContent:'space-evenly',flexDirection:'row',alignItems:'flex-end',paddingTop:5}}>
-                    <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
-                    source={images.seesha}
-                    />
-<LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
-                     <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
-                    source={images.champagne}
-                    />
-                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+                            <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: 'liquors',
+                                        name: 'Liquors & wines'
+                                    })}
+                                >
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                        source={{ uri: 'https://cdn.shopify.com/s/files/1/0046/8687/2649/products/TOUR_CANTELOUP_BLANC_VIN_BLANC_MOELLEUX_75CL_1_1_600x600.jpg?v=1561551685' }}
+                                    />
+                                </TouchableOpacity>
+                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: 'Champagne',
+                                        name: 'Champagne'
+                                    })}
+                                >
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                        source={images.champagne}
+                                    />
+                                </TouchableOpacity>
 
-                     <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'1%'}}
-                    source={images.ludo}
-                    />
-                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
 
-                                        <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
-                    source={images.seesha}
-                    />
-                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: 'Whiskey12',
+                                        name: 'Whiskey 12 Years'
+                                    })}>
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                        source={{ uri: 'https://i.imgur.com/aRBEehx.jpg' }}
+                                    />
+                                </TouchableOpacity>
+                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
 
-                     <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/4,resizeMode:'contain'}}
-                    source={images.champagne}
-                    />
-                    <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']}  style={{height:100,width:1.5,marginTop:20,marginLeft:10,marginRight:10}}><Text> </Text></LinearGradient>
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: 'Whiskey18',
+                                        name: 'Whiskey 18 Years'
+                                    })}>
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                        source={{ uri: 'https://images-na.ssl-images-amazon.com/images/I/71TJyxwtgmL._AC_SL1500_.jpg' }}
+                                    />
+                                </TouchableOpacity>
+                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
 
-                     <Image 
-                    style={{height:100,width:Dimensions.get('screen').width/3.5,resizeMode:'contain',top:'1%'}}
-                    source={images.ludo}
-                    />
-                </View>
-                        </ScrollView> 
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: 'Whiskey15',
+                                        name: 'Whiskey 15 Years'
+                                    })}>
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
+                                        source={{ uri: 'https://images-na.ssl-images-amazon.com/images/I/91uKOYIrm9L._AC_SL1500_.jpg' }}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </ScrollView>
                     </ScrollView>
                 </SafeAreaView>
             </View>
@@ -158,7 +188,7 @@ class Home extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        itemsInCart:state.itemsInCart
+        itemsInCart: state.itemsInCart
     }
 }
 
@@ -175,8 +205,8 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     logo: {
-        height: Dimensions.get('window').width/3.2,
-        width:  Dimensions.get('window').width/3.2,
+        height: Dimensions.get('window').width / 3.2,
+        width: Dimensions.get('window').width / 3.2,
         resizeMode: 'contain',
         marginBottom: 10,
         // marginTop: 20
@@ -186,15 +216,15 @@ const styles = StyleSheet.create({
         // textAlign: 'center',
         padding: 5,
         // marginBottom: 10,
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     list: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 100,
-        borderWidth:2,
-        borderColor:PrimayColor,
+        borderWidth: 2,
+        borderColor: PrimayColor,
         backgroundColor: '#fafafa',
         marginBottom: 8,
         // marginHorizontal: '13%',
