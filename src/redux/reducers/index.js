@@ -54,7 +54,9 @@ export default addToCartReducer = (state = initialState, action) => {
                             }
                         }
                         else{
-                            const prices = action.item.map(e=>e.price*e.quantity)
+                            const tItem = action.item.filter(e=>e.price>0)
+                            const prices = tItem.map(e=>e.price*e.quantity)
+                            console.log(action.item)
                         let total = prices.reduce((a,b)=>{
                             return a+b
                         },0)

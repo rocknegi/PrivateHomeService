@@ -41,7 +41,7 @@ export class OrderSummary extends Component {
 
                                 )
                             })}
-                            {this.props.items.filter(e => e.category === 'games').map(item => {
+                            {this.props.items.filter(e => e.category === 'Social').map(item => {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
@@ -55,7 +55,7 @@ export class OrderSummary extends Component {
                                 )
                             })}
 
-                            {this.props.items.filter(e => e.category === 'seesha').map(item => {
+                            {this.props.items.filter(e => e.category === 'Seesha').map(item => {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >

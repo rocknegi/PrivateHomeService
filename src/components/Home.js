@@ -10,7 +10,7 @@ import images from '../assets/images';
 const data = [
     {
         id: 1,
-        name: 'Liquors & wines',
+        name: 'Pack selection',
         category: 'liquors'
     },
     {

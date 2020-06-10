@@ -20,6 +20,8 @@ class SocialGames extends Component {
     }
 
     handleClick = (item, category) => {
+        // const tItem = item.filter(e=>e.price>0)
+        // console.log(tItem)
         this.props.addToCart(item, category);
         this.props.toggle()
     }

@@ -51,7 +51,7 @@ Seesha.get().then(snapshot => {
 
 Social.get().then(snapshot=>{
     snapshot.forEach(doc=>{
-        items3.push(({ ...doc.data(), id: doc.id }))
+        items3.push(({ ...doc.data(), id: doc.id,quantity:1 }))
     })
 })
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';

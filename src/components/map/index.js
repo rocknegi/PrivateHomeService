@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform,TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform,TouchableOpacity, View } from 'react-native'
 import Layout from '../theme/Layout'
 import MapView from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation';
@@ -88,6 +88,18 @@ export default class Map extends Component {
                         onDragEnd={(e) => this.setMarkerLocation(e.nativeEvent.coordinate)}
                     />
                 </MapView>
+                <View style={{
+                    position:'absolute',
+                    top:0,
+                    backgroundColor:PrimayColor,
+                    alignItems:'center',
+                    padding:5,
+                    alignSelf:'center'
+                }}>
+                    <Text
+                    style={{fontSize:13,textAlign:'center',color:'#fafafa'}}
+                    >Drag the marker to change the location if you don't want to deliver at your current location</Text>
+                </View>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText} onPress={this.confirmLocation}>Confirm Location</Text>
                 </TouchableOpacity>

@@ -29,7 +29,7 @@ class Cart extends Component {
             snapshot.forEach(doc => {
                 complimentary.push(({ ...doc.data(), id: doc.id }))
             });
-            console.log(JSON.stringify(complimentary,undefined,2))
+            // console.log(JSON.stringify(complimentary,undefined,2))
             this.setState({complimentary})
         });
 
@@ -38,7 +38,7 @@ class Cart extends Component {
         });
         this.setState({ seesha: this.props.items.filter(e => e.category === 'seesha') })
         this.setState({ liquors: this.props.items.filter(e => e.category === 'liquors') }, () => {
-            console.log(this.state.liquors)
+            // console.log(this.state.liquors)
         })
     }
 
@@ -97,8 +97,8 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'games') && <Text style={styles.textHeading}>Social games</Text>}
-                                {this.props.items.filter(e => e.category === 'games').map(item => {
+                                {this.props.items.find(e => e.category === 'Social') && <Text style={styles.textHeading}>Social games</Text>}
+                                {this.props.items.filter(e => e.category === 'Social').map(item => {
                                     return (
                                         <View>
                                             <View style={styles.list} >
@@ -119,8 +119,8 @@ class Cart extends Component {
                                 })}
                             </View>
                             <View>
-                                {this.props.items.find(e => e.category === 'seesha') && <Text style={styles.textHeading}>Shisha</Text>}
-                                {this.state.seesha && this.props.items.filter(e => e.category === 'seesha').map((item, i) => {
+                                {this.props.items.find(e => e.category === 'Seesha') && <Text style={styles.textHeading}>Shisha</Text>}
+                                {this.state.seesha && this.props.items.filter(e => e.category === 'Seesha').map((item, i) => {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
