@@ -298,6 +298,7 @@ class Cart extends Component {
                                 scrollHorizontal={true}
                                 animationIn="slideInUp"
                                 onBackdropPress={() => this.toggleModal()}
+                                style={{marginTop:10}}
                             >
                                 <GlassAndServices toggle={this.toggleModal} increaseTotal={this.increaseTotal} data={this.props.items} />
                             </Modal>
@@ -308,7 +309,7 @@ class Cart extends Component {
                             <Text style={[styles.text, { fontSize: 13,flex:0.6,left:'-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0, height: 35,width:'25%',left:'-25%' }]}>
+                            style={[styles.button, { marginBottom: 0,width:'25%',left:'-25%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>Buy Now</Text>
                         </TouchableOpacity>
                     </View> : null}
@@ -372,7 +373,7 @@ const styles = StyleSheet.create({
         backgroundColor: PrimayColor,
         borderRadius: 100,
         // marginHorizontal: '35%',
-        height: 35,
+        // height: 35,
         justifyContent: 'center',
         marginBottom: 10
     },

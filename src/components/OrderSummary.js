@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 15,
-        padding: 10,
+        padding: 8,
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
     },
     modal: {

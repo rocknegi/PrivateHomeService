@@ -77,7 +77,7 @@ class FindMe extends Component {
             <Layout>
                 <ScrollView>
                     <Modal
-                        // style={{ paddingTop: '50%' }}
+                        style={{ paddingTop: '5%' }}
                         isVisible={this.state.isModalVisible}
                     >
                         <Map saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
         backgroundColor: PrimayColor,
         borderRadius: 100,
         // margin: 10,
-        height: 35,
+        // height: 35,
         justifyContent: 'center',
         marginBottom: 20
     },
