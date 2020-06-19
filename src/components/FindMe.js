@@ -28,15 +28,15 @@ class FindMe extends Component {
             latitude: 0,
             longitude: 0,
         },
-        date:''
+        date: ''
     }
-    componentDidMount(){
-        const today = new Date(); 
-        const dd = today.getDate(); 
-        const mm = today.getMonth()+1; 
+    componentDidMount() {
+        const today = new Date();
+        const dd = today.getDate();
+        const mm = today.getMonth() + 1;
         const yy = today.getFullYear()
         this.setState({
-            date:dd+'-'+mm+'-'+yy
+            date: dd + '-' + mm + '-' + yy
         })
     }
     toggleModal = () => {
@@ -79,6 +79,7 @@ class FindMe extends Component {
                     <Modal
                         style={{ paddingTop: '5%' }}
                         isVisible={this.state.isModalVisible}
+                        useNativeDriver={true}
                     >
                         <Map saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
                     </Modal>
@@ -102,7 +103,7 @@ class FindMe extends Component {
 
                                 Press find me and zoom into the map to check your delivery location, then confirm it
                                 </Text>
-                            <View style={[styles.field, { marginHorizontal: '0%',}]}>
+                            <View style={[styles.field, { marginHorizontal: '0%', }]}>
                                 {/* <Text style={{}}>Adress Precision</Text> */}
                                 <TextInput
                                     onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
@@ -147,7 +148,7 @@ class FindMe extends Component {
 
                             <View style={{ flexDirection: 'row', justifyContent: 'center', padding: '2%' }}>
                                 <DatePicker
-                                    style={{ width: '39%',margin:5,marginLeft:0 }}
+                                    style={{ width: '39%', margin: 5, marginLeft: 0 }}
                                     date={this.state.date}
                                     mode="date"
                                     placeholder="select date"
@@ -165,8 +166,8 @@ class FindMe extends Component {
                                         },
                                         dateInput: {
                                             paddingLeft: 10,
-                                            borderColor:PrimayColor,
-                                            borderWidth:2
+                                            borderColor: PrimayColor,
+                                            borderWidth: 2
                                         }
                                     }}
                                     onDateChange={(date) => { this.setState({ date: date }) }}
@@ -174,7 +175,7 @@ class FindMe extends Component {
                                 <TextInput
                                     onFocus={() => Alert.alert('', "delivery time can be selected only between 2pm and 9 PM.Please note that the Order should be passed at least 60 min before delivery time")
                                     }
-                                    style={{ textAlign:'center',fontSize: 20, borderWidth: 2, padding: 8, borderColor: PrimayColor }}
+                                    style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 8, borderColor: PrimayColor }}
                                     placeholder="HH"
                                     keyboardType={'number-pad'}
                                     value={this.state.hours}
@@ -182,7 +183,7 @@ class FindMe extends Component {
                                 />
                                 <Text style={[styles.text, { fontSize: 20 }]}>:</Text>
                                 <TextInput
-                                    style={{ textAlign:'center',fontSize: 20, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
+                                    style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
                                     placeholder="MM"
                                     keyboardType={'number-pad'}
                                     value={this.state.minutes}
@@ -223,7 +224,7 @@ before delivery time</Text> */}
                             }]}>
                                 Select your payment method
                         </Text>
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between',marginBottom:20 }}>
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
                                 {/* <TouchableWithoutFeedback style={{flex:0.5}}>
                                     <Image
                                         style={{ height: 65, width: '35%', margin: 5 }}

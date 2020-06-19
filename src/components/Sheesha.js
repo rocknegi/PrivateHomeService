@@ -14,7 +14,7 @@ class Seesha extends Component {
         total: 0,
     }
     componentDidMount() {
-            this.props.fetchData('seesha')
+        this.props.fetchData('seesha')
     }
 
     calculate = (item) => {
@@ -26,33 +26,33 @@ class Seesha extends Component {
     }
     handleClick = (item, category) => {
 
-            this.props.addToCart(this.state.selected, category);
-            this.setState({selected:[]})
-            this.props.toggle()
+        this.props.addToCart(this.state.selected, category);
+        this.setState({ selected: [] })
+        this.props.toggle()
     }
     handleAddQuantity = (item) => {
-            if (this.state.selected.find(e => e.id === item.id)) {
-                item.quantity++;
-                this.setState((state) => ({
-                    selected: [...state.selected],
-                    total: state.total + item.price
-                }))
-            }
-            else {
-                item.quantity++;
-                this.setState((state) => ({
-                    selected: [...state.selected, item],
-                    total: state.total + item.price
-                }))
-            }
-        
+        if (this.state.selected.find(e => e.id === item.id)) {
+            item.quantity++;
+            this.setState((state) => ({
+                selected: [...state.selected],
+                total: state.total + item.price
+            }))
+        }
+        else {
+            item.quantity++;
+            this.setState((state) => ({
+                selected: [...state.selected, item],
+                total: state.total + item.price
+            }))
+        }
+
         // this.setState({selected:item})
         this.calculate(item)
 
     }
     handleSubtractQuantity = (item) => {
         if (item.quantity > 0) {
-            item.quantity --
+            item.quantity--
             this.setState((state) => ({
                 selected: [...state.selected, item],
                 total: state.total - item.price
@@ -61,8 +61,8 @@ class Seesha extends Component {
         // this.props.subtractQuantity(id);
     }
 
-    toggleModal = (modal)=>{
-        this.setState({[modal]:!this.state[modal]})
+    toggleModal = (modal) => {
+        this.setState({ [modal]: !this.state[modal] })
     }
 
     notiifcation = () => <View style={styles.circle}>
@@ -72,44 +72,49 @@ class Seesha extends Component {
         // alert(JSON.stringify(this.props.items))
         return (
             <Layout>
-                
+
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {this.props.items && <View style={{ flex: 1 }}>
-                                 <View style={styles.container}>
-                                    {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                        <View style={styles.container}>
+                            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                             <Text style={[styles.text, { flex: 1, }]}>Brand Name{"\n"}
                                              Some Description loreum ipsom loreum ipsom loreum ipsom
                             </Text>
 
                                     </View> */}
 
-                                    <View style={styles.options}>
-                                        <Text style={[styles.text, { textAlign:'center',fontSize:18, marginTop: '2%',flex:0 }]}>Select your favourite taste</Text>
-                                    </View>
-                                    {this.props.items.map(item => {
-                                        return (
-                                            <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',marginTop:15 }}>
-                                                <Image source={{uri:item.image}} style={styles.logo}/>
-                                                <Text style={{ fontSize: 14,flex:0.8,flexWrap:'wrap',textAlign:'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS'}}>
-                                                   <Text style={{fontSize: 18}}>{item.title}</Text> 
-                                                {"\n"}
+                            <View style={styles.options}>
+                                <Text style={[styles.text, { textAlign: 'center', fontSize: 18, marginTop: '2%', flex: 0 }]}>Select your favourite taste</Text>
+                            </View>
+                            {this.props.items.map(item => {
+                                return (
+                                    <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 15 }}>
+                                        <Image source={{ uri: item.image }} style={styles.logo} />
+                                        <Text style={{ fontSize: 14, flex: 0.8, flexWrap: 'wrap', textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>
+                                            <Text style={{ fontSize: 18 }}>{item.title}</Text>
+                                            {"\n"}
                                                 FCFA {item.price}/Unit
                                                 {"\n"}
-                                                {item.desc}
-                                                </Text>
-                                                <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',fontSize: 20,marginBottom:10 }}>{item.quantity}</Text>
-                                                <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
-                                            </View>
-                                        )
-                                    })}
-                                </View>
-                                <TouchableOpacity
-                                    onPress={() => this.handleClick(this.props.items, 'seesha')}
-                                    style={[styles.button,{marginTop:'10%'}]}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>   
-                
+                                            {item.desc}
+                                        </Text>
+                                        <Icon onPress={() => this.handleSubtractQuantity(item)} name="minus" style={styles.icon} />
+                                        <Text style={{ fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', fontSize: 20, marginBottom: 10 }}>{item.quantity}</Text>
+                                        <Icon onPress={() => this.handleAddQuantity(item)} name="plus" style={styles.icon} />
+                                    </View>
+                                )
+                            })}
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <TouchableOpacity
+                                onPress={this.props.toggle}
+                                style={[styles.button, { marginTop: '10%', width: '30%' }]}><Text style={styles.buttonText}>Close</Text></TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.handleClick(this.props.items, 'seesha')}
+                                style={[styles.button, { marginTop: '10%', }]}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                        </View>
+
                     </View>
-    }
+                    }
                 </ScrollView>
             </Layout>
         )
@@ -121,7 +126,7 @@ const mapStateToProps = (state) => {
         items: state.items,
         total: state.total,
         added: state.addedItems,
-        itemsInCart:state.itemsInCart
+        itemsInCart: state.itemsInCart
     }
 }
 
@@ -129,7 +134,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         addToCart: (id, category) => { dispatch(addToCart(id, category)) },
-        addQuantity: (item, ) => { dispatch(addQuantity(item)) },
+        addQuantity: (item,) => { dispatch(addQuantity(item)) },
         subtractQuantity: (id) => { dispatch(subQuantity(id)) },
         removeItem: (id) => { dispatch(removeFromCart(id)) },
         fetchData: (category) => { dispatch(fetchData(category)) }
@@ -156,13 +161,13 @@ const styles = StyleSheet.create({
         height: 55,
         width: 55,
         resizeMode: 'contain',
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     text: {
         flex: 1,
         fontSize: 15,
         padding: 10,
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
         // flexWrap: 'nowrap',
     },
     icon: {
@@ -178,8 +183,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         // marginHorizontal: '25%',
         // margin: '5%'
-        alignSelf:'center',
-        margin:2
+        alignSelf: 'center',
+        margin: 2
     },
     buttonText: {
         textAlign: 'center',
@@ -187,7 +192,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
         padding: 10,
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     circle: {
         width: 20,
@@ -210,8 +215,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         borderRadius: 6,
         marginBottom: 10,
-        borderWidth:2,
-        borderColor:PrimayColor
+        borderWidth: 2,
+        borderColor: PrimayColor
     }
 })
 

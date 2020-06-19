@@ -311,6 +311,7 @@ class Cart extends Component {
                                 animationIn="slideInUp"
                                 onBackdropPress={() => this.toggleModal()}
                                 style={{ marginTop: 10 }}
+                                useNativeDriver={true}
                             >
                                 <GlassAndServices toggle={this.toggleModal} increaseTotal={this.increaseTotal} data={this.props.items} />
                             </Modal>

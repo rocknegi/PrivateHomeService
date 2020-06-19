@@ -208,12 +208,14 @@ class SelectedCategory extends Component {
                         <Modal isVisible={this.state.seeMoreModal}
                             onBackdropPress={() => this.toggleModal('seeMoreModal')}
                             style={{ flex: 1, marginTop: '80%', backgroundColor: '#fafafa', padding: 10 }}
+                            useNativeDriver={true}
                         >
                             <View></View>
                         </Modal>
                         <Modal isVisible={this.state.seeshaModal}
                             onBackdropPress={this.handleSeeshaModal}
                             style={{ flex: 1, marginTop: '20%', backgroundColor: '#fafafa', padding: 10 }}
+                            useNativeDriver={true}
                         >
                             <Sheesha toggle={this.handleSeeshaModal} />
                         </Modal>
@@ -223,6 +225,7 @@ class SelectedCategory extends Component {
                             isVisible={this.state.socialGamesModal}
                             onBackdropPress={this.handleSocialGamesModal}
                             style={{ flex: 1, marginTop: '20%', backgroundColor: '#fafafa', padding: 10 }}
+                            useNativeDriver={true}
                         >
                             <SocialGames toggle={this.handleSocialGamesModal} />
                         </Modal>

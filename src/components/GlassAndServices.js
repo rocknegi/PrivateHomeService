@@ -248,11 +248,18 @@ export default class GlassAndServices extends Component {
                             <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
                             <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hotess</Text>
                         </View>
-                        <TouchableOpacity
-                            onPress={this.sendData}
-                            style={[styles.button, { marginTop: 10, width: '35%', margin: '5%', alignSelf: 'flex-end' }]}>
-                            <Text style={styles.buttonText}>Buy Now</Text>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <TouchableOpacity
+                                onPress={this.props.toggle}
+                                style={[styles.button, { marginTop: 10, width: '30%' }]}>
+                                <Text style={styles.buttonText}>Close</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={this.sendData}
+                                style={[styles.button, { marginTop: 10, width: '30%' }]}>
+                                <Text style={styles.buttonText}>Buy Now</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
             </SafeAreaView>
