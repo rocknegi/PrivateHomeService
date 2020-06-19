@@ -20,7 +20,9 @@ class Cart extends Component {
         res: null,
         seesha: null,
         liquors: null,
-        complimentary: []
+        complimentary: [],
+        imageModal: false,
+        image: ''
     }
     static navigationOptions = ({ navigation }, props) => {
         return {
@@ -53,6 +55,10 @@ class Cart extends Component {
         this.setState({ isModal: !this.state.isModal, })
     }
 
+    toggleImageModal = () => {
+        this.setState({ imageModal: !this.state.imageModal, })
+    }
+
 
     handleRemove = (id) => {
         this.props.removeItem(id);
@@ -77,6 +83,11 @@ class Cart extends Component {
         });
         this.toggleModal()
     }
+
+    setImage = (image) => {
+        this.setState({ image: image })
+        this.toggleImageModal()
+    }
     render() {
         return (
             <Layout>
@@ -93,16 +104,18 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={[styles.list, { marginHorizontal: '0%' }]}>
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={{
-                                                    height: 50,
-                                                    width: 50,
-                                                    resizeMode: 'contain',
-                                                    marginTop: '5%'
-                                                }}
-                                            />
-                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%', alignSelf: 'center', top: 8 }]}>{item.title}</Text>
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={{
+                                                        height: 70,
+                                                        width: 70,
+                                                        resizeMode: 'contain',
+                                                        marginTop: '5%'
+                                                    }}
+                                                />
+                                            </TouchableOpacity>
+                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%', alignSelf: 'center', top: 8, fontSize: 15 }]}>{item.title}</Text>
                                         </View>
                                         {i < this.state.complimentary.length - 1 && <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '15%' }}></View>}
                                     </View>
@@ -314,6 +327,23 @@ class Cart extends Component {
                                 useNativeDriver={true}
                             >
                                 <GlassAndServices toggle={this.toggleModal} increaseTotal={this.increaseTotal} data={this.props.items} />
+                            </Modal>
+
+                            <Modal
+                                isVisible={this.state.imageModal}
+                                scrollHorizontal={true}
+                                animationIn="slideInUp"
+                                onBackdropPress={this.toggleImageModal}
+                                style={{ marginTop: 10 }}
+                                useNativeDriver={true}
+                            >
+                                <Image
+                                    source={{ uri: this.state.image }}
+                                    style={{ height: '60%', resizeMode: 'contain' }}
+                                />
+                                <TouchableOpacity style={styles.button} onPress={this.toggleImageModal}>
+                                    <Text style={styles.buttonText}>Close</Text>
+                                </TouchableOpacity>
                             </Modal>
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
