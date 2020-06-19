@@ -103,6 +103,8 @@ class Seesha extends Component {
                                     </View>
                                 )
                             })}
+
+                            <Text style={{ marginTop: 20, fontSize: 12 }}>*Only one shisha will be delivered</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity

@@ -42,7 +42,23 @@ export default addToCartReducer = (state = initialState, action) => {
                 }
             }
             else
-            // if(action.category==='seesha')
+                if (action.category === 'seesha') {
+                    const tItem = action.item.filter(e => e.price > 0)
+                    const prices = tItem.map(e => e.price * e.quantity)
+                    console.log(action.item)
+                    let total = prices.reduce((a, b) => {
+                        return a + b
+                    }, 0)
+                    let newTotal = total + state.total;
+                    let totalItems = 0
+                    action.item.forEach(e => totalItems += e.quantity)
+                    return {
+                        ...state,
+                        addedItems: [...state.addedItems, ...action.item],
+                        total: newTotal,
+                        itemsInCart: state.itemsInCart + totalItems
+                    }
+                }
             {
                 if (action.category === 'service') {
                     // console.log(JSON.stringify(action.item))

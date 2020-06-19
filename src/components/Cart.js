@@ -145,11 +145,11 @@ class Cart extends Component {
                                                 <Text style={{ fontSize: 18 }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id, 'seesha')} name="plus" style={styles.icon} />
                                             </View>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                 <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
                                                     <Text style={styles.buttonText}>Remove</Text>
                                                 </TouchableOpacity>
-                                            </View>
+                                            </View> */}
                                             {i < this.state.seesha.length - 1 && <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '15%' }}></View>}
 
                                         </View>
