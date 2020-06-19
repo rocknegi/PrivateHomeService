@@ -3,7 +3,7 @@ import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_O
 export const initialState = {
     addedItems: [],
     total: 0,
-    itemsInCart:0
+    itemsInCart: 0
 }
 
 export default addToCartReducer = (state = initialState, action) => {
@@ -14,7 +14,7 @@ export default addToCartReducer = (state = initialState, action) => {
             return { ...state, items: action.payload.items }
         }
         case ADD_TO_CART: {
-            if (action.category !== 'seesha'&&action.category !== 'games'&&action.category !== 'service') {
+            if (action.category !== 'seesha' && action.category !== 'games' && action.category !== 'service') {
                 let addedItem = state.items.find(item => item.id === action.item.id)
                 let existed_item = state.addedItems.find(item => action.item.id === item.id)
                 if (existed_item) {
@@ -24,7 +24,7 @@ export default addToCartReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         total: state.total + addedItem.price,
-                        itemsInCart : state.itemsInCart + 1
+                        itemsInCart: state.itemsInCart + 1
                     }
                 }
                 else {
@@ -36,82 +36,77 @@ export default addToCartReducer = (state = initialState, action) => {
                         ...state,
                         addedItems: [...state.addedItems, addedItem],
                         total: newTotal,
-                        itemsInCart : state.itemsInCart + 1
+                        itemsInCart: state.itemsInCart + 1
                     }
 
                 }
             }
-            else  
-                    // if(action.category==='seesha')
-                    {
-                        if(action.category==='service'){
-                            // console.log(JSON.stringify(action.item))
-                            let newTotal = action.item.price+state.total;
-                            return {
-                                ...state,
-                                addedItems: [...state.addedItems, action.item],
-                                total:newTotal,
-                            }
-                        }
-                        else{
-                            const tItem = action.item.filter(e=>e.price>0)
-                            const prices = tItem.map(e=>e.price*e.quantity)
-                            console.log(action.item)
-                        let total = prices.reduce((a,b)=>{
-                            return a+b
-                        },0)
-                        let newTotal = total+state.total;
-                        let totalItems = 0
-                        action.item.forEach(e=>totalItems += e.quantity)
-                        return {
-                            ...state,
-                            addedItems: [...state.addedItems, ...action.item],
-                            total:newTotal,
-                            itemsInCart : state.itemsInCart + totalItems
-                        }
-                        }
-                    }
-                    // else{
-                    //     alert(JSON.stringify(action.item))
-                    //     return {
-                    //         ...state,
-                    //         addedItems: [...state.addedItems, ...action.item],
-                    //         // total:newTotal,
-                    //         // itemsInCart : state.itemsInCart + totalItems
-                    //     }
-                    // }
-            
-        }
-        case REMOVE_ITEM: {
-            if(action.id==='service'){
-                let itemToRemove = state.addedItems.find(item=>action.id===item.id)
-                let new_items = state.addedItems.filter(item => action.id !== item.id)
-                if(itemToRemove){
-                    let newTotal = state.total - itemToRemove.price 
-                return {
-                    ...state,
-                     addedItems: new_items,
-                    total: newTotal,
-                }
-                }
-                else{
+            else
+            // if(action.category==='seesha')
+            {
+                if (action.category === 'service') {
+                    // console.log(JSON.stringify(action.item))
+                    let newTotal = action.item.price + state.total;
                     return {
                         ...state,
-                         addedItems: new_items,
+                        addedItems: [...state.addedItems, action.item],
+                        total: newTotal,
+                    }
+                }
+                else {
+                    let addedItem = state.items.find(item => item.title === action.item)
+                    console.log(addedItem)
+                    let newTotal = addedItem.price + state.total;
+
+                    return {
+                        ...state,
+                        addedItems: [...state.addedItems, addedItem],
+                        total: newTotal,
+                        itemsInCart: state.itemsInCart + 1
                     }
                 }
             }
-            else{
+            // else{
+            //     alert(JSON.stringify(action.item))
+            //     return {
+            //         ...state,
+            //         addedItems: [...state.addedItems, ...action.item],
+            //         // total:newTotal,
+            //         // itemsInCart : state.itemsInCart + totalItems
+            //     }
+            // }
+
+        }
+        case REMOVE_ITEM: {
+            if (action.id === 'service') {
                 let itemToRemove = state.addedItems.find(item => action.id === item.id)
                 let new_items = state.addedItems.filter(item => action.id !== item.id)
-    
+                if (itemToRemove) {
+                    let newTotal = state.total - itemToRemove.price
+                    return {
+                        ...state,
+                        addedItems: new_items,
+                        total: newTotal,
+                    }
+                }
+                else {
+                    return {
+                        ...state,
+                        addedItems: new_items,
+                    }
+                }
+            }
+            else {
+                let itemToRemove = state.addedItems.find(item => action.id === item.id)
+                let new_items = state.addedItems.filter(item => action.id !== item.id)
+
                 let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
                 // console.log(itemToRemove)
                 return {
                     ...state,
                     addedItems: new_items,
                     total: newTotal,
-                    itemsInCart : state.itemsInCart - itemToRemove.quantity
+                    itemsInCart: state.itemsInCart - itemToRemove.quantity
                 }
             }
         }
@@ -123,7 +118,7 @@ export default addToCartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 total: newTotal,
-                itemsInCart : state.itemsInCart + 1
+                itemsInCart: state.itemsInCart + 1
             }
         }
         case SUB_QUANTITY: {
@@ -137,7 +132,7 @@ export default addToCartReducer = (state = initialState, action) => {
                         ...state,
                         addedItems: new_items,
                         total: newTotal,
-                        itemsInCart : state.itemsInCart - 1
+                        itemsInCart: state.itemsInCart - 1
                     }
                 }
                 else {
@@ -146,11 +141,11 @@ export default addToCartReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         total: newTotal,
-                        itemsInCart : state.itemsInCart - 1
+                        itemsInCart: state.itemsInCart - 1
                     }
                 }
             }
-            else{
+            else {
                 let addedItem = state.addedItems.find(item => item.id === action.id)
                 if (addedItem.quantity === 0) {
                     // addedItem.quantity -= 1

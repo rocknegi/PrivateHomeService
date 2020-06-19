@@ -23,7 +23,7 @@ class SocialGames extends Component {
         // const tItem = item.filter(e=>e.price>0)
         // console.log(tItem)
         this.props.addToCart(item, category);
-        this.props.toggle()
+        // this.props.toggle()
     }
 
 
@@ -34,23 +34,24 @@ class SocialGames extends Component {
                     {this.props.items && <View style={{ flex: 1 }}>
                         {this.props.items.map(item => {
                             return (<View style={styles.container} key={item.id}>
-                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',marginBottom:'5%' }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: '5%' }}>
                                     <Image
                                         source={{ uri: item.image }}
-                                        style={{ height: 55, width: 55,alignSelf:'center' }}
+                                        style={{ height: 55, width: 55, alignSelf: 'center' }}
                                     />
-                                    <Text style={[styles.text, {}]}>{item.title}{"\n"}
-                                            {item.desc} {"\n"}
-                                            {item.price!==0&& <Text style={[styles.text, { flex: 0.5, alignSelf: 'center' }]}>FCFA {item.price}</Text>}
-                                            </Text>
-                                   {item.price===0?
-                                    <Text style={[styles.text, { flex: 0, alignSelf: 'center' }]}>Free</Text>
-                                : 
-                                <>
-                                <TouchableOpacity
-                                    onPress={() => this.handleClick(this.props.items, 'games')}
-                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
-                                    </>
+                                    <Text style={[styles.text, { textAlign: 'center', flex: 0.8, flexWrap: 'wrap', fontWeight: 'bold' }]}>{item.title}{"\n"}
+                                        <Text style={{ fontWeight: 'normal' }}> {item.desc} {"\n"}</Text>
+                                        {item.price !== 0 && <Text style={[styles.text, { flex: 0.5, alignSelf: 'center' }]}>FCFA {item.price}</Text>}
+                                    </Text>
+                                    {item.price === 0 ?
+                                        <TouchableOpacity
+                                            style={[styles.button, { backgroundColor: '#fafafa' }]}><Text style={[styles.buttonText, { color: '#000' }]}>         Free</Text></TouchableOpacity>
+                                        :
+                                        <>
+                                            <TouchableOpacity
+                                                onPress={() => this.handleClick(item.title, 'games')}
+                                                style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                                        </>
                                     }
                                 </View>
 
@@ -58,8 +59,16 @@ class SocialGames extends Component {
 
                             </View>)
                         })}
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <TouchableOpacity
+                                onPress={this.props.toggle}
+                                style={[styles.button, { marginTop: 10, width: '30%' }]}>
+                                <Text style={styles.buttonText}>Close</Text>
+                            </TouchableOpacity>
 
+                        </View>
                     </View>
+
 
                     }
 
@@ -108,7 +117,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 10,
         flexWrap: 'wrap',
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     icon: {
         fontSize: 25,
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
         padding: 10,
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     circle: {
         width: 20,
