@@ -16,7 +16,8 @@ export default class GlassAndServices extends Component {
         champagneBottles: 0,
         error: null,
         maxGlass: 12,
-        currentRate:2500,
+        currentRate: 2500,
+        glassesVisible: true,
         item: {
             wineGlass: 0,
             whiskeyGlass: 0,
@@ -26,7 +27,7 @@ export default class GlassAndServices extends Component {
             category: 'service',
             id: 'service',
             service: 1,
-            currentRate:0
+            currentRate: 0
         },
         obj: {},
     }
@@ -35,37 +36,40 @@ export default class GlassAndServices extends Component {
         let wineBottles = this.props.data.filter(item => item.category === 'liquors')
         let whiskeyBottles = this.props.data.filter(item => item.category === 'Whiskey12' || item.category === 'Whiskey15' || item.category === 'Whiskey18')
         let champagneBottles = this.props.data.filter(item => item.category === 'Champagne')
+        if (wineBottles.length > 0 && whiskeyBottles.length === 0 && champagneBottles.length === 0)
+            this.setState({ glassesVisible: false })
+        else {
+            if (wineBottles.length > 0) {
+                let totalBottles = 0;
+                wineBottles.forEach(item => totalBottles += item.quantity)
+                this.setState({
+                    wineBottles: totalBottles, item: {
+                        ...this.state.item,
+                        wineGlass: ++this.state.item.wineGlass
+                    }
+                })
+            }
+            if (whiskeyBottles.length > 0) {
+                let totalBottles = 0;
+                whiskeyBottles.forEach(item => totalBottles += item.quantity)
+                this.setState({
+                    whiskeyBottles: totalBottles, item: {
+                        ...this.state.item,
+                        whiskeyGlass: ++this.state.item.whiskeyGlass
+                    }
+                })
+            }
 
-        if (wineBottles.length > 0) {
-            let totalBottles = 0;
-            wineBottles.forEach(item => totalBottles += item.quantity)
-            this.setState({
-                wineBottles: totalBottles, item: {
-                    ...this.state.item,
-                    wineGlass: ++this.state.item.wineGlass
-                }
-            })
-        }
-        if (whiskeyBottles.length > 0) {
-            let totalBottles = 0;
-            whiskeyBottles.forEach(item => totalBottles += item.quantity)
-            this.setState({
-                whiskeyBottles: totalBottles, item: {
-                    ...this.state.item,
-                    whiskeyGlass: ++this.state.item.whiskeyGlass
-                }
-            })
-        }
-
-        if (champagneBottles.length > 0) {
-            let totalBottles = 0;
-            champagneBottles.forEach(item => totalBottles += item.quantity)
-            this.setState({
-                champagneBottles: totalBottles, item: {
-                    ...this.state.item,
-                    champagneGlass: ++this.state.item.champagneGlass
-                }
-            })
+            if (champagneBottles.length > 0) {
+                let totalBottles = 0;
+                champagneBottles.forEach(item => totalBottles += item.quantity)
+                this.setState({
+                    champagneBottles: totalBottles, item: {
+                        ...this.state.item,
+                        champagneGlass: ++this.state.item.champagneGlass
+                    }
+                })
+            }
         }
     }
 
@@ -94,23 +98,23 @@ export default class GlassAndServices extends Component {
                     [item]: this.state.item[item] - 1
                 }
             },
-            ()=>{
-                let totalGlass = this.state.item.wineGlass + this.state.item.whiskeyGlass + this.state.item.champagneGlass
-                if(totalGlass%12===0
-                    ){
-                        if(this.state.currentRate===5000)this.setState({currentRate:this.state.currentRate-2500})
-                        else this.setState({currentRate:this.state.currentRate-2500})
+                () => {
+                    let totalGlass = this.state.item.wineGlass + this.state.item.whiskeyGlass + this.state.item.champagneGlass
+                    if (totalGlass % 12 === 0
+                    ) {
+                        if (this.state.currentRate === 5000) this.setState({ currentRate: this.state.currentRate - 2500 })
+                        else this.setState({ currentRate: this.state.currentRate - 2500 })
                         this.setState({
                             item: {
                                 ...this.state.item,
                                 hotess: this.state.item.hotess - 1,
                             }
                         },
-                        // ()=>this.setState({currentRate:this.state.currentRate-(2500*this.state.item.hotess)})
+                            // ()=>this.setState({currentRate:this.state.currentRate-(2500*this.state.item.hotess)})
                         )
                         this.setState({ maxGlass: this.state.maxGlass - 12 })
+                    }
                 }
-            }
             )
         }
     }
@@ -148,9 +152,9 @@ export default class GlassAndServices extends Component {
                     ...this.state.item,
                     hotess: this.state.item.hotess + 1,
                 },
-            },()=>{
-                if(this.state.currentRate===2500)this.setState({ currentRate : this.state.currentRate * this.state.item.hotess})
-                else this.setState({ currentRate : this.state.currentRate + 2500})
+            }, () => {
+                if (this.state.currentRate === 2500) this.setState({ currentRate: this.state.currentRate * this.state.item.hotess })
+                else this.setState({ currentRate: this.state.currentRate + 2500 })
             }
             )
             this.setState({ maxGlass: this.state.maxGlass + 12 },
@@ -159,19 +163,20 @@ export default class GlassAndServices extends Component {
             // if(ok==='ok')this.props.toggle()
         }
         else return
-            // if(ok==='ok')this.props.increaseTotal(this.state.item)
-            // if(ok==='ok')this.props.toggle()
+        // if(ok==='ok')this.props.increaseTotal(this.state.item)
+        // if(ok==='ok')this.props.toggle()
         // }
 
     }
     sendData = () => {
         // this.handleOk();
         this.setState({
-            item:{
-            ...this.state.item,
-            currentRate:this.state.currentRate
-        }},()=>this.props.increaseTotal(this.state.item))
-        
+            item: {
+                ...this.state.item,
+                currentRate: this.state.currentRate
+            }
+        }, () => this.props.increaseTotal(this.state.item))
+
     }
 
     render() {
@@ -179,52 +184,54 @@ export default class GlassAndServices extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', padding: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ marginTop: 5 }}>
-                        <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
-                        {this.state.wineBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Wine Glass</Text>
-                            <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:23 }}>{this.state.item.wineGlass}</Text>
-                            <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
-                        </View>}
-                        {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Whiskey Glass</Text>
-                            <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:20  }}>{this.state.item.whiskeyGlass}</Text>
-                            <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
-                        </View>}
-                        {this.state.champagneBottles > 0 && <View style={styles.list} >
-                            <Text style={{ fontSize: 15, textAlign: 'center',fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',flexWrap:'wrap', flex: 0.36 }}>Champagne Glass</Text>
-                            <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:20  }}>{this.state.item.champagneGlass}</Text>
-                            <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
-                            {this.state.error &&
-                                <Text>{this.state.error}</Text>
-                            }
+                        {this.state.glassesVisible && <View>
+                            <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
+                            {this.state.wineBottles > 0 && <View style={styles.list} >
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
+                                <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
+                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 23 }}>{this.state.item.wineGlass}</Text>
+                                <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
+                            </View>}
+                            {this.state.whiskeyBottles > 0 && <View style={styles.list} >
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whiskey Glass</Text>
+                                <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
+                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
+                                <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
+                            </View>}
+                            {this.state.champagneBottles > 0 && <View style={styles.list} >
+                                <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>Champagne Glass</Text>
+                                <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
+                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.champagneGlass}</Text>
+                                <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
+                                {this.state.error &&
+                                    <Text>{this.state.error}</Text>
+                                }
+                            </View>}
                         </View>}
                         <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
-                        <View style={[styles.list,{marginBottom:5}]} >
-                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
+                        <View style={[styles.list, { marginBottom: 5 }]} >
+                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
                             <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 15,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',width:20  }}>{this.state.item && this.state.item.service}</Text>
+                            <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
                             <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
                             {this.state.error &&
                                 <Text>{this.state.error}</Text>
                             }
                         </View>
                         <View style={styles.list}>
-                        <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
-                        <Text style={styles.text}>{this.state.item.price} fcfa</Text>
+                            <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
+                            <Text style={styles.text}>{this.state.item.price} fcfa</Text>
                         </View>
-                       
-                        <View style={{marginBottom:10,flexDirection:'row',justifyContent:'space-between'}} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 1,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS'}}>Hotess</Text>
+
+                        <View style={{ marginBottom: 10, flexDirection: 'row' }} >
+                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 1, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hotess</Text>
                             {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess - 1,
                                 }
                             })} name="minus" style={styles.icon} /> */}
-                            <Text style={{ fontSize: 18,flex:0 }}>{this.state.item && this.state.item.hotess}</Text>
+                            <Text style={{ fontSize: 18, flex: 0.09 }}>{this.state.item && this.state.item.hotess}</Text>
                             {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
@@ -238,8 +245,8 @@ export default class GlassAndServices extends Component {
 
                         </View>
                         <View style={{ padding: 5 }}>
-                            <Text style={{ fontSize: 12,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>* First Service Hour free</Text>
-                            <Text style={{ fontSize: 12,fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS', }}>** For each 12 glasses,you get one more hotess</Text>
+                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
+                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hotess</Text>
                         </View>
                         <TouchableOpacity
                             onPress={this.sendData}
@@ -263,7 +270,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 20,
-        marginHorizontal:'2%'
+        marginHorizontal: '2%'
     },
     logo: {
         height: 80,
@@ -274,7 +281,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 10,
         textAlign: 'center',
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     icon: {
         fontSize: 25,
@@ -294,7 +301,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 17,
         padding: 10,
-        fontFamily:Platform.OS==='android'?'COMIC':'ComicSansMS',
+        fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
     },
     modal: {
         flexDirection: 'row', justifyContent: 'space-between',

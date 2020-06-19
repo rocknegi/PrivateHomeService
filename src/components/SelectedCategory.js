@@ -177,10 +177,11 @@ class SelectedCategory extends Component {
                                                     style={styles.logo}
                                                 />
                                                 <Text style={styles.text}>
-                                                    <Text style={{ fontWeight: 'bold' }}>{item.title}{"\n"}</Text>
-                                                    {item.desc}
-                                                    {"\n"}FCFA {item.price}/unit
-                                                        {"\n"}<Text onPress={() => this.toggleModal('seeMoreModal')}
+                                                    <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
+                                                    {"\n"}{item.desc}
+                                                    {"\n"}
+                                                    <Text style={{ fontWeight: 'bold' }}>FCFA {item.price}/unit</Text>
+                                                    {"\n"}<Text onPress={() => this.toggleModal('seeMoreModal')}
                                                         style={{ textDecorationLine: 'underline' }}>See more</Text>
                                                 </Text>
                                                 <TouchableOpacity
