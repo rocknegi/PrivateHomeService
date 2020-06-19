@@ -8,6 +8,7 @@ import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAd
 import Modal from 'react-native-modal';
 import _ from 'lodash'
 import firestore from '@react-native-firebase/firestore';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import GlassAndServices from './GlassAndServices'
 import images from '../assets/images'
@@ -21,16 +22,22 @@ class Cart extends Component {
         liquors: null,
         complimentary: []
     }
+    static navigationOptions = ({ navigation }, props) => {
+        return {
+            headerShown: false,
+            title: '',
+        }
+    }
     componentDidMount() {
         const Free = firestore().collection('Free');
-        let complimentary=[];
+        let complimentary = [];
 
         Free.get().then(snapshot => {
             snapshot.forEach(doc => {
                 complimentary.push(({ ...doc.data(), id: doc.id }))
             });
             // console.log(JSON.stringify(complimentary,undefined,2))
-            this.setState({complimentary})
+            this.setState({ complimentary })
         });
 
         this.focusListener = this.props.navigation.addListener('didFocus', () => {
@@ -73,24 +80,29 @@ class Cart extends Component {
     render() {
         return (
             <Layout>
-                <View style={{ marginHorizontal: '2%', flex: 1 }}>
+                <View style={{ marginHorizontal: '0%', flex: 1 }}>
+                    <View style={{ backgroundColor: PrimayColor, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 50 }}>
+                        <Icon style={{ fontSize: 30, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
+                        <Text style={[styles.text, { textAlign: 'left' }]}>Cart</Text>
+
+                    </View>
                     {this.props.items.length ?
                         <ScrollView showsVerticalScrollIndicator={false}>
                             <Text style={styles.textHeading}>Free of charge</Text>
                             {this.state.complimentary.map((item, i) => {
                                 return (
                                     <View key={item.title}>
-                                        <View style={[styles.list,{ marginHorizontal:'0%'}]}>
+                                        <View style={[styles.list, { marginHorizontal: '0%' }]}>
                                             <Image
-                                               source={{ uri: item.image }}
+                                                source={{ uri: item.image }}
                                                 style={{
                                                     height: 50,
                                                     width: 50,
                                                     resizeMode: 'contain',
-                                                    marginTop:'5%'
+                                                    marginTop: '5%'
                                                 }}
                                             />
-                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%',alignSelf:'center',top:8 }]}>{item.title}</Text>
+                                            <Text style={[styles.text, { flex: 0.65, flexWrap: 'wrap', left: '20%', alignSelf: 'center', top: 8 }]}>{item.title}</Text>
                                         </View>
                                         {i < this.state.complimentary.length - 1 && <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '15%' }}></View>}
                                     </View>
@@ -102,10 +114,10 @@ class Cart extends Component {
                                     return (
                                         <View>
                                             <View style={styles.list} >
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={styles.logo}
-                                            />
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={styles.logo}
+                                                />
                                                 <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
                                                 <Text style={{ fontSize: 20 }}>FCFA{item.price}</Text>
                                             </View>
@@ -124,13 +136,13 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={styles.logo}
-                                            />
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={styles.logo}
+                                                />
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
-                                                <Text style={{ fontSize: 18}}>{item.quantity}</Text>
+                                                <Text style={{ fontSize: 18 }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id, 'seesha')} name="plus" style={styles.icon} />
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
@@ -155,7 +167,7 @@ class Cart extends Component {
                                             />
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                            <Text style={{ fontSize: 18}}>{item.quantity}</Text>
+                                            <Text style={{ fontSize: 18 }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                         </View>
@@ -181,7 +193,7 @@ class Cart extends Component {
                                             />
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                            <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
+                                            <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                         </View>
@@ -210,7 +222,7 @@ class Cart extends Component {
                                             />
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                            <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
+                                            <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
                                             <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                         </View>
@@ -272,7 +284,7 @@ class Cart extends Component {
                                                 />
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
-                                                <Text style={{ fontSize: 18,}}>{item.quantity}</Text>
+                                                <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
                                                 <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
 
                                             </View>
@@ -298,18 +310,18 @@ class Cart extends Component {
                                 scrollHorizontal={true}
                                 animationIn="slideInUp"
                                 onBackdropPress={() => this.toggleModal()}
-                                style={{marginTop:10}}
+                                style={{ marginTop: 10 }}
                             >
                                 <GlassAndServices toggle={this.toggleModal} increaseTotal={this.increaseTotal} data={this.props.items} />
                             </Modal>
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
-                        <Text style={[styles.text, { fontSize: 13,flex:0.3}]}>Total </Text>
-                        <Text style={[styles.text, { fontSize: 13, flex:0.5,left:'-30%'}]}>fcfa {this.props.total}</Text>
-                            <Text style={[styles.text, { fontSize: 13,flex:0.6,left:'-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.3 }]}>Total </Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.5, left: '-30%' }]}>fcfa {this.props.total}</Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0,width:'25%',left:'-25%' }]}>
+                            style={[styles.button, { marginBottom: 0, width: '25%', left: '-25%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>Buy Now</Text>
                         </TouchableOpacity>
                     </View> : null}
@@ -349,21 +361,21 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         marginBottom: 20,
-        marginHorizontal:'5%'
+        marginHorizontal: '5%'
     },
     logo: {
         height: 80,
         width: 70,
         resizeMode: 'contain',
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     text: {
         fontSize: 18,
         padding: 10,
         textAlign: 'center',
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
-        flex:0.8,
-        flexWrap:'wrap'
+        flex: 0.8,
+        flexWrap: 'wrap'
     },
     icon: {
         fontSize: 25,
@@ -398,7 +410,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: PrimayColor,
         marginHorizontal: '3%',
-        paddingVertical:'2%'
+        paddingVertical: '2%'
     },
     textHeading: {
         fontSize: 19,

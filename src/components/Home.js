@@ -56,8 +56,8 @@ class Home extends Component {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 38 }}>
-                        <Icon style={{ fontSize: 25, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 50 }}>
+                        <Icon style={{ fontSize: 30, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
                         <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                             {this.props.itemsInCart > 0 && <View style={styles.circle}>
                                 <View style={styles.count}>
@@ -69,7 +69,7 @@ class Home extends Component {
                             </View>}
                             <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
                                 // category: this.state.category
-                            })} name="shopping-cart" style={{ fontSize: 25, marginRight: 5 }} />
+                            })} name="shopping-cart" style={{ fontSize: 30, marginRight: 10 }} />
 
                         </View>
 
