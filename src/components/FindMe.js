@@ -7,6 +7,8 @@ import Layout from './theme/Layout';
 import Map from './map';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux'
+import moment from 'moment';
+
 import images from '../assets/images';
 
 const width = Dimensions.get('window').width
@@ -28,16 +30,21 @@ class FindMe extends Component {
             latitude: 0,
             longitude: 0,
         },
-        date: ''
+        date: moment().format('DD-MM-YYYY'),
+        dateTo: moment().add(6, 'd').format('DD-MM-YYYY')
     }
     componentDidMount() {
-        const today = new Date();
-        const dd = today.getDate();
-        const mm = today.getMonth() + 1;
-        const yy = today.getFullYear()
-        this.setState({
-            date: dd + '-' + mm + '-' + yy
-        })
+        // const today = new Date();
+        // const dd = today.getDate();
+        // const mm = today.getMonth() + 1;
+        // const yy = today.getFullYear();
+        // this.setState({
+        //     date: dd + '-' + mm + '-' + yy
+        // })
+
+        // let dateTo = moment().add(6, 'd').format('YYYY-MM-DD');
+        // console.log(dateTo)
+
     }
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -58,17 +65,17 @@ class FindMe extends Component {
             return true
     }
     checkTime = () => {
-        if (this.validate()) {
-            const maxHH = 19;
-            const minHH = 9;
-            if (this.state.hours.length < 2 || this.state.minutes.length < 2 || this.state.minutes > 60)
-                Alert.alert('Enter time in HH:MM format')
-            else if (this.state.hours > maxHH || this.state.hours < minHH)
-                Alert.alert('', "we only deliver between 9:00 and 20:00")
+        // if (this.validate()) {
+        const maxHH = 21;
+        const minHH = 14;
+        if (this.state.hours.length < 2 || this.state.minutes.length < 2 || this.state.minutes > 60)
+            Alert.alert('Enter time in HH:MM format')
+        else if (this.state.hours > maxHH || this.state.hours < minHH)
+            Alert.alert('', "we only deliver between 14:00 (2pm) and 20:00 (9pm)")
 
-            else this.props.navigation.navigate('payment')
-        }
-        else Alert.alert('', 'Please enter your name and press Find me ')
+        // else this.props.navigation.navigate('payment')
+        // }
+        // else Alert.alert('', 'Please enter your name and press Find me ')
     }
 
     render() {
@@ -146,49 +153,55 @@ class FindMe extends Component {
                                 Delivery Time
                         </Text>
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'center', padding: '2%' }}>
-                                <DatePicker
-                                    style={{ width: '39%', margin: 5, marginLeft: 0 }}
-                                    date={this.state.date}
-                                    mode="date"
-                                    placeholder="select date"
-                                    format="DD-MM-YYYY"
-                                    minDate={this.state.date}
-                                    // maxDate="2016-06-01"
-                                    confirmBtnText="Confirm"
-                                    cancelBtnText="Cancel"
-                                    customStyles={{
-                                        dateIcon: {
-                                            position: 'absolute',
-                                            left: 0,
-                                            top: 4,
-                                            marginLeft: 0
-                                        },
-                                        dateInput: {
-                                            paddingLeft: 10,
-                                            borderColor: PrimayColor,
-                                            borderWidth: 2
-                                        }
-                                    }}
-                                    onDateChange={(date) => { this.setState({ date: date }) }}
-                                />
-                                <TextInput
-                                    onFocus={() => Alert.alert('', "delivery time can be selected only between 2pm and 9 PM.Please note that the Order should be passed at least 60 min before delivery time")
-                                    }
-                                    style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 8, borderColor: PrimayColor }}
-                                    placeholder="HH"
-                                    keyboardType={'number-pad'}
-                                    value={this.state.hours}
-                                    onChange={(e) => this.setState({ hours: e.nativeEvent.text })}
-                                />
-                                <Text style={[styles.text, { fontSize: 20 }]}>:</Text>
-                                <TextInput
-                                    style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 5, borderColor: PrimayColor }}
-                                    placeholder="MM"
-                                    keyboardType={'number-pad'}
-                                    value={this.state.minutes}
-                                    onChange={(e) => this.setState({ minutes: e.nativeEvent.text })}
-                                />
+                            <View style={{ flexDirection: 'row', margin: '2%', width: width / 1.23, left: 15 }}>
+
+                                <View style={{ flex: 1 }}>
+                                    <DatePicker
+                                        style={{ width: width / 3 }}
+                                        date={this.state.date}
+                                        mode="date"
+                                        placeholder="select date"
+                                        format="DD-MM-YYYY"
+                                        minDate={this.state.date}
+                                        maxDate={this.state.dateTo}
+                                        confirmBtnText="Confirm"
+                                        cancelBtnText="Cancel"
+                                        customStyles={{
+                                            dateIcon: {
+                                                position: 'absolute',
+                                                left: 0,
+                                                top: 4,
+                                                marginLeft: 0
+                                            },
+                                            dateInput: {
+                                                paddingLeft: 10,
+                                                borderColor: PrimayColor,
+                                                borderWidth: 2
+                                            }
+                                        }}
+                                        onDateChange={(date) => { this.setState({ date: date }) }}
+                                    />
+                                </View>
+
+                                <View style={{ flexDirection: 'row', flex: 1 }}>
+
+                                    <TextInput
+                                        style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 8, borderColor: PrimayColor, height: 40, }}
+                                        placeholder="HH"
+                                        keyboardType={'number-pad'}
+                                        value={this.state.hours}
+                                        onChange={(e) => this.setState({ hours: e.nativeEvent.text })}
+                                    />
+                                    <Text style={[styles.text, { fontSize: 20, margin: '8%', bottom: 8 }]}>:</Text>
+                                    <TextInput
+                                        onBlur={this.checkTime}
+                                        style={{ textAlign: 'center', fontSize: 20, borderWidth: 2, padding: 5, borderColor: PrimayColor, height: 40, }}
+                                        placeholder="MM"
+                                        keyboardType={'number-pad'}
+                                        value={this.state.minutes}
+                                        onChange={(e) => this.setState({ minutes: e.nativeEvent.text })}
+                                    />
+                                </View>
 
                             </View>
                             {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Note: delivery time can be selected only between 2pm
