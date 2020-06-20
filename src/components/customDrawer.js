@@ -12,7 +12,7 @@ const MenuItems = [
     },
     {
         id: 1,
-        name: "About",
+        name: "Profil",
         navigate: "",
         icon: "account"
     },
@@ -23,13 +23,6 @@ const MenuItems = [
         icon: "calendar-month-outline"
     },
     {
-        id: 3,
-        name: "Reviews ",
-        navigate: "",
-        icon: "ballot-outline"
-    },
-
-    {
         id: 5,
         name: "Notifications",
         navigate: "",
@@ -37,30 +30,30 @@ const MenuItems = [
     },
     {
         id: 6,
-        name: "My Adresses",
+        name: "Video",
         navigate: "",
         icon: "home-city-outline"
     },
     {
-        id: 7,
-        name: "Help",
+        id: 3,
+        name: "Contact Us  ",
         navigate: "",
-        icon: "help-circle-outline"
-    }
+        icon: "ballot-outline"
+    },
 
 ];
 
-const CustomDrawer = ({ activeTintColor,navigation,backgroundTintColor }) => {
+const CustomDrawer = ({ activeTintColor, navigation, backgroundTintColor }) => {
     return (
-        <SafeAreaView style={{flex:1,backgroundColor:'#fafafa'}}>          
-            <View style={{flex:0.7}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fafafa' }}>
+            <View style={{ flex: 0.3 }}>
             </View>
             {MenuItems.map((e, i) => {
                 return (
-                    <View style={[styles.container,{backgroundColor:navigation.state.index===i? backgroundTintColor:null}]} key={e.id}>
-                        <Icon style={[styles.icon,{ color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
+                    <View style={[styles.container, { backgroundColor: navigation.state.index === i ? backgroundTintColor : null }]} key={e.id}>
+                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
                         <Text style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
-                        <Icon style={[styles.icon,{ color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
+                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
                     </View>
 
                 )
@@ -76,10 +69,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: '10%',
-        paddingLeft:10,
-        paddingRight:10,
-        height:50,
-        alignItems:'center',
+        paddingLeft: 10,
+        paddingRight: 10,
+        height: 50,
+        alignItems: 'center',
 
     },
     icon: {
@@ -87,5 +80,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
+        flex: 0.7
     }
 })
