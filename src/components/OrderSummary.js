@@ -24,7 +24,7 @@ export class OrderSummary extends Component {
                             <View style={[styles.list, { backgroundColor: '#eee' }]}>
                                 <Text style={[styles.text, { flexGrow: 1.5, borderWidth: 1, margin: 1 }]}>Product</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Price</Text>
-                                <Text style={[styles.text, { borderWidth: 1, margin: 1}]}>Quantity</Text>
+                                <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Quantity</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Total</Text>
                             </View>
                             {this.state.complimentary.map(item => {
@@ -140,37 +140,37 @@ export class OrderSummary extends Component {
                                         {item.hotess && <View key={item.id}>
                                             <View style={[styles.list]} >
                                                 {item.hotess ? <Text style={[styles.text, { flexGrow: 1.5 }]}>Service Time</Text> : null}
-                                {item.hotess ? <Text style={styles.text}>{item.currentRate}/hr</Text> : null}
-                                                {item.hotess ? <Text style={styles.text}>{item.hotess}</Text> : null}
+                                                {item.hotess ? <Text style={styles.text}>{item.currentRate}/hr</Text> : null}
+                                                {item.hotess ? <Text style={styles.text}>{item.service}</Text> : null}
                                                 {item.hotess ? <Text style={styles.text}>{item.price}</Text> : null}
                                             </View>
                                             <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             {item.hotess && <><View style={styles.list}>
-                                                <Text style={[styles.text,{flex:0.9}]}>Hotess</Text>
-                                                <Text style={[styles.text,{flex:2.1}]}>{item.hotess}</Text>
+                                                <Text style={[styles.text, { flex: 0.9 }]}>Hotess</Text>
+                                                <Text style={[styles.text, { flex: 2.1 }]}>{item.hotess}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
                                             }
                                             {item.wineGlass > 0 && <><View style={styles.list}>
-                                                <Text style={[styles.text,{flex:0.9}]}>Wine glass</Text>
-                                                <Text style={[styles.text,{flex:2.1}]}>{item.wineGlass}</Text>
+                                                <Text style={[styles.text, { flex: 0.9 }]}>Wine glass</Text>
+                                                <Text style={[styles.text, { flex: 2.1 }]}>{item.wineGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
                                             }
 
                                             {item.whiskeyGlass > 0 && <><View style={styles.list}>
-                                                <Text style={[styles.text,{flex:1.2}]}>Whiskey glass</Text>
-                                                <Text  style={[styles.text,{flex:2.8}]}>{item.whiskeyGlass}</Text>
+                                                <Text style={[styles.text, { flex: 1.2 }]}>Whiskey glass</Text>
+                                                <Text style={[styles.text, { flex: 2.8 }]}>{item.whiskeyGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
                                             }
 
                                             {item.champagneGlass > 0 && <><View style={styles.list}>
-                                                <Text style={[styles.text,{flex:1.3}]}>Champagne glass</Text>
-                                                <Text  style={[styles.text,{flex:3.0}]}>{item.champagneGlass}</Text>
+                                                <Text style={[styles.text, { flex: 1.3 }]}>Champagne glass</Text>
+                                                <Text style={[styles.text, { flex: 3.0 }]}>{item.champagneGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
@@ -182,7 +182,7 @@ export class OrderSummary extends Component {
                                     </View>} */}
                                             {/* <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View> */}
 
-                                            
+
 
                                         </View>}
                                     </View>
@@ -192,9 +192,9 @@ export class OrderSummary extends Component {
 
                 </ScrollView>
                 {this.props.items.length ? <View style={[styles.footer]}>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10,flexGrow:2,paddingLeft:0 }]}>Total</Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%',flexGrow:4.5,paddingLeft:0,paddingRight:0  }]}>fcfa {this.props.total} </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%',flexGrow:5.5,paddingLeft:0,paddingRight:0  }]}>Account: fcfa 10.000</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, flexGrow: 2, paddingLeft: 0 }]}>Total</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0 }]}>fcfa {this.props.total} </Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 5.5, paddingLeft: 0, paddingRight: 0 }]}>Account: fcfa 10.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35 }]}>
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexWrap: 'wrap',
         fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     icon: {
         fontSize: 25,
