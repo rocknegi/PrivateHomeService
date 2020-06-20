@@ -218,15 +218,15 @@ before delivery time</Text> */}
                                 <>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderBottomWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1 }]}>Order Total</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>Fcfa {this.props.total}</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1, BorderTopWidth: 0, }]}>Account</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>Fcfa10.000</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 100.000</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderTopWidth: 0, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1 }]}>Cash at delivery</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>Fcfa {this.props.total - 10}</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 100}</Text>
                                     </View>
                                 </>
                             }

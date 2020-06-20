@@ -193,8 +193,10 @@ export class OrderSummary extends Component {
                 </ScrollView>
                 {this.props.items.length ? <View style={[styles.footer]}>
                     <Text style={[styles.text, { fontSize: 13, padding: 10, flexGrow: 2, paddingLeft: 0 }]}>Total</Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0 }]}>fcfa {this.props.total} </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 5.5, paddingLeft: 0, paddingRight: 0 }]}>Account: fcfa 10.000</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0, top: 7 }]}>FCFA {this.props.total}{"\n"}
+                        <Text style={{ fontSize: 10 }}>Incl. Taxes</Text>
+                    </Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 100.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35 }]}>
