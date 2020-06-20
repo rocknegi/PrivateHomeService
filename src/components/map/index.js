@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform, TouchableOpacity, View } from 'react-native'
+import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform, TouchableOpacity, View, Alert } from 'react-native'
 import Layout from '../theme/Layout'
 import MapView from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation';
 import { Marker } from 'react-native-maps';
 import { PrimayColor } from '../theme/Colors';
+import haversine from 'haversine';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -20,7 +21,9 @@ export default class Map extends Component {
         marker: {
             latitude: 0,
             longitude: 0,
-        }
+        },
+        lat: 4.087386,
+        long: 9.736632
     }
 
     setMarkerLocation = (location) => {
@@ -68,7 +71,22 @@ export default class Map extends Component {
                         }, marker: {
                             latitude: position.coords.latitude, longitude: position.coords.longitude
                         }
-                    })
+                    });
+                    const start = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    }
+
+                    const end = {
+                        latitude: this.state.lat,
+                        longitude: this.state.long
+                    }
+
+                    const distance = haversine(start, end, { unit: 'meter' })
+                    if (distance > 20000) {
+                        Alert.alert('No Service available in this area')
+                        // this.props.toggle()
+                    }
                 });
             } else {
                 Alert('Please grant location permission');
