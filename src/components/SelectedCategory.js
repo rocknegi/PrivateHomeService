@@ -8,8 +8,11 @@ import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
 import Modal from 'react-native-modal';
+import firestore from '@react-native-firebase/firestore';
+
 import Sheesha from './Sheesha';
 import SocialGames from './SocialGames';
+import { sub } from 'react-native-reanimated';
 
 
 class SelectedCategory extends Component {
@@ -30,7 +33,8 @@ class SelectedCategory extends Component {
         title: this.props.navigation.getParam('name'),
         seeshaModal: false,
         socialGamesModal: false,
-        seeMoreModal: false
+        seeMoreModal: false,
+        data: []
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -42,6 +46,15 @@ class SelectedCategory extends Component {
         else if (this.state.category === 'games')
             this.props.fetchData('games')
         else this.props.fetchData('');
+
+        const db = firestore().collection(`SeeMoreChampagne`);
+        const data = []
+        db.get().then(snapshot => {
+            snapshot.forEach(doc => {
+                data.push(({ ...doc.data(), id: doc.id }))
+            })
+            this.setState({ data })
+        });
 
     }
 
@@ -102,7 +115,10 @@ class SelectedCategory extends Component {
     }
 
     toggleModal = (modal) => {
+
         if (this.props.itemsInCart > 0)
+            this.setState({ [modal]: !this.state[modal] })
+        else if (modal === 'seeMoreModal')
             this.setState({ [modal]: !this.state[modal] })
         else return
     }
@@ -207,10 +223,26 @@ class SelectedCategory extends Component {
                         </View>
                         <Modal isVisible={this.state.seeMoreModal}
                             onBackdropPress={() => this.toggleModal('seeMoreModal')}
-                            style={{ flex: 1, marginTop: '80%', backgroundColor: '#fafafa', padding: 10 }}
+                            style={{ flex: 1, marginTop: '50%', backgroundColor: '#fafafa', padding: 10 }}
                             useNativeDriver={true}
                         >
-                            <View></View>
+                            <>
+                                <ScrollView style={{ flexDirection: 'row', }} horizontal={true}
+                                    contentContainerStyle={{ justifyContent: 'center' }}
+                                >
+                                    {this.state.data.map(item => (
+                                        <View key={item.desc} >
+                                            <Image style={{ height: 200, width: 200, resizeMode: 'contain', justifyContent: 'center', alignSelf: 'center' }} source={{ uri: item.image }} />
+                                            <Text style={[styles.text, { textAlign: 'center' }]}>{item.desc}</Text>
+                                        </View>
+                                    ))}
+                                </ScrollView>
+                                <TouchableOpacity style={styles.button}
+                                    onPress={() => this.toggleModal('seeMoreModal')}
+                                >
+                                    <Text style={styles.buttonText}>Close</Text>
+                                </TouchableOpacity>
+                            </>
                         </Modal>
                         <Modal isVisible={this.state.seeshaModal}
                             onBackdropPress={this.handleSeeshaModal}
