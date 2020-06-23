@@ -7,7 +7,8 @@ import Icon from 'react-native-vector-icons/Feather'
 import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAdd, addToCart } from '../redux/actions'
 import Modal from 'react-native-modal';
 import _ from 'lodash'
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
+import firebase from 'react-native-firebase';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import GlassAndServices from './GlassAndServices'
@@ -31,7 +32,7 @@ class Cart extends Component {
         }
     }
     componentDidMount() {
-        const Free = firestore().collection('Free');
+        const Free = firebase.firestore().collection('Free');
         let complimentary = [];
 
         Free.get().then(snapshot => {

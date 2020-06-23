@@ -1,14 +1,15 @@
 import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA } from "./actionTypes"
 import _ from "lodash";
-import firestore from '@react-native-firebase/firestore';
+import firebase from 'react-native-firebase';
 
-const Seesha = firestore().collection('Seesha');
-const Social = firestore().collection('Social');
-const Whiskey12 = firestore().collection('Whiskey12');
-const Whiskey15 = firestore().collection('Whiskey15');
-const Whiskey18 = firestore().collection('Whiskey18');
-const liquors = firestore().collection('liquors');
-const Champagne = firestore().collection('Champagne');
+
+const Seesha = firebase.firestore().collection('Seesha');
+const Social = firebase.firestore().collection('Social');
+const Whiskey12 = firebase.firestore().collection('Whiskey12');
+const Whiskey15 = firebase.firestore().collection('Whiskey15');
+const Whiskey18 = firebase.firestore().collection('Whiskey18');
+const liquors = firebase.firestore().collection('liquors');
+const Champagne = firebase.firestore().collection('Champagne');
 
 let items=[];
 let items2=[];

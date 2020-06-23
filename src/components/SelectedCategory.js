@@ -8,8 +8,8 @@ import Layout from './theme/Layout'
 import { connect } from 'react-redux'
 import { addToCart, addQuantity, subQuantity, removeFromCart, fetchData } from '../redux/actions';
 import Modal from 'react-native-modal';
-import firestore from '@react-native-firebase/firestore';
-
+// import firestore from '@react-native-firebase/firestore';
+import firebase from 'react-native-firebase';
 import Sheesha from './Sheesha';
 import SocialGames from './SocialGames';
 import { sub } from 'react-native-reanimated';
@@ -47,7 +47,7 @@ class SelectedCategory extends Component {
             this.props.fetchData('games')
         else this.props.fetchData('');
 
-        const db = firestore().collection(`SeeMoreChampagne`);
+        const db = firebase.firestore().collection(`SeeMoreChampagne`);
         const data = []
         db.get().then(snapshot => {
             snapshot.forEach(doc => {

@@ -5,10 +5,10 @@ import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux';
-import firestore from '@react-native-firebase/firestore';
-const Discounted = firestore().collection('Discounted');
-
 import images from '../assets/images';
+import firebase from 'react-native-firebase';
+
+const Discounted = firebase.firestore().collection('Discounted');
 
 const data = [
     {
