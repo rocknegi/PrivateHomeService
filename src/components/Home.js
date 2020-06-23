@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import firestore from '@react-native-firebase/firestore';
+const Discounted = firestore().collection('Discounted');
+
 import images from '../assets/images';
 
 const data = [
@@ -51,6 +54,20 @@ class Home extends Component {
             headerShown: false,
             title: '',
         }
+    }
+componentDidMount(){
+    const items = []
+    Discounted.get().then(doc=>{
+        doc.forEach(item=>{
+            items.push(({ ...item.data(), id: item.id }));
+        })
+        this.setState({DisocuntedItems:items})
+    }
+        )
+
+}
+    state={
+        DisocuntedItems:[]
     }
     render() {
         return (
@@ -117,8 +134,26 @@ class Home extends Component {
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
+                            {this.state.DisocuntedItems.length>=1&&
                             <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
-                                <TouchableOpacity
+                                {this.state.DisocuntedItems.map(item=>(
+                                    <Fragment key={item.image}>
+                                    <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                        category: item.desc,
+                                        name: item.label
+                                    })}
+                                >
+                                    <Image
+                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain',marginBottom:5 }}
+                                        source={{ uri: item.image }}
+                                    />
+                                </TouchableOpacity>
+                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
+                                </Fragment>
+                                ))}
+                            </View>}
+                                {/* <TouchableOpacity
                                     onPress={() => this.props.navigation.navigate('SelctedCategory', {
                                         category: 'liquors',
                                         name: 'Liquors & wines'
@@ -177,8 +212,8 @@ class Home extends Component {
                                         style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain' }}
                                         source={{ uri: 'https://images-na.ssl-images-amazon.com/images/I/91uKOYIrm9L._AC_SL1500_.jpg' }}
                                     />
-                                </TouchableOpacity>
-                            </View>
+                                </TouchableOpacity> */}
+
                         </ScrollView>
                     </ScrollView>
                 </SafeAreaView>
