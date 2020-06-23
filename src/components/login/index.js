@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWi
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
 export default class index extends Component {
     state = {
@@ -69,6 +70,23 @@ export default class index extends Component {
                     style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
                      </Text> */}
+                      <LoginButton
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                console.log("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                console.log("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log(data.accessToken.toString())
+                  }
+                )
+              }
+            }
+          }
+          onLogoutFinished={() => console.log("logout.")}/>
                         <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]} onPress={() => this.props.navigation.navigate('Home')}>
                             <Text style={styles.buttonText}>Login with Facebook</Text>
                         </TouchableOpacity>

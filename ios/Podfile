@@ -1,7 +1,9 @@
 platform :ios, '9.0'
 pod 'Firebase/Core', '~> 6.13.0'
+pod 'Firebase/Auth', '~> 6.13.0'
 pod 'Firebase/Firestore'
 pod 'Firebase/Analytics'
+pod 'Firebase/Messaging', '~> 6.13.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 def add_flipper_pods!(versions = {})
