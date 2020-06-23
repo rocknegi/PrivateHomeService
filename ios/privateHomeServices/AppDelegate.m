@@ -27,9 +27,9 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  if ([FIRApp defaultApp] == nil) {
+  // if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
-  }
+  // }
   for (NSString *fontFamilyName in [UIFont familyNames]) {
       for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
           NSLog(@"Family: %@ Font: %@", fontFamilyName, fontName);

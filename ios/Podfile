@@ -1,4 +1,7 @@
 platform :ios, '9.0'
+pod 'Firebase/Core', '~> 6.13.0'
+pod 'Firebase/Firestore'
+pod 'Firebase/Analytics'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 def add_flipper_pods!(versions = {})
@@ -77,7 +80,8 @@ target 'privateHomeServices' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+  # pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
   target 'privateHomeServicesTests' do
     inherit! :complete
