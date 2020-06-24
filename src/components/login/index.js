@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView, Alert } from 'react-native'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import firebase from 'react-native-firebase';
 
 export default class index extends Component {
     state = {
         isModalVisible: false,
-        dialingCode: '+237'
+        dialingCode: '+237',
+        phoneNo:''
     }
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -22,6 +24,66 @@ export default class index extends Component {
             headerShown: false
         }
     }
+
+    _validate=()=>{
+        if(this.state.phoneNo===''){
+           Alert.alert('Enter your phone number first')
+           return false
+        }
+         else if(this.state.phoneNo.length<10) {
+          Alert.alert('Phone number must be of 10 digits')
+         return false
+         }
+         else return true
+    }
+
+    _guestLogin = ()=>{
+        if(this._validate()){
+            this.props.navigation.navigate('Home')
+        }
+    }
+    _showError = (e) => {
+        switch (e.code) {
+          case 'auth/invalid-email':
+            ToastAndroid.show('Invalid email', ToastAndroid.SHORT)
+            break;
+          case 'auth/user-disabled':
+            ToastAndroid.show('Your email is disabled', ToastAndroid.SHORT)
+            break;
+          case 'auth/user-not-found':
+            ToastAndroid.show('User not found', ToastAndroid.SHORT)
+            break;
+          case 'auth/wrong-password':
+            ToastAndroid.show('Wrong password', ToastAndroid.SHORT)
+            break;
+          default: Alert.alert('he' + e)
+        }
+      }
+    _fbSignIn = async () => {
+        if(this._validate())
+        {
+            try {
+          const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+          if (result.isCancelled) {
+            Alert.alert('User cancelled the request');
+          }
+          const data = await AccessToken.getCurrentAccessToken();
+          if (!data) {
+            Alert.alert('Something went wrong');
+          }
+          const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+          const userCredentials = await firebase.auth().signInWithCredential(credential);
+          console.log(userCredentials.user.displayName)
+          firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
+              username:userCredentials.user.displayName
+          })
+          this.props.navigation.navigate('Home')
+
+        } catch (error) {
+          console.log(error)
+          this._showError(error);
+        }}
+      }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -54,6 +116,7 @@ export default class index extends Component {
                                 placeholder="Telefon no is Obligatory"
                                 style={[styles.input]}
                                 keyboardType={'number-pad'}
+                                onChangeText={(value)=>this.setState({phoneNo:value})}
                             />
                         </View>
                         {/* <View style={styles.field}>
@@ -70,27 +133,13 @@ export default class index extends Component {
                     style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
                      </Text> */}
-                      <LoginButton
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                console.log("login has error: " + result.error);
-              } else if (result.isCancelled) {
-                console.log("login is cancelled.");
-              } else {
-                AccessToken.getCurrentAccessToken().then(
-                  (data) => {
-                    console.log(data.accessToken.toString())
-                  }
-                )
-              }
-            }
-          }
-          onLogoutFinished={() => console.log("logout.")}/>
-                        <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]} onPress={() => this.props.navigation.navigate('Home')}>
+                    
+                        <TouchableOpacity
+                        style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]} 
+                        onPress={this._fbSignIn}>
                             <Text style={styles.buttonText}>Login with Facebook</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={this._guestLogin}>
                             <Text style={styles.buttonText}>Continue as Guest</Text>
                         </TouchableOpacity>
 
