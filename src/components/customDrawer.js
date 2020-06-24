@@ -7,13 +7,13 @@ const MenuItems = [
     {
         id: 4,
         name: "Home",
-        navigate: "",
+        navigate: "Home",
         icon: "home"
     },
     {
         id: 1,
         name: "Profil",
-        navigate: "",
+        navigate: "Profile",
         icon: "account"
     },
     {
@@ -52,7 +52,7 @@ const CustomDrawer = ({ activeTintColor, navigation, backgroundTintColor }) => {
                 return (
                     <View style={[styles.container, { backgroundColor: navigation.state.index === i ? backgroundTintColor : null }]} key={e.id}>
                         <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
-                        <Text style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
+                        <Text onPress={()=>navigation.navigate(e.navigate)} style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
                         <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
                     </View>
 

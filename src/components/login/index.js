@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView, Alert } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView, Alert, AsyncStorage } from 'react-native'
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
@@ -39,7 +39,8 @@ export default class index extends Component {
 
     _guestLogin = ()=>{
         if(this._validate()){
-            this.props.navigation.navigate('Home')
+            AsyncStorage.clear(()=>AsyncStorage.setItem('phoneNo',this.state.phoneNo,()=>this.props.navigation.navigate('Home'))
+            )
         }
     }
     _showError = (e) => {
@@ -77,6 +78,7 @@ export default class index extends Component {
           firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
               username:userCredentials.user.displayName
           })
+          AsyncStorage.setItem('username',userCredentials.user.displayName)
           this.props.navigation.navigate('Home')
 
         } catch (error) {
@@ -111,7 +113,7 @@ export default class index extends Component {
                         <View style={styles.field}>
                             {/* <Icon name="phone"
                         style={styles.icon} /> */}
-                            <TextInput style={{ marginLeft: 5 }}>{`${this.state.dialingCode}`}</TextInput>
+                            <Text style={{ marginLeft: 10}}>{`${this.state.dialingCode}`}</Text>
                             <TextInput
                                 placeholder="Telefon no is Obligatory"
                                 style={[styles.input]}

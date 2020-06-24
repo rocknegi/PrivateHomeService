@@ -29,6 +29,7 @@ import { Platform, Alert, Image } from 'react-native';
 import thunk from 'redux-thunk';
 import firebase from 'react-native-firebase';
 import AsyncStorage from '@react-native-community/async-storage';
+import Profile from './src/components/login/Profile';
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -57,7 +58,8 @@ const innerNavigator = createStackNavigator({
 
 
 const dashBoard = createDrawerNavigator({
-  Home: innerNavigator
+  Home: innerNavigator,
+  Profile:Profile
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',
