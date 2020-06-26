@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform, Image } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform, Image, AsyncStorage, ActivityIndicator } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 import { PrimayColor } from './theme/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 
 import images from '../assets/images';
+import { payment } from '../utils/Payment';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -32,7 +33,8 @@ class FindMe extends Component {
         },
         date: moment().format('DD-MM-YYYY'),
         dateTo: moment().add(6, 'd').format('DD-MM-YYYY'),
-        validLocation:false
+        validLocation: false,
+        loading: false
     }
     componentDidMount() {
         // const today = new Date();
@@ -78,8 +80,73 @@ class FindMe extends Component {
         // }
         // else Alert.alert('', 'Please enter your name and press Find me ')
     }
-    isValidLocation  = ()=>{
-        this.setState({validLocation:true})
+    isValidLocation = () => {
+        this.setState({ validLocation: true })
+    }
+    mtn = async () => {
+        this.setState({ loading: true });
+
+        const phone = await AsyncStorage.getItem('phoneNo')
+        const response = await payment('MTN', phone);
+
+        if (response.success) {
+
+            Alert.alert(
+                'Message',
+                'Payment was sucessfull',
+                [
+                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                ],
+                { cancelable: false }
+            );
+        }
+        else {
+            Alert.alert(
+                'Message',
+                `${response.detail}`,
+                [
+                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                ],
+                { cancelable: false }
+            );
+        }
+
+    }
+    orange = async () => {
+        this.setState({ loading: true });
+
+        const phone = await AsyncStorage.getItem('phoneNo')
+        const response = await payment('ORANGE', phone);
+
+        try {
+            if (response.success) {
+                Alert.alert(
+                    'Message',
+                    'Payment was sucessfull',
+                    [
+                        { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                    ],
+                    { cancelable: false }
+                );
+            }
+            else Alert.alert(
+                'Message',
+                `${response.detail}`,
+                [
+                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                ],
+                { cancelable: false }
+            );
+        } catch (e) {
+            Alert.alert(
+                'Message',
+                'Error with the phone no',
+                [
+                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                ],
+                { cancelable: false }
+            );
+        }
     }
 
     render() {
@@ -93,6 +160,13 @@ class FindMe extends Component {
                         useNativeDriver={true}
                     >
                         <Map validLocation={this.isValidLocation} saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
+                    </Modal>
+                    <Modal
+                        style={{ paddingTop: '5%' }}
+                        isVisible={this.state.loading}
+                        useNativeDriver={true}
+                    >
+                        <ActivityIndicator animating={true} size="large" />
                     </Modal>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.container}>
@@ -254,13 +328,17 @@ before delivery time</Text> */}
                                         source={images.orange_money}
                                     />
                                 </TouchableWithoutFeedback> */}
-                                <TouchableOpacity style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
+                                <TouchableOpacity
+                                    onPress={this.mtn}
+                                    style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
                                     <Image
                                         style={{ flex: 1, height: 65, width: '100%', padding: 5 }}
                                         source={images.momo}
                                     />
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
+                                <TouchableOpacity
+                                    onPress={this.orange}
+                                    style={{ width: '33%', padding: 10, elevation: 5, backgroundColor: '#eee', margin: 10 }}>
                                     <Image
                                         style={{ flex: 1, height: 65, width: '100%', padding: 5 }}
                                         source={images.orange_money}
