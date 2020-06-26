@@ -208,8 +208,8 @@ class SelectedCategory extends Component {
                                                     {"\n"}{item.desc}
                                                     {"\n"}
                                                     <Text style={{ fontWeight: 'bold' }}>FCFA {item.price}/unit</Text>
-                                                    {"\n"}<Text onPress={() => this.toggleModal('seeMoreModal')}
-                                                        style={{ textDecorationLine: 'underline' }}>See more</Text>
+                                                    {/* {"\n"}<Text onPress={() => this.toggleModal('seeMoreModal')}
+                                                        style={{ textDecorationLine: 'underline' }}>See more</Text> */}
                                                 </Text>
                                                 <TouchableOpacity
                                                     onPress={() => this.handleClick(item, this.state.category)}

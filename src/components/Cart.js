@@ -134,8 +134,8 @@ class Cart extends Component {
                                                     style={styles.logo}
                                                 />
                                                 </TouchableOpacity>
-                                                <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20 }}>FCFA{item.price}</Text>
+                                                <Text style={{ fontSize: 20, textAlign: 'center',fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{item.title}</Text>
+                                                <Text style={{ fontSize: 20,fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>FCFA{item.price}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                 <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
