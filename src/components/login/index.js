@@ -30,8 +30,8 @@ export default class index extends Component {
            Alert.alert('Enter your phone number first')
            return false
         }
-         else if(this.state.phoneNo.length<10) {
-          Alert.alert('Phone number must be of 10 digits')
+         else if(this.state.phoneNo.length<9) {
+          Alert.alert('Phone number must be of 9 digits')
          return false
          }
          else return true
@@ -77,8 +77,8 @@ export default class index extends Component {
           console.log(userCredentials.user.displayName)
           firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
               username:userCredentials.user.displayName
-          })
-          AsyncStorage.setItem('username',userCredentials.user.displayName)
+          });
+          AsyncStorage.clear(()=>AsyncStorage.setItem('username',userCredentials.user.displayName))
           this.props.navigation.navigate('Home')
 
         } catch (error) {
