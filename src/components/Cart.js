@@ -128,10 +128,12 @@ class Cart extends Component {
                                     return (
                                         <View>
                                             <View style={styles.list} >
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                                 <Image
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
+                                                </TouchableOpacity>
                                                 <Text style={{ fontSize: 20, textAlign: 'center' }}>{item.title}</Text>
                                                 <Text style={{ fontSize: 20 }}>FCFA{item.price}</Text>
                                             </View>
@@ -150,10 +152,12 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                                 <Image
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
+                                                </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18 }}>{item.quantity}</Text>
@@ -170,15 +174,17 @@ class Cart extends Component {
                                     )
                                 })}
                             </View>
-                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>liqueurs & Wines</Text>}
+                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>Pack</Text>}
                             {this.state.liquors && this.props.items.filter(e => e.category === 'liquors').map((item, i) => {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
+                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                             <Image
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
+                                            </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18 }}>{item.quantity}</Text>
@@ -201,10 +207,12 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
+                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                             <Image
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
+                                            </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
@@ -230,10 +238,12 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
+                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                             <Image
                                                 source={{ uri: item.image }}
                                                 style={styles.logo}
                                             />
+                                            </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                             <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
@@ -261,10 +271,12 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                                 <Image
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
+                                                </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
@@ -292,10 +304,12 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
                                                 <Image
                                                     source={{ uri: item.image }}
                                                     style={styles.logo}
                                                 />
+                                                </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
                                                 <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
@@ -340,7 +354,7 @@ class Cart extends Component {
                             >
                                 <Image
                                     source={{ uri: this.state.image }}
-                                    style={{ height: '60%', resizeMode: 'contain' }}
+                                    style={{ height: '50%', resizeMode: 'contain',marginBottom:20 }}
                                 />
                                 <TouchableOpacity style={styles.button} onPress={this.toggleImageModal}>
                                     <Text style={styles.buttonText}>Close</Text>

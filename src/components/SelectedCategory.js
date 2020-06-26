@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform, TouchableWithoutFeedback } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -34,7 +34,9 @@ class SelectedCategory extends Component {
         seeshaModal: false,
         socialGamesModal: false,
         seeMoreModal: false,
-        data: []
+        data: [],
+        imageModal: false,
+        image: ''
     }
     componentDidMount() {
         const { navigation } = this.props;
@@ -130,6 +132,13 @@ class SelectedCategory extends Component {
         this.toggleModal('socialGamesModal');
         this.props.fetchData('')
     }
+    toggleImageModal = () => {
+        this.setState({ imageModal: !this.state.imageModal, })
+    }
+    setImage = (image) => {
+        this.setState({ image: image })
+        this.toggleImageModal()
+    }
 
     notiifcation = () => <View style={styles.circle}>
         <Text style={styles.count}>{this.props.items.length}</Text>
@@ -188,10 +197,12 @@ class SelectedCategory extends Component {
                                         <View>
 
                                             <View style={styles.list} >
-                                                <Image
-                                                    source={{ uri: item.image }}
-                                                    style={styles.logo}
-                                                />
+                                                <TouchableWithoutFeedback onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
+                                                </TouchableWithoutFeedback>
                                                 <Text style={styles.text}>
                                                     <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
                                                     {"\n"}{item.desc}
@@ -260,6 +271,29 @@ class SelectedCategory extends Component {
                             useNativeDriver={true}
                         >
                             <SocialGames toggle={this.handleSocialGamesModal} />
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.imageModal}
+                            scrollHorizontal={true}
+                            animationIn="slideInUp"
+                            onBackdropPress={this.toggleImageModal}
+                            style={{ marginTop: 10 }}
+                            useNativeDriver={true}
+                        >
+                            <Image
+                                source={{ uri: this.state.image }}
+                                style={{ height: '60%', resizeMode: 'contain' }}
+                            />
+                            <TouchableOpacity style={{
+                                backgroundColor: PrimayColor,
+                                borderRadius: 100,
+                                // marginHorizontal: '35%',
+                                // height: 35,
+                                justifyContent: 'center',
+                                marginBottom: 10
+                            }} onPress={this.toggleImageModal}>
+                                <Text style={styles.buttonText}>Close</Text>
+                            </TouchableOpacity>
                         </Modal>
 
                     </View>
