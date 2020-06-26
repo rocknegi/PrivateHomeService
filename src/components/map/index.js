@@ -47,6 +47,24 @@ export default class Map extends Component {
                         latitude: position.coords.latitude, longitude: position.coords.longitude
                     }
                 })
+                const start = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }
+
+                const end = {
+                    latitude: this.state.lat,
+                    longitude: this.state.long
+                }
+
+                const distance = haversine(start, end, { unit: 'meter' })
+                if (distance > 20000) {
+                    Alert.alert('No Service available in this area')
+                    // this.props.toggle()
+                }
+                else{
+                    this.props.validLocation()
+                }
             });
     }
     requestStoragePermission = async () => {
@@ -86,6 +104,9 @@ export default class Map extends Component {
                     if (distance > 20000) {
                         Alert.alert('No Service available in this area')
                         // this.props.toggle()
+                    }
+                    else{
+                        this.props.validLocation()
                     }
                 });
             } else {

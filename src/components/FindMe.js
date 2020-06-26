@@ -31,7 +31,8 @@ class FindMe extends Component {
             longitude: 0,
         },
         date: moment().format('DD-MM-YYYY'),
-        dateTo: moment().add(6, 'd').format('DD-MM-YYYY')
+        dateTo: moment().add(6, 'd').format('DD-MM-YYYY'),
+        validLocation:false
     }
     componentDidMount() {
         // const today = new Date();
@@ -71,11 +72,14 @@ class FindMe extends Component {
         if (this.state.hours.length < 2 || this.state.minutes.length < 2 || this.state.minutes > 60)
             Alert.alert('Enter time in HH:MM format')
         else if (this.state.hours > maxHH || this.state.hours < minHH)
-            Alert.alert('', "we only deliver between 14:00 (2pm) and 20:00 (9pm)")
+            Alert.alert('', "we only deliver between 14:00 (2pm) and 21:00 (9pm)")
 
         // else this.props.navigation.navigate('payment')
         // }
         // else Alert.alert('', 'Please enter your name and press Find me ')
+    }
+    isValidLocation  = ()=>{
+        this.setState({validLocation:true})
     }
 
     render() {
@@ -88,7 +92,7 @@ class FindMe extends Component {
                         isVisible={this.state.isModalVisible}
                         useNativeDriver={true}
                     >
-                        <Map saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
+                        <Map validLocation={this.isValidLocation} saveMarkerLocation={this.saveMarkerLocation} toggle={this.toggleModal} />
                     </Modal>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.container}>
