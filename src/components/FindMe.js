@@ -80,10 +80,14 @@ class FindMe extends Component {
         // }
         // else Alert.alert('', 'Please enter your name and press Find me ')
     }
-    isValidLocation = () => {
-        this.setState({ validLocation: true })
+    isValidLocation = (bool) => {
+        this.setState({ validLocation: bool })
     }
     mtn = async () => {
+        if(!this.state.validLocation){
+            Alert.alert('No Service available in this area')
+        }
+       else{
         this.setState({ loading: true });
 
         const phone = await AsyncStorage.getItem('phoneNo')
@@ -110,10 +114,15 @@ class FindMe extends Component {
                 { cancelable: false }
             );
         }
+       }
 
     }
     orange = async () => {
-        this.setState({ loading: true });
+        if(!this.state.validLocation){
+            Alert.alert('No Service available in this area')
+        }
+        else{
+            this.setState({ loading: true });
 
         const phone = await AsyncStorage.getItem('phoneNo')
         const response = await payment('ORANGE', phone);
@@ -146,6 +155,7 @@ class FindMe extends Component {
                 ],
                 { cancelable: false }
             );
+        }
         }
     }
 

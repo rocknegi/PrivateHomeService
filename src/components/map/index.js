@@ -60,10 +60,10 @@ export default class Map extends Component {
                 const distance = haversine(start, end, { unit: 'meter' })
                 if (distance > 20000) {
                     Alert.alert('No Service available in this area')
-                    // this.props.toggle()
+                    this.props.validLocation(false)
                 }
                 else{
-                    this.props.validLocation()
+                    this.props.validLocation(true)
                 }
             });
     }
@@ -103,10 +103,10 @@ export default class Map extends Component {
                     const distance = haversine(start, end, { unit: 'meter' })
                     if (distance > 20000) {
                         Alert.alert('No Service available in this area')
-                        // this.props.toggle()
+                        this.props.validLocation(false)
                     }
                     else{
-                        this.props.validLocation()
+                        this.props.validLocation(true)
                     }
                 });
             } else {
