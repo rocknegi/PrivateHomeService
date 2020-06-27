@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, AsyncStorage, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, ToastAndroid, TextInput } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Feather'
 
 import { PrimayColor } from '../theme/Colors'
@@ -14,8 +15,14 @@ export default function Profile({ navigation }) {
     const getStoredData = async () => {
         const phoneNo = await AsyncStorage.getItem('phoneNo');
         const username = await AsyncStorage.getItem('username');
-
         setData({ phoneNo, username })
+    }
+
+    const update = async () => {
+        alert(data.username + data.phoneNo)
+        AsyncStorage.setItem('phoneNo', data.phoneNo);
+        AsyncStorage.setItem('username', data.username);
+        ToastAndroid.showWithGravity("Updated", ToastAndroid.SHORT, ToastAndroid.BOTTOM)
     }
 
     useEffect(() => {
@@ -35,7 +42,11 @@ export default function Profile({ navigation }) {
                                 <Text style={{ fontSize: 15, fontWeight: '100' }}>Phone No</Text>
                             </View>
                             <View style={styles.textContainer}>
-                                <Text>+237 {data.phoneNo}</Text>
+                                <TextInput
+                                    value={`+237 ${data.phoneNo}`}
+                                    onChangeText={value => setData({ ...data, phoneNo: value })}
+                                    keyboardType={'numeric'}
+                                />
                             </View>
 
                         </View>
@@ -44,10 +55,15 @@ export default function Profile({ navigation }) {
                                 <Text style={{ fontSize: 15, fontWeight: '100' }}>Username</Text>
                             </View>
                             <View style={styles.textContainer}>
-                                <Text>{data.username}</Text>
+                                <TextInput
+                                    value={data.username}
+                                    onChangeText={value => setData({ ...data, username: value })}
+                                />
                             </View>
-
                         </View>
+                        <TouchableOpacity style={styles.button} onPress={update}>
+                            <Text style={styles.buttonText}>Update</Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -64,5 +80,20 @@ const styles = StyleSheet.create({
         marginHorizontal: '8%',
         flex: 1,
         margin: 10
-    }
+    },
+    button: {
+        marginTop: 20,
+        backgroundColor: PrimayColor,
+        borderRadius: 100,
+        marginHorizontal: '30%',
+        height: 45,
+        justifyContent: 'center',
+        marginBottom: 20
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
 })

@@ -35,22 +35,22 @@ MaterialIcon.loadFont();
 Feather.loadFont()
 FontAwesome.loadFont()
 MaterialCommunityIcons.loadFont();
-
+AsyncStorage.clear()
 const innerNavigator = createStackNavigator({
   Home,
   SelctedCategory: SelectedCategory,
   Cart,
   seesha,
-  games:SocialGames,
-  location:FindMe,
-  payment:Payments,
-  orderSummary:OrderSummary
+  games: SocialGames,
+  location: FindMe,
+  payment: Payments,
+  orderSummary: OrderSummary
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: PrimayColor,
-      height:Platform.OS==='android' ? 38:80
+      height: Platform.OS === 'android' ? 38 : 80
     },
     headerTintColor: '#000',
   }
@@ -59,7 +59,7 @@ const innerNavigator = createStackNavigator({
 
 const dashBoard = createDrawerNavigator({
   Home: innerNavigator,
-  Profile:Profile
+  Profile: Profile
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',
@@ -94,7 +94,7 @@ const AppNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppNavigator);
 
-const store = createStore(reducers,applyMiddleware(thunk));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default class App extends React.Component {
   async componentDidMount() {
@@ -103,67 +103,67 @@ export default class App extends React.Component {
   }
 
   //1
-async checkPermission() {
-  const enabled = await firebase.messaging().hasPermission();
-  if (enabled) {
+  async checkPermission() {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
       this.getToken();
-  } else {
+    } else {
       this.requestPermission();
+    }
   }
-}
 
   //3
-async getToken() {
-  let fcmToken = await AsyncStorage.getItem('fcmToken');
-  if (!fcmToken) {
+  async getToken() {
+    let fcmToken = await AsyncStorage.getItem('fcmToken');
+    if (!fcmToken) {
       fcmToken = await firebase.messaging().getToken();
       if (fcmToken) {
-          // user has a device token
-          await AsyncStorage.setItem('fcmToken', fcmToken);
+        // user has a device token
+        await AsyncStorage.setItem('fcmToken', fcmToken);
       }
+    }
   }
-}
 
   //2
-async requestPermission() {
-  try {
+  async requestPermission() {
+    try {
       await firebase.messaging().requestPermission();
       // User has authorised
       this.getToken();
-  } catch (error) {
+    } catch (error) {
       // User has rejected permissions
       console.log('permission rejected');
+    }
   }
-}
-  
+
   ////////////////////// Add these methods //////////////////////
 
-  
+
   async createNotificationListeners() {
     /*
     * Triggered when a particular notification has been received in foreground
     * */
     this.notificationListener = firebase.notifications().onNotification((notification) => {
-        const { title, body,picture } = notification;
+      const { title, body, picture } = notification;
 
-        this.showAlert(title, body,picture);
+      this.showAlert(title, body, picture);
     });
-  
+
     /*
     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
     * */
     this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
-        const { title, body } = notificationOpen.notification;
-        this.showAlert(title, body);
+      const { title, body } = notificationOpen.notification;
+      this.showAlert(title, body);
     });
-  
+
     /*
     * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
     * */
     const notificationOpen = await firebase.notifications().getInitialNotification();
     if (notificationOpen) {
-        const { title, body } = notificationOpen.notification;
-        this.showAlert(title, body);
+      const { title, body } = notificationOpen.notification;
+      this.showAlert(title, body);
     }
     /*
     * Triggered for data only payload in foreground
@@ -173,28 +173,28 @@ async requestPermission() {
       console.log(JSON.stringify(message));
     });
   }
-  
-  showAlert(title, body,picture='') {
+
+  showAlert(title, body, picture = '') {
     Alert.alert(
       title, body,
       [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
-           
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+
       ],
       { cancelable: false },
     );
   }
-    
-    //Remove listeners allocated in createNotificationListeners()
-    componentWillUnmount() {
-      this.notificationListener();
-      this.notificationOpenedListener();
-    }
-render(){
-  return (
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>
-  )
-}
+
+  //Remove listeners allocated in createNotificationListeners()
+  componentWillUnmount() {
+    this.notificationListener();
+    this.notificationOpenedListener();
+  }
+  render() {
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    )
+  }
 }

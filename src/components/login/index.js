@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView, Alert, AsyncStorage } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, FlatList, ColorPropType, KeyboardAvoidingView, Dimensions, Platform, SafeAreaView, Alert } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage';
 import { PrimayColor, TextColorWhite } from '../theme/Colors';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,7 +11,7 @@ export default class index extends Component {
     state = {
         isModalVisible: false,
         dialingCode: '+237',
-        phoneNo:''
+        phoneNo: ''
     }
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -25,67 +26,69 @@ export default class index extends Component {
         }
     }
 
-    _validate=()=>{
-        if(this.state.phoneNo===''){
-           Alert.alert('Enter your phone number first')
-           return false
+    _validate = () => {
+        if (this.state.phoneNo === '') {
+            Alert.alert('Enter your phone number first')
+            return false
         }
-         else if(this.state.phoneNo.length<9) {
-          Alert.alert('Phone number must be of 9 digits')
-         return false
-         }
-         else return true
+        else if (this.state.phoneNo.length < 9) {
+            Alert.alert('Phone number must be of 9 digits')
+            return false
+        }
+        else return true
     }
 
-    _guestLogin = ()=>{
-        if(this._validate()){
-            AsyncStorage.clear(()=>AsyncStorage.setItem('phoneNo',this.state.phoneNo,()=>this.props.navigation.navigate('Home'))
-            )
+    _guestLogin = () => {
+        if (this._validate()) {
+            AsyncStorage.setItem('phoneNo', this.state.phoneNo)
+            this.props.navigation.navigate('Home')
+
         }
     }
     _showError = (e) => {
         switch (e.code) {
-          case 'auth/invalid-email':
-            ToastAndroid.show('Invalid email', ToastAndroid.SHORT)
-            break;
-          case 'auth/user-disabled':
-            ToastAndroid.show('Your email is disabled', ToastAndroid.SHORT)
-            break;
-          case 'auth/user-not-found':
-            ToastAndroid.show('User not found', ToastAndroid.SHORT)
-            break;
-          case 'auth/wrong-password':
-            ToastAndroid.show('Wrong password', ToastAndroid.SHORT)
-            break;
-          default: Alert.alert('he' + e)
+            case 'auth/invalid-email':
+                ToastAndroid.show('Invalid email', ToastAndroid.SHORT)
+                break;
+            case 'auth/user-disabled':
+                ToastAndroid.show('Your email is disabled', ToastAndroid.SHORT)
+                break;
+            case 'auth/user-not-found':
+                ToastAndroid.show('User not found', ToastAndroid.SHORT)
+                break;
+            case 'auth/wrong-password':
+                ToastAndroid.show('Wrong password', ToastAndroid.SHORT)
+                break;
+            default: Alert.alert('he' + e)
         }
-      }
+    }
     _fbSignIn = async () => {
-        if(this._validate())
-        {
+        if (this._validate()) {
             try {
-          const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
-          if (result.isCancelled) {
-            Alert.alert('User cancelled the request');
-          }
-          const data = await AccessToken.getCurrentAccessToken();
-          if (!data) {
-            Alert.alert('Something went wrong');
-          }
-          const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-          const userCredentials = await firebase.auth().signInWithCredential(credential);
-          console.log(userCredentials.user.displayName)
-          firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
-              username:userCredentials.user.displayName
-          });
-          AsyncStorage.clear(()=>AsyncStorage.setItem('username',userCredentials.user.displayName))
-          this.props.navigation.navigate('Home')
+                const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+                if (result.isCancelled) {
+                    Alert.alert('User cancelled the request');
+                }
+                const data = await AccessToken.getCurrentAccessToken();
+                if (!data) {
+                    Alert.alert('Something went wrong');
+                }
+                const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                const userCredentials = await firebase.auth().signInWithCredential(credential);
+                // console.log(userCredentials.user.displayName)
+                // firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
+                //     username: userCredentials.user.displayName
+                // });
+                AsyncStorage.setItem('username', userCredentials.user.displayName)
+                AsyncStorage.setItem('phoneNo', this.state.phoneNo)
+                this.props.navigation.navigate('Home')
 
-        } catch (error) {
-          console.log(error)
-          this._showError(error);
-        }}
-      }
+            } catch (error) {
+                console.log(error)
+                this._showError(error);
+            }
+        }
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -113,12 +116,12 @@ export default class index extends Component {
                         <View style={styles.field}>
                             {/* <Icon name="phone"
                         style={styles.icon} /> */}
-                            <Text style={{ marginLeft: 10}}>{`${this.state.dialingCode}`}</Text>
+                            <Text style={{ marginLeft: 10 }}>{`${this.state.dialingCode}`}</Text>
                             <TextInput
                                 placeholder="Telefon no is Obligatory"
                                 style={[styles.input]}
                                 keyboardType={'number-pad'}
-                                onChangeText={(value)=>this.setState({phoneNo:value})}
+                                onChangeText={(value) => this.setState({ phoneNo: value })}
                             />
                         </View>
                         {/* <View style={styles.field}>
@@ -135,10 +138,10 @@ export default class index extends Component {
                     style={{ right: "-70%", fontSize: 12 }}>
                     Forgot Password?
                      </Text> */}
-                    
+
                         <TouchableOpacity
-                        style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]} 
-                        onPress={this._fbSignIn}>
+                            style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]}
+                            onPress={this._fbSignIn}>
                             <Text style={styles.buttonText}>Login with Facebook</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonContainer} onPress={this._guestLogin}>
@@ -152,7 +155,7 @@ export default class index extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View> */}
-                        <View style={{ flex: 1,justifyContent:'flex-end' }}>
+                        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                             <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1, marginHorizontal: '15%' }}></LinearGradient>
                             <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingBottom: 10 }}>
 
