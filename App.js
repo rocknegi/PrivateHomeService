@@ -30,6 +30,7 @@ import thunk from 'redux-thunk';
 import firebase from 'react-native-firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 import Profile from './src/components/login/Profile';
+import ContactUs from './src/components/login/ContactUs';
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -59,7 +60,8 @@ const innerNavigator = createStackNavigator({
 
 const dashBoard = createDrawerNavigator({
   Home: innerNavigator,
-  Profile: Profile
+  Profile,
+  ContactUs
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',

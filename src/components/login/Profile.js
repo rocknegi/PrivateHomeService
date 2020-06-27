@@ -30,44 +30,42 @@ export default function Profile({ navigation }) {
     }, []);
 
     return (
-        <View style={styles.linearGradient}>
-            <SafeAreaView style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 50 }}>
-                    <Icon style={{ fontSize: 30, left: 5, }} name="menu" onPress={() => navigation.openDrawer()} />
-                </View>
-                <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-                    <View style={{ flex: 1, justifyContent: 'center', marginTop: '30%' }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <View style={[styles.textContainer, { backgroundColor: '#fafafa', flex: 1, marginHorizontal: 0 }]}>
-                                <Text style={{ fontSize: 15, fontWeight: '100' }}>Phone No</Text>
-                            </View>
-                            <View style={styles.textContainer}>
-                                <TextInput
-                                    value={`+237 ${data.phoneNo}`}
-                                    onChangeText={value => setData({ ...data, phoneNo: value })}
-                                    keyboardType={'numeric'}
-                                />
-                            </View>
+        <SafeAreaView style={styles.container}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 50 }}>
+                <Icon style={{ fontSize: 30, left: 5, }} name="menu" onPress={() => navigation.openDrawer()} />
+            </View>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+                <View style={{ flex: 1, justifyContent: 'center', marginTop: '30%' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={[styles.textContainer, { backgroundColor: '#fafafa', flex: 1, marginHorizontal: 0 }]}>
+                            <Text style={{ fontSize: 15, fontWeight: '100' }}>Phone No</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <TextInput
+                                value={`+237 ${data.phoneNo}`}
+                                onChangeText={value => setData({ ...data, phoneNo: value })}
+                                keyboardType={'numeric'}
+                            />
+                        </View>
 
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <View style={[styles.textContainer, { backgroundColor: '#fafafa', flex: 1, marginHorizontal: 0 }]}>
-                                <Text style={{ fontSize: 15, fontWeight: '100' }}>Username</Text>
-                            </View>
-                            <View style={styles.textContainer}>
-                                <TextInput
-                                    value={data.username}
-                                    onChangeText={value => setData({ ...data, username: value })}
-                                />
-                            </View>
-                        </View>
-                        <TouchableOpacity style={styles.button} onPress={update}>
-                            <Text style={styles.buttonText}>Update</Text>
-                        </TouchableOpacity>
                     </View>
-                </ScrollView>
-            </SafeAreaView>
-        </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={[styles.textContainer, { backgroundColor: '#fafafa', flex: 1, marginHorizontal: 0 }]}>
+                            <Text style={{ fontSize: 15, fontWeight: '100' }}>Username</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <TextInput
+                                value={data.username}
+                                onChangeText={value => setData({ ...data, username: value })}
+                            />
+                        </View>
+                    </View>
+                    <TouchableOpacity style={styles.button} onPress={update}>
+                        <Text style={styles.buttonText}>Update</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({

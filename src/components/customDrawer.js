@@ -36,8 +36,8 @@ const MenuItems = [
     },
     {
         id: 3,
-        name: "Contact Us  ",
-        navigate: "",
+        name: "Contact Us",
+        navigate: "ContactUs",
         icon: "ballot-outline"
     },
 
@@ -52,7 +52,7 @@ const CustomDrawer = ({ activeTintColor, navigation, backgroundTintColor }) => {
                 return (
                     <View style={[styles.container, { backgroundColor: navigation.state.index === i ? backgroundTintColor : null }]} key={e.id}>
                         <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
-                        <Text onPress={()=>navigation.navigate(e.navigate)} style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
+                        <Text onPress={() => navigation.navigate(e.navigate)} style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
                         <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
                     </View>
 
