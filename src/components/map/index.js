@@ -57,12 +57,12 @@ export default class Map extends Component {
                     longitude: this.state.long
                 }
 
-                const distance = haversine(start, end, { unit: 'meter' })
-                if (distance > 20000) {
+                const distance = haversine(start, end, { unit: 'km' })
+                if (distance > 20) {
                     Alert.alert('No Service available in this area')
                     this.props.validLocation(false)
                 }
-                else{
+                else {
                     this.props.validLocation(true)
                 }
             });
@@ -85,11 +85,14 @@ export default class Map extends Component {
                     this.setState({
                         region: {
                             latitudeDelta: 0.003,
-                            longitudeDelta: 0.003, latitude: position.coords.latitude, longitude: position.coords.longitude
+                            longitudeDelta: 0.003,
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
                         }, marker: {
                             latitude: position.coords.latitude, longitude: position.coords.longitude
                         }
                     });
+                    console.log(position.coords.latitude, position.coords.longitude)
                     const start = {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
@@ -100,12 +103,13 @@ export default class Map extends Component {
                         longitude: this.state.long
                     }
 
-                    const distance = haversine(start, end, { unit: 'meter' })
-                    if (distance > 20000) {
+                    const distance = haversine(start, end, { unit: 'km' })
+                    console.log(distance)
+                    if (distance > 20) {
                         Alert.alert('No Service available in this area')
                         this.props.validLocation(false)
                     }
-                    else{
+                    else {
                         this.props.validLocation(true)
                     }
                 });

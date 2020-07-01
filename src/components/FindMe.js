@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform, Image, AsyncStorage, ActivityIndicator } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, Dimensions, Alert, Platform, Image, ActivityIndicator } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 import { PrimayColor } from './theme/Colors';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-community/async-storage';
 import Layout from './theme/Layout';
 import Map from './map';
 import Modal from 'react-native-modal';
@@ -84,51 +84,17 @@ class FindMe extends Component {
         this.setState({ validLocation: bool })
     }
     mtn = async () => {
-        if(!this.state.validLocation){
+        if (!this.state.validLocation) {
             Alert.alert('No Service available in this area')
-        }
-       else{
-        this.setState({ loading: true });
-
-        const phone = await AsyncStorage.getItem('phoneNo')
-        const response = await payment('MTN', phone);
-
-        if (response.success) {
-
-            Alert.alert(
-                'Message',
-                'Payment was sucessfull',
-                [
-                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
-                ],
-                { cancelable: false }
-            );
         }
         else {
-            Alert.alert(
-                'Message',
-                `${response.detail}`,
-                [
-                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
-                ],
-                { cancelable: false }
-            );
-        }
-       }
-
-    }
-    orange = async () => {
-        if(!this.state.validLocation){
-            Alert.alert('No Service available in this area')
-        }
-        else{
             this.setState({ loading: true });
 
-        const phone = await AsyncStorage.getItem('phoneNo')
-        const response = await payment('ORANGE', phone);
+            const phone = await AsyncStorage.getItem('phoneNo')
+            const response = await payment('MTN', phone);
 
-        try {
             if (response.success) {
+
                 Alert.alert(
                     'Message',
                     'Payment was sucessfull',
@@ -138,24 +104,58 @@ class FindMe extends Component {
                     { cancelable: false }
                 );
             }
-            else Alert.alert(
-                'Message',
-                `${response.detail}`,
-                [
-                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
-                ],
-                { cancelable: false }
-            );
-        } catch (e) {
-            Alert.alert(
-                'Message',
-                'Error with the phone no',
-                [
-                    { text: 'OK', onPress: () => this.setState({ loading: false }) }
-                ],
-                { cancelable: false }
-            );
+            else {
+                Alert.alert(
+                    'Message',
+                    `${response.detail}`,
+                    [
+                        { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                    ],
+                    { cancelable: false }
+                );
+            }
         }
+
+    }
+    orange = async () => {
+        if (!this.state.validLocation) {
+            Alert.alert('No Service available in this area')
+        }
+        else {
+            this.setState({ loading: true });
+
+            const phone = await AsyncStorage.getItem('phoneNo')
+            const response = await payment('ORANGE', phone);
+
+            try {
+                if (response.success) {
+                    Alert.alert(
+                        'Message',
+                        'Payment was sucessfull',
+                        [
+                            { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                        ],
+                        { cancelable: false }
+                    );
+                }
+                else Alert.alert(
+                    'Message',
+                    `${response.detail}`,
+                    [
+                        { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                    ],
+                    { cancelable: false }
+                );
+            } catch (e) {
+                Alert.alert(
+                    'Message',
+                    'Error with the phone no',
+                    [
+                        { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                    ],
+                    { cancelable: false }
+                );
+            }
         }
     }
 
@@ -310,11 +310,11 @@ before delivery time</Text> */}
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1, BorderTopWidth: 0, }]}>Account</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 100.000</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 200</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderTopWidth: 0, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1 }]}>Cash at delivery</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 100}</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 200}</Text>
                                     </View>
                                 </>
                             }

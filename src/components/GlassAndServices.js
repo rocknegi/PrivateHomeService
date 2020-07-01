@@ -16,7 +16,7 @@ export default class GlassAndServices extends Component {
         champagneBottles: 0,
         error: null,
         maxGlass: 12,
-        currentRate: 2500,
+        currentRate: 3000,
         glassesVisible: true,
         item: {
             wineGlass: 0,
@@ -189,7 +189,7 @@ export default class GlassAndServices extends Component {
                             {this.state.wineBottles > 0 && <View style={styles.list} >
                                 <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
                                 <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
-                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 23 }}>{this.state.item.wineGlass}</Text>
+                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 21 }}>{this.state.item.wineGlass}</Text>
                                 <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
                             </View>}
                             {this.state.whiskeyBottles > 0 && <View style={styles.list} >
@@ -212,7 +212,7 @@ export default class GlassAndServices extends Component {
                         <View style={[styles.list, { marginBottom: 5 }]} >
                             <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
                             <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
+                            <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
                             <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
                             {this.state.error &&
                                 <Text>{this.state.error}</Text>
@@ -224,14 +224,14 @@ export default class GlassAndServices extends Component {
                         </View>
 
                         <View style={{ marginBottom: 10, flexDirection: 'row' }} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 1, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hotess</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.99, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hostess</Text>
                             {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess - 1,
                                 }
                             })} name="minus" style={styles.icon} /> */}
-                            <Text style={{ fontSize: 18, flex: 0.09 }}>{this.state.item && this.state.item.hotess}</Text>
+                            <Text style={{ fontSize: 18, flex: 0.1 }}>{this.state.item && this.state.item.hotess}</Text>
                             {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
@@ -246,7 +246,7 @@ export default class GlassAndServices extends Component {
                         </View>
                         <View style={{ padding: 5 }}>
                             <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
-                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hotess</Text>
+                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hostess</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity

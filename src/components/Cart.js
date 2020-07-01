@@ -128,14 +128,14 @@ class Cart extends Component {
                                     return (
                                         <View>
                                             <View style={styles.list} >
-                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                                <Image
-                                                    source={{ uri: item.image }}
-                                                    style={styles.logo}
-                                                />
+                                                <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
                                                 </TouchableOpacity>
-                                                <Text style={{ fontSize: 20, textAlign: 'center',fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20,fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>FCFA{item.price}</Text>
+                                                <Text style={{ fontSize: 20, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{item.title}</Text>
+                                                <Text style={{ fontSize: 20, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>FCFA{item.price}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                 <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
@@ -152,11 +152,11 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
-                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                                <Image
-                                                    source={{ uri: item.image }}
-                                                    style={styles.logo}
-                                                />
+                                                <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
                                                 </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id, 'seesha')} name="minus" style={styles.icon} />
@@ -179,11 +179,11 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
-                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={styles.logo}
-                                            />
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={styles.logo}
+                                                />
                                             </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
@@ -207,11 +207,11 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
-                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={styles.logo}
-                                            />
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={styles.logo}
+                                                />
                                             </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
@@ -238,11 +238,11 @@ class Cart extends Component {
                                 return (
                                     <View key={item.title}>
                                         <View style={styles.list} >
-                                        <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                            <Image
-                                                source={{ uri: item.image }}
-                                                style={styles.logo}
-                                            />
+                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={styles.logo}
+                                                />
                                             </TouchableOpacity>
                                             <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                             <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
@@ -271,11 +271,11 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
-                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                                <Image
-                                                    source={{ uri: item.image }}
-                                                    style={styles.logo}
-                                                />
+                                                <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
                                                 </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
@@ -304,11 +304,11 @@ class Cart extends Component {
                                     return (
                                         <View key={item.title}>
                                             <View style={styles.list} >
-                                            <TouchableOpacity onPress={() => this.setImage(item.image)}>
-                                                <Image
-                                                    source={{ uri: item.image }}
-                                                    style={styles.logo}
-                                                />
+                                                <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
                                                 </TouchableOpacity>
                                                 <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Unit</Text>
                                                 <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
@@ -354,7 +354,7 @@ class Cart extends Component {
                             >
                                 <Image
                                     source={{ uri: this.state.image }}
-                                    style={{ height: '50%', resizeMode: 'contain',marginBottom:20 }}
+                                    style={{ height: '50%', resizeMode: 'contain', marginBottom: 20 }}
                                 />
                                 <TouchableOpacity style={styles.button} onPress={this.toggleImageModal}>
                                     <Text style={styles.buttonText}>Close</Text>
@@ -363,8 +363,11 @@ class Cart extends Component {
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 13, flex: 0.3 }]}>Total </Text>
-                        <Text style={[styles.text, { fontSize: 13, flex: 0.5, left: '-30%' }]}>fcfa {this.props.total}</Text>
-                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.5, left: '-30%' }]}>fcfa {this.props.total}
+                            {"\n"}
+                            <Text style={{ fontSize: 11 }}>Incl. Taxes</Text>
+                        </Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>Account: {"\n"}fcfa 200</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
                             style={[styles.button, { marginBottom: 0, width: '25%', left: '-25%' }]}>

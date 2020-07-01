@@ -146,7 +146,7 @@ export class OrderSummary extends Component {
                                             </View>
                                             <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             {item.hotess && <><View style={styles.list}>
-                                                <Text style={[styles.text, { flex: 0.9 }]}>Hotess</Text>
+                                                <Text style={[styles.text, { flex: 0.9 }]}>Hostess</Text>
                                                 <Text style={[styles.text, { flex: 2.1 }]}>{item.hotess}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
@@ -196,7 +196,7 @@ export class OrderSummary extends Component {
                     <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0, top: 7 }]}>FCFA {this.props.total}{"\n"}
                         <Text style={{ fontSize: 10 }}>Incl. Taxes</Text>
                     </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 100.000</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 200</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35 }]}>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, ToastAndroid, TextInput, Linking, Platform } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Feather'
 import Whatsapp from 'react-native-vector-icons/MaterialCommunityIcons'
 

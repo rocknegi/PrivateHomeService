@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet, Platform, ToastAndroid } from 'react-native'
 import { BackgroundColor, PrimayColor, TextColorWhite } from './theme/Colors'
 import images from '../assets/images'
 import Layout from './theme/Layout'
@@ -13,10 +13,13 @@ class SocialGames extends Component {
     state = {
         selected: [],
         total: 0,
+        added: false
 
     }
     componentDidMount() {
-        this.props.fetchData('games')
+        this.props.fetchData('games');
+        this.props.items.forEach(item => item.added = false)
+
     }
 
     handleClick = (item, category) => {
@@ -24,6 +27,12 @@ class SocialGames extends Component {
         // console.log(tItem)
         this.props.addToCart(item, category);
         // this.props.toggle()
+    }
+    onAddToCart = (item) => {
+        this.handleClick(item.title, 'games')
+        ToastAndroid.showWithGravity(`${item.title} added`, ToastAndroid.SHORT, ToastAndroid.CENTER)
+        // item.added = true
+        // this.setState({ added: true })
     }
 
 
@@ -48,17 +57,18 @@ class SocialGames extends Component {
                                             style={[styles.button, { backgroundColor: '#fafafa' }]}><Text style={[styles.buttonText, { color: '#000' }]}>         Free</Text></TouchableOpacity>
                                         :
                                         <>
-                                            <TouchableOpacity
-                                                onPress={() => this.handleClick(item.title, 'games')}
-                                                style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                                            {item.added ? <TouchableOpacity
+                                                disabled={true}
+                                                style={[styles.button, { backgroundColor: 'green' }]}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity> :
+                                                <TouchableOpacity
+                                                    onPress={() => this.onAddToCart(item)}
+                                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>}
                                         </>
                                     }
                                 </View>
-
-
-
                             </View>)
                         })}
+                        <Text style={styles.text}>Only one quantity per item</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
                                 onPress={this.props.toggle}
@@ -81,6 +91,7 @@ class SocialGames extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
+        addedItems: state.addedItems,
     }
 }
 

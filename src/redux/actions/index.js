@@ -11,9 +11,9 @@ const Whiskey18 = firebase.firestore().collection('Whiskey18');
 const liquors = firebase.firestore().collection('liquors');
 const Champagne = firebase.firestore().collection('Champagne');
 
-let items=[];
-let items2=[];
-let items3=[];
+let items = [];
+let items2 = [];
+let items3 = [];
 
 liquors.get().then(snapshot => {
     snapshot.forEach(doc => {
@@ -46,13 +46,13 @@ Champagne.get().then(snapshot => {
 
 Seesha.get().then(snapshot => {
     snapshot.forEach(doc => {
-        items2.push(({ ...doc.data(), id: doc.id,quantity:0 }))
+        items2.push(({ ...doc.data(), id: doc.id, quantity: 0 }))
     })
 });
 
-Social.get().then(snapshot=>{
-    snapshot.forEach(doc=>{
-        items3.push(({ ...doc.data(), id: doc.id,quantity:1 }))
+Social.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        items3.push(({ ...doc.data(), id: doc.id, quantity: 1, added: false }))
     })
 })
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';
@@ -74,7 +74,7 @@ export const fetchData = category => {
             // console.log('gg')
             // const items = getData('liquors');
             // console.log(items);
-            return({
+            return ({
                 type: FETCH_DATA,
                 payload: {
                     items,
@@ -85,7 +85,7 @@ export const fetchData = category => {
         }
 
         case 'seesha': {
-            return({
+            return ({
                 type: FETCH_DATA,
                 payload: {
                     items: items2,
@@ -94,7 +94,7 @@ export const fetchData = category => {
             })
         }
         case 'games': {
-            return({
+            return ({
                 type: FETCH_DATA,
                 payload: {
                     items: items3,
