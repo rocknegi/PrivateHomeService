@@ -389,8 +389,9 @@ before delivery time</Text> */}
                                 width: '73.2%', paddingVertical: '2%',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
                             }]}>
-                                Select your payment method
-                        </Text>
+                                Select your payment method{"\n"}
+                                <Text style={{ fontSize: 9, textAlign: 'left' }}>*** Provided by Hachther MeSomb</Text>
+                            </Text>
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
                                 {/* <TouchableWithoutFeedback style={{flex:0.5}}>
                                     <Image

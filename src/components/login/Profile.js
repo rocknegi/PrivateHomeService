@@ -41,8 +41,9 @@ export default function Profile({ navigation }) {
                             <Text style={{ fontSize: 15, fontWeight: '100' }}>Phone No</Text>
                         </View>
                         <View style={styles.textContainer}>
+                            <Text>+237</Text>
                             <TextInput
-                                value={`+237 ${data.phoneNo}`}
+                                value={data.phoneNo}
                                 onChangeText={value => setData({ ...data, phoneNo: value })}
                                 keyboardType={'numeric'}
                             />

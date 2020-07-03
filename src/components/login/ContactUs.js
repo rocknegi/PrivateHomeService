@@ -12,7 +12,7 @@ export default function ContactUs({ navigation }) {
                 <Icon style={{ fontSize: 30, left: 5, }} name="menu" onPress={() => navigation.openDrawer()} />
             </View>
             <View style={{ justifyContent: 'flex-start' }}>
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => Platform.OS === 'android' ? Linking.openURL('tel:+237655427928') : Linking.openURL('tel:+237655427928')}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => Platform.OS === 'android' ? Linking.openURL('tel:+237698111713') : Linking.openURL('tel:+237655427928')}>
                     <Icon style={{ fontSize: 25 }} name="phone-call" onPress={() => navigation.openDrawer()} />
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>

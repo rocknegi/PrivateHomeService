@@ -207,7 +207,7 @@ class SelectedCategory extends Component {
                                                     <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
                                                     {"\n"}{item.desc}
                                                     {"\n"}
-                                                    <Text style={{ fontWeight: 'bold' }}>FCFA {item.price}/unit</Text>
+                                                    {this.state.category === 'liquors' ? <Text style={{ fontWeight: 'bold' }}>FCFA {item.price}/pack</Text> : <Text style={{ fontWeight: 'bold' }}>FCFA {item.price}/Btle</Text>}
                                                     {/* {"\n"}<Text onPress={() => this.toggleModal('seeMoreModal')}
                                                         style={{ textDecorationLine: 'underline' }}>See more</Text> */}
                                                 </Text>
