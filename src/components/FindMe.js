@@ -8,12 +8,15 @@ import Map from './map';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux'
 import moment from 'moment';
+import firebase, { Firebase } from 'react-native-firebase';
 
 import images from '../assets/images';
 import { payment } from '../utils/Payment';
 
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+const Manager = firebase.firestore().collection('Managers');
+const User = firebase.firestore().collection('Users');
 
 class FindMe extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -34,7 +37,9 @@ class FindMe extends Component {
         date: moment().format('DD-MM-YYYY'),
         dateTo: moment().add(6, 'd').format('DD-MM-YYYY'),
         validLocation: false,
-        loading: false
+        loading: false,
+        name: '',
+        address: ''
     }
     componentDidMount() {
         // const today = new Date();
@@ -84,16 +89,75 @@ class FindMe extends Component {
         this.setState({ validLocation: bool })
     }
     mtn = async () => {
-        if (!this.state.validLocation) {
+        if (this.state.validLocation) {
             Alert.alert('No Service available in this area')
         }
         else {
             this.setState({ loading: true });
 
             const phone = await AsyncStorage.getItem('phoneNo')
-            const response = await payment('MTN', phone);
+            const response = await payment('MTN');
 
             if (response.success) {
+                // console.log('gg', this.props.items);
+                const order = [];
+                order.push(JSON.stringify(this.props.items));
+
+                const service = this.props.items.find(item => item.category === 'service')
+
+                // console.log(this.props.items)
+                // Manager.doc('123456789').collection('Orders').doc('order').set({
+                //     ...order,
+                //     lat: this.state.marker.latitude,
+                //     long: this.state.marker.longitude
+                // });
+                // Manager.doc('123456789').set({
+                //     accepted: false,
+                //     balance: this.props.total - 200,
+                //     deliveryTime: this.state.hours + this.state.minutes,
+                //     name: this.state.name,
+                //     orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                //     // orders:,
+                //     phoneNo: phone,
+                //     serviceDuration: service['service'],
+                //     date: this.state.date,
+                //     address: this.state.address,
+                //     lat: this.state.marker.latitude,
+                //     long: this.state.marker.longitude
+                // })
+
+                User.doc('123456789').get().then(doc => {
+                    if (!doc.exists) {
+                        User.doc('123456789').collection('Orders').doc('order1').set({
+                            ...order,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        });
+                        User.doc('123456789').set({
+                            name: this.state.name,
+                            orders: 1,
+                            phoneNo: phone,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        })
+                    }
+                    else {
+                        let orders = doc.data().orders + 1;
+                        User.doc('123456789').collection('Orders').doc(`order${orders}`).set({
+                            ...order,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        });
+                        User.doc('123456789').update({
+                            name: this.state.name,
+                            orders,
+                            phoneNo: phone,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        })
+                    }
+
+                })
 
                 Alert.alert(
                     'Message',
@@ -103,6 +167,7 @@ class FindMe extends Component {
                     ],
                     { cancelable: false }
                 );
+
             }
             else {
                 Alert.alert(
@@ -202,8 +267,9 @@ class FindMe extends Component {
                                 {/* <Text style={{}}>Adress Precision</Text> */}
                                 <TextInput
                                     onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
-                                    placeholder="Adress Precision"
+                                    placeholder="Address Precision"
                                     style={styles.input}
+                                    onChangeText={(e) => this.setState({ address: e })}
                                 />
                             </View>
                             {/* <Text style={{ flexWrap: 'wrap', marginHorizontal: '15%', textAlign: 'center' }}>Please describe the building Left and rigth from your building to help us Find you</Text> */}
@@ -366,7 +432,8 @@ before delivery time</Text> */}
 
 const mapStateToProps = (state) => {
     return {
-        total: state.total
+        total: state.total,
+        items: state.addedItems,
     }
 }
 export default connect(mapStateToProps)(FindMe)
