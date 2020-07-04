@@ -98,7 +98,7 @@ class FindMe extends Component {
             const phone = await AsyncStorage.getItem('phoneNo')
             const response = await payment('MTN');
 
-            if (response.success) {
+            if (!response.success) {
                 // console.log('gg', this.props.items);
                 const order = [];
                 order.push(JSON.stringify(this.props.items));
@@ -132,6 +132,7 @@ class FindMe extends Component {
                     if (!doc.exists) {
                         User.doc('123456789').collection('Orders').doc('order1').set({
                             ...order,
+                            balance: this.props.total - 200,
                             lat: this.state.marker.latitude,
                             long: this.state.marker.longitude
                         });
@@ -147,6 +148,7 @@ class FindMe extends Component {
                         let orders = doc.data().orders + 1;
                         User.doc('123456789').collection('Orders').doc(`order${orders}`).set({
                             ...order,
+                            balance: this.props.total - 200,
                             lat: this.state.marker.latitude,
                             long: this.state.marker.longitude
                         });
