@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_OPTION, ADD_ON_ADD, FETCH_DATA } from "../actions/actionTypes";
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_OPTION, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE } from "../actions/actionTypes";
 
 export const initialState = {
     addedItems: [],
@@ -12,6 +12,11 @@ export default addToCartReducer = (state = initialState, action) => {
         case FETCH_DATA: {
             // alert(JSON.stringify(action.payload.items))
             return { ...state, items: action.payload.items }
+        }
+        case CLEAR_STATE: {
+            return {
+                ...initialState
+            }
         }
         case ADD_TO_CART: {
             if (action.category !== 'seesha' && action.category !== 'games' && action.category !== 'service') {

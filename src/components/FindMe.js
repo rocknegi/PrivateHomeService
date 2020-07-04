@@ -9,9 +9,11 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux'
 import moment from 'moment';
 import firebase, { Firebase } from 'react-native-firebase';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import images from '../assets/images';
 import { payment } from '../utils/Payment';
+import { clearState } from '../redux/actions';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -105,6 +107,7 @@ class FindMe extends Component {
 
                 const service = this.props.items.find(item => item.category === 'service')
 
+
                 // console.log(this.props.items)
                 // Manager.doc('123456789').collection('Orders').doc('order').set({
                 //     ...order,
@@ -128,46 +131,58 @@ class FindMe extends Component {
                 // confirmed:false
                 // })
 
-                User.doc('123456789').get().then(doc => {
-                    if (!doc.exists) {
-                        User.doc('123456789').collection('Orders').doc('order1').set({
-                            ...order,
-                            balance: this.props.total - 200,
-                            lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
-                        });
-                        User.doc('123456789').set({
-                            name: this.state.name,
-                            orders: 1,
-                            phoneNo: phone,
-                            lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
-                        })
-                    }
-                    else {
-                        let orders = doc.data().orders + 1;
-                        User.doc('123456789').collection('Orders').doc(`order${orders}`).set({
-                            ...order,
-                            balance: this.props.total - 200,
-                            lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
-                        });
-                        User.doc('123456789').update({
-                            name: this.state.name,
-                            orders,
-                            phoneNo: phone,
-                            lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
-                        })
-                    }
+                // User.doc('123456789').get().then(doc => {
+                //     if (!doc.exists) {
+                //         User.doc('123456789').collection('Orders').doc('order1').set({
+                //             ...order,
+                //             balance: this.props.total - 200,
+                //             lat: this.state.marker.latitude,
+                //             long: this.state.marker.longitude
+                //         });
+                //         User.doc('123456789').set({
+                //             name: this.state.name,
+                //             orders: 1,
+                //             phoneNo: phone,
+                //             lat: this.state.marker.latitude,
+                //             long: this.state.marker.longitude
+                //         })
+                //     }
+                //     else {
+                //         let orders = doc.data().orders + 1;
+                //         User.doc('123456789').collection('Orders').doc(`order${orders}`).set({
+                //             ...order,
+                //             balance: this.props.total - 200,
+                //             lat: this.state.marker.latitude,
+                //             long: this.state.marker.longitude
+                //         });
+                //         User.doc('123456789').update({
+                //             name: this.state.name,
+                //             orders,
+                //             phoneNo: phone,
+                //             lat: this.state.marker.latitude,
+                //             long: this.state.marker.longitude
+                //         })
+                //     }
 
-                })
+                // })
+
+
 
                 Alert.alert(
                     'Message',
                     'Payment was sucessfull',
                     [
-                        { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                        {
+                            text: 'OK', onPress: () => {
+                                this.setState({ loading: false });
+                                setTimeout(() => this.props.clearState(), 2000)
+                                const resetAction = StackActions.reset({
+                                    index: 0,
+                                    actions: [NavigationActions.navigate({ routeName: 'Home' })],
+                                });
+                                this.props.navigation.dispatch(resetAction)
+                            }
+                        }
                     ],
                     { cancelable: false }
                 );
@@ -441,7 +456,13 @@ const mapStateToProps = (state) => {
         items: state.addedItems,
     }
 }
-export default connect(mapStateToProps)(FindMe)
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        clearState: () => dispatch(clearState())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FindMe)
 
 const styles = StyleSheet.create({
     container: {

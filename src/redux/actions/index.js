@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA } from "./actionTypes"
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE } from "./actionTypes"
 import _ from "lodash";
 import firebase from 'react-native-firebase';
 
@@ -140,6 +140,11 @@ export const addOnAdd = (item, option) => {
         type: ADD_ON_ADD,
         item,
         option
+    }
+}
+export const clearState = () => {
+    return {
+        type: CLEAR_STATE,
     }
 }
 
