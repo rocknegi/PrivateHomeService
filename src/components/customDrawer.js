@@ -5,37 +5,37 @@ import { SafeAreaView } from 'react-navigation';
 
 const MenuItems = [
     {
-        id: 4,
+        id: 1,
         name: "Home",
         navigate: "Home",
         icon: "home"
     },
     {
-        id: 1,
+        id: 2,
         name: "Profil",
         navigate: "Profile",
         icon: "account"
     },
     {
-        id: 2,
+        id: 3,
         name: "My Orders",
-        navigate: "",
+        navigate: "Orders",
         icon: "calendar-month-outline"
     },
     {
-        id: 5,
+        id: 4,
         name: "Notifications",
         navigate: "Notifications",
         icon: "notification-clear-all"
     },
     {
-        id: 6,
+        id: 5,
         name: "Video",
-        navigate: "",
+        navigate: "Video",
         icon: "home-city-outline"
     },
     {
-        id: 3,
+        id: 6,
         name: "Contact Us",
         navigate: "ContactUs",
         icon: "ballot-outline"

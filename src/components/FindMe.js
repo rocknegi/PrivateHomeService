@@ -123,7 +123,9 @@ class FindMe extends Component {
                 //     date: this.state.date,
                 //     address: this.state.address,
                 //     lat: this.state.marker.latitude,
-                //     long: this.state.marker.longitude
+                //     long: this.state.marker.longitude,
+                // completed: false,
+                // confirmed:false
                 // })
 
                 User.doc('123456789').get().then(doc => {

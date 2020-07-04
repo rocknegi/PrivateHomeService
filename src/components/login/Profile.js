@@ -19,7 +19,7 @@ export default function Profile({ navigation }) {
     }
 
     const update = async () => {
-        alert(data.username + data.phoneNo)
+
         AsyncStorage.setItem('phoneNo', data.phoneNo);
         AsyncStorage.setItem('username', data.username);
         ToastAndroid.showWithGravity("Updated", ToastAndroid.SHORT, ToastAndroid.BOTTOM)

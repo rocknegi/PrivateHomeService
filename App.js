@@ -32,6 +32,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Profile from './src/components/login/Profile';
 import ContactUs from './src/components/login/ContactUs';
 import Notifications from './src/components/login/Notifications';
+import Orders from './src/components/login/Orders';
+import Video from './src/components/login/Video';
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -62,8 +64,10 @@ const innerNavigator = createStackNavigator({
 const dashBoard = createDrawerNavigator({
   Home: innerNavigator,
   Profile,
+  Orders,
+  Notifications,
+  Video,
   ContactUs,
-  Notifications
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',
