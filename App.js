@@ -31,6 +31,7 @@ import firebase from 'react-native-firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 import Profile from './src/components/login/Profile';
 import ContactUs from './src/components/login/ContactUs';
+import Notifications from './src/components/login/Notifications';
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -45,7 +46,7 @@ const innerNavigator = createStackNavigator({
   games: SocialGames,
   location: FindMe,
   payment: Payments,
-  orderSummary: OrderSummary
+  orderSummary: OrderSummary,
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
@@ -61,7 +62,8 @@ const innerNavigator = createStackNavigator({
 const dashBoard = createDrawerNavigator({
   Home: innerNavigator,
   Profile,
-  ContactUs
+  ContactUs,
+  Notifications
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',

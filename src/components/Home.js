@@ -7,6 +7,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux';
 import images from '../assets/images';
 import firebase from 'react-native-firebase';
+import { set } from 'lodash';
 
 const Discounted = firebase.firestore().collection('Discounted');
 
@@ -36,45 +37,65 @@ const data = [
         name: 'Champagne ',
         category: 'Champagne'
     },
-    // {
-    //     id: 6,
-    //     name: 'Seesha',
-    //     category: 'seesha'
-    // },
-    // {
-    //     id: 7,
-    //     name: 'Social Games',
-    //     category: 'games'
-    // },
+
 ]
 
+const order = firebase.firestore().collection('Managers');
+
 class Home extends Component {
-    static navigationOptions = ({ navigation }) => {
+    static navigationOptions = ({ }) => {
         return {
             headerShown: false,
             title: '',
         }
     }
-componentDidMount(){
-    const items = []
-    Discounted.get().then(doc=>{
-        doc.forEach(item=>{
-            items.push(({ ...item.data(), id: item.id }));
-        })
-        this.setState({DisocuntedItems:items})
-    }
-        )
 
-}
-    state={
-        DisocuntedItems:[]
+    state = {
+        DisocuntedItems: [],
+        notification: false,
+        phoneNo: ''
     }
+
+    async componentDidMount() {
+        const items = []
+        Discounted.get().then(doc => {
+            doc.forEach(item => {
+                items.push(({ ...item.data(), id: item.id }));
+            })
+            this.setState({ DisocuntedItems: items })
+        }
+        );
+
+        const phoneNo = '123456789'
+        // await AsyncStorage.getItem('phoneNo');
+        this.setState({ phoneNo })
+
+        order.onSnapshot(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().phoneNo == this.state.phoneNo) {
+                    this.setState({ notification: doc.data().confirmed })
+                }
+            })
+        })
+
+    }
+
     render() {
         return (
             <View style={styles.linearGradient}>
                 <SafeAreaView style={styles.container}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: PrimayColor, height: 50 }}>
-                        <Icon style={{ fontSize: 30, left: 5, }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
+                        <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
+                            <Icon style={{ fontSize: 30, left: 5, marginRight: 5 }} name="menu" onPress={() => this.props.navigation.openDrawer()} />
+                            {this.state.notification && <View style={styles.circle}>
+                                <View style={styles.count}>
+                                    <Text style={{ textAlign: 'center', }}>
+                                        1
+                                    </Text>
+                                </View>
+
+                            </View>}
+                        </View>
                         <View style={{ justifyContent: 'center', alignSelf: 'center', flexDirection: 'row' }}>
                             {this.props.itemsInCart > 0 && <View style={styles.circle}>
                                 <View style={styles.count}>
@@ -85,7 +106,6 @@ componentDidMount(){
 
                             </View>}
                             <MaterialIcon onPress={() => this.props.navigation.navigate('Cart', {
-                                // category: this.state.category
                             })} name="shopping-cart" style={{ fontSize: 30, marginRight: 10 }} />
 
                         </View>
@@ -134,26 +154,26 @@ componentDidMount(){
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
-                            {this.state.DisocuntedItems.length>=1&&
-                            <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
-                                {this.state.DisocuntedItems.map(item=>(
-                                    <Fragment key={item.image}>
-                                    <TouchableOpacity
-                                    onPress={() => this.props.navigation.navigate('SelctedCategory', {
-                                        category: item.desc,
-                                        name: item.label
-                                    })}
-                                >
-                                    <Image
-                                        style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain',marginBottom:5 }}
-                                        source={{ uri: item.image }}
-                                    />
-                                </TouchableOpacity>
-                                <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
-                                </Fragment>
-                                ))}
-                            </View>}
-                                {/* <TouchableOpacity
+                            {this.state.DisocuntedItems.length >= 1 &&
+                                <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
+                                    {this.state.DisocuntedItems.map(item => (
+                                        <Fragment key={item.image}>
+                                            <TouchableOpacity
+                                                onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                                    category: item.desc,
+                                                    name: item.label
+                                                })}
+                                            >
+                                                <Image
+                                                    style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain', marginBottom: 5 }}
+                                                    source={{ uri: item.image }}
+                                                />
+                                            </TouchableOpacity>
+                                            <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
+                                        </Fragment>
+                                    ))}
+                                </View>}
+                            {/* <TouchableOpacity
                                     onPress={() => this.props.navigation.navigate('SelctedCategory', {
                                         category: 'liquors',
                                         name: 'Liquors & wines'

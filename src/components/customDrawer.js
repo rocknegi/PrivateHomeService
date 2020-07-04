@@ -25,7 +25,7 @@ const MenuItems = [
     {
         id: 5,
         name: "Notifications",
-        navigate: "",
+        navigate: "Notifications",
         icon: "notification-clear-all"
     },
     {
