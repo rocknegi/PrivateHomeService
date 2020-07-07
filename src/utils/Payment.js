@@ -2,7 +2,7 @@ export const payment = async (service, phone) => {
     const url = 'https://mesomb.hachther.com/api/v1.0/payment/online/'
     const body = {
         service,
-        amount: 200,
+        amount: 10000,
         payer: phone,
         reference: 'PHS_CLIENT',
         fees: true,

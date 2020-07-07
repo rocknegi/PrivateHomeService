@@ -196,7 +196,7 @@ export class OrderSummary extends Component {
                     <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0, top: 7 }]}>FCFA {this.props.total}{"\n"}
                         <Text style={{ fontSize: 10 }}>Incl. Taxes</Text>
                     </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 200</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 10.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35 }]}>

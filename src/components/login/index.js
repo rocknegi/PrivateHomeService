@@ -118,7 +118,7 @@ export default class index extends Component {
                         style={styles.icon} /> */}
                             <Text style={{ marginLeft: 10 }}>{`${this.state.dialingCode}`}</Text>
                             <TextInput
-                                placeholder="Telefon no is Obligatory"
+                                placeholder="Telefon Nr required"
                                 style={[styles.input]}
                                 keyboardType={'number-pad'}
                                 onChangeText={(value) => this.setState({ phoneNo: value })}

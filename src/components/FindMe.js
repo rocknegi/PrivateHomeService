@@ -466,11 +466,11 @@ before delivery time</Text> */}
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1, BorderTopWidth: 0, }]}>Account</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 200</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 10.000</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderTopWidth: 0, BorderTopWidth: 0, width: '73%' }}>
                                         <Text style={[styles.text, { flex: 1 }]}>Cash at delivery</Text>
-                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 200}</Text>
+                                        <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 10000}</Text>
                                     </View>
                                 </>
                             }

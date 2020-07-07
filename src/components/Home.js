@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform, AsyncStorage } from 'react-native'
+import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import images from '../assets/images';
 import firebase from 'react-native-firebase';
 import { set } from 'lodash';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Discounted = firebase.firestore().collection('Discounted');
 
