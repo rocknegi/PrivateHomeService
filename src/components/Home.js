@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
+import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform, AsyncStorage } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
@@ -66,8 +66,7 @@ class Home extends Component {
         }
         );
 
-        const phoneNo = '123456789'
-        // await AsyncStorage.getItem('phoneNo');
+        const phoneNo = await AsyncStorage.getItem('phoneNo');
         this.setState({ phoneNo })
 
         order.onSnapshot(snapshot => {

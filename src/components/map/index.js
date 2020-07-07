@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform, TouchableOpacity, View, Alert } from 'react-native'
+import { Text, StyleSheet, Dimensions, PermissionsAndroid, Platform, TouchableOpacity, View, Alert, Linking } from 'react-native'
 import Layout from '../theme/Layout'
 import MapView from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation';
@@ -156,7 +156,7 @@ export default class Map extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}
-                        // onPress={this.confirmLocation}
+                            onPress={() => Platform.OS === 'android' ? Linking.openURL('tel:+237698111713') : Linking.openURL('tel:+237655427928')}
                         >Contact Us</Text>
                     </TouchableOpacity>
                 </View>

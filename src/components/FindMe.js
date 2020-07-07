@@ -91,82 +91,79 @@ class FindMe extends Component {
         this.setState({ validLocation: bool })
     }
     mtn = async () => {
-        if (this.state.validLocation) {
+        if (!this.state.validLocation) {
             Alert.alert('No Service available in this area')
         }
         else {
             this.setState({ loading: true });
 
             const phone = await AsyncStorage.getItem('phoneNo')
-            const response = await payment('MTN');
+            const response = await payment('MTN', `${'237' + phone}`);
 
-            if (!response.success) {
-                // console.log('gg', this.props.items);
+            if (response.success) {
+
                 const order = [];
                 order.push(JSON.stringify(this.props.items));
 
                 const service = this.props.items.find(item => item.category === 'service')
 
+                console.log(this.props.items)
+                Manager.doc(phone).collection('Orders').doc('order').set({
+                    ...order,
+                    lat: this.state.marker.latitude,
+                    long: this.state.marker.longitude
+                });
+                Manager.doc(phone).set({
+                    accepted: false,
+                    balance: this.props.total - 200,
+                    deliveryTime: this.state.hours + this.state.minutes,
+                    name: this.state.name,
+                    orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                    // orders:,
+                    phoneNo: phone,
+                    serviceDuration: service['service'],
+                    date: this.state.date,
+                    address: this.state.address,
+                    lat: this.state.marker.latitude,
+                    long: this.state.marker.longitude,
+                    completed: false,
+                    confirmed: false
+                })
 
-                // console.log(this.props.items)
-                // Manager.doc('123456789').collection('Orders').doc('order').set({
-                //     ...order,
-                //     lat: this.state.marker.latitude,
-                //     long: this.state.marker.longitude
-                // });
-                // Manager.doc('123456789').set({
-                //     accepted: false,
-                //     balance: this.props.total - 200,
-                //     deliveryTime: this.state.hours + this.state.minutes,
-                //     name: this.state.name,
-                //     orderNo: Math.floor(Math.random() * Math.floor(9999)),
-                //     // orders:,
-                //     phoneNo: phone,
-                //     serviceDuration: service['service'],
-                //     date: this.state.date,
-                //     address: this.state.address,
-                //     lat: this.state.marker.latitude,
-                //     long: this.state.marker.longitude,
-                // completed: false,
-                // confirmed:false
-                // })
+                User.doc(phone).get().then(doc => {
+                    if (!doc.exists) {
+                        User.doc(phone).collection('Orders').doc('order1').set({
+                            ...order,
+                            balance: this.props.total - 200,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        });
+                        User.doc(phone).set({
+                            name: this.state.name,
+                            orders: 1,
+                            phoneNo: phone,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        })
+                    }
+                    else {
+                        let orders = doc.data().orders + 1;
+                        User.doc(phone).collection('Orders').doc(`order${orders}`).set({
+                            ...order,
+                            balance: this.props.total - 200,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        });
+                        User.doc(phone).update({
+                            name: this.state.name,
+                            orders,
+                            phoneNo: phone,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude
+                        })
+                    }
 
-                // User.doc('123456789').get().then(doc => {
-                //     if (!doc.exists) {
-                //         User.doc('123456789').collection('Orders').doc('order1').set({
-                //             ...order,
-                //             balance: this.props.total - 200,
-                //             lat: this.state.marker.latitude,
-                //             long: this.state.marker.longitude
-                //         });
-                //         User.doc('123456789').set({
-                //             name: this.state.name,
-                //             orders: 1,
-                //             phoneNo: phone,
-                //             lat: this.state.marker.latitude,
-                //             long: this.state.marker.longitude
-                //         })
-                //     }
-                //     else {
-                //         let orders = doc.data().orders + 1;
-                //         User.doc('123456789').collection('Orders').doc(`order${orders}`).set({
-                //             ...order,
-                //             balance: this.props.total - 200,
-                //             lat: this.state.marker.latitude,
-                //             long: this.state.marker.longitude
-                //         });
-                //         User.doc('123456789').update({
-                //             name: this.state.name,
-                //             orders,
-                //             phoneNo: phone,
-                //             lat: this.state.marker.latitude,
-                //             long: this.state.marker.longitude
-                //         })
-                //     }
-
-                // })
-
-
+                })
 
                 Alert.alert(
                     'Message',
@@ -209,19 +206,93 @@ class FindMe extends Component {
             this.setState({ loading: true });
 
             const phone = await AsyncStorage.getItem('phoneNo')
-            const response = await payment('ORANGE', phone);
+            const response = await payment('ORANGE', `${'237' + phone}`);
 
             try {
                 if (response.success) {
+
+                    const order = [];
+                    order.push(JSON.stringify(this.props.items));
+                    const service = this.props.items.find(item => item.category === 'service')
+
+                    Manager.doc(phone).collection('Orders').doc('order').set({
+                        ...order,
+                        lat: this.state.marker.latitude,
+                        long: this.state.marker.longitude
+                    });
+                    Manager.doc(phone).set({
+                        accepted: false,
+                        balance: this.props.total - 200,
+                        deliveryTime: this.state.hours + this.state.minutes,
+                        name: this.state.name,
+                        orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                        // orders:,
+                        phoneNo: phone,
+                        serviceDuration: service['service'],
+                        date: this.state.date,
+                        address: this.state.address,
+                        lat: this.state.marker.latitude,
+                        long: this.state.marker.longitude,
+                        completed: false,
+                        confirmed: false
+                    })
+
+                    User.doc(phone).get().then(doc => {
+                        if (!doc.exists) {
+                            User.doc(phone).collection('Orders').doc('order1').set({
+                                ...order,
+                                balance: this.props.total - 200,
+                                lat: this.state.marker.latitude,
+                                long: this.state.marker.longitude
+                            });
+                            User.doc(phone).set({
+                                name: this.state.name,
+                                orders: 1,
+                                phoneNo: phone,
+                                lat: this.state.marker.latitude,
+                                long: this.state.marker.longitude
+                            })
+                        }
+                        else {
+                            let orders = doc.data().orders + 1;
+                            User.doc(phone).collection('Orders').doc(`order${orders}`).set({
+                                ...order,
+                                balance: this.props.total - 200,
+                                lat: this.state.marker.latitude,
+                                long: this.state.marker.longitude
+                            });
+                            User.doc(phone).update({
+                                name: this.state.name,
+                                orders,
+                                phoneNo: phone,
+                                lat: this.state.marker.latitude,
+                                long: this.state.marker.longitude
+                            })
+                        }
+
+                    })
+
                     Alert.alert(
                         'Message',
                         'Payment was sucessfull',
                         [
-                            { text: 'OK', onPress: () => this.setState({ loading: false }) }
+                            {
+                                text: 'OK', onPress: () => {
+                                    this.setState({ loading: false });
+                                    setTimeout(() => this.props.clearState(), 2000)
+                                    const resetAction = StackActions.reset({
+                                        index: 0,
+                                        actions: [NavigationActions.navigate({ routeName: 'Home' })],
+                                    });
+                                    this.props.navigation.dispatch(resetAction)
+                                }
+                            }
                         ],
                         { cancelable: false }
                     );
+
                 }
+
                 else Alert.alert(
                     'Message',
                     `${response.detail}`,

@@ -9,11 +9,10 @@ import { PrimayColor } from '../theme/Colors'
 export default function Notifications({ navigation }) {
     const order = firebase.firestore().collection('Managers');
     const [data, setData] = useState(false);
-    const [phoneNo, setPhoneNo] = useState([]);
+    const [phoneNo, setPhoneNo] = useState('');
 
     const getStoredData = async () => {
-        const phoneNo = '123456789'
-        // await AsyncStorage.getItem('phoneNo');
+        const phoneNo = await AsyncStorage.getItem('phoneNo');
         setPhoneNo(phoneNo);
     }
 

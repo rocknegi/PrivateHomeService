@@ -1,4 +1,4 @@
-export const payment = async (service, phone = '237400001019',) => {
+export const payment = async (service, phone) => {
     const url = 'https://mesomb.hachther.com/api/v1.0/payment/online/'
     const body = {
         service,
@@ -6,7 +6,7 @@ export const payment = async (service, phone = '237400001019',) => {
         payer: phone,
         reference: 'PHS_CLIENT',
         fees: true,
-        message: 'test123'
+        message: 'Payment for private home services'
     }
     try {
         const response = await fetch(url, {

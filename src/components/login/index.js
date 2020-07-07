@@ -31,7 +31,7 @@ export default class index extends Component {
             Alert.alert('Enter your phone number first')
             return false
         }
-        else if (this.state.phoneNo.length < 9) {
+        else if (this.state.phoneNo.length !== 9) {
             Alert.alert('Phone number must be of 9 digits')
             return false
         }

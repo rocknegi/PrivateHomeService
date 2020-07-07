@@ -16,16 +16,26 @@ export default function Orders({ navigation }) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [currentOrderData, setCurrentOrderData] = useState([]);
     const [currentOrder, setCurrentOrder] = useState('')
+    const [phoneNo, setPhoneNo] = useState('');
+
+    const getStoredData = async () => {
+        const phoneNo = await AsyncStorage.getItem('phoneNo');
+        setPhoneNo(phoneNo);
+    }
+    useEffect(() => {
+        getStoredData();
+    }, []);
 
     useEffect(() => {
-        orders.doc('123456789').collection('Orders').get().then(doc => {
-            let data = []
+        return orders.doc(phoneNo).collection('Orders').onSnapshot(doc => {
+            let data = [];
             doc.forEach(e => {
                 data.push(e.id)
-            })
+            });
             setData(data);
         })
-    }, []);
+    }, [phoneNo]);
+
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
@@ -34,10 +44,10 @@ export default function Orders({ navigation }) {
         toggleModal();
     }
     const afterModalOpen = async () => {
-        const phone = await AsyncStorage.getItem('phoneNo');
+
         let tdata = [];
 
-        orders.doc(phone).collection('Orders').doc(currentOrder).get().then(doc => {
+        orders.doc(phoneNo).collection('Orders').doc(currentOrder).get().then(doc => {
             tdata.push(({ ...doc.data(), id: doc.id }));
             setCurrentOrderData(JSON.parse(tdata[0][0]));
             setTotal(doc.data().balance);
@@ -54,7 +64,7 @@ export default function Orders({ navigation }) {
                 onModalShow={afterModalOpen}
                 style={{
                     justifyContent: 'center',
-                    // margin: 0,
+                    paddingTop: 20,
                 }}
                 onBackdropPress={toggleModal}
                 swipeDirection={['up', 'down']}
