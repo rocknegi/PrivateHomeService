@@ -115,7 +115,7 @@ class FindMe extends Component {
                 });
                 Manager.doc(phone).set({
                     accepted: false,
-                    balance: this.props.total - 200,
+                    balance: this.props.total - 10000,
                     deliveryTime: this.state.hours + this.state.minutes,
                     name: this.state.name,
                     orderNo: Math.floor(Math.random() * Math.floor(9999)),
@@ -134,7 +134,7 @@ class FindMe extends Component {
                     if (!doc.exists) {
                         User.doc(phone).collection('Orders').doc('order1').set({
                             ...order,
-                            balance: this.props.total - 200,
+                            balance: this.props.total - 10000,
                             lat: this.state.marker.latitude,
                             long: this.state.marker.longitude
                         });
@@ -143,14 +143,16 @@ class FindMe extends Component {
                             orders: 1,
                             phoneNo: phone,
                             lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
+                            long: this.state.marker.longitude,
+                            dob: '',
+                            username: ''
                         })
                     }
                     else {
                         let orders = doc.data().orders + 1;
                         User.doc(phone).collection('Orders').doc(`order${orders}`).set({
                             ...order,
-                            balance: this.props.total - 200,
+                            balance: this.props.total - 10000,
                             lat: this.state.marker.latitude,
                             long: this.state.marker.longitude
                         });
@@ -159,7 +161,9 @@ class FindMe extends Component {
                             orders,
                             phoneNo: phone,
                             lat: this.state.marker.latitude,
-                            long: this.state.marker.longitude
+                            long: this.state.marker.longitud,
+                            dob: '',
+                            username: ''
                         })
                     }
 
@@ -222,7 +226,7 @@ class FindMe extends Component {
                     });
                     Manager.doc(phone).set({
                         accepted: false,
-                        balance: this.props.total - 200,
+                        balance: this.props.total - 10000,
                         deliveryTime: this.state.hours + this.state.minutes,
                         name: this.state.name,
                         orderNo: Math.floor(Math.random() * Math.floor(9999)),
@@ -241,7 +245,7 @@ class FindMe extends Component {
                         if (!doc.exists) {
                             User.doc(phone).collection('Orders').doc('order1').set({
                                 ...order,
-                                balance: this.props.total - 200,
+                                balance: this.props.total - 10000,
                                 lat: this.state.marker.latitude,
                                 long: this.state.marker.longitude
                             });
@@ -257,7 +261,7 @@ class FindMe extends Component {
                             let orders = doc.data().orders + 1;
                             User.doc(phone).collection('Orders').doc(`order${orders}`).set({
                                 ...order,
-                                balance: this.props.total - 200,
+                                balance: this.props.total - 10000,
                                 lat: this.state.marker.latitude,
                                 long: this.state.marker.longitude
                             });
