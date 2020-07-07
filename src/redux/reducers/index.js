@@ -74,9 +74,34 @@ export default addToCartReducer = (state = initialState, action) => {
                         total: newTotal,
                     }
                 }
+
+                if (action.category === 'games') {
+                    let existed_item = state.addedItems.find(item => action.item === item.title);
+
+                    if (existed_item) {
+                        return {
+                            ...state,
+                        }
+                    }
+
+                    else {
+                        let addedItem = state.items.find(item => item.title === action.item)
+                        // console.log(addedItem)
+                        let newTotal = addedItem.price + state.total;
+
+                        return {
+                            ...state,
+                            addedItems: [...state.addedItems, addedItem],
+                            total: newTotal,
+                            itemsInCart: state.itemsInCart + 1
+                        }
+                    }
+
+                }
+
                 else {
                     let addedItem = state.items.find(item => item.title === action.item)
-                    console.log(addedItem)
+                    // console.log(addedItem)
                     let newTotal = addedItem.price + state.total;
 
                     return {

@@ -30,7 +30,7 @@ class SocialGames extends Component {
     }
     onAddToCart = (item) => {
         this.handleClick(item.title, 'games')
-        ToastAndroid.showWithGravity(`${item.title} added`, ToastAndroid.SHORT, ToastAndroid.CENTER)
+        // ToastAndroid.showWithGravity(`${item.title} added`, ToastAndroid.SHORT, ToastAndroid.CENTER)
         // item.added = true
         // this.setState({ added: true })
     }
