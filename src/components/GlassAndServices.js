@@ -102,8 +102,8 @@ export default class GlassAndServices extends Component {
                     let totalGlass = this.state.item.wineGlass + this.state.item.whiskeyGlass + this.state.item.champagneGlass
                     if (totalGlass % 12 === 0
                     ) {
-                        if (this.state.currentRate === 5000) this.setState({ currentRate: this.state.currentRate - 2500 })
-                        else this.setState({ currentRate: this.state.currentRate - 2500 })
+                        if (this.state.currentRate === 6000) this.setState({ currentRate: this.state.currentRate - 3000 })
+                        else this.setState({ currentRate: this.state.currentRate - 3000 })
                         this.setState({
                             item: {
                                 ...this.state.item,
@@ -153,8 +153,8 @@ export default class GlassAndServices extends Component {
                     hotess: this.state.item.hotess + 1,
                 },
             }, () => {
-                if (this.state.currentRate === 2500) this.setState({ currentRate: this.state.currentRate * this.state.item.hotess })
-                else this.setState({ currentRate: this.state.currentRate + 2500 })
+                if (this.state.currentRate === 3000) this.setState({ currentRate: this.state.currentRate * this.state.item.hotess })
+                else this.setState({ currentRate: this.state.currentRate + 3000 })
             }
             )
             this.setState({ maxGlass: this.state.maxGlass + 12 },
