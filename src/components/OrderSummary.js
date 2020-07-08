@@ -73,7 +73,7 @@ export class OrderSummary extends Component {
                                     <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
-                                            <Text style={styles.text}>{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.price}/pack</Text>
                                             <Text style={styles.text}>{item.quantity}</Text>
                                             <Text style={styles.text}>{item.price * item.quantity}</Text>
                                         </View>
@@ -86,7 +86,7 @@ export class OrderSummary extends Component {
                                     <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
-                                            <Text style={styles.text}>{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.price}/Btle</Text>
                                             <Text style={styles.text}>{item.quantity}</Text>
                                             <Text style={styles.text}>{item.price * item.quantity}</Text>
                                         </View>
@@ -99,7 +99,7 @@ export class OrderSummary extends Component {
                                     <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
-                                            <Text style={styles.text}>{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.price}/Btle</Text>
                                             <Text style={styles.text}>{item.quantity}</Text>
                                             <Text style={styles.text}>{item.price * item.quantity}</Text>
                                         </View>
@@ -112,7 +112,7 @@ export class OrderSummary extends Component {
                                     <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
-                                            <Text style={styles.text}>{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.price}/Btle</Text>
                                             <Text style={styles.text}>{item.quantity}</Text>
                                             <Text style={styles.text}>{item.price * item.quantity}</Text>
                                         </View>
@@ -125,7 +125,7 @@ export class OrderSummary extends Component {
                                     <View key={item.title}>
                                         <View style={styles.list} >
                                             <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
-                                            <Text style={styles.text}>{item.price}/Unit</Text>
+                                            <Text style={styles.text}>{item.price}/Btle</Text>
                                             <Text style={styles.text}>{item.quantity}</Text>
                                             <Text style={styles.text}>{item.price * item.quantity}</Text>
                                         </View>
@@ -161,7 +161,7 @@ export class OrderSummary extends Component {
                                             }
 
                                             {item.whiskeyGlass > 0 && <><View style={styles.list}>
-                                                <Text style={[styles.text, { flex: 1.2 }]}>Whiskey glass</Text>
+                                                <Text style={[styles.text, { flex: 1.2 }]}>Whisky glass</Text>
                                                 <Text style={[styles.text, { flex: 2.8 }]}>{item.whiskeyGlass}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>

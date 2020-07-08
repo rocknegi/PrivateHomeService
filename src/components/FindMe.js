@@ -162,8 +162,6 @@ class FindMe extends Component {
                             phoneNo: phone,
                             lat: this.state.marker.latitude,
                             long: this.state.marker.longitud,
-                            dob: '',
-                            username: ''
                         })
                     }
 
@@ -254,7 +252,9 @@ class FindMe extends Component {
                                 orders: 1,
                                 phoneNo: phone,
                                 lat: this.state.marker.latitude,
-                                long: this.state.marker.longitude
+                                long: this.state.marker.longitude,
+                                dob: '',
+                                username: ''
                             })
                         }
                         else {

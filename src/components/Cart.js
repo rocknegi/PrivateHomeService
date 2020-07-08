@@ -134,8 +134,8 @@ class Cart extends Component {
                                                         style={styles.logo}
                                                     />
                                                 </TouchableOpacity>
-                                                <Text style={{ fontSize: 20, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{item.title}</Text>
-                                                <Text style={{ fontSize: 20, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>FCFA {item.price}</Text>
+                                                <Text style={{ left: 12, flexWrap: 'wrap', flex: 0.8, fontSize: 20, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{item.title}</Text>
+                                                <Text style={{ flexWrap: 'wrap', fontSize: 20, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>FCFA {item.price}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                 <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
@@ -202,7 +202,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>Whiskey 12 Years</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>Whisky 12 Years</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -233,7 +233,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>Whiskey 15 Years</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>Whisky 15 Years</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -266,7 +266,7 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>Whiskey 18 Years</Text>}
+                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>Whisky 18 Years</Text>}
                                 {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
                                     return (
                                         <View key={item.title}>

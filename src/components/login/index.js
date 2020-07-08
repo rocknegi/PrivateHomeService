@@ -73,15 +73,19 @@ export default class index extends Component {
                 if (!data) {
                     Alert.alert('Something went wrong');
                 }
-                const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-                const userCredentials = await firebase.auth().signInWithCredential(credential);
-                // console.log(userCredentials.user.displayName)
-                // firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
-                //     username: userCredentials.user.displayName
-                // });
-                AsyncStorage.setItem('username', userCredentials.user.displayName)
-                AsyncStorage.setItem('phoneNo', this.state.phoneNo)
-                this.props.navigation.navigate('Home')
+
+                else {
+                    const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                    const userCredentials = await firebase.auth().signInWithCredential(credential);
+                    // console.log(userCredentials.user.displayName)
+                    // firebase.firestore().collection('Users').doc(this.state.phoneNo).set({
+                    //     username: userCredentials.user.displayName
+                    // });
+                    AsyncStorage.setItem('username', userCredentials.user.displayName)
+                    AsyncStorage.setItem('phoneNo', this.state.phoneNo)
+                    this.props.navigation.navigate('Home')
+                }
+
 
             } catch (error) {
                 console.log(error)

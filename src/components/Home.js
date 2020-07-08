@@ -20,17 +20,17 @@ const data = [
     },
     {
         id: 2,
-        name: 'Whiskey 12 Years',
+        name: 'Whisky 12 Years',
         category: 'Whiskey12'
     },
     {
         id: 3,
-        name: 'Whiskey 15 Years',
+        name: 'Whisky 15 Years',
         category: 'Whiskey15'
     },
     {
         id: 4,
-        name: 'Whiskey 18 Years',
+        name: 'Whisky 18 Years',
         category: 'Whiskey18'
     },
     {

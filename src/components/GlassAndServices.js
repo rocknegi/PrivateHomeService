@@ -193,7 +193,7 @@ export default class GlassAndServices extends Component {
                                 <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
                             </View>}
                             {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whiskey Glass</Text>
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whisky Glass</Text>
                                 <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
                                 <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
                                 <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />

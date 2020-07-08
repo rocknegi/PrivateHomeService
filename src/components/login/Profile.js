@@ -19,8 +19,8 @@ export default function Profile({ navigation }) {
 
     const getStoredData = async () => {
         const phoneNo = await AsyncStorage.getItem('phoneNo');
-        // const username = await AsyncStorage.getItem('username');
-        setData({ ...data, phoneNo });
+        const username = await AsyncStorage.getItem('username');
+        setData({ ...data, phoneNo, username });
         // if (username) {
         //     setData({ ...data, username })
         // }
