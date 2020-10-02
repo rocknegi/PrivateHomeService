@@ -1,14 +1,22 @@
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_OPTION, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE } from "../actions/actionTypes";
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_OPTION, SUB_OPTION, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE } from "../actions/actionTypes";
 
 export const initialState = {
     addedItems: [],
     total: 0,
-    itemsInCart: 0
+    itemsInCart: 0,
+    language: []
 }
 
 export default addToCartReducer = (state = initialState, action) => {
     switch (action.type) {
-
+        case GET_LANGUAGE: {
+            action.payload.strings.setLanguage(action.payload.id)
+            // alert(action.payload.strings.name)
+            return {
+                ...state,
+                language: action.payload.strings
+            }
+        }
         case FETCH_DATA: {
             // alert(JSON.stringify(action.payload.items))
             return { ...state, items: action.payload.items }

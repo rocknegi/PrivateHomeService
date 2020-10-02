@@ -1,7 +1,10 @@
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE } from "./actionTypes"
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE } from "./actionTypes"
 import _ from "lodash";
 import firebase from 'react-native-firebase';
+import LocalizedStrings from 'react-native-localization';
 
+import english from '../../utils/locale/en'
+import french from '../../utils/locale/fr'
 
 const Seesha = firebase.firestore().collection('Seesha');
 const Social = firebase.firestore().collection('Social');
@@ -55,6 +58,11 @@ Social.get().then(snapshot => {
         items3.push(({ ...doc.data(), id: doc.id, quantity: 1 }))
     })
 })
+
+const strings = new LocalizedStrings({
+    EN: english,
+    FR: french,
+});
 const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5ca88af00.png';
 
 // const items2 = [
@@ -67,6 +75,13 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 // const items3 = [
 //     { id: 'paid1', title: 'Time', price: 5, quantity: 1, category: 'games' },
 // ]
+
+export const getCurrentLanguage = (id) => {
+    return {
+        type: GET_LANGUAGE,
+        payload: { strings, id }
+    }
+}
 
 export const fetchData = category => {
     switch (category) {

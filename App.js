@@ -86,12 +86,7 @@ const authNavigator = createStackNavigator({
 
 }, {
   initialRouteName: 'Login',
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#f3b771',
-    },
-    headerTintColor: '#000',
-  }
+  headerMode: 'none'
 })
 const AppNavigator = createSwitchNavigator({
   Landing: LandingPage,

@@ -6,13 +6,19 @@ import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import firebase from 'react-native-firebase';
+import { Picker } from '@react-native-community/picker';
+import Feather from 'react-native-vector-icons/Feather';
+import { connect } from 'react-redux';
+import { getCurrentLanguage } from '../../redux/actions';
 
-export default class index extends Component {
+class index extends Component {
     state = {
         isModalVisible: false,
         dialingCode: '+237',
-        phoneNo: ''
+        phoneNo: '',
+        language: 'EN'
     }
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
@@ -93,6 +99,12 @@ export default class index extends Component {
             }
         }
     }
+
+    changeLanguage = (language) => {
+        this.setState({ language })
+        this.props.getCurrentLanguage(language)
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -115,6 +127,20 @@ export default class index extends Component {
                     setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
                     toggleModal={this.toggleModal}
                 /> */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
+                    <Feather name="globe" size={20} />
+                    <Picker
+                        selectedValue={this.state.language}
+                        style={{ height: 50, width: '10%' }}
+                        // mode="dropdown"
+                        onValueChange={(itemValue, itemIndex) => this.changeLanguage(itemValue)}
+                    >
+                        <Picker.Item label="English" value="EN" />
+                        <Picker.Item label="French" value="FR" />
+                    </Picker>
+                    <Text style={{ marginLeft: '-2%' }}>{this.state.language}</Text>
+                </View>
+
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={{ flex: 1 }}>
                         <View style={styles.field}>
@@ -184,6 +210,20 @@ export default class index extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        language: state.language
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getCurrentLanguage: (id) => { dispatch(getCurrentLanguage(id)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(index)
 const styles = StyleSheet.create({
     container: {
         flex: 1,

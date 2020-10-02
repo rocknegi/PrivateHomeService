@@ -243,7 +243,8 @@ class Home extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        itemsInCart: state.itemsInCart
+        itemsInCart: state.itemsInCart,
+        language: state.language
     }
 }
 
