@@ -34,6 +34,7 @@ import ContactUs from './src/components/login/ContactUs';
 import Notifications from './src/components/login/Notifications';
 import Orders from './src/components/login/Orders';
 import Video from './src/components/login/Video';
+import InitialSelectionScreen from './src/components/InitialSelectionScreen';
 
 MaterialIcon.loadFont();
 Feather.loadFont()
@@ -62,6 +63,7 @@ const innerNavigator = createStackNavigator({
 
 
 const dashBoard = createDrawerNavigator({
+  InitialSelectionScreen,
   Home: innerNavigator,
   Profile,
   Orders,
@@ -73,7 +75,7 @@ const dashBoard = createDrawerNavigator({
     activeTintColor: '#fd6d24',
     backgroundTintColor: '#fdbf83'
   },
-  initialRouteName: 'Home',
+  initialRouteName: 'InitialSelectionScreen',
   drawerType: 'slide',
   contentComponent: props => <CustomDrawer {...props} />,
 })

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE } from "./actionTypes"
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE, SET_INITIAL_SELECION } from "./actionTypes"
 import _ from "lodash";
 import firebase from 'react-native-firebase';
 import LocalizedStrings from 'react-native-localization';
@@ -80,6 +80,13 @@ export const getCurrentLanguage = (id) => {
     return {
         type: GET_LANGUAGE,
         payload: { strings, id }
+    }
+}
+
+export const setInitialSelection = (id) => {
+    return {
+        type: SET_INITIAL_SELECION,
+        payload: { id }
     }
 }
 

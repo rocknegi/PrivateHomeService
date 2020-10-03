@@ -9,3 +9,4 @@ export const ADD_ON_ADD = 'ADD_ON_ADD';
 export const FETCH_DATA = 'FETCH_DATA';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const GET_LANGUAGE = 'GET_LANGUAGE';
+export const SET_INITIAL_SELECION = 'SET_INITIAL_SELECION';
