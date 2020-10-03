@@ -4,7 +4,7 @@ import { PrimayColor } from './theme/Colors';
 import images from '../assets/images';
 import Icon from 'react-native-vector-icons/Feather'
 import { connect } from 'react-redux';
-import { setInitialSelection } from '../redux/actions'
+import { clearState, setInitialSelection } from '../redux/actions'
 
 class InitialSelectionScreen extends React.Component {
 
@@ -106,7 +106,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setInitialSelection: (id) => { dispatch(setInitialSelection(id)) }
+        setInitialSelection: (id) => { dispatch(setInitialSelection(id)) },
+        clear: (id) => { dispatch(clearState(id)) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InitialSelectionScreen)

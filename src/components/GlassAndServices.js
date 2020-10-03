@@ -8,7 +8,7 @@ import { removeFromCart, addQuantity, subQuantity, addOption, subOption, addOnAd
 
 import _ from 'lodash'
 
-export default class GlassAndServices extends Component {
+class GlassAndServices extends Component {
 
     state = {
         wineBottles: 0,
@@ -31,7 +31,6 @@ export default class GlassAndServices extends Component {
         },
         obj: {},
     }
-
     componentDidMount() {
         let wineBottles = this.props.data.filter(item => item.category === 'liquors')
         let whiskeyBottles = this.props.data.filter(item => item.category === 'Whiskey12' || item.category === 'Whiskey15' || item.category === 'Whiskey18')
@@ -184,70 +183,75 @@ export default class GlassAndServices extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', padding: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ marginTop: 5 }}>
-                        {this.state.glassesVisible && <View>
-                            <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
-                            {this.state.wineBottles > 0 && <View style={styles.list} >
-                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
-                                <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
-                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 21 }}>{this.state.item.wineGlass}</Text>
-                                <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
+                        {this.props.selection === 'phs' && <>
+                            {this.state.glassesVisible && <View>
+                                <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
+                                {this.state.wineBottles > 0 && <View style={styles.list} >
+                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
+                                    <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
+                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 21 }}>{this.state.item.wineGlass}</Text>
+                                    <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
+                                </View>}
+                                {this.state.whiskeyBottles > 0 && <View style={styles.list} >
+                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whisky Glass</Text>
+                                    <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
+                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
+                                    <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
+                                </View>}
+                                {this.state.champagneBottles > 0 && <View style={styles.list} >
+                                    <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>Champagne Glass</Text>
+                                    <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
+                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.champagneGlass}</Text>
+                                    <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
+                                    {this.state.error &&
+                                        <Text>{this.state.error}</Text>
+                                    }
+                                </View>}
                             </View>}
-                            {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whisky Glass</Text>
-                                <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
-                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
-                                <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
-                            </View>}
-                            {this.state.champagneBottles > 0 && <View style={styles.list} >
-                                <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>Champagne Glass</Text>
-                                <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
-                                <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.champagneGlass}</Text>
-                                <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
+                            <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
+                            <View style={[styles.list, { marginBottom: 5 }]} >
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
+                                <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
+                                <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
+                                <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
                                 {this.state.error &&
                                     <Text>{this.state.error}</Text>
                                 }
-                            </View>}
-                        </View>}
-                        <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
-                        <View style={[styles.list, { marginBottom: 5 }]} >
-                            <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
-                            <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
-                            <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
-                            <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
-                            {this.state.error &&
-                                <Text>{this.state.error}</Text>
-                            }
-                        </View>
-                        <View style={styles.list}>
-                            <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
-                            <Text style={styles.text}>{this.state.item.price} fcfa</Text>
-                        </View>
+                            </View>
+                            <View style={styles.list}>
+                                <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
+                                <Text style={styles.text}>{this.state.item.price} fcfa</Text>
+                            </View>
 
-                        <View style={{ marginBottom: 10, flexDirection: 'row' }} >
-                            <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.99, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hostess</Text>
-                            {/* <Icon onPress={()=>this.setState({
+                            <View style={{ marginBottom: 10, flexDirection: 'row' }} >
+                                <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.99, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hostess</Text>
+                                {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess - 1,
                                 }
                             })} name="minus" style={styles.icon} /> */}
-                            <Text style={{ fontSize: 18, flex: 0.1 }}>{this.state.item && this.state.item.hotess}</Text>
-                            {/* <Icon onPress={()=>this.setState({
+                                <Text style={{ fontSize: 18, flex: 0.1 }}>{this.state.item && this.state.item.hotess}</Text>
+                                {/* <Icon onPress={()=>this.setState({
                                 item: {
                                     ...this.state.item,
                                     hotess: this.state.item.hotess + 1,
                                 }
                             })} name="plus" style={styles.icon} /> */}
-                            <Text style={styles.text}>           </Text>
-                            {this.state.error &&
-                                <Text>{this.state.error}</Text>
-                            }
+                                <Text style={styles.text}>           </Text>
+                                {this.state.error &&
+                                    <Text>{this.state.error}</Text>
+                                }
 
-                        </View>
-                        <View style={{ padding: 5 }}>
-                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
-                            <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hostess</Text>
-                        </View>
+                            </View>
+                            <View style={{ padding: 5 }}>
+                                <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
+                                <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hostess</Text>
+                            </View>
+                        </>}
+                        {this.props.selection !== 'phs' &&
+                            <View style={{ marginTop: '100%' }}></View>
+                        }
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
                                 onPress={this.props.toggle}
@@ -266,6 +270,13 @@ export default class GlassAndServices extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        selection: state.selection
+    }
+}
+export default connect(mapStateToProps)(GlassAndServices)
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

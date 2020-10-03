@@ -134,7 +134,7 @@ export class OrderSummary extends Component {
                                 )
                             })}
 
-                            {this.props.items.map(item => {
+                            {this.props.selection === 'phs' && this.props.items.map(item => {
                                 return (
                                     <View>
                                         {item.hotess && <View key={item.id}>
@@ -210,7 +210,8 @@ export class OrderSummary extends Component {
 
 const mapStateToProps = (state) => ({
     items: state.addedItems,
-    total: state.total
+    total: state.total,
+    selection: state.selection
 })
 
 
