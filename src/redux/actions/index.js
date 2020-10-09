@@ -8,13 +8,21 @@ import french from '../../utils/locale/fr'
 
 const Seesha = firebase.firestore().collection('Seesha');
 const Social = firebase.firestore().collection('Social');
+
 const Whiskey12 = firebase.firestore().collection('Whiskey12');
 const Whiskey15 = firebase.firestore().collection('Whiskey15');
 const Whiskey18 = firebase.firestore().collection('Whiskey18');
 const liquors = firebase.firestore().collection('liquors');
 const Champagne = firebase.firestore().collection('Champagne');
 
+const Whiskey12DD = firebase.firestore().collection('Whiskey12DD');
+const Whiskey15DD = firebase.firestore().collection('Whiskey15DD');
+const Whiskey18DD = firebase.firestore().collection('Whiskey18DD');
+const liquorsDD = firebase.firestore().collection('liquorsDD');
+const ChampagneDD = firebase.firestore().collection('ChampagneDD');
+
 let items = [];
+let itemsDD = [];
 let items2 = [];
 let items3 = [];
 
@@ -46,6 +54,36 @@ Champagne.get().then(snapshot => {
         items.push(({ ...doc.data(), id: doc.id }))
     })
 });
+
+liquorsDD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+Whiskey12DD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+
+Whiskey15DD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+
+Whiskey18DD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+
+ChampagneDD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+
 
 Seesha.get().then(snapshot => {
     snapshot.forEach(doc => {
@@ -101,6 +139,16 @@ export const fetchData = category => {
                 payload: {
                     items,
                     category
+                }
+
+            })
+        }
+        case 'DD': {
+            return ({
+                type: FETCH_DATA,
+                payload: {
+                    items: itemsDD,
+                    category: ''
                 }
 
             })

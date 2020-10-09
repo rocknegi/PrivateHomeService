@@ -47,6 +47,8 @@ class SelectedCategory extends Component {
             this.props.fetchData('seesha')
         else if (this.state.category === 'games')
             this.props.fetchData('games')
+        else if (this.state.category.includes('DD'))
+            this.props.fetchData('DD')
         else this.props.fetchData('');
 
         const db = firebase.firestore().collection(`SeeMoreChampagne`);
@@ -193,7 +195,7 @@ class SelectedCategory extends Component {
                                 fontSize: 18, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, padding: 8, marginHorizontal: '10%', marginBottom: 10
                             }}>{this.state.title}</Text>
 
-                            {this.props.items.filter(e => e.category === this.state.category).map(item => {
+                            {this.props.items.filter(e => e.category === this.state.category.replace('DD', '')).map(item => {
                                 return (
                                     <View key={item.title}>
                                         <View>

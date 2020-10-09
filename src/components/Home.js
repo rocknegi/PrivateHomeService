@@ -41,6 +41,35 @@ const data = [
 
 ]
 
+const dataDD = [
+    {
+        id: 1,
+        name: 'Pack selection',
+        category: 'liquorsDD'
+    },
+    {
+        id: 2,
+        name: 'Whisky 12 Years',
+        category: 'Whiskey12DD'
+    },
+    {
+        id: 3,
+        name: 'Whisky 15 Years',
+        category: 'Whiskey15DD'
+    },
+    {
+        id: 4,
+        name: 'Whisky 18 Years',
+        category: 'Whiskey18DD'
+    },
+    {
+        id: 5,
+        name: 'Champagne ',
+        category: 'ChampagneDD'
+    },
+
+]
+
 const order = firebase.firestore().collection('Managers');
 
 class Home extends Component {
@@ -128,7 +157,7 @@ class Home extends Component {
                             }]}>
                                 Our Selection
                             </Text>
-                            {data.map(item => {
+                            {this.props.selection === 'phs' ? data.map(item => {
                                 return (
                                     <TouchableOpacity
                                         key={item.id}
@@ -141,7 +170,22 @@ class Home extends Component {
                                         <Icon name="arrow-right" style={styles.icon} />
                                     </TouchableOpacity>
                                 )
-                            })}
+                            }) :
+                                dataDD.map(item => {
+                                    return (
+                                        <TouchableOpacity
+                                            key={item.id}
+                                            onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                                category: item.category,
+                                                name: item.name
+                                            })}
+                                            style={styles.list}>
+                                            <Text style={[styles.text, { padding: 10 }]}>{item.name}</Text>
+                                            <Icon name="arrow-right" style={styles.icon} />
+                                        </TouchableOpacity>
+                                    )
+                                })
+                            }
                             <Text style={[styles.text, {
                                 fontStyle: 'italic',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
@@ -244,7 +288,8 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         itemsInCart: state.itemsInCart,
-        language: state.language
+        language: state.language,
+        selection: state.selection
     }
 }
 

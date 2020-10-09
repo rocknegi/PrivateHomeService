@@ -25,7 +25,6 @@ export default addToCartReducer = (state = initialState, action) => {
             }
         }
         case FETCH_DATA: {
-            // alert(JSON.stringify(action.payload.items))
             return { ...state, items: action.payload.items }
         }
         case CLEAR_STATE: {
