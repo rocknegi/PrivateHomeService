@@ -63,13 +63,13 @@ const innerNavigator = createStackNavigator({
 
 
 const dashBoard = createDrawerNavigator({
-  InitialSelectionScreen,
   Home: innerNavigator,
   Profile,
   Orders,
   Notifications,
   Video,
   ContactUs,
+  InitialSelectionScreen,
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',

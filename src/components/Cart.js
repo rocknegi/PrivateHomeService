@@ -53,7 +53,14 @@ class Cart extends Component {
     }
 
     toggleModal = () => {
-        this.setState({ isModal: !this.state.isModal, })
+        if (this.props.selection === 'phs')
+            this.setState({ isModal: !this.state.isModal, })
+        else {
+            this.props.navigation.navigate('orderSummary', {
+                data: []
+            });
+        }
+
     }
 
     toggleImageModal = () => {
@@ -100,8 +107,8 @@ class Cart extends Component {
                     </View>
                     {this.props.items.length ?
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            <Text style={styles.textHeading}>Free of charge</Text>
-                            {this.state.complimentary.map((item, i) => {
+                            {this.props.selection === 'phs' && <Text style={styles.textHeading}>Free of charge</Text>}
+                            {this.props.selection === 'phs' && this.state.complimentary.map((item, i) => {
                                 return (
                                     <View key={item.title}>
                                         <View style={[styles.list, { marginHorizontal: '0%' }]}>
@@ -383,7 +390,8 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.addedItems,
-        total: state.total
+        total: state.total,
+        selection: state.selection
     }
 }
 const mapDispatchToProps = (dispatch) => {

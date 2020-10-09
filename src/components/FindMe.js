@@ -44,6 +44,7 @@ class FindMe extends Component {
         address: ''
     }
     componentDidMount() {
+        // alert(JSON.stringify(this.props.items, undefined, 2))
         // const today = new Date();
         // const dd = today.getDate();
         // const mm = today.getMonth() + 1;
@@ -113,22 +114,41 @@ class FindMe extends Component {
                     lat: this.state.marker.latitude,
                     long: this.state.marker.longitude
                 });
-                Manager.doc(phone).set({
-                    accepted: false,
-                    balance: this.props.total - 10000,
-                    deliveryTime: this.state.hours + this.state.minutes,
-                    name: this.state.name,
-                    orderNo: Math.floor(Math.random() * Math.floor(9999)),
-                    // orders:,
-                    phoneNo: phone,
-                    serviceDuration: service['service'],
-                    date: this.state.date,
-                    address: this.state.address,
-                    lat: this.state.marker.latitude,
-                    long: this.state.marker.longitude,
-                    completed: false,
-                    confirmed: false
-                })
+                if (this.props.selection === 'phs') {
+                    Manager.doc(phone).set({
+                        accepted: false,
+                        balance: this.props.total - 10000,
+                        deliveryTime: this.state.hours + this.state.minutes,
+                        name: this.state.name,
+                        orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                        // orders:,
+                        phoneNo: phone,
+                        serviceDuration: service['service'],
+                        date: this.state.date,
+                        address: this.state.address,
+                        lat: this.state.marker.latitude,
+                        long: this.state.marker.longitude,
+                        completed: false,
+                        confirmed: false
+                    })
+                }
+                else {
+                    Manager.doc(phone).set({
+                        accepted: false,
+                        balance: this.props.total - 10000,
+                        deliveryTime: this.state.hours + this.state.minutes,
+                        name: this.state.name,
+                        orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                        phoneNo: phone,
+                        serviceDuration: 0,
+                        date: this.state.date,
+                        address: this.state.address,
+                        lat: this.state.marker.latitude,
+                        long: this.state.marker.longitude,
+                        completed: false,
+                        confirmed: false
+                    })
+                }
 
                 User.doc(phone).get().then(doc => {
                     if (!doc.exists) {
@@ -222,22 +242,41 @@ class FindMe extends Component {
                         lat: this.state.marker.latitude,
                         long: this.state.marker.longitude
                     });
-                    Manager.doc(phone).set({
-                        accepted: false,
-                        balance: this.props.total - 10000,
-                        deliveryTime: this.state.hours + this.state.minutes,
-                        name: this.state.name,
-                        orderNo: Math.floor(Math.random() * Math.floor(9999)),
-                        // orders:,
-                        phoneNo: phone,
-                        serviceDuration: service['service'],
-                        date: this.state.date,
-                        address: this.state.address,
-                        lat: this.state.marker.latitude,
-                        long: this.state.marker.longitude,
-                        completed: false,
-                        confirmed: false
-                    })
+                    if (this.props.selection !== 'phs') {
+                        Manager.doc(phone).set({
+                            accepted: false,
+                            balance: this.props.total - 10000,
+                            deliveryTime: this.state.hours + this.state.minutes,
+                            name: this.state.name,
+                            orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                            phoneNo: phone,
+                            serviceDuration: 0,
+                            date: this.state.date,
+                            address: this.state.address,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude,
+                            completed: false,
+                            confirmed: false
+                        })
+                    }
+                    else {
+                        Manager.doc(phone).set({
+                            accepted: false,
+                            balance: this.props.total - 10000,
+                            deliveryTime: this.state.hours + this.state.minutes,
+                            name: this.state.name,
+                            orderNo: Math.floor(Math.random() * Math.floor(9999)),
+                            // orders:,
+                            phoneNo: phone,
+                            serviceDuration: service['service'],
+                            date: this.state.date,
+                            address: this.state.address,
+                            lat: this.state.marker.latitude,
+                            long: this.state.marker.longitude,
+                            completed: false,
+                            confirmed: false
+                        })
+                    }
 
                     User.doc(phone).get().then(doc => {
                         if (!doc.exists) {
@@ -529,6 +568,7 @@ const mapStateToProps = (state) => {
     return {
         total: state.total,
         items: state.addedItems,
+        selection: state.selection
     }
 }
 const mapDispatchToProps = (dispatch) => {
