@@ -84,7 +84,7 @@ class Seesha extends Component {
                                     </View> */}
 
                             <View style={styles.options}>
-                                <Text style={[styles.text, { textAlign: 'center', fontSize: 18, marginTop: '2%', flex: 0 }]}>Select your favourite taste</Text>
+                                <Text style={[styles.text, { textAlign: 'center', fontSize: 18, marginTop: '2%', flex: 0 }]}>{this.props.language.selectSeesha}</Text>
                             </View>
                             {this.props.items.map(item => {
                                 return (
@@ -104,15 +104,15 @@ class Seesha extends Component {
                                 )
                             })}
 
-                            <Text style={{ marginTop: 20, fontSize: 12 }}>*Only one shisha will be delivered</Text>
+                            <Text style={{ marginTop: 20, fontSize: 12 }}>{this.props.language.onlySeesha}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
                                 onPress={this.props.toggle}
-                                style={[styles.button, { marginTop: '10%', width: '30%' }]}><Text style={styles.buttonText}>Close</Text></TouchableOpacity>
+                                style={[styles.button, { marginTop: '10%', width: '30%' }]}><Text style={styles.buttonText}>{this.props.language.close}</Text></TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.handleClick(this.props.items, 'seesha')}
-                                style={[styles.button, { marginTop: '10%', }]}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>
+                                style={[styles.button, { marginTop: '10%', }]}><Text style={styles.buttonText}>{this.props.language.addCart}</Text></TouchableOpacity>
                         </View>
 
                     </View>
@@ -128,7 +128,8 @@ const mapStateToProps = (state) => {
         items: state.items,
         total: state.total,
         added: state.addedItems,
-        itemsInCart: state.itemsInCart
+        itemsInCart: state.itemsInCart,
+        language: state.language
     }
 }
 

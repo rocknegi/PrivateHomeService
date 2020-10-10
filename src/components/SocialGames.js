@@ -59,21 +59,21 @@ class SocialGames extends Component {
                                         <>
                                             {item.added ? <TouchableOpacity
                                                 disabled={true}
-                                                style={[styles.button, { backgroundColor: 'green' }]}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity> :
+                                                style={[styles.button, { backgroundColor: 'green' }]}><Text style={styles.buttonText}>{this.props.language.addCart}</Text></TouchableOpacity> :
                                                 <TouchableOpacity
                                                     onPress={() => this.onAddToCart(item)}
-                                                    style={styles.button}><Text style={styles.buttonText}>add to cart</Text></TouchableOpacity>}
+                                                    style={styles.button}><Text style={styles.buttonText}>{this.props.language.addCart}</Text></TouchableOpacity>}
                                         </>
                                     }
                                 </View>
                             </View>)
                         })}
-                        <Text style={styles.text}>Only one quantity per item</Text>
+                        <Text style={styles.text}>{this.props.language.onlyGame}</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
                                 onPress={this.props.toggle}
                                 style={[styles.button, { marginTop: 10, width: '30%' }]}>
-                                <Text style={styles.buttonText}>Close</Text>
+                                <Text style={styles.buttonText}>{this.props.language.close}</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -92,6 +92,7 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         addedItems: state.addedItems,
+        language: state.language
     }
 }
 

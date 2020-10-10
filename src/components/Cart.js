@@ -102,12 +102,12 @@ class Cart extends Component {
                 <View style={{ marginHorizontal: '0%', flex: 1 }}>
                     <View style={{ backgroundColor: PrimayColor, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 50 }}>
                         <Icon style={{ fontSize: 30, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
-                        <Text style={[styles.text, { textAlign: 'left' }]}>Cart</Text>
+                        <Text style={[styles.text, { textAlign: 'left' }]}>{this.props.language.cart}</Text>
 
                     </View>
                     {this.props.items.length ?
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            {this.props.selection === 'phs' && <Text style={styles.textHeading}>Free of charge</Text>}
+                            {this.props.selection === 'phs' && <Text style={styles.textHeading}>{this.props.language.free}</Text>}
                             {this.props.selection === 'phs' && this.state.complimentary.map((item, i) => {
                                 return (
                                     <View key={item.title}>
@@ -130,7 +130,7 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'Social') && <Text style={styles.textHeading}>Social games</Text>}
+                                {this.props.items.find(e => e.category === 'Social') && <Text style={styles.textHeading}>{this.props.language.games1}{this.props.language.games2}</Text>}
                                 {this.props.items.filter(e => e.category === 'Social').map(item => {
                                     return (
                                         <View>
@@ -181,7 +181,7 @@ class Cart extends Component {
                                     )
                                 })}
                             </View>
-                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>Pack</Text>}
+                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>{this.props.language.pack}</Text>}
                             {this.state.liquors && this.props.items.filter(e => e.category === 'liquors').map((item, i) => {
                                 return (
                                     <View key={item.title}>
@@ -209,7 +209,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>Whisky 12 Years</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>{this.props.language.whiskey12}</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -240,7 +240,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>Whisky 15 Years</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>{this.props.language.whiskey15}</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -273,7 +273,7 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>Whisky 18 Years</Text>}
+                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>{this.props.language.whiskey18}</Text>}
                                 {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
                                     return (
                                         <View key={item.title}>
@@ -306,7 +306,7 @@ class Cart extends Component {
                                     )
                                 })}</View>
                             <View>
-                                {this.props.items.find(e => e.category === 'Champagne') && <Text style={styles.textHeading}>Champagne</Text>}
+                                {this.props.items.find(e => e.category === 'Champagne') && <Text style={styles.textHeading}>{this.props.language.champagne}</Text>}
                                 {this.props.items.filter(e => e.category === 'Champagne').map(item => {
                                     return (
                                         <View key={item.title}>
@@ -372,13 +372,13 @@ class Cart extends Component {
                         <Text style={[styles.text, { fontSize: 13, flex: 0.3 }]}>Total </Text>
                         <Text style={[styles.text, { fontSize: 13, flex: 0.5, left: '-30%' }]}>fcfa {this.props.total}
                             {"\n"}
-                            <Text style={{ fontSize: 11 }}>Incl. Taxes</Text>
+                            <Text style={{ fontSize: 11 }}>{this.props.language.tax}</Text>
                         </Text>
-                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>Account: {"\n"}fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>{this.props.language.account}: {"\n"}fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0, width: '25%', left: '-25%' }]}>
-                            <Text style={[styles.buttonText, { alignContent: 'center' }]}>Buy Now</Text>
+                            style={[styles.button, { marginBottom: 0, width: '30%', left: '-20%' }]}>
+                            <Text style={[styles.buttonText, { alignContent: 'center' }]}>{this.props.language.buynow}</Text>
                         </TouchableOpacity>
                     </View> : null}
                 </View>
@@ -391,7 +391,8 @@ const mapStateToProps = (state) => {
     return {
         items: state.addedItems,
         total: state.total,
-        selection: state.selection
+        selection: state.selection,
+        language: state.language
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -6,9 +6,10 @@ import Layout from './theme/Layout'
 import { BackgroundColor, PrimayColor } from './theme/Colors'
 
 export class OrderSummary extends Component {
-    static navigationOptions = ({ navigation }) => {
+    static navigationOptions = ({ navigation }, props) => {
         return {
-            title: 'Order Summary'
+            headerShown: false,
+            title: '',
         }
     }
     state = {
@@ -18,13 +19,18 @@ export class OrderSummary extends Component {
         console.log(JSON.stringify(this.props.items, undefined, 3))
         return (
             <Layout>
+                <View style={{ backgroundColor: PrimayColor, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 50 }}>
+                    <Icon style={{ fontSize: 30, left: 5 }} name="arrow-left" onPress={() => this.props.navigation.goBack()} />
+                    <Text style={[styles.text, { textAlign: 'left' }]}>{this.props.language.summary}</Text>
+
+                </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {this.props.items &&
                         <View>
                             <View style={[styles.list, { backgroundColor: '#eee' }]}>
-                                <Text style={[styles.text, { flexGrow: 1.5, borderWidth: 1, margin: 1 }]}>Product</Text>
-                                <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Price</Text>
-                                <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Quantity</Text>
+                                <Text style={[styles.text, { flexGrow: 1.5, borderWidth: 1, margin: 1 }]}>{this.props.language.product}</Text>
+                                <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>{this.props.language.price}</Text>
+                                <Text style={[styles.text, { borderWidth: 1, margin: 0 }]}>{this.props.language.quantity}</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Total</Text>
                             </View>
                             {this.state.complimentary.map(item => {
@@ -196,11 +202,11 @@ export class OrderSummary extends Component {
                     <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-9%', flexGrow: 4.5, paddingLeft: 0, paddingRight: 0, top: 7 }]}>FCFA {this.props.total}{"\n"}
                         <Text style={{ fontSize: 10 }}>Incl. Taxes</Text>
                     </Text>
-                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>Account: FCFA 10.000</Text>
+                    <Text style={[styles.text, { fontSize: 13, padding: 10, marginLeft: '-5%', flexGrow: 6, paddingLeft: 0, paddingRight: 0 }]}>{this.props.language.account}: FCFA 10.000</Text>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('location')}
                         style={[styles.button, { marginBottom: 0, height: 35 }]}>
-                        <Text style={[styles.buttonText, { alignContent: 'center' }]}>Pay Now</Text>
+                        <Text style={[styles.buttonText, { alignContent: 'center' }]}>{this.props.language.paynow}</Text>
                     </TouchableOpacity>
                 </View> : null}
             </Layout>
@@ -211,7 +217,8 @@ export class OrderSummary extends Component {
 const mapStateToProps = (state) => ({
     items: state.addedItems,
     total: state.total,
-    selection: state.selection
+    selection: state.selection,
+    language: state.language
 })
 
 

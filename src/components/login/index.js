@@ -19,6 +19,10 @@ class index extends Component {
         language: 'EN'
     }
 
+    componentDidMount() {
+        this.props.getCurrentLanguage('EN')
+    }
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
@@ -148,7 +152,7 @@ class index extends Component {
                         style={styles.icon} /> */}
                             <Text style={{ marginLeft: 10 }}>{`${this.state.dialingCode}`}</Text>
                             <TextInput
-                                placeholder="Telefon Nr required"
+                                placeholder={this.props.language.phonePlaceholder}
                                 style={[styles.input]}
                                 keyboardType={'number-pad'}
                                 onChangeText={(value) => this.setState({ phoneNo: value })}
@@ -172,10 +176,10 @@ class index extends Component {
                         <TouchableOpacity
                             style={[styles.buttonContainer, { backgroundColor: '#4267b1' }]}
                             onPress={this._fbSignIn}>
-                            <Text style={styles.buttonText}>Login with Facebook</Text>
+                            <Text style={styles.buttonText}>{this.props.language.fbLogin}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonContainer} onPress={this._guestLogin}>
-                            <Text style={styles.buttonText}>Continue as Guest</Text>
+                            <Text style={styles.buttonText}>{this.props.language.guestLogin}</Text>
                         </TouchableOpacity>
 
                         {/* <View style={styles.signup}>
@@ -245,7 +249,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fafafa',
         marginBottom: 20,
         marginTop: 10,
-        marginHorizontal: '18%',
+        marginHorizontal: '13%',
         borderColor: PrimayColor
     },
     icon: {
@@ -260,7 +264,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         backgroundColor: PrimayColor,
         borderRadius: 100,
-        marginHorizontal: '18%',
+        marginHorizontal: '13%',
         height: 50,
         justifyContent: 'center',
         marginBottom: 20

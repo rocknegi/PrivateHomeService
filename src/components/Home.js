@@ -11,65 +11,6 @@ import { set } from 'lodash';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Discounted = firebase.firestore().collection('Discounted');
-
-const data = [
-    {
-        id: 1,
-        name: 'Pack selection',
-        category: 'liquors'
-    },
-    {
-        id: 2,
-        name: 'Whisky 12 Years',
-        category: 'Whiskey12'
-    },
-    {
-        id: 3,
-        name: 'Whisky 15 Years',
-        category: 'Whiskey15'
-    },
-    {
-        id: 4,
-        name: 'Whisky 18 Years',
-        category: 'Whiskey18'
-    },
-    {
-        id: 5,
-        name: 'Champagne ',
-        category: 'Champagne'
-    },
-
-]
-
-const dataDD = [
-    {
-        id: 1,
-        name: 'Pack selection',
-        category: 'liquorsDD'
-    },
-    {
-        id: 2,
-        name: 'Whisky 12 Years',
-        category: 'Whiskey12DD'
-    },
-    {
-        id: 3,
-        name: 'Whisky 15 Years',
-        category: 'Whiskey15DD'
-    },
-    {
-        id: 4,
-        name: 'Whisky 18 Years',
-        category: 'Whiskey18DD'
-    },
-    {
-        id: 5,
-        name: 'Champagne ',
-        category: 'ChampagneDD'
-    },
-
-]
-
 const order = firebase.firestore().collection('Managers');
 
 class Home extends Component {
@@ -83,7 +24,63 @@ class Home extends Component {
     state = {
         DisocuntedItems: [],
         notification: false,
-        phoneNo: ''
+        phoneNo: '',
+        data: [
+            {
+                id: 1,
+                name: this.props.language.pack,
+                category: 'liquors'
+            },
+            {
+                id: 2,
+                name: this.props.language.whiskey12,
+                category: 'Whiskey12'
+            },
+            {
+                id: 3,
+                name: this.props.language.whiskey15,
+                category: 'Whiskey15'
+            },
+            {
+                id: 4,
+                name: this.props.language.whiskey18,
+                category: 'Whiskey18'
+            },
+            {
+                id: 5,
+                name: this.props.language.champagne,
+                category: 'Champagne'
+            },
+
+        ],
+        dataDD: [
+            {
+                id: 1,
+                name: this.props.language.pack,
+                category: 'liquorsDD'
+            },
+            {
+                id: 2,
+                name: this.props.language.whiskey12,
+                category: 'Whiskey12DD'
+            },
+            {
+                id: 3,
+                name: this.props.language.whiskey15,
+                category: 'Whiskey15DD'
+            },
+            {
+                id: 4,
+                name: this.props.language.whiskey18,
+                category: 'Whiskey18DD'
+            },
+            {
+                id: 5,
+                name: this.props.language.champagne,
+                category: 'ChampagneDD'
+            },
+
+        ]
     }
 
     async componentDidMount() {
@@ -106,7 +103,6 @@ class Home extends Component {
                 }
             })
         })
-
     }
 
     render() {
@@ -155,9 +151,9 @@ class Home extends Component {
                                 fontStyle: 'italic',
                                 fontWeight: 'bold'
                             }]}>
-                                Our Selection
+                                {this.props.language.selection}
                             </Text>
-                            {this.props.selection === 'phs' ? data.map(item => {
+                            {this.props.selection === 'phs' ? this.state.data.map(item => {
                                 return (
                                     <TouchableOpacity
                                         key={item.id}
@@ -171,7 +167,7 @@ class Home extends Component {
                                     </TouchableOpacity>
                                 )
                             }) :
-                                dataDD.map(item => {
+                                this.state.dataDD.map(item => {
                                     return (
                                         <TouchableOpacity
                                             key={item.id}
@@ -190,7 +186,7 @@ class Home extends Component {
                                 fontStyle: 'italic',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
                                 fontWeight: 'bold', alignSelf: 'flex-end'
-                            }]}>Discounted</Text>
+                            }]}>{this.props.language.disc}</Text>
                             <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1.5, marginHorizontal: '2%' }}></LinearGradient>
                         </View>
 

@@ -185,7 +185,7 @@ class GlassAndServices extends Component {
                     <View style={{ marginTop: 5 }}>
                         {this.props.selection === 'phs' && <>
                             {this.state.glassesVisible && <View>
-                                <Text style={[styles.text, { margin: 10 }]}>Choose your glasses amount</Text>
+                                <Text style={[styles.text, { margin: 10 }]}>{this.props.language.glassHeading}</Text>
                                 {this.state.wineBottles > 0 && <View style={styles.list} >
                                     <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
                                     <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
@@ -193,13 +193,13 @@ class GlassAndServices extends Component {
                                     <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
                                 </View>}
                                 {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Whisky Glass</Text>
+                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{this.props.language.wGlass}</Text>
                                     <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
                                     <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
                                     <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
                                 </View>}
                                 {this.state.champagneBottles > 0 && <View style={styles.list} >
-                                    <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>Champagne Glass</Text>
+                                    <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>{this.props.language.cGlass}</Text>
                                     <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
                                     <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.champagneGlass}</Text>
                                     <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
@@ -256,12 +256,12 @@ class GlassAndServices extends Component {
                             <TouchableOpacity
                                 onPress={this.props.toggle}
                                 style={[styles.button, { marginTop: 10, width: '30%' }]}>
-                                <Text style={styles.buttonText}>Close</Text>
+                                <Text style={styles.buttonText}>{this.props.language.close}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={this.sendData}
                                 style={[styles.button, { marginTop: 10, width: '30%' }]}>
-                                <Text style={styles.buttonText}>Buy Now</Text>
+                                <Text style={[styles.buttonText, { fontSize: 14 }]}>{this.props.language.buynow}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -272,7 +272,8 @@ class GlassAndServices extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        selection: state.selection
+        selection: state.selection,
+        language: state.language
     }
 }
 export default connect(mapStateToProps)(GlassAndServices)

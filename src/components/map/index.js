@@ -6,11 +6,12 @@ import Geolocation from '@react-native-community/geolocation';
 import { Marker } from 'react-native-maps';
 import { PrimayColor } from '../theme/Colors';
 import haversine from 'haversine';
+import { connect } from 'react-redux';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-export default class Map extends Component {
+class Map extends Component {
     state = {
         region: {
             latitude: 0,
@@ -147,23 +148,31 @@ export default class Map extends Component {
                 }}>
                     <Text
                         style={{ fontSize: 13, textAlign: 'center', color: '#000' }}
-                    >*** contact us in case the delivery location is different From actual location.
+                    >{this.props.language.locationContact}
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={this.confirmLocation}>Confirm Location</Text>
+                        <Text style={styles.buttonText} onPress={this.confirmLocation}>{this.props.language.locationConfirm}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}
                             onPress={() => Platform.OS === 'android' ? Linking.openURL('tel:+237698111713') : Linking.openURL('tel:+237655427928')}
-                        >Contact Us</Text>
+                        >{this.props.language.contactUs}</Text>
                     </TouchableOpacity>
                 </View>
             </Layout>
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        language: state.language
+    }
+}
+
+
+export default connect(mapStateToProps, null)(Map)
 const styles = StyleSheet.create({
     button: {
         // position: 'absolute',

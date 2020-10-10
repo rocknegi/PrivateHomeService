@@ -390,12 +390,12 @@ class FindMe extends Component {
                             />
 
                             <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
-                                <Text style={[styles.buttonText, { fontSize: 18 }]}>Delivery location</Text>
+                                <Text style={[styles.buttonText, { fontSize: 18 }]}>{this.props.language.location}</Text>
                             </TouchableOpacity>
                             <Text style={{ fontSize: 13, flexWrap: 'wrap', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginHorizontal: '15%', paddingBottom: 10, textAlign: 'center' }}>
 
-                                Press find me and zoom into the map to check your delivery location, then confirm it
-                                </Text>
+                                {this.props.language.deliveryHeading}
+                            </Text>
                             <View style={[styles.field, { marginHorizontal: '0%', }]}>
                                 {/* <Text style={{}}>Adress Precision</Text> */}
                                 <TextInput
@@ -410,7 +410,7 @@ class FindMe extends Component {
                             <View style={[styles.field, { marginHorizontal: '0%', }]}>
                                 {/* <Text style={{ marginLeft: 5 }}>Name,Surname</Text> */}
                                 <TextInput
-                                    placeholder="Name,Surname"
+                                    placeholder={this.props.language.deliveryName}
                                     style={[styles.input,]}
                                     keyboardType={'default'}
                                     value={this.state.name}
@@ -437,8 +437,8 @@ class FindMe extends Component {
                                 width: '73.2%', paddingVertical: '1%',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
                             }]}>
-                                Delivery Time
-                        </Text>
+                                {this.props.language.time}
+                            </Text>
 
                             <View style={{ flexDirection: 'row', margin: '2%', width: width / 1.23, left: 15 }}>
 
@@ -504,15 +504,15 @@ before delivery time</Text> */}
                             {this.props.total &&
                                 <>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderBottomWidth: 0, width: '73%' }}>
-                                        <Text style={[styles.text, { flex: 1 }]}>Order Total</Text>
+                                        <Text style={[styles.text, { flex: 1 }]}>{this.props.language.orderTotal}</Text>
                                         <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, BorderTopWidth: 0, width: '73%' }}>
-                                        <Text style={[styles.text, { flex: 1, BorderTopWidth: 0, }]}>Account</Text>
+                                        <Text style={[styles.text, { flex: 1, BorderTopWidth: 0, }]}>{this.props.language.account}</Text>
                                         <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8, fontSize: 13 }]}>FCFA 10.000</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', borderWidth: 1, borderTopWidth: 0, BorderTopWidth: 0, width: '73%' }}>
-                                        <Text style={[styles.text, { flex: 1 }]}>Cash at delivery</Text>
+                                        <Text style={[styles.text, { flex: 1 }]}>{this.props.language.cod}</Text>
                                         <Text style={[styles.text, { flex: 1, borderLeftWidth: 1, margin: 0, padding: 8 }]}>FCFA {this.props.total - 10000}</Text>
                                     </View>
                                 </>
@@ -522,7 +522,7 @@ before delivery time</Text> */}
                                 width: '73.2%', paddingVertical: '2%',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS'
                             }]}>
-                                Select your payment method{"\n"}
+                                {this.props.language.paymentMethod}{"\n"}
                                 <Text style={{ fontSize: 9, textAlign: 'left' }}>*** Provided by Hachther MeSomb</Text>
                             </Text>
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
@@ -568,7 +568,8 @@ const mapStateToProps = (state) => {
     return {
         total: state.total,
         items: state.addedItems,
-        selection: state.selection
+        selection: state.selection,
+        language: state.language
     }
 }
 const mapDispatchToProps = (dispatch) => {

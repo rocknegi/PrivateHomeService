@@ -187,7 +187,7 @@ class SelectedCategory extends Component {
                                             backgroundColor: this.props.itemsInCart > 0 ? PrimayColor : '#fafafa',
                                             fontSize: 18, borderRadius: 8, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, paddingLeft: '10%', paddingRight: '10%', paddingTop: '0.4%', paddingBottom: '0.4%', alignSelf: 'center'
                                         }}
-                                    >Social {"\n"}Games</Text>
+                                    >{this.props.language.games1} {"\n"}{this.props.language.games2}</Text>
                                 </>}
                             </View>
                             <Text style={{
@@ -219,7 +219,7 @@ class SelectedCategory extends Component {
                                                     onPress={() => this.handleClick(item, this.state.category)}
                                                     style={styles.button}
                                                     key={item.price}>
-                                                    <Text style={styles.buttonText}>Add to cart</Text>
+                                                    <Text style={styles.buttonText}>{this.props.language.addCart}</Text>
                                                 </TouchableOpacity>
                                             </View>
                                             <View style={styles.option}>
@@ -324,7 +324,8 @@ const mapStateToProps = (state) => {
         total: state.total,
         added: state.addedItems,
         itemsInCart: state.itemsInCart,
-        selection: state.selection
+        selection: state.selection,
+        language: state.language
     }
 }
 
