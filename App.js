@@ -69,13 +69,12 @@ const dashBoard = createDrawerNavigator({
   Notifications,
   Video,
   ContactUs,
-  InitialSelectionScreen,
 }, {
   contentOptions: {
     activeTintColor: '#fd6d24',
     backgroundTintColor: '#fdbf83'
   },
-  initialRouteName: 'InitialSelectionScreen',
+  initialRouteName: 'Home',
   drawerType: 'slide',
   contentComponent: props => <CustomDrawer {...props} />,
 })
@@ -85,7 +84,6 @@ const authNavigator = createStackNavigator({
   Login: Login,
   Register: Register,
   Reset: ForgotPassword,
-
 }, {
   initialRouteName: 'Login',
   headerMode: 'none'
@@ -93,6 +91,7 @@ const authNavigator = createStackNavigator({
 const AppNavigator = createSwitchNavigator({
   Landing: LandingPage,
   authNavigator,
+  InitialSelectionScreen,
   Home: dashBoard
 });
 

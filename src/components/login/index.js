@@ -131,18 +131,24 @@ class index extends Component {
                     setDialCode={(dialingCode) => this.setDialCode(dialingCode)}
                     toggleModal={this.toggleModal}
                 /> */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
-                    <Feather name="globe" size={20} />
-                    <Picker
-                        selectedValue={this.state.language}
-                        style={{ height: 50, width: '10%' }}
-                        // mode="dropdown"
-                        onValueChange={(itemValue, itemIndex) => this.changeLanguage(itemValue)}
-                    >
-                        <Picker.Item label="English" value="EN" />
-                        <Picker.Item label="French" value="FR" />
-                    </Picker>
-                    <Text style={{ marginLeft: '-2%' }}>{this.state.language}</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <TouchableOpacity
+                        onPress={() => this.changeLanguage('EN')}
+                        style={[styles.buttonContainer, { marginRight: 10, marginHorizontal: 0, width: '30%', backgroundColor: this.state.language === 'EN' ? PrimayColor : '#fafafa', borderRadius: 6, borderColor: '#eee', borderWidth: 1 }]}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Feather name="globe" size={20} />
+                            <Text>English</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => this.changeLanguage('FR')}
+                        style={[styles.buttonContainer, { marginHorizontal: 0, width: '30%', borderRadius: 6, borderColor: '#eee', borderWidth: 1, backgroundColor: this.state.language === 'FR' ? PrimayColor : '#fafafa' }]}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Feather name="globe" size={20} />
+                            <Text>French</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
