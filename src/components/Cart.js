@@ -370,14 +370,14 @@ class Cart extends Component {
                         </ScrollView> : <Text style={[styles.text]}>Your cart is empty</Text>}
                     {this.props.items.length ? <View style={styles.footer}>
                         <Text style={[styles.text, { fontSize: 13, flex: 0.3 }]}>Total </Text>
-                        <Text style={[styles.text, { fontSize: 13, flex: 0.5, left: '-30%' }]}>fcfa {this.props.total}
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-30%' }]}>fcfa {this.props.total}
                             {"\n"}
                             <Text style={{ fontSize: 11 }}>{this.props.language.tax}</Text>
                         </Text>
-                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-40%' }]}>{this.props.language.account}: {"\n"}fcfa 10.000</Text>
+                        <Text style={[styles.text, { fontSize: 13, flex: 0.6, left: '-20%' }]}>{this.props.language.account}: {"\n"}fcfa 10.000</Text>
                         <TouchableOpacity
                             onPress={this.toggleModal}
-                            style={[styles.button, { marginBottom: 0, width: '30%', left: '-20%' }]}>
+                            style={[styles.button, { marginBottom: 0, width: '30%', left: '-15%' }]}>
                             <Text style={[styles.buttonText, { alignContent: 'center' }]}>{this.props.language.buynow}</Text>
                         </TouchableOpacity>
                     </View> : null}

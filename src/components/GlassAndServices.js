@@ -16,7 +16,7 @@ class GlassAndServices extends Component {
         champagneBottles: 0,
         error: null,
         maxGlass: 12,
-        currentRate: 3000,
+        currentRate: 1500,
         glassesVisible: true,
         item: {
             wineGlass: 0,
@@ -26,7 +26,7 @@ class GlassAndServices extends Component {
             price: 0,
             category: 'service',
             id: 'service',
-            service: 1,
+            service: 0,
             currentRate: 0
         },
         obj: {},
@@ -127,8 +127,8 @@ class GlassAndServices extends Component {
         })
     }
     hotesssub = () => {
-        if (this.state.item.service <= 1) {
-            alert('Min one service')
+        if (this.state.item.service < 1) {
+            // alert('Min one service')
         }
         else {
             this.setState({
@@ -210,7 +210,9 @@ class GlassAndServices extends Component {
                             </View>}
                             <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
                             <View style={[styles.list, { marginBottom: 5 }]} >
-                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Service time{"\n"}<Text style={{ fontSize: 12 }}>(First hour is free)</Text></Text>
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginTop: 5 }}>Service time{"\n"}
+                                    {/* <Text style={{ fontSize: 12 }}>(First hour is free)</Text> */}
+                                </Text>
                                 <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
                                 <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
                                 <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
