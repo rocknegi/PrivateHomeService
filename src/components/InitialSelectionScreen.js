@@ -45,12 +45,24 @@ class InitialSelectionScreen extends React.Component {
                                 <Text style={[styles.text, { padding: 10 }]}>Home Services</Text>
                                 <Icon name="arrow-right" style={styles.icon} />
                             </TouchableOpacity>
+                            <Text style={[styles.text, { fontSize: 12, textAlign: 'justify' }]}>
+                                ( Gratuits: 2 Btlles de softdrink,
+                                des Glacons, des Verres pour vos boissons, 1 btlle d‘olives,
+                                1 Btlle de cacahuetes, décoration lumineuse,
+                                einceinte Bluetoth JBL,  1 jeu de cartes)
+
+                            </Text>
                             <TouchableOpacity
                                 onPress={this.handleSelection}
                                 style={styles.list}>
                                 <Text style={[styles.text, { padding: 10 }]}>Drink Delivery</Text>
                                 <Icon name="arrow-right" style={styles.icon} />
                             </TouchableOpacity>
+                            <Text style={[styles.text, { fontSize: 12, textAlign: 'justify' }]}>
+                                ( Option: 1 Btlle de 1L de softdrink,
+                                1 Pack de Glacons, 1 btlle d‘olives,
+                                1 pack de cacahuetes, 1 Pack Ice , 1 jeu de cartes)
+                            </Text>
                         </View>
                     </ScrollView>
                 </SafeAreaView>

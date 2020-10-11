@@ -161,7 +161,7 @@ export default addToCartReducer = (state = initialState, action) => {
                 let new_items = state.addedItems.filter(item => action.id !== item.id)
 
                 let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
-                // console.log(itemToRemove)
+                console.log(itemToRemove)
                 return {
                     ...state,
                     addedItems: new_items,

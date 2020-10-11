@@ -17,7 +17,10 @@ class SocialGames extends Component {
 
     }
     componentDidMount() {
-        this.props.fetchData('games');
+        if (this.props.selection === 'phs')
+            this.props.fetchData('games');
+        else
+            this.props.fetchData('freeDD')
         this.props.items.forEach(item => item.added = false)
 
     }
@@ -52,9 +55,9 @@ class SocialGames extends Component {
                                         <Text style={{ fontWeight: 'normal' }}> {item.desc} {"\n"}</Text>
                                         {item.price !== 0 && <Text style={[styles.text, { flex: 0.5, alignSelf: 'center' }]}>FCFA {item.price}</Text>}
                                     </Text>
-                                    {item.price === 0 ?
+                                    {this.props.selection === 'phs' && item.price === 0 ?
                                         <TouchableOpacity
-                                            style={[styles.button, { backgroundColor: '#fafafa' }]}><Text style={[styles.buttonText, { color: '#000' }]}>         Free</Text></TouchableOpacity>
+                                            style={[styles.button, { backgroundColor: '#fafafa' }]}><Text style={[styles.buttonText, { color: '#000' }]}>Free</Text></TouchableOpacity>
                                         :
                                         <>
                                             {item.added ? <TouchableOpacity
@@ -68,7 +71,7 @@ class SocialGames extends Component {
                                 </View>
                             </View>)
                         })}
-                        <Text style={styles.text}>{this.props.language.onlyGame}</Text>
+                        {this.props.selection === 'phs' && <Text style={styles.text}>{this.props.language.onlyGame}</Text>}
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
                                 onPress={this.props.toggle}
@@ -92,7 +95,8 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         addedItems: state.addedItems,
-        language: state.language
+        language: state.language,
+        selection: state.selection,
     }
 }
 

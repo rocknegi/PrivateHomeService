@@ -132,7 +132,10 @@ class SelectedCategory extends Component {
     }
     handleSocialGamesModal = () => {
         this.toggleModal('socialGamesModal');
-        this.props.fetchData('')
+        if (this.props.selection === 'phs')
+            this.props.fetchData('')
+        else
+            this.props.fetchData('DD')
     }
     toggleImageModal = () => {
         this.setState({ imageModal: !this.state.imageModal, })
@@ -171,7 +174,7 @@ class SelectedCategory extends Component {
                     {this.props.items && <View style={{ flex: 1 }}>
                         <View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 15, marginTop: 5 }}>
-                                {this.props.selection === 'phs' && <>
+                                {this.props.selection === 'phs' ? <>
                                     <Text
                                         style={{
                                             fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
@@ -188,7 +191,16 @@ class SelectedCategory extends Component {
                                             fontSize: 18, borderRadius: 8, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, paddingLeft: '10%', paddingRight: '10%', paddingTop: '0.4%', paddingBottom: '0.4%', alignSelf: 'center'
                                         }}
                                     >{this.props.language.games1} {"\n"}{this.props.language.games2}</Text>
-                                </>}
+                                </> :
+                                    <Text
+                                        onPress={() => this.toggleModal('socialGamesModal')}
+                                        style={{
+                                            fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
+                                            backgroundColor: this.props.itemsInCart > 0 ? PrimayColor : '#fafafa',
+                                            fontSize: 18, borderRadius: 8, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, padding: '4%', paddingHorizontal: '7.2%', alignSelf: 'center'
+                                        }}
+                                    >Extra</Text>
+                                }
                             </View>
                             <Text style={{
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
