@@ -29,7 +29,10 @@ export default addToCartReducer = (state = initialState, action) => {
         }
         case CLEAR_STATE: {
             return {
-                ...initialState
+                ...state,
+                addedItems: [],
+                total: 0,
+                itemsInCart: 0,
             }
         }
         case ADD_TO_CART: {

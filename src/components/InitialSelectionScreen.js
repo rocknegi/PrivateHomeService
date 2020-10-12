@@ -7,6 +7,12 @@ import { connect } from 'react-redux';
 import { clearState, setInitialSelection } from '../redux/actions'
 
 class InitialSelectionScreen extends React.Component {
+    static navigationOptions = ({ }) => {
+        return {
+            headerShown: false,
+            title: '',
+        }
+    }
 
     handleSelection = (id) => {
         if (id === 'phs') {
@@ -15,6 +21,7 @@ class InitialSelectionScreen extends React.Component {
         else {
             this.props.setInitialSelection('')
         }
+        this.props.clearState()
         this.props.navigation.navigate('Home')
     }
 
@@ -119,7 +126,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setInitialSelection: (id) => { dispatch(setInitialSelection(id)) },
-        clear: (id) => { dispatch(clearState(id)) }
+        clearState: () => { dispatch(clearState()) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InitialSelectionScreen)

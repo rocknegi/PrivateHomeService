@@ -50,8 +50,9 @@ const innerNavigator = createStackNavigator({
   location: FindMe,
   payment: Payments,
   orderSummary: OrderSummary,
+  InitialSelectionScreen
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'InitialSelectionScreen',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: PrimayColor,
@@ -91,7 +92,6 @@ const authNavigator = createStackNavigator({
 const AppNavigator = createSwitchNavigator({
   Landing: LandingPage,
   authNavigator,
-  InitialSelectionScreen,
   Home: dashBoard
 });
 

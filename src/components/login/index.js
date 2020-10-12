@@ -51,7 +51,7 @@ class index extends Component {
     _guestLogin = () => {
         if (this._validate()) {
             AsyncStorage.setItem('phoneNo', this.state.phoneNo)
-            this.props.navigation.navigate('InitialSelectionScreen')
+            this.props.navigation.navigate('Home')
 
         }
     }
@@ -93,7 +93,7 @@ class index extends Component {
                     // });
                     AsyncStorage.setItem('username', userCredentials.user.displayName)
                     AsyncStorage.setItem('phoneNo', this.state.phoneNo)
-                    this.props.navigation.navigate('InitialSelectionScreen')
+                    this.props.navigation.navigate('Home')
                 }
 
 
