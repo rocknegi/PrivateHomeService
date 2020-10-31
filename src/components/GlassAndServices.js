@@ -22,7 +22,7 @@ class GlassAndServices extends Component {
             wineGlass: 0,
             whiskeyGlass: 0,
             champagneGlass: 0,
-            hotess: 1,
+            hotess: 0,
             price: 0,
             category: 'service',
             id: 'service',
@@ -44,7 +44,7 @@ class GlassAndServices extends Component {
                 this.setState({
                     wineBottles: totalBottles, item: {
                         ...this.state.item,
-                        wineGlass: ++this.state.item.wineGlass
+                        // wineGlass: ++this.state.item.wineGlass
                     }
                 })
             }
@@ -54,7 +54,7 @@ class GlassAndServices extends Component {
                 this.setState({
                     whiskeyBottles: totalBottles, item: {
                         ...this.state.item,
-                        whiskeyGlass: ++this.state.item.whiskeyGlass
+                        // whiskeyGlass: ++this.state.item.whiskeyGlass
                     }
                 })
             }
@@ -65,7 +65,7 @@ class GlassAndServices extends Component {
                 this.setState({
                     champagneBottles: totalBottles, item: {
                         ...this.state.item,
-                        champagneGlass: ++this.state.item.champagneGlass
+                        // champagneGlass: ++this.state.item.champagneGlass
                     }
                 })
             }
@@ -121,8 +121,9 @@ class GlassAndServices extends Component {
         this.setState({
             item: {
                 ...this.state.item,
-                service: this.state.item.service + 1,
-                price: this.state.currentRate + this.state.item.price
+                // service: this.state.item.service + 1,
+                price: this.state.currentRate + this.state.item.price,
+                hotess: this.state.item.hotess + 1
             }
         })
     }
@@ -134,8 +135,9 @@ class GlassAndServices extends Component {
             this.setState({
                 item: {
                     ...this.state.item,
-                    service: this.state.item.service - 1,
-                    price: this.state.item.price - this.state.currentRate
+                    // service: this.state.item.service - 1,
+                    price: this.state.item.price - this.state.currentRate,
+                    hotess: this.state.item.hotess - 1
                 }
             })
             if (this.state.maxGlass > 12)
@@ -182,73 +184,23 @@ class GlassAndServices extends Component {
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: '#eee', padding: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={{ marginTop: 5 }}>
+                    <View style={{ marginTop: '35%' }}>
                         {this.props.selection === 'phs' && <>
-                            {this.state.glassesVisible && <View>
-                                <Text style={[styles.text, { margin: 10 }]}>{this.props.language.glassHeading}</Text>
-                                {this.state.wineBottles > 0 && <View style={styles.list} >
-                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>Wine Glass</Text>
-                                    <Icon onPress={() => this.glassSub('wineGlass', 'wineBottles')} name="minus" style={styles.icon} />
-                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 21 }}>{this.state.item.wineGlass}</Text>
-                                    <Icon onPress={() => this.glassAddition('wineGlass', 'wineBottles')} name="plus" style={styles.icon} />
-                                </View>}
-                                {this.state.whiskeyBottles > 0 && <View style={styles.list} >
-                                    <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.36, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>{this.props.language.wGlass}</Text>
-                                    <Icon onPress={() => this.glassSub('whiskeyGlass', 'whiskeyBottles')} name="minus" style={styles.icon} />
-                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.whiskeyGlass}</Text>
-                                    <Icon onPress={() => this.glassAddition('whiskeyGlass', 'whiskeyBottles')} name="plus" style={styles.icon} />
-                                </View>}
-                                {this.state.champagneBottles > 0 && <View style={styles.list} >
-                                    <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', flexWrap: 'wrap', flex: 0.36 }}>{this.props.language.cGlass}</Text>
-                                    <Icon onPress={() => this.glassSub('champagneGlass', 'champagneBottles')} name="minus" style={styles.icon} />
-                                    <Text style={{ fontSize: 15, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item.champagneGlass}</Text>
-                                    <Icon onPress={() => this.glassAddition('champagneGlass', 'champagneBottles')} name="plus" style={styles.icon} />
-                                    {this.state.error &&
-                                        <Text>{this.state.error}</Text>
-                                    }
-                                </View>}
-                            </View>}
                             <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
-                            <View style={[styles.list, { marginBottom: 5 }]} >
-                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginTop: 5 }}>Service time{"\n"}
-                                    {/* <Text style={{ fontSize: 12 }}>(First hour is free)</Text> */}
-                                </Text>
-                                <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
-                                <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.service}</Text>
-                                <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
-                                {this.state.error &&
-                                    <Text>{this.state.error}</Text>
-                                }
-                            </View>
                             <View style={styles.list}>
                                 <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
                                 <Text style={styles.text}>{this.state.item.price} fcfa</Text>
                             </View>
 
-                            <View style={{ marginBottom: 10, flexDirection: 'row' }} >
-                                <Text style={{ fontSize: 18, textAlign: 'center', flex: 0.99, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS' }}>Hostess</Text>
-                                {/* <Icon onPress={()=>this.setState({
-                                item: {
-                                    ...this.state.item,
-                                    hotess: this.state.item.hotess - 1,
-                                }
-                            })} name="minus" style={styles.icon} /> */}
-                                <Text style={{ fontSize: 18, flex: 0.1 }}>{this.state.item && this.state.item.hotess}</Text>
-                                {/* <Icon onPress={()=>this.setState({
-                                item: {
-                                    ...this.state.item,
-                                    hotess: this.state.item.hotess + 1,
-                                }
-                            })} name="plus" style={styles.icon} /> */}
-                                <Text style={styles.text}>           </Text>
+                            <View style={[styles.list, { marginBottom: 5 }]} >
+                                <Text style={{ fontSize: 16, textAlign: 'center', flex: 0.378, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', marginTop: 5 }}>Hostess{"\n"}
+                                </Text>
+                                <Icon onPress={this.hotesssub} name="minus" style={styles.icon} />
+                                <Text style={{ fontSize: 17, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', width: 20 }}>{this.state.item && this.state.item.hotess}</Text>
+                                <Icon onPress={this.hotessAddition} name="plus" style={styles.icon} />
                                 {this.state.error &&
                                     <Text>{this.state.error}</Text>
                                 }
-
-                            </View>
-                            <View style={{ padding: 5 }}>
-                                <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>* First Service Hour free</Text>
-                                <Text style={{ fontSize: 12, fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS', }}>** For each 12 glasses,you get one more hostess</Text>
                             </View>
                         </>}
                         {this.props.selection !== 'phs' &&
