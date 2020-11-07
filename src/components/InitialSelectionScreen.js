@@ -53,10 +53,7 @@ class InitialSelectionScreen extends React.Component {
                                 <Icon name="arrow-right" style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={[styles.text, { fontSize: 12, textAlign: 'justify' }]}>
-                                ( Gratuits: 2 Btlles de softdrink,
-                                des Glacons, des Verres pour vos boissons, 1 btlle d‘olives,
-                                1 Btlle de cacahuetes, décoration lumineuse,
-                                einceinte Bluetoth JBL,  1 jeu de cartes)
+                                {this.props.language.initialScreenText1}
 
                             </Text>
                             <TouchableOpacity
@@ -66,10 +63,9 @@ class InitialSelectionScreen extends React.Component {
                                 <Icon name="arrow-right" style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={[styles.text, { fontSize: 12, textAlign: 'justify' }]}>
-                                ( Option: 1 Btlle de 1L de softdrink,
-                                1 Pack de Glacons, 1 btlle d‘olives,
-                                1 pack de cacahuetes, 1 Pack Ice , 1 jeu de cartes)
+                                {this.props.language.initialScreenText2}
                             </Text>
+                            <Image source={images.delivery_logo} style={{ alignSelf: 'center', margin: 10, height: 100, width: 180 }} />
                         </View>
                     </ScrollView>
                 </SafeAreaView>
@@ -119,7 +115,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        selection: state.selection
+        selection: state.selection,
+        language: state.language
     }
 }
 
