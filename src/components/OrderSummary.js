@@ -143,21 +143,24 @@ export class OrderSummary extends Component {
                             {this.props.selection === 'phs' && this.props.items.map(item => {
                                 return (
                                     <View>
-                                        {item.hotess && <View key={item.id}>
+                                        {item.hotess > 0 && <View key={item.id}>
                                             <View style={[styles.list]} >
-                                                {item.hotess ? <Text style={[styles.text, { flexGrow: 1.5 }]}>Service Time</Text> : null}
-                                                {item.hotess ? <Text style={styles.text}>{item.currentRate}/hr</Text> : null}
-                                                {item.hotess ? <Text style={styles.text}>{item.service}</Text> : null}
-                                                {item.hotess ? <Text style={styles.text}>{item.price}</Text> : null}
+                                                {item.hotess > 0 ? <Text style={[styles.text, { flexGrow: 1.5 }]}>Hostess</Text> : null}
+                                                {item.hotess > 0 ? <Text style={styles.text}>{item.currentRate}/hr</Text> : null}
+                                                {item.hotess > 0 ? <Text style={styles.text}>{item.hotess}</Text> : null}
+                                                {item.hotess > 0 ? <Text style={styles.text}>{item.price}</Text> : null}
                                             </View>
+
                                             <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
-                                            {item.hotess && <><View style={styles.list}>
-                                                <Text style={[styles.text, { flex: 0.9 }]}>Hostess</Text>
-                                                <Text style={[styles.text, { flex: 2.1 }]}>{item.hotess}</Text>
+                                            {/* {item.hotess && <><View style={styles.list}>
+                                                <Text style={[styles.text, { flex: 1 }]}>Hostess</Text>
+                                                <Text style={[styles.text, { flex: 1 }]}>1500/hr</Text>
+                                                <Text style={[styles.text, { flex: 1 }]}>{item.hotess}</Text>
+                                                <Text style={[styles.text, { flex: 1 }]}>{item.hotess}</Text>
                                             </View>
                                                 <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
                                             </>
-                                            }
+                                            } */}
                                             {item.wineGlass > 0 && <><View style={styles.list}>
                                                 <Text style={[styles.text, { flex: 0.9 }]}>Wine glass</Text>
                                                 <Text style={[styles.text, { flex: 2.1 }]}>{item.wineGlass}</Text>

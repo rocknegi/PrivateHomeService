@@ -28,27 +28,34 @@ class Home extends Component {
         data: [
             {
                 id: 1,
-                name: this.props.language.pack,
-                category: 'liquors'
+                heading: this.props.language.phsHeading1,
+                name: this.props.language.phsText1,
+                category: 'liquors',
+                persons: '(5-25 pers)'
             },
             {
                 id: 2,
-                name: this.props.language.whiskey12,
-                category: 'Whiskey12'
+                heading: this.props.language.phsHeading2,
+                name: this.props.language.phsText2,
+                category: 'Whiskey12',
+                persons: '(25-100 pers)'
             },
             {
                 id: 3,
-                name: this.props.language.whiskey15,
+                heading: this.props.language.phsHeading3,
+                name: this.props.language.phsText3,
                 category: 'Whiskey15'
             },
             {
                 id: 4,
-                name: this.props.language.whiskey18,
+                heading: this.props.language.phsHeading4,
+                name: this.props.language.phsText4,
                 category: 'Whiskey18'
             },
             {
                 id: 5,
-                name: this.props.language.champagne,
+                heading: this.props.language.phsHeading5,
+                name: this.props.language.phsText5,
                 category: 'Champagne'
             },
 
@@ -78,6 +85,11 @@ class Home extends Component {
                 id: 5,
                 name: this.props.language.champagne,
                 category: 'ChampagneDD'
+            },
+            {
+                id: 6,
+                name: this.props.language.vodka,
+                category: 'vodka'
             },
 
         ]
@@ -144,7 +156,7 @@ class Home extends Component {
                         <Text style={{ fontSize: Platform.OS === 'android' ? 25 : 16, fontFamily: Platform.OS === 'android' ? 'HT Gelateria W01 Regular' : 'ComicSansMS', textAlign: 'center', marginBottom: 5 }}>
                             Vos besoins sont nos Services
                     </Text>
-                        <View style={{ marginHorizontal: '13%' }}>
+                        <View style={{ marginHorizontal: '5%' }}>
                             <Text style={[styles.text, {
                                 alignSelf: 'flex-end',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
@@ -162,7 +174,11 @@ class Home extends Component {
                                             name: item.name
                                         })}
                                         style={styles.list}>
-                                        <Text style={[styles.text, { padding: 10 }]}>{item.name}</Text>
+                                        <Text style={{ padding: 5, fontSize: 10, fontWeight: 'bold', textAlign: 'center' }}>{item.heading}
+                                            {"\n"}
+                                            <Text>{item.persons && item.persons}</Text>
+                                        </Text>
+                                        <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', marginRight: 8, fontSize: 9 }]}>{item.name}</Text>
                                         <Icon name="arrow-right" style={styles.icon} />
                                     </TouchableOpacity>
                                 )
@@ -324,8 +340,8 @@ const styles = StyleSheet.create({
         borderColor: PrimayColor,
         backgroundColor: '#fafafa',
         marginBottom: 8,
-        // marginHorizontal: '13%',
         elevation: 10,
+        width: Dimensions.get('screen').width / 1.1
     },
     icon: {
         fontSize: 25,
