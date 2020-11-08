@@ -91,7 +91,7 @@ class Home extends Component {
             {
                 id: 6,
                 name: this.props.language.vodka,
-                category: 'vodka'
+                category: 'VodkaDD'
             },
 
         ]

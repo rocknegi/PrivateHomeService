@@ -21,6 +21,7 @@ const Whiskey18DD = firebase.firestore().collection('Whiskey18DD');
 const liquorsDD = firebase.firestore().collection('liquorsDD');
 const ChampagneDD = firebase.firestore().collection('ChampagneDD');
 const FreeDD = firebase.firestore().collection('FreeDD');
+const Vodka = firebase.firestore().collection('VodkaDD');
 
 let items = [];
 let itemsDD = [];
@@ -81,6 +82,12 @@ Whiskey18DD.get().then(snapshot => {
 });
 
 ChampagneDD.get().then(snapshot => {
+    snapshot.forEach(doc => {
+        itemsDD.push(({ ...doc.data(), id: doc.id }))
+    })
+});
+
+Vodka.get().then(snapshot => {
     snapshot.forEach(doc => {
         itemsDD.push(({ ...doc.data(), id: doc.id }))
     })
