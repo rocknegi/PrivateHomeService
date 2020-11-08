@@ -57,4 +57,5 @@ export default {
     'phsText4': 'For your events (25 to 100 people), we put at your disposal talented dj’s with professional equipment to offer you unforgettable moments',
     'phsHeading5': 'Your Event Location',
     'phsText5': `You don't have a place for your event booked above? choose an optimal location (Furnished Apartments / Studios or party rooms) HERE`,
+    'extra': `book extra's here !`
 } 

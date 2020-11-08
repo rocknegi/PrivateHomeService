@@ -199,7 +199,7 @@ class SelectedCategory extends Component {
                                             backgroundColor: this.props.itemsInCart > 0 ? PrimayColor : '#fafafa',
                                             fontSize: 18, borderRadius: 8, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, padding: '4%', paddingHorizontal: '7.2%', alignSelf: 'center'
                                         }}
-                                    >Extra</Text>
+                                    >{this.props.language.extra}</Text>
                                 }
                             </View>
                             <Text style={{
