@@ -206,7 +206,7 @@ class SelectedCategory extends Component {
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
                                 fontSize: 18, textAlign: 'center', borderWidth: 2, borderColor: PrimayColor, padding: 8, marginHorizontal: '10%', marginBottom: 10
                             }}>{this.state.title}
-                                <Text style={{ fontSize: 14 }}>{this.props.selection === 'phs' ? ' (Home Services)' : ' (Drink Delivery)'}</Text>
+                                {/* <Text style={{ fontSize: 14 }}>{this.props.selection === 'phs' ? ' (Home Services)' : ' (Drink Delivery)'}</Text> */}
                             </Text>
 
                             {this.props.items.filter(e => e.category === this.state.category.replace('DD', '')).map(item => {

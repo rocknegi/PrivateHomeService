@@ -163,7 +163,7 @@ class Home extends Component {
                                 fontStyle: 'italic',
                                 fontWeight: 'bold'
                             }]}>
-                                {this.props.language.selection}
+                                {this.props.selection === 'phs' ? this.props.language.selectionServices : this.props.language.selection}
                             </Text>
                             {this.props.selection === 'phs' ? this.state.data.map(item => {
                                 return (
@@ -171,7 +171,7 @@ class Home extends Component {
                                         key={item.id}
                                         onPress={() => this.props.navigation.navigate('SelctedCategory', {
                                             category: item.category,
-                                            name: item.name
+                                            name: item.heading
                                         })}
                                         style={styles.list}>
                                         <Text style={{ padding: 5, fontSize: 10, fontWeight: 'bold', textAlign: 'center' }}>{item.heading}
@@ -202,7 +202,7 @@ class Home extends Component {
                                 fontStyle: 'italic',
                                 fontFamily: Platform.OS === 'android' ? 'COMIC' : 'ComicSansMS',
                                 fontWeight: 'bold', alignSelf: 'flex-end'
-                            }]}>{this.props.language.disc}</Text>
+                            }]}>{this.props.selection === 'phs' ? this.props.language.disc : this.props.language.promo}</Text>
                             <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 1.5, marginHorizontal: '2%' }}></LinearGradient>
                         </View>
 
