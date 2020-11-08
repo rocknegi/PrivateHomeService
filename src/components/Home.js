@@ -11,6 +11,7 @@ import { set } from 'lodash';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Discounted = firebase.firestore().collection('Discounted');
+const Promo = firebase.firestore().collection('Promo');
 const order = firebase.firestore().collection('Managers');
 
 class Home extends Component {
@@ -23,6 +24,7 @@ class Home extends Component {
 
     state = {
         DisocuntedItems: [],
+        Promo: [],
         notification: false,
         phoneNo: '',
         data: [
@@ -104,6 +106,16 @@ class Home extends Component {
             this.setState({ DisocuntedItems: items })
         }
         );
+
+        const items2 = []
+        Promo.get().then(doc => {
+            doc.forEach(item => {
+                items2.push(({ ...item.data(), id: item.id }));
+            })
+            this.setState({ Promo: items2 })
+        }
+        );
+
 
         const phoneNo = await AsyncStorage.getItem('phoneNo');
         this.setState({ phoneNo })
@@ -210,9 +222,28 @@ class Home extends Component {
                         <ScrollView horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
-                            {this.state.DisocuntedItems.length >= 1 &&
+                            {this.props.selection === 'phs' && this.state.DisocuntedItems &&
                                 <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
                                     {this.state.DisocuntedItems.map(item => (
+                                        <Fragment key={item.image}>
+                                            <TouchableOpacity
+                                                onPress={() => this.props.navigation.navigate('SelctedCategory', {
+                                                    category: item.desc,
+                                                    name: item.label
+                                                })}
+                                            >
+                                                <Image
+                                                    style={{ height: 100, width: Dimensions.get('screen').width / 4, resizeMode: 'contain', marginBottom: 5 }}
+                                                    source={{ uri: item.image }}
+                                                />
+                                            </TouchableOpacity>
+                                            <LinearGradient colors={['#F1E1D4', '#F47211', '#F47211', '#f4b788', '#F1E1D4']} style={{ height: 100, width: 1.5, marginTop: 20, marginLeft: 10, marginRight: 10 }}><Text> </Text></LinearGradient>
+                                        </Fragment>
+                                    ))}
+                                </View>}
+                            {this.props.selection !== 'phs' && this.state.Promo &&
+                                <View style={{ flex: 1, justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'flex-end', paddingTop: 5 }}>
+                                    {this.state.Promo.map(item => (
                                         <Fragment key={item.image}>
                                             <TouchableOpacity
                                                 onPress={() => this.props.navigation.navigate('SelctedCategory', {
