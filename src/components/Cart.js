@@ -338,6 +338,39 @@ class Cart extends Component {
                                         </View>
                                     )
                                 })}</View>
+                            <View>
+                                {this.props.items.find(e => e.category === 'Vodka') && <Text style={styles.textHeading}>{this.props.language.vodka}</Text>}
+                                {this.props.items.filter(e => e.category === 'Vodka').map(item => {
+                                    return (
+                                        <View key={item.title}>
+                                            <View style={styles.list} >
+                                                <TouchableOpacity onPress={() => this.setImage(item.image)}>
+                                                    <Image
+                                                        source={{ uri: item.image }}
+                                                        style={styles.logo}
+                                                    />
+                                                </TouchableOpacity>
+                                                <Text style={styles.text}>{item.title}{"\n"}FCFA {item.price}/Btle</Text>
+                                                <Icon onPress={() => this.handleSubtractQuantity(item.id)} name="minus" style={styles.icon} />
+                                                <Text style={{ fontSize: 18, }}>{item.quantity}</Text>
+                                                <Icon onPress={() => this.handleAddQuantity(item.id)} name="plus" style={styles.icon} />
+
+                                            </View>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                                <TouchableOpacity style={styles.button} onPress={() => this.toggleModal(item)}>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity style={styles.button} onPress={() => this.handleRemove(item.id)}>
+                                                    <Text style={styles.buttonText}>Remove</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                            <View style={styles.modal}>
+
+
+                                            </View>
+
+                                        </View>
+                                    )
+                                })}</View>
 
 
                             <Modal

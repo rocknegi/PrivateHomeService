@@ -139,6 +139,19 @@ export class OrderSummary extends Component {
                                     </View>
                                 )
                             })}
+                            {this.props.items.filter(e => e.category === 'Vodka').map(item => {
+                                return (
+                                    <View key={item.title}>
+                                        <View style={styles.list} >
+                                            <Text style={[styles.text, { flexGrow: 1.5 }]}>{item.title}</Text>
+                                            <Text style={styles.text}>{item.price}/Btle</Text>
+                                            <Text style={styles.text}>{item.quantity}</Text>
+                                            <Text style={styles.text}>{item.price * item.quantity}</Text>
+                                        </View>
+                                        <View style={{ borderBottomWidth: 2, borderBottomColor: '#e0e0e0', marginHorizontal: '5%' }}></View>
+                                    </View>
+                                )
+                            })}
 
                             {this.props.selection === 'phs' && this.props.items.map(item => {
                                 return (

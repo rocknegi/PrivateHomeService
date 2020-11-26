@@ -400,7 +400,7 @@ class FindMe extends Component {
                                 {/* <Text style={{}}>Adress Precision</Text> */}
                                 <TextInput
                                     onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
-                                    placeholder="Address Precision"
+                                    placeholder={this.props.language.address}
                                     style={styles.input}
                                     onChangeText={(e) => this.setState({ address: e })}
                                 />
