@@ -65,7 +65,7 @@ class InitialSelectionScreen extends React.Component {
                             <Text style={[styles.text, { fontSize: 12, textAlign: 'justify' }]}>
                                 {this.props.language.initialScreenText2}
                             </Text>
-                            <Image source={images.delivery_logo} style={{ alignSelf: 'center', margin: 10, height: 100, width: 180 }} />
+                            <Image source={images.delivery_logo} style={{ alignSelf: 'center', margin: 20, height: 100, width: 180 }} />
                         </View>
                     </ScrollView>
                 </SafeAreaView>

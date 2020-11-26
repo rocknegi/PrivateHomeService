@@ -46,7 +46,7 @@ export default {
     'cod': 'Cash at delivery',
     'paymentMethod': 'Select your payment method',
     'initialScreenText1': `We support you in the organization of your events with different services (Packages, Decoration, DJ & Soundsystem, rental of appropriate event location if needed)`,
-    'initialScreenText2': `We deliver your wines / Whiskey / Champagnes / Vodka / Liqueurs to you at the best prices​ - Extra: 1 Btle 1L Softdrink, 1 Pack Ice, 1 Btle olives, 1 Pack peanuts / Chips, 1 pack card games​`,
+    'initialScreenText2': `We deliver your wines / Whiskey / Champagnes / Vodka / Liqueurs to you at the best prices​​`,
     'phsHeading1': 'PRESTIGE EVENT',
     'phsText1': 'example: chilling, birthday, after work, etc ... optimal for a group of 5 to 25 people. complete your drinks if needed with our Drink Delivery service​',
     'phsHeading2': 'CRYSTAL EVENT',
