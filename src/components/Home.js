@@ -186,10 +186,10 @@ class Home extends Component {
                                             name: item.heading
                                         })}
                                         style={[styles.list]}>
-                                        <Text style={{ padding: 5, fontSize: 13, fontWeight: 'bold', textAlign: 'center' }}>{item.heading}
-                                            {item.persons && <> {"\n"} item.persons</>}
+                                        <Text style={{ padding: 5, fontSize: 13, fontWeight: 'bold', textAlign: 'center', flex: 0.7, flexWrap: 'wrap' }}>{item.heading}
+                                            {item.persons && <> {"\n"} {item.persons}</>}
                                         </Text>
-                                        <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', marginRight: 8, fontSize: 10 }]}>{item.name}</Text>
+                                        <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', marginRight: 8, fontSize: 10, left: -5 }]}>{item.name}</Text>
                                         <Icon name="arrow-right" style={styles.icon} />
                                     </TouchableOpacity>
                                 )

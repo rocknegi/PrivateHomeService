@@ -128,7 +128,8 @@ class GlassAndServices extends Component {
         })
     }
     hotesssub = () => {
-        if (this.state.item.service < 1) {
+        if (this.state.item.hotess === 0) {
+            return;
             // alert('Min one service')
         }
         else {
@@ -188,7 +189,7 @@ class GlassAndServices extends Component {
                         {this.props.selection === 'phs' && <>
                             <Text style={[styles.text, { margin: 15, }]}>Select Hotess and Service</Text>
                             <View style={styles.list}>
-                                <Text style={styles.text}>{this.state.currentRate} fcfa/ Hr</Text>
+                                <Text style={styles.text}>{this.state.currentRate} fcfa/Day</Text>
                                 <Text style={styles.text}>{this.state.item.price} fcfa</Text>
                             </View>
 
