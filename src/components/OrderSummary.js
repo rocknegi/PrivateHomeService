@@ -33,7 +33,7 @@ export class OrderSummary extends Component {
                                 <Text style={[styles.text, { borderWidth: 1, margin: 0 }]}>{this.props.language.quantity}</Text>
                                 <Text style={[styles.text, { borderWidth: 1, margin: 1 }]}>Total</Text>
                             </View>
-                            {this.state.complimentary.map(item => {
+                            {this.props.event === 'liquors' && this.state.complimentary.map(item => {
                                 return (
                                     <View key={item.title}>
                                         <View key={item.name} style={styles.list} >
@@ -234,7 +234,8 @@ const mapStateToProps = (state) => ({
     items: state.addedItems,
     total: state.total,
     selection: state.selection,
-    language: state.language
+    language: state.language,
+    event: state.event
 })
 
 

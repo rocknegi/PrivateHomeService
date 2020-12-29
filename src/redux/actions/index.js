@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE, SET_INITIAL_SELECION } from "./actionTypes"
+import { ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, ADD_ON_ADD, FETCH_DATA, CLEAR_STATE, GET_LANGUAGE, SET_INITIAL_SELECION, SET_EVENT } from "./actionTypes"
 import _ from "lodash";
 import firebase from 'react-native-firebase';
 import LocalizedStrings from 'react-native-localization';
@@ -128,6 +128,13 @@ const image = 'https://i.pinimg.com/originals/23/84/5e/23845e70632989a1ea71d2c5c
 // const items3 = [
 //     { id: 'paid1', title: 'Time', price: 5, quantity: 1, category: 'games' },
 // ]
+
+export const setEvent = (id) => {
+    return {
+        type: SET_EVENT,
+        payload: { id }
+    }
+}
 
 export const getCurrentLanguage = (id) => {
     return {

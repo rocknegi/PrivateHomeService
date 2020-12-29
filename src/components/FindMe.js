@@ -36,7 +36,7 @@ class FindMe extends Component {
             latitude: 0,
             longitude: 0,
         },
-        date: moment().format('DD-MM-YYYY'),
+        date: moment().add(1, 'd').format('DD-MM-YYYY'),
         dateTo: moment().add(6, 'd').format('DD-MM-YYYY'),
         validLocation: false,
         loading: false,

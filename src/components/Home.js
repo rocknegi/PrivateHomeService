@@ -9,6 +9,7 @@ import images from '../assets/images';
 import firebase from 'react-native-firebase';
 import { set } from 'lodash';
 import AsyncStorage from '@react-native-community/async-storage';
+import { setEvent } from '../redux/actions';
 
 const Discounted = firebase.firestore().collection('Discounted');
 const Promo = firebase.firestore().collection('Promo');
@@ -27,6 +28,7 @@ class Home extends Component {
         Promo: [],
         notification: false,
         phoneNo: '',
+        crystalEvent: true,
         data: [
             {
                 id: 1,
@@ -126,8 +128,65 @@ class Home extends Component {
                     this.setState({ notification: doc.data().confirmed })
                 }
             })
-        })
+        });
     }
+
+    checkEvents = (item) => {
+        let crystalEvent = false;
+        let prestigeEvent = false;
+        this.props.setEvent('');
+
+        if (this.props.addedItems.length) {
+            this.props.addedItems.forEach(data => {
+                switch (data.category) {
+                    case 'liquors': {
+                        prestigeEvent = true;
+                        this.props.setEvent('liquors')
+                        break;
+                    }
+                    case 'Whiskey12': {
+                        crystalEvent = true
+                        break;
+                    }
+                }
+            });
+
+            if (prestigeEvent && item.category === 'liquors') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+
+            else if (crystalEvent && item.category === 'Whiskey12') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+
+            else if (crystalEvent && item.category === 'Champagne') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+            else if (prestigeEvent && item.category === 'Champagne') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+        }
+        else {
+            this.props.navigation.navigate('SelctedCategory', {
+                category: item.category,
+                name: item.heading
+            })
+        }
+
+    }
+
 
     render() {
         return (
@@ -181,10 +240,7 @@ class Home extends Component {
                                 return (
                                     <TouchableOpacity
                                         key={item.id}
-                                        onPress={() => this.props.navigation.navigate('SelctedCategory', {
-                                            category: item.category,
-                                            name: item.heading
-                                        })}
+                                        onPress={() => this.checkEvents(item)}
                                         style={[styles.list]}>
                                         <Text style={{ padding: 5, fontSize: 13, fontWeight: 'bold', textAlign: 'center', flex: 0.7, flexWrap: 'wrap' }}>{item.heading}
                                             {item.persons && <> {"\n"} {item.persons}</>}
@@ -331,11 +387,18 @@ const mapStateToProps = (state) => {
     return {
         itemsInCart: state.itemsInCart,
         language: state.language,
-        selection: state.selection
+        selection: state.selection,
+        addedItems: state.addedItems
     }
 }
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setEvent: (id) => { dispatch(setEvent(id)) },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -107,8 +107,8 @@ class Cart extends Component {
                     </View>
                     {this.props.items.length ?
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            {this.props.selection === 'phs' && <Text style={styles.textHeading}>{this.props.language.free}</Text>}
-                            {this.props.selection === 'phs' && this.state.complimentary.map((item, i) => {
+                            {this.props.selection === 'phs' && this.props.event === 'liquors' && <Text style={styles.textHeading}>{this.props.language.free}</Text>}
+                            {this.props.selection === 'phs' && this.props.event === 'liquors' && this.state.complimentary.map((item, i) => {
                                 return (
                                     <View key={item.title}>
                                         <View style={[styles.list, { marginHorizontal: '0%' }]}>
@@ -425,7 +425,8 @@ const mapStateToProps = (state) => {
         items: state.addedItems,
         total: state.total,
         selection: state.selection,
-        language: state.language
+        language: state.language,
+        event: state.event
     }
 }
 const mapDispatchToProps = (dispatch) => {
