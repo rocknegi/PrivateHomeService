@@ -54,9 +54,10 @@ export default {
     'phsHeading3': 'Décoration lumineuse',
     'phsText3': 'Décorez vos packages avec nos spots lumineux. Possibilité de definir la couleur de votre thême. Toutes les couleurs sont programmables sur nos spots LED intelligents',
     'phsHeading4': 'DJ & SoundSystem',
-    'phsText4': 'Pour vos évènements ( 25 à 100 Personnes), nous mettons a votre disposition des dj talentueux avec équipements professionnels pour vos offrir des moments inoubliables',
+    'phsText4': 'Pour vos évènements ( 25 à 300 Personnes), nous mettons a votre disposition des dj talentueux avec équipements professionnels pour vos offrir des moments inoubliables',
     'phsText5': `Vous n'avez pas d'endroit pour votre évènement réservée plus haut? choisissez un lieu optimal ( Appartements / Studios meublés ou salles de fête) ICI`,
     'extra': `ajouter des options ici!`,
     'address': 'Commune/Quartier',
-    'addressModal': 'Veuillez décrire le bâtiment à gauche et à droite de votre bâtiment pour nous aider à vous trouver'
+    'addressModal': 'Veuillez décrire le bâtiment à gauche et à droite de votre bâtiment pour nous aider à vous trouver',
+    'hostessText': '1 Max 10 heures / Jour​'
 } 

@@ -219,6 +219,9 @@ class GlassAndServices extends Component {
                                 <Text style={[styles.buttonText, { fontSize: 14 }]}>{this.props.language.buynow}</Text>
                             </TouchableOpacity>
                         </View>
+                        <Text style={{ fontSize: 12, padding: 10, left: 5 }}>
+                            *{this.props.language.hostessText}
+                        </Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>

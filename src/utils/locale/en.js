@@ -54,10 +54,11 @@ export default {
     'phsHeading3': 'Light decoration​',
     'phsText3': 'Decorate your packages with our light spots. Possibility to define the color of your theme. All colors are programmable on our smart LED spots',
     'phsHeading4': '​DJ & SoundSystem',
-    'phsText4': 'For your events (25 to 100 people), we put at your disposal talented dj’s with professional equipment to offer you unforgettable moments',
+    'phsText4': 'For your events (25 to 300 people), we put at your disposal talented dj’s with professional equipment to offer you unforgettable moments',
     'phsHeading5': 'Your Event Location',
     'phsText5': `You don't have a place for your event booked above? choose an optimal location (Furnished Apartments / Studios or party rooms) HERE`,
     'extra': `book extra's here !`,
     'address': 'Township/District',
-    'addressModal': 'Please describe the building to the left and right of your building to help us find you'
+    'addressModal': 'Please describe the building to the left and right of your building to help us find you',
+    'hostessText': '1 day is max 10 working Hours!'
 }
