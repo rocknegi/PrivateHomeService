@@ -58,5 +58,6 @@ export default {
     'phsHeading5': 'Your Event Location',
     'phsText5': `You don't have a place for your event booked above? choose an optimal location (Furnished Apartments / Studios or party rooms) HERE`,
     'extra': `book extra's here !`,
-    'address': 'Township/District'
-} 
+    'address': 'Township/District',
+    'addressModal': 'Please describe the building to the left and right of your building to help us find you'
+}

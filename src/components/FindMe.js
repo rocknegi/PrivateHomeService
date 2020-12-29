@@ -399,7 +399,7 @@ class FindMe extends Component {
                             <View style={[styles.field, { marginHorizontal: '0%', }]}>
                                 {/* <Text style={{}}>Adress Precision</Text> */}
                                 <TextInput
-                                    onFocus={() => Alert.alert('', 'Please describe the building Left and right from your building to help us Find you')}
+                                    onFocus={() => Alert.alert('', this.props.language.addressModal)}
                                     placeholder={this.props.language.address}
                                     style={styles.input}
                                     onChangeText={(e) => this.setState({ address: e })}

@@ -57,5 +57,6 @@ export default {
     'phsText4': 'Pour vos évènements ( 25 à 100 Personnes), nous mettons a votre disposition des dj talentueux avec équipements professionnels pour vos offrir des moments inoubliables',
     'phsText5': `Vous n'avez pas d'endroit pour votre évènement réservée plus haut? choisissez un lieu optimal ( Appartements / Studios meublés ou salles de fête) ICI`,
     'extra': `ajouter des options ici!`,
-    'address': 'Commune/Quartier'
+    'address': 'Commune/Quartier',
+    'addressModal': 'Veuillez décrire le bâtiment à gauche et à droite de votre bâtiment pour nous aider à vous trouver'
 } 

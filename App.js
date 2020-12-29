@@ -33,7 +33,7 @@ import Profile from './src/components/login/Profile';
 import ContactUs from './src/components/login/ContactUs';
 import Notifications from './src/components/login/Notifications';
 import Orders from './src/components/login/Orders';
-import Video from './src/components/login/Video';
+import VideoScreen from './src/components/Video.js';
 import InitialSelectionScreen from './src/components/InitialSelectionScreen';
 
 MaterialIcon.loadFont();
@@ -68,7 +68,7 @@ const dashBoard = createDrawerNavigator({
   Profile,
   Orders,
   Notifications,
-  Video,
+  Video: VideoScreen,
   ContactUs,
 }, {
   contentOptions: {
