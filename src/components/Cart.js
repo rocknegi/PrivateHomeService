@@ -181,7 +181,7 @@ class Cart extends Component {
                                     )
                                 })}
                             </View>
-                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>{this.props.language.pack}</Text>}
+                            {this.props.items.find(e => e.category === 'liquors') && <Text style={styles.textHeading}>{this.props.selection ? this.props.language.phsHeading1 : this.props.language.pack}</Text>}
                             {this.state.liquors && this.props.items.filter(e => e.category === 'liquors').map((item, i) => {
                                 return (
                                     <View key={item.title}>
@@ -209,7 +209,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>{this.props.language.whiskey12}</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey12') && <Text style={styles.textHeading}>{this.props.selection ? this.props.language.phsHeading2 : this.props.language.whiskey12}</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey12').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -240,7 +240,7 @@ class Cart extends Component {
                                     </View>
                                 )
                             })}
-                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>{this.props.language.whiskey15}</Text>}
+                            {this.props.items.find(e => e.category === 'Whiskey15') && <Text style={styles.textHeading}>{this.props.selection ? this.props.language.phsHeading3 : this.props.language.whiskey15}</Text>}
                             {this.props.items.filter(e => e.category === 'Whiskey15').map(item => {
                                 return (
                                     <View key={item.title}>
@@ -273,7 +273,7 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>{this.props.language.whiskey18}</Text>}
+                                {this.props.items.find(e => e.category === 'Whiskey18') && <Text style={styles.textHeading}>{this.props.selection ? this.props.language.phsHeading4 : this.props.language.whiskey18}</Text>}
                                 {this.props.items.filter(e => e.category === 'Whiskey18').map(item => {
                                     return (
                                         <View key={item.title}>
@@ -306,7 +306,7 @@ class Cart extends Component {
                                     )
                                 })}</View>
                             <View>
-                                {this.props.items.find(e => e.category === 'Champagne') && <Text style={styles.textHeading}>{this.props.language.champagne}</Text>}
+                                {this.props.items.find(e => e.category === 'Champagne') && <Text style={styles.textHeading}>{this.props.selection ? this.props.language.phsHeading5 : this.props.language.champagne}</Text>}
                                 {this.props.items.filter(e => e.category === 'Champagne').map(item => {
                                     return (
                                         <View key={item.title}>

@@ -16,7 +16,7 @@ class GlassAndServices extends Component {
         champagneBottles: 0,
         error: null,
         maxGlass: 12,
-        currentRate: 1500,
+        currentRate: 15000,
         glassesVisible: true,
         item: {
             wineGlass: 0,
