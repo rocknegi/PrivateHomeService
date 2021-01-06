@@ -36,8 +36,8 @@ class FindMe extends Component {
             latitude: 0,
             longitude: 0,
         },
-        date: moment().add(1, 'd').format('DD-MM-YYYY'),
-        dateTo: moment().add(6, 'd').format('DD-MM-YYYY'),
+        date: moment().format('DD-MM-YYYY'),
+        dateTo: this.props.selection === 'phs' ? moment().add(6, 'd').format('DD-MM-YYYY') : moment().add(2, 'd').format('DD-MM-YYYY'),
         validLocation: false,
         loading: false,
         name: '',
@@ -79,19 +79,25 @@ class FindMe extends Component {
         // if (this.validate()) {
         const maxHH = 21;
         const minHH = 14;
+        const currentTime = new Date().getHours();
         if (this.state.hours.length < 2 || this.state.minutes.length < 2 || this.state.minutes > 60)
             Alert.alert('Enter time in HH:MM format')
         else if (this.state.hours > maxHH || this.state.hours < minHH)
             Alert.alert('', "we only deliver between 14:00 (2pm) and 21:00 (9pm)")
-
+        else if (this.props.selection === '' && this.state.date == moment().format('DD-MM-YYYY') && this.state.hours - currentTime < 2)
+            alert("The delivery time should be at least 2Hrs After order time placement ");
+        else if (this.props.selection === 'phs' && this.state.date == moment().format('DD-MM-YYYY') && this.state.hours - currentTime < 3)
+            alert("The delivery time should be at least 3Hrs After order time placement ");
         // else this.props.navigation.navigate('payment')
         // }
         // else Alert.alert('', 'Please enter your name and press Find me ')
+
     }
     isValidLocation = (bool) => {
         this.setState({ validLocation: bool })
     }
     mtn = async () => {
+        this.checkTime();
         if (!this.state.validLocation) {
             Alert.alert('No Service available in this area')
         }
@@ -449,7 +455,7 @@ class FindMe extends Component {
                                         mode="date"
                                         placeholder="select date"
                                         format="DD-MM-YYYY"
-                                        minDate={this.state.date}
+                                        minDate={moment().format('DD-MM-YYYY')}
                                         maxDate={this.state.dateTo}
                                         confirmBtnText="Confirm"
                                         cancelBtnText="Cancel"
