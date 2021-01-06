@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
+import { Text, View, SafeAreaView, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { PrimayColor } from './theme/Colors'
 import LinearGradient from 'react-native-linear-gradient';
@@ -177,6 +177,12 @@ class Home extends Component {
                     name: item.heading
                 })
             }
+            else if (prestigeEvent) {
+                Alert.alert('If the Prestige event is In the cart, you can add only Event location')
+            }
+            else if (crystalEvent) {
+                Alert.alert('If the Crystal event is In the cart, you can add only Event location')
+            }
         }
         else {
             this.props.navigation.navigate('SelctedCategory', {
@@ -184,7 +190,6 @@ class Home extends Component {
                 name: item.heading
             })
         }
-
     }
 
 
