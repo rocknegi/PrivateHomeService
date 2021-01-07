@@ -13,7 +13,7 @@ export default {
     'champagne': 'Champagne',
     'disc': 'Discounted',
     'promo': 'Offers  Drink delivery',
-    'games1': 'Social',
+    'games1': 'Add ons',
     'games2': 'Games',
     'onlyGame': '*Only one social game type / Oder',
     'onlySeesha': '*Only one shisha will be delivered',

@@ -13,7 +13,7 @@ export default {
     'champagne': 'Champagnes',
     'disc': 'Promo Drink delivery',
     'promo': 'Promo Drink delivery',
-    'games1': 'Jeux de',
+    'games1': 'Extras',
     'games2': 'société',
     'onlyGame': '*Maximum 1 ludo et 1 Monopoly /  commande ',
     'onlySeesha': '*Maximum 1 appareil à shisha / commande',

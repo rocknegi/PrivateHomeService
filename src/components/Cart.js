@@ -130,7 +130,7 @@ class Cart extends Component {
                                 )
                             })}
                             <View>
-                                {this.props.items.find(e => e.category === 'Social') && <Text style={styles.textHeading}>{this.props.language.games1}{this.props.language.games2}</Text>}
+                                {this.props.items.find(e => e.category === 'Social') && <Text style={styles.textHeading}>{this.props.language.games1}</Text>}
                                 {this.props.items.filter(e => e.category === 'Social').map(item => {
                                     return (
                                         <View>
