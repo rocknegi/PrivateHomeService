@@ -141,7 +141,7 @@ class Home extends Component {
                 switch (data.category) {
                     case 'liquors': {
                         prestigeEvent = true;
-                        this.props.setEvent('liquors')
+                        // this.props.setEvent('liquors')
                         break;
                     }
                     case 'Whiskey12': {
@@ -159,6 +159,7 @@ class Home extends Component {
             }
 
             else if (crystalEvent && item.category === 'Whiskey12') {
+                // this.props.setEvent('liquors')
                 this.props.navigation.navigate('SelctedCategory', {
                     category: item.category,
                     name: item.heading
@@ -177,14 +178,29 @@ class Home extends Component {
                     name: item.heading
                 })
             }
+            else if (crystalEvent && item.category === 'Whiskey18') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+            else if (crystalEvent && item.category === 'Whiskey15') {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
             else if (prestigeEvent) {
                 Alert.alert('If the Prestige event is In the cart, you can add only Event location')
             }
             else if (crystalEvent) {
-                Alert.alert('If the Crystal event is In the cart, you can add only Event location')
+                Alert.alert('If the Crystal event is In the cart, you can not add Prestige Event')
             }
         }
         else {
+            if (item.category === 'Whiskey12') {
+                // this.props.setEvent('liquors')
+            }
             this.props.navigation.navigate('SelctedCategory', {
                 category: item.category,
                 name: item.heading
