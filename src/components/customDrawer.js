@@ -51,11 +51,10 @@ const CustomDrawer = ({ activeTintColor, navigation, backgroundTintColor }) => {
             {MenuItems.map((e, i) => {
                 return (
                     <View style={[styles.container, { backgroundColor: navigation.state.index === i ? backgroundTintColor : null }]} key={e.id}>
-                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name={e.icon} />
-                        <Text onPress={() => navigation.navigate(e.navigate)} style={[styles.text, { color: navigation.state.index === i ? activeTintColor : null }]} >{e.name}</Text>
-                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : null }]} name="arrow-right" />
+                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : '#000' }]} name={e.icon} />
+                        <Text onPress={() => navigation.navigate(e.navigate)} style={[styles.text, { color: navigation.state.index === i ? activeTintColor : '#000' }]} >{e.name}</Text>
+                        <Icon style={[styles.icon, { color: navigation.state.index === i ? activeTintColor : '#000' }]} name="arrow-right" />
                     </View>
-
                 )
             })}
 
