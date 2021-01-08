@@ -134,6 +134,8 @@ class Home extends Component {
     checkEvents = (item) => {
         let crystalEvent = false;
         let prestigeEvent = false;
+        let DJ = false;
+        let LightDec = false;
         this.props.setEvent('');
 
         if (this.props.addedItems.length) {
@@ -146,6 +148,14 @@ class Home extends Component {
                     }
                     case 'Whiskey12': {
                         crystalEvent = true
+                        break;
+                    }
+                    case 'Whiskey15': {
+                        LightDec = true
+                        break;
+                    }
+                    case 'Whiskey18': {
+                        DJ = true
                         break;
                     }
                 }
@@ -190,11 +200,23 @@ class Home extends Component {
                     name: item.heading
                 })
             }
+            else if ((DJ || LightDec) && (item.category === 'Whiskey12' ||
+                item.category === 'Whiskey15' || item.category === 'Whiskey18' ||
+                item.category === 'Champagne')) {
+                this.props.navigation.navigate('SelctedCategory', {
+                    category: item.category,
+                    name: item.heading
+                })
+            }
+            else if ((DJ || LightDec) && item.category === 'liquors') {
+                Alert.alert('Prestige event is not available with light decoration or sound system')
+            }
+
             else if (prestigeEvent) {
                 Alert.alert('If the Prestige event is In the cart, you can add only Event location')
             }
-            else if (crystalEvent) {
-                Alert.alert('If the Crystal event is In the cart, you can not add Prestige Event')
+            else if (crystalEvent || DJ || LightDec) {
+                Alert.alert('If the Crystal event/light decoration or DJ sound system is In the cart, you can not add Prestige Event')
             }
         }
         else {
