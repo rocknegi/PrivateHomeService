@@ -16,7 +16,7 @@
     "@react-native-community/picker": "^1.8.0",
     "global": "^4.4.0",
     "haversine": "^1.1.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "moment": "^2.27.0",
     "react": "16.11.0",
     "react-native": "^0.63.4",
